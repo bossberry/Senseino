@@ -1,0 +1,15 @@
+.topbar-wrapper {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.topbar-left {
+    float: left;
+}
+.topbar-right {
+    float: right;
+}
+ul.topbar-menu > li{
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+}
