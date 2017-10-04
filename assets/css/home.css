@@ -7,16 +7,28 @@
     margin: auto;
 }
 h1.head-section-margin{
-    margin-left: 9.6%;
+    margin-bottom: 30px;
+    padding-left: 15px;
 }
 .head-section{
     margin-bottom: 20px;
 }
+.head-section-jobs{
+    padding-left: 30px;
+    margin-bottom: 30px;
+}
+.float-r-jobs{
+    float: right;
+    padding-right: 30px;
+}
 .job-tumbnail-repeat-col{
-    padding-left: 0px;
+    padding-right: 0px;
 }
 .job-post-repeat-col{
     margin-bottom: 10px;
+}
+.job-post-wrapper>div{
+    padding-left: 0px;
 }
 .job-post-repeat-col:nth-last-child(2) > div.job-post-wrapper {
     border-bottom:none;
@@ -55,7 +67,7 @@ h1.head-section-margin{
     border-radius: 50%;
     max-width: 32px;
 }
-.overlay{
+.overlay-green{
     position: absolute;
     width: 100%;
     height: 100%;
@@ -74,7 +86,7 @@ h1.head-section-margin{
     max-height: 295px;
 }
 .see-all-wrap{
-    margin-right:10.6%;
+    padding-right: 15px;
 }
 div.status-new,  div.status-prog{
     display: inline;
@@ -145,4 +157,8 @@ div.status-prog>span{
 .wrapper-customer>button{
     margin-top: 30px;
 
+}
+.footer-wrapper>div>p{
+    margin-top: 15px;
+    margin-bottom: 25px;
 }

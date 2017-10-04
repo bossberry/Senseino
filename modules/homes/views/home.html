@@ -13,36 +13,36 @@
         <div class="section-box row container">
             <div class="col-lg-12">
                 <h1 class="head-section-margin">ล่าม<span class="see-all-wrap float-r"><button class="btn btn-more">ดูทั้งหมด ></button></span></h1>
-                <div class="align-grid-center col-xs-2 col-sm-2 col-md-2 col-lg-2" ng-repeat="data in objects | limitTo: 5">
+                <div class="col-xs-5ths col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="data in objects | limitTo: 5">
                     <img style="width:100%" ng-src="{{data.img}}">
                     <p></p>{{data.name}}</p>
                     <span>{{data.tag}}</span>
-                    <p>{{data.location}}</p>
+                    <p><img src="assets/img/location.png">{{data.location}}</p>
                 </div>
             </div>
         </div>
         <div class="section-box row container">
             <div class="col-lg-12">
                 <h1 class="head-section-margin">นักแปล<span class="see-all-wrap float-r"><button class="btn btn-more">ดูทั้งหมด ></button></span></h1>
-                <div class="align-grid-center  col-xs-2 col-sm-2 col-md-2 col-lg-2" ng-repeat="data in objects | limitTo: 5">
+                <div class="col-xs-5ths col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="data in objects | limitTo: 5">
                     <img style="width:100%" ng-src="{{data.img}}">
                     <p>{{data.name}}</p>
                     <span>{{data.tag}}</span>
-                    <p>{{data.location}}</p>
+                    <p><img src="assets/img/location.png">{{data.location}}</p>
                 </div>
             </div>
         </div>
         
         <div class="section-box row container">
-            <div class="overlay row container"></div>
-            <h1 class="head-section">Jobs<span class="float-r"><button class="btn btn-more">ดูทั้งหมด ></button></span></h1>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 job-tumbnail-repeat-col"> 
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 job-tumbnail-repeat-col" ng-repeat="data in jobstumbnail">
+            <div class="overlay-green row container"></div>
+            <h1 class="head-section-jobs">Jobs<span class="float-r-jobs"><button class="btn btn-more">ดูทั้งหมด ></button></span></h1>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 "> 
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6  job-tumbnail-repeat-col" ng-repeat="data in jobstumbnail">
                     <img style="width:100%;margin-bottom:10px" ng-src="{{data.img}}">
                 </div>
             </div>
-            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10"> 
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 job-post-repeat-col" ng-repeat="data in postjob">
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="padding-left:0px;"> 
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 job-post-repeat-col" ng-repeat="data in postjob" style="padding-left:0px;">
                     <div class="job-post-wrapper">
                         <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
                             {{data.topic}}&nbsp;
@@ -72,7 +72,7 @@
         <div class="section-box row container">
             <div class="col-lg-12">
                 <h1 class="head-section-margin">ออนไลน์คอร์ส<span class="see-all-wrap float-r"><button class="btn btn-more">ดูทั้งหมด ></button></span></h1>
-                <div class="align-grid-center  col-xs-2 col-sm-2 col-md-2 col-lg-2" ng-repeat="data in course | limitTo: 10">
+                <div class="col-xs-5ths col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="data in course | limitTo: 10">
                     <div class="wrapper-coursebox">
                         <img style="width:100%" ng-src="{{data.img}}">
                         <div class="coursebox-body">
@@ -90,7 +90,7 @@
         <div class="section-box row container">
             <div class="col-lg-12">
                 <center><h1>ลูกค้าของเรา</h1></center>
-                <div class="align-grid-center  col-xs-2 col-sm-2 col-md-2 col-lg-2" ng-repeat="data in testimonials | limitTo: 10">
+                <div class="col-xs-5ths col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="data in testimonials | limitTo: 10">
                     <img src="{{data.img}}" class="testimonials-img">
                 </div>
             </div>
@@ -116,32 +116,51 @@
                 <img src="assets/img/jobs_line.png" alt=""><p>@SENSEINO</p>
             </div>
         </div>
-        <div class="section-box row container">
+        <div class="row container">
             <div class="col-lg-12  footer-wrapper">
                 <div class="col-lg-4">
                     <img src="assets/img/logo_senseino.png" alt="">
                     <p>The Service PLaace for Language Experts</p>
-                    <select>
-                        <Option>TH</Option>
-                        <Option>EN</Option>
-                    </select>
+
+                    <li class="dropdown sort-dropdown styled-dropdown" uib-dropdown>
+                        <a class="dropdown-toggle" uib-dropdown-toggle role="button">
+                            <span><img src="assets/img/th.png">&nbsp;&nbsp;TH</span>
+                        <b class="glyphicon glyphicon-triangle-bottom ic-dropdown"></b>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a ng-click=""><img src="assets/img/th.png">&nbsp;&nbsp;TH</a>
+                        </li>
+                        <li>
+                            <a ng-click=""><img src="assets/img/en.png">&nbsp;&nbsp;EN</a>
+                        </li>
+                        </ul>
+                    </li>
                 </div>
                 <div class="col-lg-4">
-                    <ul>
-                        <li>เกี่ยวกับเรา</li>
+                    <h1 class="footer-link-title">เกี่ยวกับเรา</h1>
+                    <ul class="footer-link">
                         <li>เงื่อนไขการใช้บริการ</li>
                         <li>นโนบายความเป็นส่วนตัว</li>
                         <li>คำถามที่พบบ่อย</li>
                     </ul> 
                 </div>
-                <div class="col-lg-4">
-                    <img src="assets/img/Icon App.png" alt="">
-                    <p>Senseino Application</p>
-                    <p>ดาวน์โหลดได้แล้ววันนี้</p>
-                    <img src="assets/img/Appstore.png" alt="">
-                    <img src="assets/img/Playstore.png" alt="">
+                <div class="col-lg-4 ">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <img  src="assets/img/Icon App.png" alt="">
+                    </div>
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 footer-right-col" >
+                        <h1>Senseino Application</h1>
+                        <h2>ดาวน์โหลดได้แล้ววันนี้</h2>
+                    </div>
+                    <div class="footer-img-right">
+                        <img class="" src="assets/img/Appstore.png" alt="">
+                        <img class="" src="assets/img/Playstore.png" alt="">
+                    </div>
                 </div>
+                
             </div>
+            <div class="footer-bar">&#9400;&nbsp;2017, Senseino Co.,Ltd. All Rights Reserved.</div>
         </div>
     </div>
 </section>
