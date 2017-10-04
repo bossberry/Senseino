@@ -1,4 +1,147 @@
 <section>
-    <p>Home</p>
-    <button type="button" ng-click="OnClick()">test</button>
+    <center>
+        <jk-carousel
+            data="dataArray"
+            item-template-url="'/modules/homes/views/item-template.html'"
+            max-width="1200" 
+            max-height="400"
+            auto-slide="true"
+            auto-slide-time="5000" >
+        </jk-carousel>
+    </center>          
+    <div class="">
+        <div class="section-box row container">
+            <div class="col-lg-12">
+                <h1 class="head-section-margin">ล่าม<span class="see-all-wrap float-r"><button class="btn btn-more">ดูทั้งหมด ></button></span></h1>
+                <div class="align-grid-center col-xs-2 col-sm-2 col-md-2 col-lg-2" ng-repeat="data in objects | limitTo: 5">
+                    <img style="width:100%" ng-src="{{data.img}}">
+                    <p></p>{{data.name}}</p>
+                    <span>{{data.tag}}</span>
+                    <p>{{data.location}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="section-box row container">
+            <div class="col-lg-12">
+                <h1 class="head-section-margin">นักแปล<span class="see-all-wrap float-r"><button class="btn btn-more">ดูทั้งหมด ></button></span></h1>
+                <div class="align-grid-center  col-xs-2 col-sm-2 col-md-2 col-lg-2" ng-repeat="data in objects | limitTo: 5">
+                    <img style="width:100%" ng-src="{{data.img}}">
+                    <p>{{data.name}}</p>
+                    <span>{{data.tag}}</span>
+                    <p>{{data.location}}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-box row container">
+            <div class="overlay row container"></div>
+            <h1 class="head-section">Jobs<span class="float-r"><button class="btn btn-more">ดูทั้งหมด ></button></span></h1>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 job-tumbnail-repeat-col"> 
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 job-tumbnail-repeat-col" ng-repeat="data in jobstumbnail">
+                    <img style="width:100%;margin-bottom:10px" ng-src="{{data.img}}">
+                </div>
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10"> 
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 job-post-repeat-col" ng-repeat="data in postjob">
+                    <div class="job-post-wrapper">
+                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                            {{data.topic}}&nbsp;
+                            <div  class="status-new" ng-if="data.status=='NEW'"><span>{{data.status}}</span></div>
+                            <div  class="status-prog" ng-if="data.status=='IN PROGRESS'"><span>{{data.status}}</span></div>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <p class="job-price">
+                            <span class="currency-ssn">$</span>
+                            {{data.price}}
+                            </p>
+                            <p class="job-unit">
+                            {{data.unit}}
+                            </p>     
+                        </div>
+                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                            <button class="btn tag-category" ng-repeat="tagg in data.tag">{{tagg}}</button>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="text-align:right;">
+                            <p class="job-name">{{data.name}} </p>
+                            <img class="jobs-tumbnail-poster" ng-src="{{data.pic}}">  
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-box row container">
+            <div class="col-lg-12">
+                <h1 class="head-section-margin">ออนไลน์คอร์ส<span class="see-all-wrap float-r"><button class="btn btn-more">ดูทั้งหมด ></button></span></h1>
+                <div class="align-grid-center  col-xs-2 col-sm-2 col-md-2 col-lg-2" ng-repeat="data in course | limitTo: 10">
+                    <div class="wrapper-coursebox">
+                        <img style="width:100%" ng-src="{{data.img}}">
+                        <div class="coursebox-body">
+                            <h1>{{data.topic}}</h1>
+                            <h2>{{data.descript}}</h2>
+                            <p>{{data.amount}} / {{data.full}}</p>
+                            <center>
+                            <p><span class="course-price">&#3647;{{data.price}}</span><span class="course-gen">รุ่นที่{{data.gen}}</span><img class="course-pic" src="{{data.pic}}" alt=""></p>
+                            </center>  
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-box row container">
+            <div class="col-lg-12">
+                <center><h1>ลูกค้าของเรา</h1></center>
+                <div class="align-grid-center  col-xs-2 col-sm-2 col-md-2 col-lg-2" ng-repeat="data in testimonials | limitTo: 10">
+                    <img src="{{data.img}}" class="testimonials-img">
+                </div>
+            </div>
+        </div>
+        <div class="section-box row container wrapper-customer">
+            <div class="overlay-red row container"></div>
+            <h1>สำหรับลูกค้าองค์กร</h1>
+            <p>บริการ Outsource ผู้เชี่ยวชาญด้านภาษา</p>
+            <p>ล่าม นักแปล ครูสอนภาษา ไกด์ พิธีกร MC ที่ปรึกษา สำหรับลูกค้าองค์กรในราคาพิเศษ</p>
+            <button class="btn-action btn">ดูรายละเอียด</button>
+            <button class="btn backtotop"><span class="glyphicon glyphicon-menu-up"></span></button>
+        </div>
+        <div class="section-box row container">
+            <div class="col-lg-4">
+                <img src="assets/img/call.png" alt="">
+                <h3>Senseino Center</h3>
+                <h1>092-4460222</h1>
+            </div>
+            <div class="col-lg-4">
+                <img src="assets/img/support.png" alt=""><p>บริการช่วยเหลือ</p>  
+            </div>
+            <div class="col-lg-4">
+                <img src="assets/img/jobs_line.png" alt=""><p>@SENSEINO</p>
+            </div>
+        </div>
+        <div class="section-box row container">
+            <div class="col-lg-12  footer-wrapper">
+                <div class="col-lg-4">
+                    <img src="assets/img/logo_senseino.png" alt="">
+                    <p>The Service PLaace for Language Experts</p>
+                    <select>
+                        <Option>TH</Option>
+                        <Option>EN</Option>
+                    </select>
+                </div>
+                <div class="col-lg-4">
+                    <ul>
+                        <li>เกี่ยวกับเรา</li>
+                        <li>เงื่อนไขการใช้บริการ</li>
+                        <li>นโนบายความเป็นส่วนตัว</li>
+                        <li>คำถามที่พบบ่อย</li>
+                    </ul> 
+                </div>
+                <div class="col-lg-4">
+                    <img src="assets/img/Icon App.png" alt="">
+                    <p>Senseino Application</p>
+                    <p>ดาวน์โหลดได้แล้ววันนี้</p>
+                    <img src="assets/img/Appstore.png" alt="">
+                    <img src="assets/img/Playstore.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
 </section>

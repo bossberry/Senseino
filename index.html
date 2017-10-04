@@ -11,11 +11,15 @@
     <link rel="stylesheet" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="node_modules/angular-jk-carousel/dist/jk-carousel.min.css">
+    
     <!-- Self Style -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/topbar.css">
+    <link rel="stylesheet" href="assets/css/home.css">
 </head>
-<body ng-app="myApp" style="margin-left:100px;margin-right:100px;">
+<body ng-app="myApp" class="container">
     <aside data-ng-include="'/modules/topbars/views/topbar.html'"></aside>    
     <section>
             <ng-view></ng-view>
@@ -24,10 +28,15 @@
 </body>
 <!-- Node Modules -->
 <script src="node_modules/angular/angular.min.js"></script>
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
 <script src="node_modules/angular-route/angular-route.min.js"></script>
 <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-
+<script src="node_modules/angular-animate/angular-animate.min.js"></script>
+<script src="node_modules/angular-aria/angular-aria.min.js"></script>
+<script src="node_modules/angular-material/angular-material.min.js"></script>
+<!-- <script src="node_modules/angular-jk-carousel/dist/jk-carousel.min.js"></script> -->
+<script src="modules/homes/controller/jk-carousel.js"></script>
 <!-- Self Scripts -->
 <script src="app.routes.js"></script>
 <script src="app.config.js"></script>

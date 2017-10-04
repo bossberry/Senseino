@@ -1,10 +1,136 @@
+/* Start Font Face */
+@font-face {
+	font-family: 'promptextralight';
+	src: url('../font/subset-Prompt-ExtraLight.eot');
+	src: url('../font/subset-Prompt-ExtraLight.eot?#iefix') format('embedded-opentype'),
+		url('../font/subset-Prompt-ExtraLight.woff2') format('woff2'),
+		url('../font/subset-Prompt-ExtraLight.woff') format('woff'),
+		url('../font/subset-Prompt-ExtraLight.ttf') format('truetype');
+	font-weight: 200;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'promptmedium';
+	src: url('../font/subset-Prompt-Medium.eot');
+	src: url('../font/subset-Prompt-Medium.eot?#iefix') format('embedded-opentype'),
+		url('../font/subset-Prompt-Medium.woff2') format('woff2'),
+		url('../font/subset-Prompt-Medium.woff') format('woff'),
+		url('../font/subset-Prompt-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'promptbold';
+	src: url('../font/subset-Prompt-Bold.eot');
+	src: url('../font/subset-Prompt-Bold.eot?#iefix') format('embedded-opentype'),
+		url('../font/subset-Prompt-Bold.woff2') format('woff2'),
+		url('../font/subset-Prompt-Bold.woff') format('woff'),
+		url('../font/subset-Prompt-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'promptsemibold';
+	src: url('../font/subset-Prompt-SemiBold.eot');
+	src: url('../font/subset-Prompt-SemiBold.eot?#iefix') format('embedded-opentype'),
+		url('../font/subset-Prompt-SemiBold.woff2') format('woff2'),
+		url('../font/subset-Prompt-SemiBold.woff') format('woff'),
+		url('../font/subset-Prompt-SemiBold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'promptregular';
+	src: url('../font/subset-Prompt-Regular.eot');
+	src: url('../font/subset-Prompt-Regular.eot?#iefix') format('embedded-opentype'),
+		url('../font/subset-Prompt-Regular.woff2') format('woff2'),
+		url('../font/subset-Prompt-Regular.woff') format('woff'),
+		url('../font/subset-Prompt-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+/* End Font Face */
+html{
+	background-color: #fff;
+	/* max-width: 1200px; */
+	margin: 0 auto;
+}
+body{
+    font-family: 'promptregular';
+    color: #484848;
+}
+h1{
+	font-size: 19px;
+}
+h2{
+	font-size: 14px;
+}
+h3{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+.ulcarousel{
+	width: 1200px;
+	height: 400px;
+}
 .btn-action{
     background-color: #FA1B25;
     color: #fff;
-    box-shadow: 0 0 10px -1px #666
+	box-shadow: 0 0 10px -1px #666;
+	padding: 10px 30px;
+	font-family: 'promptregular';
 }
 .btn-action:hover{
     background-color: #FA1B25;
     color: #fff;
     box-shadow: 0 0 10px -1px #666
+}
+.btn-more{
+	background-color: #feebec;
+    color: #FA1B25;
+	padding: 5px 5px;
+	font-family: 'promptmedium';
+	font-size: 12px;
+}
+.btn-more:hover{
+    background-color: #feebec;
+    color: #FA1B25;
+}
+.float-r{
+	float: right;
+}
+.currency-ssn{
+	color: #FA1B25;
+}
+.tag-category{
+	border: 1px solid #17B89A;
+	background-color: #fff;
+	color: #17B89A;
+	padding: 3px 5px;
+	margin-right: 5px;
+}
+.tag-category:hover{
+	border: 1px solid #17B89A;
+	background-color: #fff;
+	color: #17B89A;
+	padding: 3px 5px;
+}
+.backtotop,.backtotop:hover{
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	color: #FFF;
+	background-color: #FA1B25;
+	position: absolute;
+	right: 0;
+    margin-top: 115px!important;
+    margin-right: 100px;
+}
+.footer-wrapper{
+	background-color: #F4F4F4;
+	padding: 30px 20px;
 }
