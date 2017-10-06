@@ -18,11 +18,13 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/topbar.css">
     <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/experts.css">
 </head>
 <body ng-app="myApp" class="container">
     <aside data-ng-include="'/modules/topbars/views/topbar.html'"></aside>    
     <section>
             <ng-view></ng-view>
+            <aside data-ng-include="'/modules/footers/views/footer.html'"></aside> 
     </section>
     
 </body>

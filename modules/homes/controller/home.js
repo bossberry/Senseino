@@ -213,38 +213,72 @@ function ($scope) {
 	];
 	$scope.objects = [
 		{
+			id: 'id01',
 			img:'https://via.placeholder.com/186x278',
 			name: 'ล่าม08',
 			tag: 'Korea',
 			location: '2.8 km Lad Phrao'
 		},
 		{
+			id: 'id02',
 			img:'https://via.placeholder.com/186x278',
 			name: 'ล่าม02',
 			tag: 'Korea',
 			location: '5.6 km Chatuchak'
 		},
 		{
+			id: 'id03',
 			img:'https://via.placeholder.com/186x278',
 			name: 'ล่าม03',
 			tag: 'Korea',
 			location: '12 km Din Daeng'
 		},
 		{
+			id: 'id04',
 			img:'https://via.placeholder.com/186x278',
 			name: 'ล่าม04',
 			tag: 'Korea',
 			location: '27 km Lad Phrao'
 		},
 		{
+			id: 'id05',
 			img:'https://via.placeholder.com/186x278',
 			name: 'ล่าม05',
 			tag: 'Japan',
 			location: '34 km Din Daeng'
 		},
 		{
+			id: 'id06',
 			img:'https://via.placeholder.com/186x278',
-			name: 'ล่าม05',
+			name: 'ล่าม06',
+			tag: 'Japan',
+			location: '34 km Din Daeng'
+		},
+		{
+			id: 'id07',
+			img:'https://via.placeholder.com/186x278',
+			name: 'ล่าม07',
+			tag: 'Japan',
+			location: '34 km Din Daeng'
+		},
+		{
+			id: 'id08',
+			img:'https://via.placeholder.com/186x278',
+			name: 'ล่าม08',
+			tag: 'Japan',
+			location: '34 km Din Daeng'
+		},
+		{
+			id: 'id09',
+			img:'https://via.placeholder.com/186x278',
+			name: 'ล่าม09',
+			tag: 'Japan',
+			location: '34 km Din Daeng'
+		},
+		{
+			id: 'id10',
+			img:'https://via.placeholder.com/186x278',
+			name: 'ล่าม10',
 			tag: 'Japan',
 			location: '34 km Din Daeng'
 		}

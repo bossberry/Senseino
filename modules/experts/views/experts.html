@@ -1,4 +1,101 @@
 <section>
-    <p>Experts</p>
-    <button type="button" ng-click="OnClick()">test</button>
+<div class="section-box row container">
+        <div class="col-lg-12">
+            <h1 class="head-section-margin">ประเภทงาน</h1>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="row">
+                        <div class="col-xs-3" ng-repeat="data in jobtype | limitTo: 4">
+                            <div class="wrap">
+                                <figure class="tint">
+                                    <img style="width:100%" ng-src="{{data.img}}">
+                                </figure>
+                            </div>
+                            <p class="textcover-img">{{data.name}}</p>
+                        </div>
+                    </div>
+                </div> 
+                <div class="col-xs-6">
+                    <div class="row">
+                        <div class="col-xs-3" ng-repeat="data in jobtype | limitTo: (4 - jobtype.length)">
+                            <div class="wrap">
+                                <figure class="tint">
+                                    <img style="width:100%" ng-src="{{data.img}}">
+                                </figure>
+                            </div>
+                            <p class="textcover-img">{{data.name}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-box row container">
+        <div class="col-lg-12">
+            <h1 class="head-section-margin">ล่าม<span class="see-all-wrap float-r"><button class="btn btn-more">ดูทั้งหมด ></button></span></h1>
+            <div class="col-xs-5ths col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="data in objects | limitTo: 5">
+                <div class="amPmCheckbox">
+                    <input type="checkbox" class="checkboxLabel main_street_input" id="{{data.id}}" value="1" />
+                    <label for="{{data.id}}"></label>
+                </div>
+                <img style="width:100%" ng-src="{{data.img}}">
+                <p></p>{{data.name}}</p>
+                <span>{{data.tag}}</span>
+                <p><img src="assets/img/location.png">{{data.location}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="section-box row container">
+        <div class="col-lg-12">
+            <h1 class="head-section-margin">นักแปล<span class="see-all-wrap float-r"><button class="btn btn-more">ดูทั้งหมด ></button></span></h1>
+            <div class="col-xs-5ths col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="data in objects | limitTo: 5">
+                <div class="amPmCheckbox">
+                    <input type="checkbox" class="checkboxLabel main_street_input" id="{{data.id}}" value="1" />
+                    <label for="{{data.id}}"></label>
+                </div>
+                <img style="width:100%" ng-src="{{data.img}}">
+                <p>{{data.name}}</p>
+                <span>{{data.tag}}</span>
+                <p><img src="assets/img/location.png">{{data.location}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="section-box row container">
+        <div class="jobinterest-wrapper">
+            <h1>สนใจสมัครงาน</h1>
+            <p>ผู้เชี่ยวชาญด้านภาษา ล่าม นักแปล ครูสอนภาษา</p>
+            <p>ติวเตอร์ ไกด์ พิธีกร MC ที่ปรึกษา</p>
+            <button class="btn btn-action">สมัครงาน</button>
+        </div>
+    </div>
+    <div class="section-box row container">
+            <div class="col-lg-12">
+                <h1 class="head-section-margin">ติวเตอร์<span class="see-all-wrap float-r"><button class="btn btn-more">ดูทั้งหมด ></button></span></h1>
+                <div class="col-xs-5ths col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="data in objects | limitTo: 5">
+                    <div class="amPmCheckbox">
+                        <input type="checkbox" class="checkboxLabel main_street_input" id="{{data.id}}" value="1" />
+                        <label for="{{data.id}}"></label>
+                    </div>
+                    <img style="width:100%" ng-src="{{data.img}}">
+                    <p>{{data.name}}</p>
+                    <span>{{data.tag}}</span>
+                    <p><img src="assets/img/location.png">{{data.location}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="section-box row container">
+            <div class="col-lg-12">
+                <h1 class="head-section-margin">ครูสอนภาษา<span class="see-all-wrap float-r"><button class="btn btn-more">ดูทั้งหมด ></button></span></h1>
+                <div class="col-xs-5ths col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="data in objects | limitTo: 5">
+                    <div class="amPmCheckbox">
+                        <input type="checkbox" class="checkboxLabel main_street_input" id="{{data.id}}" value="1" />
+                        <label for="{{data.id}}"></label>
+                    </div>
+                    <img style="width:100%" ng-src="{{data.img}}">
+                    <p>{{data.name}}</p>
+                    <span>{{data.tag}}</span>
+                    <p><img src="assets/img/location.png">{{data.location}}</p>
+                </div>
+            </div>
+        </div>            
 </section>

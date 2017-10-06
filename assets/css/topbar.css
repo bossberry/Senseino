@@ -6,6 +6,7 @@
 .topbar-wrapper-sub{
     padding:10px;
     padding-bottom: 0px;
+    border-bottom: 1px solid #F4F4F4;
 }
 .topbar-left {
     float: left;
@@ -18,6 +19,10 @@ ul.topbar-menu,ul.topbar-menu-sub{
 }
 ul.topbar-menu-sub{
     margin-bottom: 0px;
+}
+ul.topbar-menu-sub > li > a{
+    text-decoration: none!important;
+    color: #484848;
 }
 ul.topbar-menu > li{
     display: inline-block;

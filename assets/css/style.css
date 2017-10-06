@@ -239,3 +239,20 @@ ul.footer-link>li{
 	padding-left:20px;
 	padding-top: 10px;
 }
+.amPmCheckbox{
+	position: absolute;
+	right: 15px;
+	top: 5px;
+}
+.amPmCheckbox input[type="checkbox"] {
+    display: none;
+}
+.amPmCheckbox input[type="checkbox"]+label {    
+    background: url('../img/rating.png') no-repeat;
+    height:17px;
+    width: 20px;
+}
+.amPmCheckbox input[type="checkbox"]:checked + label {
+    background: url('../img/rating-active.png')  no-repeat;
+    height:17px;
+}
