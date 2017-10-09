@@ -115,6 +115,9 @@ h3{
 	width: 1200px;
 	height: 400px;
 }
+.btn-action, .btn-action:hover, .btn-action:active, .btn-action:focus, .btn-action:visited{
+	outline: none!important;
+}
 .btn-action{
     background-color: #FA1B25;
     color: #fff;

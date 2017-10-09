@@ -14,6 +14,11 @@
 .topbar-right {
     float: right;
 }
+.topbar-menu > li > a{
+    color: #484848;
+    cursor: pointer;
+    text-decoration: none;
+}
 ul.topbar-menu,ul.topbar-menu-sub{
     padding: 0px;
 }

@@ -19,6 +19,14 @@ function config ($locationProvider, $routeProvider) {
             templateUrl: '/modules/jobs/views/jobs.html',
             controller: 'JobsController'
         })
+        .when('/customers', {
+            templateUrl: '/modules/customers/views/customer.html',
+            controller: 'CustomerController'
+        })
+        .when('/helps', {
+            templateUrl: '/modules/helps/views/help.html',
+            controller: 'HelpController'
+        })
         .otherwise({
             redirectTo: '/'
         });
