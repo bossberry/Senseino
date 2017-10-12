@@ -11,6 +11,9 @@
     float: right;
     cursor: pointer;
 }
+.job-modal-header > span:focus, .job-modal-header > span:visited, .job-modal-header > span:active{
+    outline: none;
+}
 .job-modal-body{
     padding-top:0px;
 }

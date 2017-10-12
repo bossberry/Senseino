@@ -1,4 +1,5 @@
-<section>
+<aside data-ng-include="'/modules/topbars/views/topbar.html'"></aside>  
+<section class="margin-for-topbar-main">
 <div class="section-box row container">
     <div class="overlay-green row container"></div>
     <h1 class="head-section-jobs">Jobs<span class="float-r-jobs"><button class="btn btn-more"><img src="assets/img/ic_post.png">&nbsp;&nbsp;โพสงาน</button></span></h1>
@@ -35,10 +36,10 @@
         </div>
     </div>
 </div>
-<script type="text/ng-template" id="test.html">
+<script type="text/ng-template" id="jobModal.html">
     <div class="modal-header job-modal-header">
         รายละเอียด
-        <span>X</span>
+        <span ng-click="closeMD()">X</span>
     </div>
     <div class="modal-body job-modal-body" id="modal-body">
         <div class="job-topic-cover row">

@@ -109,12 +109,32 @@ h3{
         float: left;
     }
 }
-
-
+.margin-for-topbar-main{
+	margin-top: 120px;
+}
+.margin-for-topbar-2{
+	margin-top: 70px;
+}
 .ulcarousel{
 	width: 1200px;
 	height: 400px;
 }
+.btn-action-border, .btn-action-border:hover, .btn-action-border:active, .btn-action-border:focus, .btn-action-border:visited{
+	outline: none!important;
+}
+.btn-action-border{
+	border: 1px solid #FA1B25;
+    background-color: #FFF;
+    color: #FA1B25;
+	padding: 10px 30px;
+	font-family: 'promptmedium';
+}
+.btn-action-border:hover{
+    background-color: #FA1B25;
+    color: #fff;
+    box-shadow: 0 0 10px -1px #666
+}
+
 .btn-action, .btn-action:hover, .btn-action:active, .btn-action:focus, .btn-action:visited{
 	outline: none!important;
 }

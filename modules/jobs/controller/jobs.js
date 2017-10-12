@@ -6,7 +6,7 @@ function ($scope, $uibModal) {
 	$scope.jobsModal = function (jobdata){
 	var modalInstance = $uibModal.open({
 		animation: $scope.animationsEnabled,
-		templateUrl: 'test.html',
+		templateUrl: 'jobModal.html',
 		controller: 'JobsModalController as ctrl',
 		resolve: {
 			jobdata: function() {
@@ -103,8 +103,11 @@ function ($scope, $uibModal) {
 
 angular
 .module('myApp')
-.controller('JobsModalController', function ($scope, $uibModal, jobdata) {
+.controller('JobsModalController', function ($scope, $uibModal, jobdata, $uibModalInstance) {
 	console.log('modalController');
 	console.log(jobdata);
 	$scope.jobdatas = jobdata;
+	$scope.closeMD = function() {
+		$uibModalInstance.close(false);
+	};
 });
