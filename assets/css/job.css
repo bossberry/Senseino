@@ -45,3 +45,24 @@
 .job-modal-footer > button {
     font-size: 18px;
 }
+.modal-jobspost-header {
+    text-align: center;
+    background-color: #1BD0B4;
+    color: #fff;
+    font-size: 18px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-weight: 400;
+}
+.modal-jobspost-header > span{
+    float: right;
+}
+.btn-action-jobspost, .btn-action-jobspost:focus, .btn-action-jobspost:visited, .btn-action-jobspost:hover {
+    background-color: #1BD0B4;
+    color: #fff;
+    box-shadow: 0 0 10px -1px #666;
+    padding: 10px 30px;
+    font-family: 'promptregular';
+    font-size: 18px;
+    outline: none!important;
+}

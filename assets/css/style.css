@@ -109,11 +109,17 @@ h3{
         float: left;
     }
 }
+.warpper-ngview{
+	/* position: relative; */
+}
 .margin-for-topbar-main{
 	margin-top: 120px;
 }
 .margin-for-topbar-2{
 	margin-top: 70px;
+}
+.margin-for-topbar-5{
+	margin-top: 73px;
 }
 .ulcarousel{
 	width: 1200px;
@@ -192,76 +198,6 @@ h3{
 	margin-right: 100px;
 	outline: none;
 }
-.footer-wrapper{
-	background-color: #F4F4F4;
-	padding: 30px 20px;
-}
-.footer-bar{
-	clear: both;
-	text-align: center;
-	background-color: #082944;
-	color: #fff;
-	font-size: 14px;
-	font-family: Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	padding: 20px;
-}
-.footer-link-title{
-	color: #FA1B25;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	margin-top: 0px;
-	margin-bottom: 25px;
-	font-weight: bold;
-	padding-left: 40px;
-}
-ul.footer-link{
-	color: #484848;
-	list-style-type: none;	
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-}
-ul.footer-link>li{
-	margin-bottom: 12px;
-	cursor: pointer;
-}
-
-.styled-dropdown,.styled-dropdown:focus{
-	border: 1px solid #ccc;
-	width: 120px;
-	background-color: #fff;
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
-	border-radius: 5px;
-	outline: none;
-	padding: 10px;
-	list-style-type: none;
-}
-.styled-dropdown>a{
-	text-decoration: none;
-	font-size: 16px;
-	color: #000;
-}
-.ic-dropdown{
-	float: right;
-	padding-top: 6px;
-}
-.footer-right-col{
-	padding: 0px;
-}
-.footer-right-col>h1{
-	margin-top: 0px;
-	font-family: Arial, Helvetica, sans-serif;
-}
-.footer-right-col>h2{
-	margin-top: 0px;
-	font-family: Arial, Helvetica, sans-serif;
-}
-.footer-img-right{
-	clear: both;
-	padding-left:20px;
-	padding-top: 10px;
-}
 .amPmCheckbox{
 	position: absolute;
 	right: 15px;
@@ -271,11 +207,11 @@ ul.footer-link>li{
     display: none;
 }
 .amPmCheckbox input[type="checkbox"]+label {    
-    background: url('../img/rating.png') no-repeat;
-    height:17px;
-    width: 20px;
+    background: url('../img/favorite.png') no-repeat;
+    height:32px;
+    width: 32px;
 }
 .amPmCheckbox input[type="checkbox"]:checked + label {
-    background: url('../img/rating-active.png')  no-repeat;
-    height:17px;
+    background: url('../img/favoriteactive.png')  no-repeat;
+    height:32px;
 }

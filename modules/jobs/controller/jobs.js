@@ -15,7 +15,13 @@ function ($scope, $uibModal) {
 		  }
 		});
 	};
-
+	$scope.jobspostModal = function() {
+		var modalInstance = $uibModal.open({
+			animation: $scope.animationsEnabled,
+			templateUrl: '่jobspostModal.html',
+			controller: 'JobspostModalController as ctrl'
+			});
+	};
 	$scope.jobstumbnail = [
 		{
 			img:'https://via.placeholder.com/76x76',
@@ -97,6 +103,60 @@ function ($scope, $uibModal) {
 			tag: ['ครูสอนภาษา', 'Korea'],
 			pic: 'https://via.placeholder.com/76x76',
 			name: 'ชื่อคนโพส'
+		},
+		{
+			topic:'ชื่อโพสงานและรายละเอียดรายละเอียดเบื้องต้นของงานที่ต้องการ',
+			price: 6000,
+			unit: 'ต่องาน',
+			status: 'IN PROGRESS',
+			tag: ['ครูสอนภาษา', 'Korea'],
+			pic: 'https://via.placeholder.com/76x76',
+			name: 'ชื่อคนโพส'
+		},
+		{
+			topic:'ชื่อโพสงานและรายละเอียดรายละเอียดเบื้องต้นของงานที่ต้องการ',
+			price: 6000,
+			unit: 'ต่องาน',
+			status: 'IN PROGRESS',
+			tag: ['ครูสอนภาษา', 'Korea'],
+			pic: 'https://via.placeholder.com/76x76',
+			name: 'ชื่อคนโพส'
+		},
+		{
+			topic:'ชื่อโพสงานและรายละเอียดรายละเอียดเบื้องต้นของงานที่ต้องการ',
+			price: 6000,
+			unit: 'ต่องาน',
+			status: 'IN PROGRESS',
+			tag: ['ครูสอนภาษา', 'Korea'],
+			pic: 'https://via.placeholder.com/76x76',
+			name: 'ชื่อคนโพส'
+		},
+		{
+			topic:'ชื่อโพสงานและรายละเอียดรายละเอียดเบื้องต้นของงานที่ต้องการ',
+			price: 6000,
+			unit: 'ต่องาน',
+			status: 'IN PROGRESS',
+			tag: ['ครูสอนภาษา', 'Korea'],
+			pic: 'https://via.placeholder.com/76x76',
+			name: 'ชื่อคนโพส'
+		},
+		{
+			topic:'ชื่อโพสงานและรายละเอียดรายละเอียดเบื้องต้นของงานที่ต้องการ',
+			price: 6000,
+			unit: 'ต่องาน',
+			status: 'IN PROGRESS',
+			tag: ['ครูสอนภาษา', 'Korea'],
+			pic: 'https://via.placeholder.com/76x76',
+			name: 'ชื่อคนโพส'
+		},
+		{
+			topic:'ชื่อโพสงานและรายละเอียดรายละเอียดเบื้องต้นของงานที่ต้องการ',
+			price: 6000,
+			unit: 'ต่องาน',
+			status: 'IN PROGRESS',
+			tag: ['ครูสอนภาษา', 'Korea'],
+			pic: 'https://via.placeholder.com/76x76',
+			name: 'ชื่อคนโพส'
 		}
 	]
 }]);
@@ -110,4 +170,14 @@ angular
 	$scope.closeMD = function() {
 		$uibModalInstance.close(false);
 	};
+});
+
+angular
+.module('myApp')
+.controller('JobspostModalController', function ($scope, $uibModal, $uibModalInstance) {
+	console.log('JobspostModalController');
+	$scope.closeMD = function() {
+		$uibModalInstance.close(false);
+	};
+	
 });

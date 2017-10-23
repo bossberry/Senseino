@@ -27,6 +27,10 @@ function config ($locationProvider, $routeProvider) {
             templateUrl: '/modules/helps/views/help.html',
             controller: 'HelpController'
         })
+        .when('/experts-detail', {
+            templateUrl: '/modules/experts/views/experts-detail.html',
+            controller: 'ExpertsDetailController'
+        })
         .otherwise({
             redirectTo: '/'
         });
