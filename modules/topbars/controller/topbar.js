@@ -19,6 +19,13 @@ function ($scope, $uibModal) {
 			controller: 'RegisModalController as ctrl'
 			});
 	};
+	$scope.jobsexpressModal = function() {
+		var modalInstance = $uibModal.open({
+			animation: $scope.animationsEnabled,
+			templateUrl: '่jobsexpressModal.html',
+			controller: 'JobsexpressModalController as ctrl'
+			});
+	};
 }]);
 
 angular
@@ -49,4 +56,14 @@ angular
 			controller: 'RegisModalController as ctrl'
 			});
 	};
+});
+
+angular
+.module('myApp')
+.controller('JobsexpressModalController', function ($scope, $uibModal, $uibModalInstance) {
+	console.log('JobsexpressModalController');
+	$scope.closeMD = function() {
+		$uibModalInstance.close(false);
+	};
+	
 });

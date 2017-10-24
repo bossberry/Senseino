@@ -1,8 +1,8 @@
-<aside data-ng-include="'/modules/topbars/views/topbar.html'"></aside>  
+<aside data-ng-include="'/modules/topbars/views/topbar4.html'"></aside>  
 <section class="margin-for-topbar-main">
 <div class="section-box row container">
     <div class="overlay-green row container"></div>
-    <h1 class="head-section-jobs">Jobs<span class="float-r-jobs"><button class="btn btn-more"><img src="assets/img/ic_post.png">&nbsp;&nbsp;โพสงาน</button></span></h1>
+    <h1 class="head-section-jobs">Jobs<span class="float-r-jobs"><button ng-click="jobspostModal()" class="btn btn-more"><img src="assets/img/ic_post.png">&nbsp;&nbsp;โพสงาน</button></span></h1>
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 "> 
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6  job-tumbnail-repeat-col" ng-repeat="data in jobstumbnail">
             <img style="width:100%;margin-bottom:10px" ng-src="{{data.img}}">
@@ -76,6 +76,91 @@
     </div>
     <div class="modal-footer job-modal-footer">
         <button class="btn dialog-action btn-action" type="button" ng-click="confirmDeleteWidget()"><img src="assets/img/chat.png">&nbsp;&nbsp;แชทเสนอราคา</button>
+    </div>
+</script>
+<script type="text/ng-template" id="่jobspostModal.html">
+    <div class="modal-header modal-jobspost-header">
+        โพสงาน
+        <span ng-click="closeMD()">X</span>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div class="form-group form-g-login-modal">
+            <div class="row form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label>ชื่องาน</label>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <input type="text" placeholder="ชื่อโพสงาน และ รายละเอียดเบื้องต้น" class="form-control input-size-box">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label>ประเภทงาน</label>
+                </div>
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <select class="form-control input-size-box">
+                        <option value="" disabled selected>--เลือกประเภทงาน--</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <select class="form-control input-size-box">
+                        <option value="" disabled selected>--ภาษา--</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label>ราคา</label>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <input class="form-control jobsex-price input-size-box" type="text" placeholder="3000">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label>รูปแบบงาน</label>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <div class="type-radio-jobsex">
+                        <input type="radio" name="optradio" id="radio1"><label for="radio1">ต่อชั่วโมง</label>
+                        <input type="radio" name="optradio" id="radio2"><label for="radio2">ต่อวัน</label>
+                        <input type="radio" name="optradio" id="radio3"><label for="radio3">ต่องาน</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label>รายละเอียด</label>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <textarea style="resize:none;"rows="4" cols="40"></textarea>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label>ข้อมูลติดต่อ</label>
+                </div>
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <input class="form-control jobsex-tel input-size-box" type="text" placeholder="เบอร์โทร">
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <input class="form-control jobsex-line input-size-box" type="text" placeholder="Line ID">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label></label>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                   <button class="btn-action-jobspost btn" style="width:100%;">โพสงาน</button>
+                </div>
+            </div>
     </div>
 </script>
 </section>

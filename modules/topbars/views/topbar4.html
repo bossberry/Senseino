@@ -1,0 +1,153 @@
+<div class="topbar-cover" ng-controller="TopbarController as vm">
+    <div class="topbar-wrapper container-fluid">
+        <div class="topbar-left">
+            <a class="logo-main" ng-href="/#/"><img src="/assets/img/logo_senseino.png"></a>
+            <div class="search-ang"
+            angucomplete-alt
+            id="searchcomplete"
+            placeholder="Searcg by Location, Skills"
+            pause="400"
+            selected-object="objectSelected"
+            remote-url=""
+            remote-url-request-formatter="remoteUrlRequestFn"
+            remote-url-data-field="data"
+            title-field="name"
+            description-field="type"
+            minlength="1"
+            input-class="searchbar-top form-control-small"
+            match-class="highlight">
+            </div>
+            <!-- <input type="text" placeholder="Searcg by Location, Skills"> -->
+        </div>
+        <div class="topbar-right">
+            <ul class="topbar-menu">
+                <li ng-click="jobsexpressModal()" class="menu-jobsexpress"><img src="assets/img/jobsexpress.png">งานด่วน</li>
+                <li><a ng-href="/#/helps">ช่วยเหลือ</a></li>
+                <li ng-click="loginModal()">โพสงาน</li>
+                <li ng-click="loginModal()"><img src="assets/img/inbox.png"></li>
+                <li class="dropdown" uib-dropdown>
+                    <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
+                    <!-- <img ng-src="/{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" /> -->
+                    <img ng-src="assets/img/th.png" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
+                    <span ng-bind="vm.authentication.user.displayName"></span> <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                    <li ui-sref-active="active">
+                        <a ui-sref="{{}}">Setting</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="/api/auth/signout" target="_self">Signout</a>
+                    </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="topbar-wrapper-sub container-fluid">
+        <div class="topbar-sub-left">
+            <ul class="topbar-menu-sub">
+                <li><a ng-href="/#/home">FOR YOU</a></li>
+                <li><a ng-href="/#/experts">EXPERTS</a></li>
+                <li><a ng-href="/#/jobs">JOBS</a></li>
+                <li><a ng-href="/#/courses">COURSES</a></li>
+            </ul>
+        </div>
+        <div class="topbar-sub-right">
+            <p>ใช้งาน Senseino ได้ง่ายๆ ผ่านแอพ 
+                <img src="assets/img/Icon App.png" alt="" width="32px">
+                <img src="assets/img/Appstore.png" alt="">
+                <img src="assets/img/Playstore.png" alt="">
+            </p>
+        </div>
+    </div>
+</div>
+<script type="text/ng-template" id="่jobsexpressModal.html">
+    <div class="modal-header modal-regis-header">
+        จ้างงานด่วน
+        <span ng-click="closeMD()">X</span>
+    </div>
+    <div class="form-group group-jobep-subtitle">
+            <p>ใส่รายละเอียดงานด่วนที่ท่านต้องการ</p><p>โดยระบบจะค้นหา Expert ให้ท่านภายใน 24 ชม.</p>
+          </div>
+    <div class="modal-body" id="modal-body">
+        <div class="form-group form-g-login-modal">
+            <div class="row form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label>ชื่องาน</label>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <input type="text" placeholder="ชื่อโพสงาน และ รายละเอียดเบื้องต้น" class="form-control input-size-box">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label>ประเภทงาน</label>
+                </div>
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <select class="form-control input-size-box">
+                        <option value="" disabled selected>--เลือกประเภทงาน--</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <select class="form-control input-size-box">
+                        <option value="" disabled selected>--ภาษา--</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label>ราคา</label>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <input class="form-control jobsex-price input-size-box" type="text" placeholder="3000">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label>รูปแบบงาน</label>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <div class="type-radio-jobsex">
+                        <input type="radio" name="optradio" id="radio1"><label for="radio1">ต่อชั่วโมง</label>
+                        <input type="radio" name="optradio" id="radio2"><label for="radio2">ต่อวัน</label>
+                        <input type="radio" name="optradio" id="radio3"><label for="radio3">ต่องาน</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label>รายละเอียด</label>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <textarea style="resize:none;"rows="4" cols="40"></textarea>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label>ข้อมูลติดต่อ</label>
+                </div>
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <input class="form-control jobsex-tel input-size-box" type="text" placeholder="เบอร์โทร">
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <input class="form-control jobsex-line input-size-box" type="text" placeholder="Line ID">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label></label>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                   <button class="btn-action-jobexpress btn" style="width:100%;"><img src="/assets/img/favoriteactive.png">จ้างงานด่วน</button>
+                </div>
+            </div>
+        </div>
+</script>
+

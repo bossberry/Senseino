@@ -1,7 +1,7 @@
 .topbar-cover{
     position: fixed;
     top: 0;
-    z-index: 1;
+    z-index: 999;
     background-color: #fff;
     left: 0;
     right: 0;
@@ -70,7 +70,88 @@ ul.topbar-menu-sub > li:hover {
     margin-right: 10px;
     margin-bottom: 0px;
 }
-
+.header-profile-image{
+    border-radius: 50%;
+    height: 28px;
+    margin-right: 5px;
+    opacity: 0.8;
+    width: 28px;
+}
+.open .header-profile-image,
+a:hover .header-profile-image {
+  opacity: 1;
+}
+.menu-jobsexpress{
+    background-color: #feebec;
+    color: #FA1B25!important;
+    font-weight: bold;
+    padding: 5px 5px;
+    border-radius: 5px;
+}
+.group-jobep-subtitle{
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+    background: #feebec;
+    margin-bottom: 0px;
+}
+.group-jobep-subtitle > p{
+    margin: 0px;
+}
+.input-size-box{
+    height: 50px;
+    border-radius: 4px;
+}
+.jobsex-price{
+    background: url('../img/rating-active.png') no-repeat scroll 7px 7px;
+    background-position-x: 95%;
+    background-position-y: 50%;
+}
+.jobsex-tel{
+    background: url('../img/jobs_phone.png') no-repeat scroll 7px 7px;
+    background-position-x: 95%;
+    background-position-y: 50%;
+}
+.jobsex-line{
+    background: url('../img/jobs_line.png') no-repeat scroll 7px 7px;
+    background-position-x: 95%;
+    background-position-y: 50%;
+}
+.type-radio-jobsex input[type="radio"] {
+    display: none;
+}
+.type-radio-jobsex label {
+    display: inline-block;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px 25px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.type-radio-jobsex input[type="radio"]:checked+label {
+    display: inline-block;
+    background-color: #feebec;
+    border: 1px solid #FA1B25;
+    padding: 15px 20px;
+    cursor: pointer;
+}
+.btn-action-jobexpress{
+    background-color: #FA1B25;
+    color: #fff;
+    box-shadow: 0 0 10px -1px #666;
+    padding: 10px 30px;
+    font-family: 'promptregular';
+}
+.btn-action-jobexpress, .btn-action-jobexpress:focus, .btn-action-jobexpress:visited,.btn-action-jobexpress:hover{
+    background-color: #FA1B25;
+    color: #fff;
+    box-shadow: 0 0 10px -1px #666;
+    padding: 10px 30px;
+    font-family: 'promptregular';
+    font-size: 18px;
+    outline: none!important;
+}
 /* JK CAROUSEL */
 .jk-carousel .md-icon-button {
     display: none;

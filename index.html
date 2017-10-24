@@ -17,6 +17,7 @@
     <!-- Self Style -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/topbar.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/home.css">
     <link rel="stylesheet" href="assets/css/experts.css">
     <link rel="stylesheet" href="assets/css/job.css">
@@ -25,7 +26,7 @@
 </head>
 <body ng-app="myApp">
     <!-- <aside data-ng-include="'/modules/topbars/views/topbar.html'"></aside>     -->
-    <section>
+    <section class="warpper-ngview">
             <ng-view></ng-view>
             <aside data-ng-include="'/modules/footers/views/footer.html'"></aside> 
     </section>
@@ -57,4 +58,5 @@
 <script src="modules/jobs/controller/jobs.js"></script>
 <script src="modules/customers/controller/customer.js"></script>
 <script src="modules/helps/controller/help.js"></script>
+<script src="modules/experts/controller/experts-detail.js"></script>
 </html>

@@ -56,3 +56,103 @@
   padding: 10px 40px;
   font-size: 20px;
 }
+.expt-detail-title{
+  height: 180px;
+  background: rgba(23, 184, 154, 0.5);
+  padding: 45px;
+  /* padding-bottom: 20px; */
+}
+.expt-detail-title-cover-left > h2{
+ color: #fff;
+ font-size: 26px;
+ margin-top: 0px;
+}
+.expt-detail-title-span{
+  background-color: #fff;
+  border-radius: 2px;
+  padding: 0px 10px;
+  color: #17B89A;
+  font-size: 12px;
+}
+.expt-detail-title-cover-left > p{
+  margin-top: 10px;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  margin-bottom: 0px;
+ }
+ .expt-detail-des-title{
+  font-family: 'promptmedium';
+  font-size: 20px;
+ }
+ .expt-detail-des-body{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: medium;
+  margin-bottom: 80px;
+  line-height: 28px;
+ }
+ .tab-price-overlay{
+  position: absolute;
+  height: 50px;
+  bottom: 0;
+  width: 350px;
+  z-index: 9;
+  background:rgba(250, 27, 37, 0.5)
+}
+.tab-price-overlay > span {
+  font-size: 18px;
+  color: #fff;
+  left: 20px;
+  top: 10px;
+  position: absolute;
+}
+.tab-price-overlay > span > b{
+  font-size: 12px;
+  font-family: 'promptlight'
+}
+.btn-action-chatbrief{
+  background-color: #FA1B25;
+  color: #fff;
+  box-shadow: 0 0 10px -1px #666;
+  padding: 5px 30px;
+  margin-left:20px;
+}
+.btn-action-chatbrief, .btn-action-chatbrief:hover, .btn-action-chatbrief:active, .btn-action-chatbrief:focus, .btn-action-chatbrief:visited {
+  outline: none!important;
+}
+.expt-save-fav-p{
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  display: inline;
+}
+
+.expt-checboxfav{
+	float: left;
+  display: inline;
+  margin-top: 5px;
+}
+.expt-checboxfav input[type="checkbox"] {
+    display: none;
+}
+.expt-checboxfav input[type="checkbox"]+label {    
+    background: url('../img/favoritered.png') no-repeat;
+    height:32px;
+    width: 32px;
+}
+.expt-checboxfav input[type="checkbox"]:checked + label {
+    background: url('../img/favoriteredactive.png')  no-repeat;
+    height:32px;
+}
+.thmnail-review{
+  display: inline;
+  border-radius: 50%;
+  max-width: 50px;
+}
+.name-review{
+  margin-top: 0px;
+}
+.amount-review{
+  font-size: 20px;
+  padding-left: 15px;
+  margin-bottom: 40px;
+}
