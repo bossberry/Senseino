@@ -1,0 +1,54 @@
+.chat-head-wrapper{
+    border-bottom: 1px solid #f4f4f4;
+}
+.chat-head-left > h3{
+    font-family: 'prompt';
+    font-size: 14px
+}
+.chat-head-msg{
+    border-left: 1px solid #f4f4f4;
+    text-align: center;
+}
+.chat-head-msg > h3{
+    font-family: 'prompt';
+    font-size: 14px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+.chat-head-msg > h4{
+    font-family: 'prompt';
+    font-size: 14px;
+    color: #9b9b9b;
+    margin-top: 0px;
+}
+.chat-wrapper-body{
+    height: 500px;
+    padding: 0px;
+}
+.one-msg-user{
+    border-bottom: 1px solid #f4f4f4;
+    display: flex;
+}
+.chat-user-thumnail-left{
+    text-align: center;
+    margin-top: 17px;
+}
+.chat-msg-body{
+    border-left: 1px solid #f4f4f4;
+    height: 100%;
+}
+.chat-right-body{
+    border-left: 1px solid #f4f4f4;
+    padding: 0px;
+    height: 100%;
+}
+.chat-title-right{
+    background: rgba(23, 184, 154, 0.1);    
+    padding: 10px;
+}
+.chat-title-right > h3{
+    color: #00B22D;
+    font-size: 18px;
+    margin: 0px;
+    font-family: 'prompt'
+}
