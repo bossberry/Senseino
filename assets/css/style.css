@@ -58,6 +58,7 @@ html{
 	background-color: #fff;
 	/* max-width: 1200px; */
 	margin: 0 auto;
+	overflow-x: hidden;
 }
 body{
     font-family: 'promptregular';
@@ -87,6 +88,10 @@ h3{
 .col-xs-5ths {
     width: 20%;
     float: left;
+}
+a, a:hover {
+ text-decoration: none;
+ color: #484848;
 }
 
 @media (min-width: 768px) {

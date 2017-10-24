@@ -31,6 +31,14 @@ function config ($locationProvider, $routeProvider) {
             templateUrl: '/modules/experts/views/experts-detail.html',
             controller: 'ExpertsDetailController'
         })
+        .when('/search', {
+            templateUrl: '/modules/search/views/search.html',
+            controller: 'SearchController'
+        })
+        .when('/chat', {
+            templateUrl: '/modules/chats/views/chat.html',
+            controller: 'ChatController'
+        })
         .otherwise({
             redirectTo: '/'
         });

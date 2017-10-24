@@ -1,9 +1,9 @@
 
 angular
 .module('myApp')
-.controller('HomeController', ['$scope', 
+.controller('SearchController', ['$scope', 
 function ($scope) {
-	console.log('HomeController');
+	console.log('SearchController');
 	$scope.testimonials = [
 		{img:'https://via.placeholder.com/150x100'},
 		{img:'https://via.placeholder.com/150x100'},

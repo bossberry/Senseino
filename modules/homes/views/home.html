@@ -5,7 +5,7 @@
             data="dataArray"
             item-template-url="'/modules/homes/views/item-template.html'"
             max-width="1920" 
-            max-height="400"
+            max-height="600"
             auto-slide="true"
             auto-slide-time="5000" >
         </jk-carousel>
@@ -24,10 +24,12 @@
                     <input type="checkbox" class="checkboxLabel main_street_input" id="{{data.id}}" value="1" />
                     <label for="{{data.id}}"></label>
                 </div>
+                <a href="/#/experts-detail">
                 <img style="width:100%" ng-src="{{data.img}}">
                 <p>{{data.name}}</p>
                 <span>{{data.tag}}</span>
                 <p><img src="assets/img/location.png">{{data.location}}</p>
+                </a>
             </div>
         </div>
     </div>
@@ -119,9 +121,9 @@
         <button class="btn-action btn">ดูรายละเอียด</button>
         <button class="btn backtotop"><span class="glyphicon glyphicon-menu-up"></span></button>
     </div>
-    <div class="section-contact section-box row  container-fluid">
+    <div class="section-contact section-box container-fluid">
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 col-xs-2 col-sm-2 col-md-2 col-lg-2">
                 <img src="assets/img/call.png" alt="">
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -130,7 +132,7 @@
             </div>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-2 col-sm-2 col-md-2 col-lg-2">
                 <img src="assets/img/support.png" alt="">
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -138,12 +140,14 @@
             </div>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
-                <img width="50px" src="assets/img/jobs_line.png" alt="">
+            <center>
+            <div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-2 col-xs-3 col-sm-3 col-md-2 col-lg-2">
+                <img width="50px" src="assets/img/line.png" alt="">
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <h1 style="margin-top:15px;">@SENSEINO</h1>
             </div>
+            </center>
         </div>
     </div>
 </section>

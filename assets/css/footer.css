@@ -2,7 +2,9 @@
     /* position: absolute; */
     right: 0;
     bottom: 0;
-    left: 0;
+	left: 0;
+	background-color: #f4f4f4;
+    padding: 60px 100px;
 }
 .footer-wrapper-top{
 	background-color: #F4F4F4;
