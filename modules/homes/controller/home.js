@@ -285,22 +285,22 @@ function ($scope) {
 	];
 	$scope.dataArray = [
 		{
-		  src: 'https://via.placeholder.com/1200x400'
+		  src: 'https://via.placeholder.com/1920x400'
 		},
 		{
-		  src: 'https://via.placeholder.com/1200x400'
+		  src: 'https://via.placeholder.com/1920x400'
 		},
 		{
-		  src: 'https://via.placeholder.com/1200x400'
+		  src: 'https://via.placeholder.com/1920x400'
 		},
 		{
-		  src: 'https://via.placeholder.com/1200x400'
+		  src: 'https://via.placeholder.com/1920x400'
 		},
 		{
-		  src: 'https://via.placeholder.com/1200x400'
+		  src: 'https://via.placeholder.com/1920x400'
 		},
 		{
-		  src: 'https://via.placeholder.com/1200x400'
+		  src: 'https://via.placeholder.com/1920x400'
 		}
 	  ];
 

@@ -163,3 +163,13 @@ div.status-prog>span{
     margin-top: 15px;
     margin-bottom: 25px;
 }
+
+.home-section-job-wrapper{
+    width: 100%;
+    height: unset;
+    z-index: -1;
+    background-color: #E3F6F2;
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+}
