@@ -6,6 +6,13 @@
     left: 0;
     right: 0;
 }
+.topbar-cover-chat{
+    top: 0;
+    z-index: 999;
+    background-color: #fff;
+    left: 0;
+    right: 0;
+}
 .topbar-wrapper {
     padding-top: 20px;
     border-bottom: 1px solid #f4f4f4;
@@ -135,6 +142,7 @@ a:hover .header-profile-image {
     border: 1px solid #FA1B25;
     padding: 15px 20px;
     cursor: pointer;
+    /* color: #FA1B25; */
 }
 .btn-action-jobexpress{
     background-color: #FA1B25;

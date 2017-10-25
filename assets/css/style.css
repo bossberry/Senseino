@@ -156,10 +156,18 @@ a, a:hover {
 	padding: 10px 30px;
 	font-family: 'promptregular';
 }
-.btn-action:hover{
+.btn-action:hover , .btn-action-full:hover{
     background-color: #FA1B25;
     color: #fff;
     box-shadow: 0 0 10px -1px #666
+}
+.btn-action-full{
+    background-color: #FA1B25;
+    color: #fff;
+    box-shadow: 0 0 10px -1px #666;
+    padding: 10px 30px;
+	font-family: 'promptregular';
+	width: 100%;
 }
 .btn-more{
 	background-color: #feebec;

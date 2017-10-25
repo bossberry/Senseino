@@ -1,6 +1,6 @@
-<aside data-ng-include="'/modules/topbars/views/topbar5.html'"></aside>  
-<section class="margin-for-topbar-5">
-   <div class="section-box container-fluid">
+<aside data-ng-include="'/modules/topbars/views/topbar6.html'"></aside>  
+<section class="chat-section">
+   <div class="container-fluid">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 chat-head-wrapper">
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-head-left">
             <h3>ข้อความ/ออเดอร์</h3>
@@ -66,16 +66,114 @@
             </div>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 chat-msg-body">
-            <p><img src="assets/img/Icon App.png">สวัสดีค่ะ</p>
-            <p style="float:right;">hydroderm is the highly desired anti-aging cream on the block.</p>
+            <ol class="chat">
+                <li class="other">
+                    <div class="avatar"><img src="assets/img/Icon App.png" draggable="false"></div>
+                    <div class="msg">
+                        <p>สวัสดีค่ะ</p>
+                    </div>
+                </li>
+                <li class="self">
+                    <div class="avatar"><img src="assets/img/Icon App.png" draggable="false"></div>
+                    <div class="msg">
+                        <p>hydroderm is the highly desired anti-aging cream on the block.</p>
+                    </div>
+                </li>
+                <li class="other">
+                    <div class="avatar"><img src="assets/img/Icon App.png" draggable="false"></div>
+                    <div class="msg">
+                        <p>สวัสดีค่ะ</p>
+                    </div>
+                </li>
+                <li class="other">
+                    <div class="avatar"><img src="assets/img/Icon App.png" draggable="false"></div>
+                    <div class="msg">
+                        <p>สวัสดีค่ะ</p>
+                    </div>
+                </li>
+                <li class="self">
+                    <div class="avatar"><img src="assets/img/Icon App.png" draggable="false"></div>
+                    <div class="msg">
+                        <p>hydroderm is the highly desired anti-aging cream on the block.</p>
+                    </div>
+                </li>
+                <li class="self">
+                    <div class="avatar"><img src="assets/img/Icon App.png" draggable="false"></div>
+                    <div class="msg">
+                        <p>hydroderm is the highly desired anti-aging cream on the block.</p>
+                    </div>
+                </li>
+                <li class="self">
+                    <div class="avatar"><img src="assets/img/Icon App.png" draggable="false"></div>
+                    <div class="msg">
+                        <p>hydroderm is the highly desired anti-aging cream on the block.</p>
+                    </div>
+                </li>
+            </ol>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-right-body">
             <div class="chat-title-right"><h3><img src="assets/img/Group.png">&nbsp;เริ่มทำงาน</h3></div>
+            <div class="chat-right-des">
+                <p>Audios book and music can be used as tools for motivation. The audiobook is such a great
+                learning tools, while you are commuting, or just on delivery out for a
+                </p>
+                <button ng-click="offerPrice()" class="btn btn-action-full">เสนอราคา</button>
+            </div>
         </div>
-        <div class="col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 col-xs-6 col-sm-6 col-md-6 col-lg-6 chat-msg-body">
-            <textarea row="10" cols="100%" style="resize:none;">
-            </textarea>
+        <div class="col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 col-xs-6 col-sm-6 col-md-6 col-lg-6 chat-msg-body-input">
+            <textarea class="chatinput" row="10" cols="100%" placeholder="แจ้งรายละเอียดงานที่ต้องการ"></textarea>
+            <button class="btn-chatfile"><img src="assets/img/chatfile.png"></button>
         </div>
     </div>
    </div>
+   <script type="text/ng-template" id="offerPriceModal.html">
+    <div class="modal-header modal-regis-header">
+        เสนอราคา
+        <span ng-click="closeMD()">X</span>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div class="form-group form-g-login-modal">
+            <div class="row form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label>ชื่องาน</label>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <input type="text" placeholder="ชื่อโพสงาน และ รายละเอียดเบื้องต้น" class="form-control input-size-box">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label>ราคา</label>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <input class="form-control jobsex-price input-size-box" type="text" placeholder="3000">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label>รูปแบบงาน</label>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <div class="type-radio-jobsex">
+                        <input type="radio" name="optradio" id="radio1"><label for="radio1">ต่อชั่วโมง</label>
+                        <input type="radio" name="optradio" id="radio2"><label for="radio2">ต่อวัน</label>
+                        <input type="radio" name="optradio" id="radio3"><label for="radio3">ต่องาน</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label>รายละเอียด</label>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <textarea style="resize:none;"rows="4" cols="40"></textarea>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                   <button class="btn-action-jobexpress btn" style="width:100%;">เสนอราคา</button>
+                </div>
+            </div>
+        </div>
+</script>
 </section>
