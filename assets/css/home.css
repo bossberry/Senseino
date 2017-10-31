@@ -90,7 +90,7 @@ h1.head-section-margin{
     padding-right: 15px;
 }
 div.status-new,  div.status-prog{
-    display: inline;
+    display: inline-block;
 }
 div.status-new>span{
     border-radius: 10px;

@@ -1,9 +1,17 @@
 
 angular
 .module('myApp')
-.controller('HomeController', ['$scope', 
-function ($scope) {
+.controller('HomeController', ['$scope', '$http', 'URL_API',
+function ($scope, $http, URL_API) {
+	console.log(URL_API);
+	// http.get(URL_API );
+	$http.defaults.headers.common['Authorization'] = 'Basic ' + 'c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==';
+	// $http.defaults.headers.common['Authorization'] = 'Bearer ' + 'c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==';
 	console.log('HomeController');
+	$http.get(URL_API + '/api/v1/jobs')
+	.then( function(res){
+		console.log(res)
+	});
 	$scope.testimonials = [
 		{img:'https://via.placeholder.com/150x100'},
 		{img:'https://via.placeholder.com/150x100'},
