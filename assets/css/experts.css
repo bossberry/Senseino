@@ -156,3 +156,31 @@
   padding-left: 15px;
   margin-bottom: 40px;
 }
+
+.experts-cre-sec-sup {
+  background: rgba(250, 27, 37, 0.1);
+  text-align: center;
+  padding: 50px 150px;
+  color: #fff;
+}
+.experts-cre-sec-sup > h1{
+  display: inline-block;
+  float: left;
+  font-size: 32px;
+  color: #484848;
+  margin: 0px;
+  
+}
+.experts-cre-sec-sup > button{
+  display: inline-block;
+  float: right;
+  font-size: 22px;
+  padding: 10px 60px;
+}
+.experts-cre-label{
+  font-size: 18px;
+  font-family: 'promptregular'
+}
+.experts-cre-fg{
+  margin-bottom: 50px;
+}

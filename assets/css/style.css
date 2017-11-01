@@ -114,6 +114,9 @@ a, a:hover, a:hover, a:active, a:visited {
         float: left;
     }
 }
+.dropdown-menu>li>a{
+	cursor: pointer;
+}
 .warpper-ngview{
 	/* position: relative; */
 }

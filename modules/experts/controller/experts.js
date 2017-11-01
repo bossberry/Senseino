@@ -1,9 +1,22 @@
 
 angular
 .module('myApp')
-.controller('ExpertsController', ['$scope',
-function ($scope) {
+.controller('ExpertsController', ['$scope', '$http', 'URL_API',
+function ($scope, $http, URL_API) {
+	$http.defaults.headers.common['Authorization'] = 'Basic ' + 'c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==';
 	console.log('ExpertsController');
+	$scope.lang = 'en';
+	$scope.imglang = 'assets/img/' + $scope.lang + '.png';
+	$scope.chgLang = function (lang){
+		$scope.imglang = 'assets/img/' + lang + '.png';
+		$scope.lang = lang;
+	};
+	$http.get(URL_API + '/api/v1/page/expert')
+	.then( function(res){
+		console.log(res.data.data);
+		$scope.jobTypes = res.data.data.jobTypes;
+		$scope.experts = res.data.data.experts;
+	});
 	$scope.jobtype = [
 		{
 			img:'https://via.placeholder.com/100x100',

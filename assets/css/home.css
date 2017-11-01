@@ -55,6 +55,7 @@ h1.head-section-margin{
 }
 .job-post-wrapper>div{
     padding-left: 0px;
+    margin-bottom: 10px;
 }
 .job-post-repeat-col:nth-last-child(2) > div.job-post-wrapper {
     border-bottom:none;

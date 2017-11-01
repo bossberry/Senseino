@@ -1,7 +1,7 @@
 <aside data-ng-include="'/modules/topbars/views/topbar.html'"></aside>  
 <section  class="margin-for-topbar-main ">
     <center>
-        {{jkcarousel()}}
+        <div ng-if="loaded===true">
         <jk-carousel
             data="bannersarr"
             item-template-url="'/modules/homes/views/item-template.html'"
@@ -10,17 +10,18 @@
             auto-slide="true"
             auto-slide-time="5000" >
         </jk-carousel>
+        </div>
         <!-- <jk-carousel
         data="dataArray"
         item-template-url="'/modules/homes/views/item-template.html'"
         auto-slide="true"
-        auto-slide-time="5000" > -->
-    </jk-carousel>
+        auto-slide-time="5000" >
+    </jk-carousel> -->
     </center>          
-    <div class="section-box container-fluid">
+    <div class="section-box container-fluid" ng-repeat="ex in experts">
         <div class="col-lg-12">
-            <h1 class="head-section-margin">ล่าม<span class="see-all-wrap float-r"><button class="btn btn-more">ดูทั้งหมด ></button></span></h1>
-            <div class="col-xs-5ths col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="data in experts | limitTo: 5">
+            <h1 class="head-section-margin">{{ex.jobType.name[lang]}}<span class="see-all-wrap float-r"><button class="btn btn-more">ดูทั้งหมด ></button></span></h1>
+            <div class="col-xs-5ths col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="data in ex.experts | limitTo: 5">
                 <div class="amPmCheckbox">
                     <input type="checkbox" class="checkboxLabel main_street_input" id="{{data._id}}" value="1" />
                     <label for="{{data._id}}"></label>
@@ -71,23 +72,8 @@
                     <img src="assets/img/rating-active.png">
                     <img src="assets/img/rating-active.png">
                 </div>
-                <!-- <p><img src="assets/img/location.png">{{data.location | getDistance}}{{data.location.name}}</p> -->
+                <p><img src="assets/img/location.png">{{data.location | getDistance}} km {{data.location.name}}</p>
                 </a>
-            </div>
-        </div>
-    </div>
-    <div class="section-box container-fluid">
-        <div class="col-lg-12">
-            <h1 class="head-section-margin">นักแปล<span class="see-all-wrap float-r"><button class="btn btn-more">ดูทั้งหมด ></button></span></h1>
-            <div class="col-xs-5ths col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="data in objects | limitTo: (5 - objects.length)">
-                <div class="amPmCheckbox">
-                    <input type="checkbox" class="checkboxLabel main_street_input" id="{{data.id}}" value="1" />
-                    <label for="{{data.id}}"></label>
-                </div>
-                <img style="width:100%" ng-src="{{data.img}}">
-                <p>{{data.name}}</p>
-                <span>{{data.tag}}</span>
-                <p><img src="assets/img/location.png">{{data.location}}</p>
             </div>
         </div>
     </div>
@@ -95,16 +81,16 @@
     <div class="section-box container-fluid home-section-job-wrapper">
         <!-- <div class="overlay-green container"></div> -->
         <h1 class="head-section-jobs">Jobs<span class="float-r-jobs"><button class="btn btn-more">ดูทั้งหมด ></button></span></h1>
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 "> 
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-5 job-tumbnail-repeat-col" ng-repeat="data in jobstumbnail">
-                <img style="width:100%;margin-bottom:10px" ng-src="{{data.img}}">
+        <div class="col-sm-3 col-md-3 col-lg-3 "> 
+            <div class="col-sm-6 col-md-6 col-lg-5 job-tumbnail-repeat-col" ng-repeat="data in jobTypes">
+                <img style="width:100%;margin-bottom:10px" ng-src="{{data.imgJobUrl}}">
             </div>
         </div>
-        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="padding-left:0px;"> 
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 job-post-repeat-col" ng-repeat="data in postjob" style="padding-left:0px;">
+        <div class="col-sm-9 col-md-9 col-lg-9" style="padding-left:0px;"> 
+            <div class="col-sm-6 col-md-6 col-lg-6 job-post-repeat-col" ng-repeat="data in jobs" style="padding-left:0px;">
                 <div class="job-post-wrapper">
-                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                        {{data.topic}}&nbsp;
+                    <div class="col-sm-9 col-md-9 col-lg-9">
+                        {{data.name}}&nbsp;
                         <div  class="status-new" ng-if="data.status=='NEW'"><span>{{data.status}}</span></div>
                         <div  class="status-prog" ng-if="data.status=='IN PROGRESS'"><span>{{data.status}}</span></div>
                     </div>
@@ -114,15 +100,16 @@
                         {{data.price}}
                         </p>
                         <p class="job-unit">
-                        {{data.unit}}
+                        {{data.priceType}}
                         </p>     
                     </div>
-                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                        <button class="btn tag-category" ng-repeat="tagg in data.tag">{{tagg}}</button>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                        <button class="btn tag-category">{{data.jobType.name[lang]}}</button>
+                        <button class="btn tag-category">{{data.tag.name[lang]}}</button>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="text-align:right;">
-                        <p class="job-name">{{data.name}} </p>
-                        <img class="jobs-tumbnail-poster" ng-src="{{data.pic}}">  
+                        <p class="job-name">{{data.user.firstName}} {{data.user.lastName}}</p>
+                        <img class="jobs-tumbnail-poster" ng-src="{{data.user.imgUrl}}">  
                     </div>
                 </div>
             </div>
@@ -145,7 +132,7 @@
                 </div>
             </div> -->
             <div class="iframe-wrapper">
-                <!-- <iframe class="home-iframe" src="http://www.senseino.com/show_course.php" scrolling="no"></iframe> -->
+                <iframe class="home-iframe" src="http://www.senseino.com/show_course.php" scrolling="no"></iframe>
             </div>
         </div>
     </div>

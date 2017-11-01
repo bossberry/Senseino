@@ -15,6 +15,10 @@ function config ($locationProvider, $routeProvider) {
             templateUrl: '/modules/experts/views/experts.html',
             controller: 'ExpertsController'
         })
+        .when('/experts-create', {
+            templateUrl: '/modules/experts/views/experts-create.html',
+            controller: 'ExpertsCreateController'
+        })
         .when('/jobs', {
             templateUrl: '/modules/jobs/views/jobs.html',
             controller: 'JobsController'
