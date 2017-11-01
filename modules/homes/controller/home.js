@@ -1,17 +1,59 @@
 
 angular
 .module('myApp')
+.filter('getDistance', ['$http', function(http){
+	return function(locate){
+	//    console.log(locate);
+	//    console.log($scope.latme);
+	//    return locate; 
+	}
+ }])
 .controller('HomeController', ['$scope', '$http', 'URL_API',
 function ($scope, $http, URL_API) {
-	console.log(URL_API);
-	// http.get(URL_API );
 	$http.defaults.headers.common['Authorization'] = 'Basic ' + 'c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==';
-	// $http.defaults.headers.common['Authorization'] = 'Bearer ' + 'c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==';
 	console.log('HomeController');
-	$http.get(URL_API + '/api/v1/jobs')
+	$scope.lang = 'en';
+	$scope.imglang = 'assets/img/' + $scope.lang + '.png';
+	$scope.bannersarr = [];
+	$scope.banner = {};
+	$scope.chgLang = function (lang){
+		console.log(lang);
+		$scope.imglang = 'assets/img/' + lang + '.png';
+		$scope.lang = lang;
+	};
+	$http.get(URL_API + '/api/v1/page/foryou')
 	.then( function(res){
-		console.log(res)
+		$scope.banners = res.data.data.banners;
+		for(var i = 0; i < $scope.banners.length; i++){
+			$scope.banner = {src:$scope.banners[i].imgUrl};
+			$scope.bannersarr.push($scope.banner);
+			jkcarousel();
+		}
+		// console.log(res)
+		
+		console.log($scope.bannersarr);
 	});
+	$scope.jkcarousel = function (){
+		return '<jk-carousel'+
+		'data="bannersarr"'+
+		'item-template-url="/modules/homes/views/item-template.html"'+
+		'max-width="1920" '+
+		'max-height="600"'+
+		'auto-slide="true"'+
+		'auto-slide-time="5000" >'+
+		'</jk-carousel>';
+	}
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(function(position){
+		  $scope.$apply(function(){
+			$scope.position = position;
+			$scope.latme = $scope.position.lat;
+			$scope.lonme = $scope.position.lon;
+		  });
+		});
+	  }
+	 
+
 	$scope.testimonials = [
 		{img:'https://via.placeholder.com/150x100'},
 		{img:'https://via.placeholder.com/150x100'},
@@ -311,8 +353,6 @@ function ($scope, $http, URL_API) {
 		  src: 'https://via.placeholder.com/1920x600'
 		}
 	  ];
-
-	  
 	$scope.OnClick = function () {
 		$state.go('experts');
 		console.log('OnClick');

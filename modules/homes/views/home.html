@@ -1,8 +1,9 @@
 <aside data-ng-include="'/modules/topbars/views/topbar.html'"></aside>  
 <section  class="margin-for-topbar-main ">
     <center>
+        {{jkcarousel()}}
         <jk-carousel
-            data="dataArray"
+            data="bannersarr"
             item-template-url="'/modules/homes/views/item-template.html'"
             max-width="1920" 
             max-height="600"
@@ -19,16 +20,58 @@
     <div class="section-box container-fluid">
         <div class="col-lg-12">
             <h1 class="head-section-margin">ล่าม<span class="see-all-wrap float-r"><button class="btn btn-more">ดูทั้งหมด ></button></span></h1>
-            <div class="col-xs-5ths col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="data in objects | limitTo: 5">
+            <div class="col-xs-5ths col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="data in experts | limitTo: 5">
                 <div class="amPmCheckbox">
-                    <input type="checkbox" class="checkboxLabel main_street_input" id="{{data.id}}" value="1" />
-                    <label for="{{data.id}}"></label>
+                    <input type="checkbox" class="checkboxLabel main_street_input" id="{{data._id}}" value="1" />
+                    <label for="{{data._id}}"></label>
                 </div>
                 <a href="/#/experts-detail">
-                <img style="width:100%" ng-src="{{data.img}}">
-                <p>{{data.name}}</p>
-                <span>{{data.tag}}</span>
-                <p><img src="assets/img/location.png">{{data.location}}</p>
+                <img style="width:100%" height="278px"ng-src="{{data.profileImg[0].url}}">
+                <p class="experts-name">{{data.name}}</p>
+                <span class="experts-tag">{{data.tag.name[lang]}}</span>
+                <div class="experts-rating" ng-if="data.rating===0">
+                    <img src="assets/img/rating.png">
+                    <img src="assets/img/rating.png">
+                    <img src="assets/img/rating.png">
+                    <img src="assets/img/rating.png">
+                    <img src="assets/img/rating.png">
+                </div>
+                <div class="experts-rating" ng-if="data.rating===1">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating.png">
+                    <img src="assets/img/rating.png">
+                    <img src="assets/img/rating.png">
+                    <img src="assets/img/rating.png">
+                </div>
+                <div class="experts-rating" ng-if="data.rating===2">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating.png">
+                    <img src="assets/img/rating.png">
+                    <img src="assets/img/rating.png">
+                </div>
+                <div class="experts-rating" ng-if="data.rating===3">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating.png">
+                    <img src="assets/img/rating.png">
+                </div>
+                <div class="experts-rating" ng-if="data.rating===4">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating.png">
+                </div>
+                <div class="experts-rating" ng-if="data.rating===5">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating-active.png">
+                </div>
+                <!-- <p><img src="assets/img/location.png">{{data.location | getDistance}}{{data.location.name}}</p> -->
                 </a>
             </div>
         </div>
@@ -87,8 +130,8 @@
     </div>
     <div class="section-box  container-fluid">
         <div class="col-lg-12">
-            <h1 class="head-section-margin">ออนไลน์คอร์ส<span class="see-all-wrap float-r"><button class="btn btn-more">ดูทั้งหมด ></button></span></h1>
-            <div class="col-xs-5ths col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="data in course | limitTo: 10">
+            <h1 class="head-section-margin">ออนไลน์คอร์ส<span class="see-all-wrap float-r"><a href="http://www.senseino.com/show_course.php" target="_blank" class="btn btn-more">ดูทั้งหมด ></a></span></h1>
+            <!-- <div class="col-xs-5ths col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="data in course | limitTo: 10">
                 <div class="wrapper-coursebox">
                     <img style="width:100%" ng-src="{{data.img}}">
                     <div class="coursebox-body">
@@ -100,6 +143,9 @@
                         </center>  
                     </div>  
                 </div>
+            </div> -->
+            <div class="iframe-wrapper">
+                <!-- <iframe class="home-iframe" src="http://www.senseino.com/show_course.php" scrolling="no"></iframe> -->
             </div>
         </div>
     </div>

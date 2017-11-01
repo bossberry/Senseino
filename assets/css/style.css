@@ -89,7 +89,7 @@ h3{
     width: 20%;
     float: left;
 }
-a, a:hover {
+a, a:hover, a:hover, a:active, a:visited {
  text-decoration: none;
  color: #484848;
 }
@@ -171,7 +171,7 @@ a, a:hover {
 }
 .btn-more{
 	background-color: #feebec;
-    color: #FA1B25;
+    color: #FA1B25!important;
 	padding: 5px 5px;
 	font-family: 'promptmedium';
 	font-size: 12px;

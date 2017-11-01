@@ -7,15 +7,15 @@
 
             <li class="dropdown sort-dropdown styled-dropdown" uib-dropdown>
                 <a class="dropdown-toggle" uib-dropdown-toggle role="button">
-                    <span><img src="assets/img/th.png">&nbsp;&nbsp;TH</span>
+                    <span><img ng-src="{{imglang}}">&nbsp;&nbsp;{{lang | uppercase}}</span>
                 <b class="glyphicon glyphicon-triangle-bottom ic-dropdown"></b>
                 </a>
                 <ul class="dropdown-menu" role="menu">
                 <li>
-                    <a ng-click=""><img src="assets/img/th.png">&nbsp;&nbsp;TH</a>
+                    <a ng-click="chgLang('th')"><img src="assets/img/th.png">&nbsp;&nbsp;TH</a>
                 </li>
                 <li>
-                    <a ng-click=""><img src="assets/img/en.png">&nbsp;&nbsp;EN</a>
+                    <a ng-click="chgLang('en')"><img src="assets/img/en.png">&nbsp;&nbsp;EN</a>
                 </li>
                 </ul>
             </li>
