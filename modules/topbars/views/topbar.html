@@ -65,30 +65,61 @@
         <span ng-click="closeMD()">X</span>
     </div>
     <div class="modal-body modal-regis-body" id="modal-body">
+<form ng-submit="ctrl.submit()" name="regisForm" autocomplete="off">
+    <div class="form-group form-g-regis-modal">
+        <label>ชื่อ</label>
+        <input type="text" ng-model="ctrl.user.firstname" ng-pattern="/^[a-zA-Z\s]*$/" name="firstname" class="form-control" placeholder="ชื่อ" required ng-minlength="2"/>
+        <label></label><span class="msg-form-err" ng-show="regisForm.$dirty && regisForm.firstname.$invalid">This is a required field </span>
+    </div>
+    <div class="form-group form-g-regis-modal">
+        <label>นามสกุล</label>
+        <input type="text" ng-model="ctrl.user.lastname" ng-pattern="/^[a-zA-Z\s]*$/"  name="lastname" class="form-control" placeholder="นามสกุล" required ng-minlength="2"/>
+        <label></label><span class="msg-form-err" ng-show="regisForm.$dirty && regisForm.lastname.$invalid">This is a required field</span>
+    </div>
+    <div class="form-group form-g-regis-modal">
+        <label>เบอร์โทร</label>
+        <input type="text" ng-model="ctrl.user.tel" ng-pattern="/^[0-9]{10,10}$/"  name="tel" class="form-control" placeholder="089-999-9999" required ng-minlength="10"/>
+        <label></label><span class="msg-form-err" ng-show="regisForm.$dirty && regisForm.tel.$invalid">This is a required field</span>
+    </div>
+    <div class="form-group form-g-regis-modal">
+        <label>อีเมล</label>
+        <input type="email" ng-model="ctrl.user.email" name="email" class="form-control" placeholder="name@gmail.com" required ng-minlength="10"/>
+        <label></label><span class="msg-form-err" ng-show="regisForm.$dirty && regisForm.email.$error.required">This is a required field</span>
+    </div>
+    <div class="form-group form-g-regis-modal">
+        <label>รหัสผ่าน</label>
+        <input type="password" ng-model="ctrl.user.password" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/" name="password" class="form-control" placeholder="รหัสผ่าน" required ng-minlength="10"/>
+        <label></label><span class="msg-form-err" ng-show="regisForm.$dirty && regisForm.password.$error.required">This is a required field</span>
+        <label></label><span class="msg-form-err" ng-show="regisForm.$dirty && regisForm.password.$invalid">This field is invalid </span><br/><br/>
+    </div>       
+    <button class="btn btn-action" type="submit" ng-disabled="myForm.$invalid">สมัครสมาชิก</button>
+</form>
+    <!-- <form name="vm.userForm" ng-submit="vm.signup(vm.userForm.$valid)" class="signin" novalidate autocomplete="off">
         <div class="form-group form-g-regis-modal">
             <label>ชื่อ</label>
-            <input type="text" placeholder="ชื่อ" class="form-control">
+            <input type="text" placeholder="ชื่อ" class="form-control" required>
         </div>
         <div class="form-group form-g-regis-modal">
             <label>นามสกุล</label>
-            <input type="text" placeholder="นามสกุล" class="form-control">
+            <input type="text" placeholder="นามสกุล" class="form-control" required>
         </div>
         <div class="form-group form-g-regis-modal">
             <label>เบอร์โทร</label>
-            <input type="text" placeholder="089-999-9999" class="form-control">
+            <input type="text" placeholder="089-999-9999" class="form-control" required>
         </div>
         <div class="form-group form-g-regis-modal">
             <label>อีเมล</label>
-            <input type="text" placeholder="name@gmail.com" class="form-control">
+            <input type="text" placeholder="name@gmail.com" class="form-control" required>
         </div>
         <div class="form-group form-g-regis-modal">
             <label>รหัสผ่าน</label>
-            <input type="password" placeholder="รหัสผ่าน" class="form-control">
+            <input type="password" placeholder="รหัสผ่าน" class="form-control" required>
         </div>
         <div class="form-group form-g-regis-modal">
             <label></label>
-            <button class="btn btn-action">สมัครสมาชิก</button>
+            <button type="submit" class="btn btn-action">สมัครสมาชิก</button>
         </div>
+    </form> -->
     </div>
 </script>
 <script type="text/ng-template" id="loginModal.html">

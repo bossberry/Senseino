@@ -19,6 +19,14 @@ function config ($locationProvider, $routeProvider) {
             templateUrl: '/modules/experts/views/experts-create.html',
             controller: 'ExpertsCreateController'
         })
+        .when('/experts-detail:id', {
+            templateUrl: '/modules/experts/views/experts-detail.html',
+            controller: 'ExpertsDetailController'
+        })
+        .when('/experts:jobtypes', {
+            templateUrl: '/modules/experts/views/experts-criteria.html',
+            controller: 'ExpertsCriteriaController'
+        })
         .when('/jobs', {
             templateUrl: '/modules/jobs/views/jobs.html',
             controller: 'JobsController'
@@ -30,10 +38,6 @@ function config ($locationProvider, $routeProvider) {
         .when('/helps', {
             templateUrl: '/modules/helps/views/help.html',
             controller: 'HelpController'
-        })
-        .when('/experts-detail', {
-            templateUrl: '/modules/experts/views/experts-detail.html',
-            controller: 'ExpertsDetailController'
         })
         .when('/search', {
             templateUrl: '/modules/search/views/search.html',

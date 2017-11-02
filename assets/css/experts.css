@@ -184,3 +184,7 @@
 .experts-cre-fg{
   margin-bottom: 50px;
 }
+.experts-modal-body{
+  height: 400px;
+  overflow-y: scroll;
+}

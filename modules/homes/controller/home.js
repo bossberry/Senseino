@@ -32,8 +32,8 @@ angular
 	   return Math.trunc(calcCrow(this.latme, this.lonme, this.latex, this.lonex)); 
 	}
  })
-.controller('HomeController', ['$scope', '$http', 'URL_API',
-function ($scope, $http, URL_API) {
+.controller('HomeController', ['$uibModal', '$scope', '$http', 'URL_API',
+function ($uibModal, $scope, $http, URL_API) {
 	$http.defaults.headers.common['Authorization'] = 'Basic ' + 'c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==';
 	console.log('HomeController');
 	$scope.lang = 'en';
@@ -57,8 +57,16 @@ function ($scope, $http, URL_API) {
 		$scope.jobTypes = res.data.data.jobTypes;
 		$scope.jobs = res.data.data.jobs;
 	});
-	$scope.OnClick = function () {
-		$state.go('experts');
+	$scope.jobsModal = function (jobid){
+	var modalInstance = $uibModal.open({
+		animation: $scope.animationsEnabled,
+		templateUrl: 'jobModalHome.html',
+		controller: 'JobsModalController as ctrl',
+		resolve: {
+			jobid: function() {
+				return jobid;
+			}
+			}
+		});
 	};
 }]);
-

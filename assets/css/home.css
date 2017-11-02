@@ -70,7 +70,7 @@ h1.head-section-margin{
     margin-left: 8.33333333%;
 }
 .job-post-wrapper, .job-post-wrapper:focus{
-    display: table-cell;
+    display: flow-root;
     padding-left: 0px;
     padding-bottom: 10px;
     border-bottom: 1px solid #D5D5D5;

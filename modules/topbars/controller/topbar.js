@@ -32,6 +32,9 @@ angular
 .module('myApp')
 .controller('RegisModalController', function ($scope, $uibModal, $uibModalInstance) {
 	console.log('RegisModalController');
+	$scope.submit = function() {
+		console.log('Form is submitted with following user', $scope.user);
+  };
 	$scope.closeMD = function() {
 		$uibModalInstance.close(false);
 	};

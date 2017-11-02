@@ -231,3 +231,10 @@ a, a:hover, a:hover, a:active, a:visited {
     background: url('../img/favoriteactive.png')  no-repeat;
     height:32px;
 }
+.msg-form-err{
+	color: #FA1B25;
+    opacity: 0.8;
+	font-size: 12px;
+    max-width: 250px;
+	text-align: left;
+}
