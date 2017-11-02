@@ -6,3 +6,12 @@ angular.module('myApp', [
     .constant('URL_API', 'http://54.255.237.25:3000');
 
 
+window.fbAsyncInit = function() {
+    FB.init({ 
+        appId: '125590381441596',
+        status: true, 
+        cookie: true, 
+        xfbml: true,
+        version: 'v2.4'
+    });
+};

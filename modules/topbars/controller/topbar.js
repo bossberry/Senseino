@@ -12,6 +12,7 @@ function ($scope, $uibModal) {
 			});
 	};
 
+	
 	$scope.loginModal = function() {
 		var modalInstance = $uibModal.open({
 			animation: $scope.animationsEnabled,
@@ -30,11 +31,43 @@ function ($scope, $uibModal) {
 
 angular
 .module('myApp')
-.controller('RegisModalController', function ($scope, $uibModal, $uibModalInstance) {
+.controller('RegisModalController', function (URL_API, $http, $scope, $uibModal, $uibModalInstance) {
 	console.log('RegisModalController');
-	$scope.submit = function() {
+	$scope.submitEmailRegis = function() {
 		console.log('Form is submitted with following user', $scope.user);
+		$http.post(URL_API + '/api/v1/users/register', {
+			firstName: $scope.user.firstname,
+			lastName: $scope.user.lastname,
+			mobileNo: $scope.user.tel,
+			email:$scope.user.email,
+			type:'email',
+			password:$scope.user.password
+
+		}).then(function(res){
+			console.log(res);
+		}, function(err) {
+			$scope.err = true;
+			$scope.errmsg = err.data.description;
+            console.log(err.data);
+			
+        });
   };
+  
+  $scope.FBbtnLogin = function() {
+	FB.login(function(response) {
+		if (response.authResponse) {
+		 console.log('Welcome!  Fetching your information.... ');
+		 FB.api('/me?fields=id,name,email,first_name,last_name,age_range,picture.type(large)', function(response) {
+		   console.log('Good to see you, ' + response.name + '.');
+		   console.log(response);
+		   console.log(response.perms);
+		 }, {perms:'user_address, user_mobile_phone'});
+		} else {
+		 console.log('User cancelled login or did not fully authorize.');
+		}
+	});
+	};
+
 	$scope.closeMD = function() {
 		$uibModalInstance.close(false);
 	};

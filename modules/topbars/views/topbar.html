@@ -52,7 +52,7 @@
         <span ng-click="closeMD()">X</span>
     </div>
     <div class="modal-body modal-regis-body" id="modal-body">
-        <button class="btn btn-regis-face"><img src="">สมัครสมาชิกด้วย Facebook</button>
+        <button ng-click="FBbtnLogin()" class="btn btn-regis-face"><img src="">สมัครสมาชิกด้วย Facebook</button>
         <button class="btn btn-regis-line"><img src="">สมัครสมาชิกด้วย LINE</button>
         <p>หรือ</p>
         <button class="btn btn-regis-email" ng-click="regisEmail()"><img src="">สมัครสมาชิกด้วยอีเมล</button>
@@ -65,33 +65,34 @@
         <span ng-click="closeMD()">X</span>
     </div>
     <div class="modal-body modal-regis-body" id="modal-body">
-<form ng-submit="ctrl.submit()" name="regisForm" autocomplete="off">
+<form ng-submit="submitEmailRegis()" name="regisForm" autocomplete="off">
     <div class="form-group form-g-regis-modal">
         <label>ชื่อ</label>
-        <input type="text" ng-model="ctrl.user.firstname" ng-pattern="/^[a-zA-Z\s]*$/" name="firstname" class="form-control" placeholder="ชื่อ" required ng-minlength="2"/>
+        <input type="text" ng-model="user.firstname" ng-pattern="/^[a-zA-Z\s]*$/" name="firstname" class="form-control" placeholder="ชื่อ" required ng-minlength="2"/>
         <label></label><span class="msg-form-err" ng-show="regisForm.$dirty && regisForm.firstname.$invalid">This is a required field </span>
     </div>
     <div class="form-group form-g-regis-modal">
         <label>นามสกุล</label>
-        <input type="text" ng-model="ctrl.user.lastname" ng-pattern="/^[a-zA-Z\s]*$/"  name="lastname" class="form-control" placeholder="นามสกุล" required ng-minlength="2"/>
+        <input type="text" ng-model="user.lastname" ng-pattern="/^[a-zA-Z\s]*$/"  name="lastname" class="form-control" placeholder="นามสกุล" required ng-minlength="2"/>
         <label></label><span class="msg-form-err" ng-show="regisForm.$dirty && regisForm.lastname.$invalid">This is a required field</span>
     </div>
     <div class="form-group form-g-regis-modal">
         <label>เบอร์โทร</label>
-        <input type="text" ng-model="ctrl.user.tel" ng-pattern="/^[0-9]{10,10}$/"  name="tel" class="form-control" placeholder="089-999-9999" required ng-minlength="10"/>
+        <input type="text" ng-model="user.tel" ng-pattern="/^[0-9]{10,10}$/"  name="tel" class="form-control" placeholder="089-999-9999" required ng-minlength="10"/>
         <label></label><span class="msg-form-err" ng-show="regisForm.$dirty && regisForm.tel.$invalid">This is a required field</span>
     </div>
     <div class="form-group form-g-regis-modal">
         <label>อีเมล</label>
-        <input type="email" ng-model="ctrl.user.email" name="email" class="form-control" placeholder="name@gmail.com" required ng-minlength="10"/>
+        <input type="email" ng-model="user.email" name="email" class="form-control" placeholder="name@gmail.com" required ng-minlength="10"/>
         <label></label><span class="msg-form-err" ng-show="regisForm.$dirty && regisForm.email.$error.required">This is a required field</span>
     </div>
     <div class="form-group form-g-regis-modal">
         <label>รหัสผ่าน</label>
-        <input type="password" ng-model="ctrl.user.password" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/" name="password" class="form-control" placeholder="รหัสผ่าน" required ng-minlength="10"/>
+        <input type="password" ng-model="user.password" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/" name="password" class="form-control" placeholder="รหัสผ่าน" required ng-minlength="10"/>
         <label></label><span class="msg-form-err" ng-show="regisForm.$dirty && regisForm.password.$error.required">This is a required field</span>
         <label></label><span class="msg-form-err" ng-show="regisForm.$dirty && regisForm.password.$invalid">This field is invalid </span><br/><br/>
-    </div>       
+        <span class="msg-form-err" ng-if="err===true">{{errmsg}}</span>
+    </div>     
     <button class="btn btn-action" type="submit" ng-disabled="myForm.$invalid">สมัครสมาชิก</button>
 </form>
     <!-- <form name="vm.userForm" ng-submit="vm.signup(vm.userForm.$valid)" class="signin" novalidate autocomplete="off">
