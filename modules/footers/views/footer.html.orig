@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-<!-- <div class="row container"> -->
-<div class="">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  footer-wrapper">
-=======
 <div class="row container footer-wrapper">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  footer-wrapper-top">
->>>>>>> 6321ef340336293a4b273f8a9b5764f0986f20ab
         <div class="col-xs-4 col-sm-4  col-md-4 col-lg-4">
             <img src="assets/img/logo_senseino.png" alt="">
             <p>The Service PLaace for Language Experts</p>

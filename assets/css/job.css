@@ -66,3 +66,15 @@
     font-size: 18px;
     outline: none!important;
 }
+.textcover-img-job{
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: 33px;
+    width: 100%;
+    padding-left: 15px;
+    margin: 0 auto;
+    color: #FFF;
+    font-family: 'promptmedium';
+    font-size: 14px;
+}

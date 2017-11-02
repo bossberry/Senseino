@@ -58,10 +58,10 @@ h1.head-section-margin{
     margin-bottom: 10px;
 }
 .job-post-repeat-col:nth-last-child(2) > div.job-post-wrapper {
-    border-bottom:none;
+    /* border-bottom:none; */
 } 
 .job-post-repeat-col:nth-last-child(1) > div.job-post-wrapper {
-    border-bottom:none;
+    /* border-bottom:none; */
 } 
 .align-grid-center:nth-child(2){
     margin-left: 8.33333333%;
@@ -198,5 +198,16 @@ div.status-prog>span{
     background-color: #E3F6F2;
     padding-top: 50px;
     padding-bottom: 50px;
-
+}
+.textcover-img-job-home{
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: 45px;
+    width: 100%;
+    padding-left: 15px;
+    margin: 0 auto;
+    color: #FFF;
+    font-family: 'promptmedium';
+    font-size: 18px;
 }
