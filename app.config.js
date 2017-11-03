@@ -1,13 +1,20 @@
 'use strict';
 angular
     .module('myApp.config', [])
-    .factory('httpRequestInterceptor')
+    // .factory('httpRequestInterceptor')
     .config(configs);
 
-httpRequestInterceptor.$inject = ['$rootScope'];
+// httpRequestInterceptor.$inject = ['$rootScope'];
 
 function configs($httpProvider) {
-    $httpProvider.interceptors.push(httpRequestInterceptor);
+    const token = localStorage.getItem('token');
+    $httpProvider.defaults.headers.common = { 
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'x-access-token': token,
+        'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+    };
+
+    // $httpProvider.interceptors.push(httpRequestInterceptor);
     
     var interceptor = function($location, $log, $q) {
         function error(response) {
@@ -30,12 +37,12 @@ function configs($httpProvider) {
     };  
 }
 
-function httpRequestInterceptor($rootScope) {
-    return { 
-        request: function(configs) {
-            return configs;
-            // return confisgs.headers['Authorization'] = 'Basic ' + 'c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
-        //     configs.headers['Authorization'] = 'Basic ' + 'c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==';
-        }
-    }
-};
+// function httpRequestInterceptor($rootScope) {
+//     return { 
+//         request: function(configs) {
+//             // return configs;
+//             // return confisgs.headers['Authorization'] = 'Basic ' + 'c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+//             // configs.headers['Authorization'] = 'Basic ' + 'c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==';
+//         }
+//     }
+// };

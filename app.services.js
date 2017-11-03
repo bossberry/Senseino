@@ -35,14 +35,13 @@ function authService($http, URL_API) {
         headers: {'Content-Type': 'application/json'}
         });
     };
-    this.ensureAuthenticated = function(token) {
+    this.ensureAuthenticated = function(userID, email) {
         return $http({
-        method: 'GET',
-        url: URL_API + 'user',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + token
-        }
+            method: 'GET',
+            url: URL_API + '/api/v1/users/' + userID,
+            headers: {
+                'x-user' : email
+            }
         });
     };
 };

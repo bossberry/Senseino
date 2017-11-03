@@ -1,17 +1,30 @@
 angular
 .module('myApp')
-.controller('JobsController', ['$scope', '$uibModal', '$http', 'URL_API',
-function ($scope, $uibModal, $http, URL_API) {
+.controller('JobsController', ['authService', '$scope', '$uibModal', '$http', 'URL_API',
+function (authService, $scope, $uibModal, $http, URL_API) {
 	console.log('JobsController');
 	$scope.lang = 'en';
 	$scope.imglang = 'assets/img/' + $scope.lang + '.png';
-	$http.defaults.headers.common['Authorization'] = 'Basic ' + 'c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==';
+	$scope.isLoggedIn = false;
+	const email = localStorage.getItem('x-user');
+	const userid = localStorage.getItem('userid');
+	if (email) {
+	  authService.ensureAuthenticated(userid, email)
+	  .then((user) => {
+		if (user.data.status === 'success');
+		$scope.isLoggedIn = true;
+	  })
+	  .catch((err) => {
+		console.log(err);
+	  });
+	}
 	$scope.chgLang = function (lang){
 		$scope.imglang = 'assets/img/' + lang + '.png';
 		$scope.lang = lang;
 	};
 	$http.get(URL_API + '/api/v1/page/job')
 	.then( function(res){
+		$scope.loaded = true;
 		$scope.jobTypes = res.data.data.jobTypes;
 		$scope.jobs = res.data.data.jobs;
 	});

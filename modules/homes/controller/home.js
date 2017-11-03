@@ -32,17 +32,27 @@ angular
 	   return Math.trunc(calcCrow(this.latme, this.lonme, this.latex, this.lonex)); 
 	}
  })
-.controller('HomeController', ['$uibModal', '$scope', '$http', 'URL_API',
-function ($uibModal, $scope, $http, URL_API) {
-	const token = localStorage.getItem('token');
-	console.log(token);
-	// $http.defaults.headers.common['Authorization'] = 'Basic ' + 'c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==';
+.controller('HomeController', ['authService', '$uibModal', '$scope', '$http', 'URL_API',
+function (authService, $uibModal, $scope, $http, URL_API) {
 	console.log('HomeController');
 	$scope.lang = 'en';
 	$scope.imglang = 'assets/img/' + $scope.lang + '.png';
 	$scope.bannersarr = [];
 	$scope.banner = {};
 	$scope.experts = [];
+	$scope.isLoggedIn = false;
+	const email = localStorage.getItem('x-user');
+	const userid = localStorage.getItem('userid');
+	if (email) {
+	  authService.ensureAuthenticated(userid, email)
+	  .then((user) => {
+		if (user.data.status === 'success');
+		$scope.isLoggedIn = true;
+	  })
+	  .catch((err) => {
+		console.log(err);
+	  });
+	}
 	$scope.chgLang = function (lang){
 		$scope.imglang = 'assets/img/' + lang + '.png';
 		$scope.lang = lang;

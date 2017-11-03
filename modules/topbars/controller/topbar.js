@@ -39,8 +39,11 @@ angular
 		console.log($scope.login);
 		authService.LoginByEmail($scope.login.username, $scope.login.password)
 		.then((user) => {
-		  console.log(user.data);
+		//   console.log(user.data);
 		  localStorage.setItem('token', user.data.data.accessToken);
+		  localStorage.setItem('x-user', user.data.data.email);
+		  localStorage.setItem('userid', user.data.data._id);
+		  window.location.reload(true);
 		})
 		.catch((err) => {
 		  console.log(err);

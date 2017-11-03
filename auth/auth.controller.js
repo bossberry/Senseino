@@ -15,7 +15,7 @@
         const vm = this;
         vm.user = {};
         vm.onLogin = function() {
-          authService.login(vm.user)
+          authService.LoginByEmail(vm.user)
           .then((user) => {
             localStorage.setItem('token', user.data.token);
             $location.path('/status');
@@ -48,7 +48,7 @@
         vm.isLoggedIn = false;
         const token = localStorage.getItem('token');
         if (token) {
-          authService.ensureAuthenticated(token)
+          authService.ensureAuthenticated(token, email)
           .then((user) => {
             if (user.data.status === 'success');
             vm.isLoggedIn = true;
