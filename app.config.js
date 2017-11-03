@@ -1,9 +1,14 @@
 'use strict';
 angular
     .module('myApp.config', [])
+    .factory('httpRequestInterceptor')
     .config(configs);
 
+httpRequestInterceptor.$inject = ['$rootScope'];
+
 function configs($httpProvider) {
+    $httpProvider.interceptors.push(httpRequestInterceptor);
+    
     var interceptor = function($location, $log, $q) {
         function error(response) {
             if (response.status === 401) {
@@ -22,7 +27,15 @@ function configs($httpProvider) {
         return function(promise) {
             return promise.then(success, error);
         }
-    };
-    $httpProvider.interceptors.push(interceptor);
+    };  
 }
 
+function httpRequestInterceptor($rootScope) {
+    return { 
+        request: function(configs) {
+            return configs;
+            // return confisgs.headers['Authorization'] = 'Basic ' + 'c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+        //     configs.headers['Authorization'] = 'Basic ' + 'c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==';
+        }
+    }
+};

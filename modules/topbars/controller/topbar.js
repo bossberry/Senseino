@@ -4,6 +4,7 @@ angular
 .controller('TopbarController', ['$scope', '$uibModal',
 function ($scope, $uibModal) {
 	console.log('TopbarController');
+
 	$scope.regis = function() {
 		var modalInstance = $uibModal.open({
 			animation: $scope.animationsEnabled,
@@ -31,26 +32,69 @@ function ($scope, $uibModal) {
 
 angular
 .module('myApp')
-.controller('RegisModalController', function (URL_API, $http, $scope, $uibModal, $uibModalInstance) {
+.controller('RegisModalController', function (authService, $location, URL_API, $http, $scope, $uibModal, $uibModalInstance) {
 	console.log('RegisModalController');
+	console.log(authService.test());
+	$scope.submitEmailLogin = function(){
+		console.log($scope.login);
+		authService.LoginByEmail($scope.login.username, $scope.login.password)
+		.then((user) => {
+		  console.log(user.data);
+		  localStorage.setItem('token', user.data.data.accessToken);
+		})
+		.catch((err) => {
+		  console.log(err);
+		  $scope.loginerr = true;
+		  $scope.loginerrmsg = err.data.description;
+		});
+
+
+		// console.log($scope.login);
+		// $http.post(URL_API + '/api/v1/users/login', {
+		// 	username: $scope.login.username,
+		// 	type: 'email',
+		// 	credential: $scope.login.password
+		// }).then(function(res){
+		// 	console.log(res);
+		// }, function(err) {
+		// 	$scope.loginerr = true;
+		// 	$scope.loginerrmsg = err.data.description;
+        //     console.log(err.data);
+			
+		// });
+	};
+
 	$scope.submitEmailRegis = function() {
 		console.log('Form is submitted with following user', $scope.user);
-		$http.post(URL_API + '/api/v1/users/register', {
-			firstName: $scope.user.firstname,
-			lastName: $scope.user.lastname,
-			mobileNo: $scope.user.tel,
-			email:$scope.user.email,
-			type:'email',
-			password:$scope.user.password
 
-		}).then(function(res){
-			console.log(res);
-		}, function(err) {
-			$scope.err = true;
-			$scope.errmsg = err.data.description;
-            console.log(err.data);
+		authService.RegisByEmail($scope.user.firstname, $scope.user.lastname, $scope.user.tel, $scope.user.email, $scope.user.password)
+		.then((user) => {
+		  console.log(user.data);
+		  localStorage.setItem('token', user.data.data.accessToken);
+		})
+		.catch((err) => {
+		  console.log(err);
+		  $scope.err = true;
+		  $scope.errmsg = err.data.description;
+		  console.log(err.data);
+		});
+
+		// $http.post(URL_API + '/api/v1/users/register', {
+		// 	firstName: $scope.user.firstname,
+		// 	lastName: $scope.user.lastname,
+		// 	mobileNo: $scope.user.tel,
+		// 	email:$scope.user.email,
+		// 	type:'email',
+		// 	password:$scope.user.password
+
+		// }).then(function(res){
+		// 	console.log(res);
+		// }, function(err) {
+		// 	$scope.err = true;
+		// 	$scope.errmsg = err.data.description;
+        //     console.log(err.data);
 			
-        });
+        // });
   };
   
   $scope.FBbtnLogin = function() {

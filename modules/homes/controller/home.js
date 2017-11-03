@@ -34,7 +34,9 @@ angular
  })
 .controller('HomeController', ['$uibModal', '$scope', '$http', 'URL_API',
 function ($uibModal, $scope, $http, URL_API) {
-	$http.defaults.headers.common['Authorization'] = 'Basic ' + 'c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==';
+	const token = localStorage.getItem('token');
+	console.log(token);
+	// $http.defaults.headers.common['Authorization'] = 'Basic ' + 'c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==';
 	console.log('HomeController');
 	$scope.lang = 'en';
 	$scope.imglang = 'assets/img/' + $scope.lang + '.png';

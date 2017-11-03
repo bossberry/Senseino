@@ -95,33 +95,7 @@
     </div>     
     <button class="btn btn-action" type="submit" ng-disabled="myForm.$invalid">สมัครสมาชิก</button>
 </form>
-    <!-- <form name="vm.userForm" ng-submit="vm.signup(vm.userForm.$valid)" class="signin" novalidate autocomplete="off">
-        <div class="form-group form-g-regis-modal">
-            <label>ชื่อ</label>
-            <input type="text" placeholder="ชื่อ" class="form-control" required>
-        </div>
-        <div class="form-group form-g-regis-modal">
-            <label>นามสกุล</label>
-            <input type="text" placeholder="นามสกุล" class="form-control" required>
-        </div>
-        <div class="form-group form-g-regis-modal">
-            <label>เบอร์โทร</label>
-            <input type="text" placeholder="089-999-9999" class="form-control" required>
-        </div>
-        <div class="form-group form-g-regis-modal">
-            <label>อีเมล</label>
-            <input type="text" placeholder="name@gmail.com" class="form-control" required>
-        </div>
-        <div class="form-group form-g-regis-modal">
-            <label>รหัสผ่าน</label>
-            <input type="password" placeholder="รหัสผ่าน" class="form-control" required>
-        </div>
-        <div class="form-group form-g-regis-modal">
-            <label></label>
-            <button type="submit" class="btn btn-action">สมัครสมาชิก</button>
-        </div>
-    </form> -->
-    </div>
+</div>
 </script>
 <script type="text/ng-template" id="loginModal.html">
     <div class="modal-header modal-regis-header">
@@ -129,25 +103,30 @@
         <span ng-click="closeMD()">X</span>
     </div>
     <div class="modal-body modal-regis-body" id="modal-body">
+    <form ng-submit="submitEmailLogin()" name="loginForm" autocomplete="off" style="margin-bottom:20px;">
         <div class="form-group form-g-login-modal">
-            <input type="text" placeholder="อีเมล" class="form-control login-ip-email">
+            <input type="text" ng-model="login.username" placeholder="อีเมล" class="form-control login-ip-email" required>
         </div>
         <div class="form-group form-g-login-modal">
-            <input type="text" placeholder="รหัสผ่าน" class="form-control">
+            <input type="password" ng-model="login.password" placeholder="รหัสผ่าน" class="form-control" required>
             <a class="login-ip-fogetpass" href="">ลืมรหัสผ่าน?</a>
+        </div> 
+        <div class="form-group form-g-login-modal" ng-if="loginerr===true">
+            <span class="msg-form-err" >{{loginerrmsg}}</span>
+        </div> 
+        <button class="btn btn-action" type="submit">เข้าสู่ระบบ</button>
+    </form>
+    <div class="form-group form-g-login-modal">
+    <p class="line-behide"><span>หรือ เข้าสู่ระบบด้วย </span></p>
+    <div class="login-modal-opt">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            <a href="" class=""><img src="assets/img/btn_line.png"></a>
         </div>
-        <div class="form-group form-g-login-modal">
-            <button class="btn btn-action">เข้าสู่ระบบ</button>
-            <p class="line-behide"><span>หรือ เข้าสู่ระบบด้วย </span></p>
-            <div class="login-modal-opt">
-                <div class="col-sm-6 col-md-6 col-lg-6">
-                    <button class="btn btn-login-opt"><img src="assets/img/jobs_line.png"></button>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-6">
-                    <button class="btn btn-login-opt"><img src="assets/img/jobs_line.png"></button>
-                </div>
-            </div>
-            <p>ยังไม่เป็นสมาชิก? <span class="login-modal-linkregis" ng-click="regis()">สมัครสมาชิก</span></p>
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            <a href="" class=""><img src="assets/img/btn_fb.png"></a>
         </div>
+    </div>
+    <p>ยังไม่เป็นสมาชิก? <span class="login-modal-linkregis" ng-click="regis()">สมัครสมาชิก</span></p>
+    </div>
     </div>
 </script>
