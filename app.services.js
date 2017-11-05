@@ -1,10 +1,8 @@
 'use strict';
 angular.module('myApp.services', [])
         .service('authService', authService)
-      authService.$inject = ['$http', 'URL_API'];
+        authService.$inject = ['$http', 'URL_API'];
      
-
-
 function authService($http, URL_API) {
     /*jshint validthis: true */
 
@@ -35,12 +33,12 @@ function authService($http, URL_API) {
         headers: {'Content-Type': 'application/json'}
         });
     };
-    this.ensureAuthenticated = function(userID, email) {
+    this.ensureAuthenticated = function(userdata) {
         return $http({
             method: 'GET',
-            url: URL_API + '/api/v1/users/' + userID,
+            url: URL_API + '/api/v1/users/' + userdata._id,
             headers: {
-                'x-user' : email
+                'x-user' : userdata.email
             }
         });
     };

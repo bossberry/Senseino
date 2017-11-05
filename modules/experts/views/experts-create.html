@@ -1,11 +1,119 @@
-<aside data-ng-include="'/modules/topbars/views/topbar4.html'"></aside>  
-<section class="margin-for-topbar-main">
+<div ng-if="loaded===true">
+<aside ng-show="!isLoggedIn" data-ng-include="'/modules/topbars/views/topbar3.html'"></aside> 
+<aside ng-show="isLoggedIn" data-ng-include="'/modules/topbars/views/topbar5.html'"></aside>
+</div>   
+<section class="margin-for-topbar-5">
     <div class="section-box row container-fluid experts-cre-sec-sup">
         <h1>ประวัติงาน</h1>
-        <button class="btn btn-action">เพิ่มประวัติ</button>
+        <!-- <button class="btn btn-action">เพิ่มประวัติ</button> -->
     </div>
     <div class="section-box row container-fluid help-sec-faq"> 
-        <div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+        <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-2 col-lg-10 col-lg-offset-2">
+        <form ng-submit="submitexpertsCreate()" name="expertsCreate" autocomplete="off">
+                <div class="wrap-btn-cre-expt">
+                    <button class="btn btn-action" type="submit">เพิ่มประวัติ</button>
+                 </div>
+            <div class="form-group">
+                <div class="row form-group experts-cre-fg">
+                    <div class="col-sm-3 col-md-3 col-lg-2">
+                        <label class="experts-cre-label">ชื่อประวัติ</label>
+                    </div>
+                    <div class="col-sm-5 col-md-5 col-lg-5">
+                        <input type="text" ng-model="user.exptname" placeholder="ล่าม" class="form-control input-size-box" required ng-minlength="2">
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group experts-cre-fg">
+                <div class="col-sm-3 col-md-3 col-lg-2">
+                    <label class="experts-cre-label">ประเภทงาน</label>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-2">
+                     <select 
+                        ng-change="selectjob()"
+                        class="form-control input-size-box"
+                        ng-model="datajob"
+                        ng-options="data as data.name[lang] for data in jobTypes track by data._id" required>
+                        <option value="" disabled>-- เลือกประเภท --</option>
+                    </select>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-2">
+                    <select 
+                        class="form-control input-size-box"
+                        ng-model="datatag"
+                        ng-options="data as data.name[lang] for data in tags track by data._id" required>
+                        <option value="" disabled>-- เลือกภาษา --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row form-group experts-cre-fg">
+                <div class="col-sm-3 col-md-3 col-lg-2">
+                    <label class="experts-cre-label">ราคา</label>
+                </div>
+                <div class="col-sm-5 col-md-5 col-lg-5">
+                    <input ng-model="user.price" class="form-control jobsex-price input-size-box" type="text" placeholder="3000" required>
+                </div>
+            </div>
+            <div class="row form-group experts-cre-fg">
+                <div class="col-sm-3 col-md-3 col-lg-2">
+                    <label class="experts-cre-label">รูปแบบงาน</label>
+                </div>
+                <div class="col-sm-5 col-md-5 col-lg-5">
+                    <div class="type-radio-jobsex" ng-init="user.jobunit='ต่อชั่วโมง'">
+                        <input type="radio" name="optradio" ng-model="user.jobunit" value="ต่อชั่วโมง" id="radio1"><label for="radio1">ต่อชั่วโมง</label>
+                        <input type="radio" name="optradio" ng-model="user.jobunit" value="ต่อวัน" id="radio2"><label for="radio2">ต่อวัน</label>
+                        <input type="radio" name="optradio" ng-model="user.jobunit" value="ต่องาน" id="radio3"><label for="radio3">ต่องาน</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group experts-cre-fg">
+                    <div class="col-sm-3 col-md-3 col-lg-2">
+                        <label class="experts-cre-label">รายละเอียด</label>
+                    </div>
+                    <div class="col-sm-5 col-md-5 col-lg-5">
+                        <textarea ng-model="user.des" style="resize:none;"rows="4" cols="40" required></textarea>
+                    </div>
+                </div>
+                <div class="row form-group experts-cre-fg">
+                    <div class="col-sm-3 col-md-3 col-lg-2">
+                        <label class="experts-cre-label">ประสบการณ์</label>
+                    </div>
+                    <div class="col-sm-5 col-md-5 col-lg-5">
+                        <textarea ng-model="user.ex" style="resize:none;"rows="4" cols="40" required></textarea>
+                    </div>
+                </div>
+                <div class="row form-group experts-cre-fg">
+                    <div class="col-sm-3 col-md-3 col-lg-2">
+                        <label class="experts-cre-label">การศึกษา</label>
+                    </div>
+                    <div class="col-sm-5 col-md-5 col-lg-5">
+                        <textarea ng-model="user.ed" style="resize:none;"rows="4" cols="40" required></textarea>
+                    </div>
+                </div>
+                <div class="row form-group experts-cre-fg">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <label class="experts-cre-label">อัพโหลดรูปภาพหรือวีดีโอ</label>
+                    </div>
+                    <div class="col-sm-5ths col-md-5ths col-lg-5ths">
+                        <button class="btn-media" ngf-select="uploadFiles($files, $invalidFiles)" multiple
+                        accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+                        </button>
+                    </div>
+                    <div class="col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="f in files">
+                        <span ng-click="exptFileDel(f)" class="rm-pic-expt-cre"><img src="assets/img/delete.png"></span>
+                        <div class="preview">
+                            <img ngf-src="!f.$error && f">
+                            <audio controls ngf-src="!f.$error && f"></audio>
+                            <video controls ngf-src="!f.$error && f"></video>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row form-group experts-cre-fg">
+                    <span class="msg-form-err" ng-if="err===true">{{errmsg}}</span>
+                </div>
+        </form>
+        </div>
+        <!-- <div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
                 <div class="form-group">
                     <div class="row form-group experts-cre-fg">
                         <div class="col-sm-3 col-md-3 col-lg-3">
@@ -60,7 +168,7 @@
                         </div>
                     </div>
                 </div>
-        </div>
+        </div> -->
     </div>
 </section>
 <aside data-ng-include="'/modules/footers/views/footer.html'"></aside> 

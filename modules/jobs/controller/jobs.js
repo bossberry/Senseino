@@ -6,10 +6,10 @@ function (authService, $scope, $uibModal, $http, URL_API) {
 	$scope.lang = 'en';
 	$scope.imglang = 'assets/img/' + $scope.lang + '.png';
 	$scope.isLoggedIn = false;
-	const email = localStorage.getItem('x-user');
-	const userid = localStorage.getItem('userid');
-	if (email) {
-	  authService.ensureAuthenticated(userid, email)
+	const userdata = JSON.parse(localStorage.getItem('userdata'));
+
+	if (userdata) {
+	  authService.ensureAuthenticated(userdata)
 	  .then((user) => {
 		if (user.data.status === 'success');
 		$scope.isLoggedIn = true;
@@ -54,7 +54,6 @@ angular
 .module('myApp')
 .controller('JobsModalController', function (URL_API, $http, $scope, $uibModal, jobid, $uibModalInstance) {
 	console.log('modalController');
-	$http.defaults.headers.common['Authorization'] = 'Basic ' + 'c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==';
 	$scope.lang = 'en';
 	$scope.id = jobid;
 	$http.get(URL_API + '/api/v1/jobs/'+ $scope.id)

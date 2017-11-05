@@ -7,12 +7,20 @@ angular
 // httpRequestInterceptor.$inject = ['$rootScope'];
 
 function configs($httpProvider) {
-    const token = localStorage.getItem('token');
-    $httpProvider.defaults.headers.common = { 
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'x-access-token': token,
-        'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
-    };
+    const userdata = JSON.parse(localStorage.getItem('userdata'));
+    if(userdata === null || userdata === undefined){
+        $httpProvider.defaults.headers.common = { 
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+        };
+    } else {
+        $httpProvider.defaults.headers.common = { 
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'x-access-token': userdata.accessToken,
+            'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+        };
+    }
+   
 
     // $httpProvider.interceptors.push(httpRequestInterceptor);
     

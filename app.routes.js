@@ -52,20 +52,3 @@ function config ($locationProvider, $routeProvider) {
         });
         // $locationProvider.html5Mode(true);
 };
-
-function routeStart($rootScope, $location, $route) {
-    $rootScope.$on('$routeChangeStart', (event, next, current) => {
-      if (next.restrictions.ensureAuthenticated) {
-        if (!localStorage.getItem('token')) {
-        //   $location.path('/login');
-          console.log('go login');
-        }
-      }
-      if (next.restrictions.loginRedirect) {
-        if (localStorage.getItem('token')) {
-          $location.path('/status');
-          console.log('token');
-        }
-      }
-    });
-  };

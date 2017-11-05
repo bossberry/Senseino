@@ -2,20 +2,22 @@
     <div class="topbar-wrapper container-fluid">
         <div class="topbar-left">
             <a class="logo-main" ng-href="/#/"><img src="/assets/img/logo_senseino.png"></a>
+            
             <div class="search-ang"
             angucomplete-alt
             id="searchcomplete"
             placeholder="Searcg by Location, Skills"
             pause="400"
             selected-object="objectSelected"
-            remote-url=""
+            remote-url="http://54.255.237.25:3000/api/v1/search"
             remote-url-request-formatter="remoteUrlRequestFn"
-            remote-url-data-field="data"
+            remote-url-data-field="data.jobs.tag.name[lang]"
             title-field="name"
             description-field="type"
             minlength="1"
             input-class="searchbar-top form-control-small"
             match-class="highlight">
+
             </div>
             <!-- <input type="text" placeholder="Searcg by Location, Skills"> -->
         </div>

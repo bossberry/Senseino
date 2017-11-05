@@ -8,10 +8,10 @@
             placeholder="Searcg by Location, Skills"
             pause="400"
             selected-object="objectSelected"
-            remote-url=""
-            remote-url-request-formatter="remoteUrlRequestFn"
-            remote-url-data-field="data"
-            title-field="name"
+            remote-api-handler="searchAPI"
+            remote-url-response-formatter="remoteUrlRequestFn"
+            title-field="data"
+            search-fields="data"
             description-field="type"
             minlength="1"
             input-class="searchbar-top form-control-small"
@@ -37,7 +37,7 @@
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="/api/auth/signout" target="_self">Signout</a>
+                        <a ng-click="logout()">Signout</a>
                     </li>
                     </ul>
                 </li>

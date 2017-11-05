@@ -1,10 +1,10 @@
 
 angular
 .module('myApp')
-.controller('TopbarController', ['$scope', '$uibModal',
-function ($scope, $uibModal) {
+.controller('TopbarController', ['$http', 'URL_API', '$scope', '$uibModal',
+function ($http, URL_API, $scope, $uibModal) {
 	console.log('TopbarController');
-
+	const userdata = JSON.parse(localStorage.getItem('userdata'));
 	$scope.regis = function() {
 		var modalInstance = $uibModal.open({
 			animation: $scope.animationsEnabled,
@@ -12,8 +12,26 @@ function ($scope, $uibModal) {
 			controller: 'RegisModalController as ctrl'
 			});
 	};
-
-	
+	$scope.searchAPI = function(userInputString, timeoutPromise) {
+		// $http.post(URL_API + '/api/v1/search', {textSearch: userInputString}, {timeout: timeoutPromise})
+		// .then(function(res){
+		// 	console.log(res.data.data.experts[0].jobType.name['th']);
+		// 	return res.data.data.experts[0].name['th'];
+		// }, function(err) {
+		// 	console.log(err.data);
+		// });;
+		return  $http.post(URL_API + '/api/v1/search', {textSearch: userInputString}, {timeout: timeoutPromise})
+	};
+	$scope.logout = function(){
+		$http.post(URL_API + '/api/v1/users/logout', {
+			email: userdata.email,
+		}).then(function(res){
+			window.localStorage.clear();
+			window.location.reload(true);
+		}, function(err) {
+			console.log(err.data);
+		});
+	};
 	$scope.loginModal = function() {
 		var modalInstance = $uibModal.open({
 			animation: $scope.animationsEnabled,
@@ -39,11 +57,22 @@ angular
 		console.log($scope.login);
 		authService.LoginByEmail($scope.login.username, $scope.login.password)
 		.then((user) => {
-		//   console.log(user.data);
-		  localStorage.setItem('token', user.data.data.accessToken);
-		  localStorage.setItem('x-user', user.data.data.email);
-		  localStorage.setItem('userid', user.data.data._id);
-		  window.location.reload(true);
+			console.log(user);
+			$http.get(URL_API + '/api/v1/users/'+user.data.data._id)
+			.then( function(res){
+				console.log(res);
+			});
+			$http({method: 'GET', url: URL_API + '/api/v1/users/'+user.data.data._id, 
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+				'x-access-token': user.data.data.accessToken,
+				'x-user': user.data.data.email,
+				'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+			}
+			}).then( function(res){
+				localStorage.setItem('userdata', JSON.stringify(res.data.data.profile));
+		 		window.location.reload(true);
+			});
 		})
 		.catch((err) => {
 		  console.log(err);
@@ -66,7 +95,7 @@ angular
 			
 		// });
 	};
-
+	
 	$scope.submitEmailRegis = function() {
 		console.log('Form is submitted with following user', $scope.user);
 

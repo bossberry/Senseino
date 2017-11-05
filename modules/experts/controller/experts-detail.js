@@ -1,13 +1,26 @@
 
 angular
 .module('myApp')
-.controller('ExpertsDetailController', ['$scope', '$uibModal', '$http', 'URL_API',
-function ($scope, $uibModal, $http, URL_API) {
-	$http.defaults.headers.common['Authorization'] = 'Basic ' + 'c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==';
+.controller('ExpertsDetailController', ['authService', '$scope', '$uibModal', '$http', 'URL_API',
+function (authService, $scope, $uibModal, $http, URL_API) {
     console.log('ExpertsDetailController');
 	$scope.lang = 'en';
     var currenturl = window.location.href;
-    var exid = currenturl.substring(currenturl.search('/experts-detail')+ 15);
+	var exid = currenturl.substring(currenturl.search('/experts-detail')+ 15);
+	$scope.isLoggedIn = false;
+	const userdata = JSON.parse(localStorage.getItem('userdata'));
+	
+	if (userdata) {
+		authService.ensureAuthenticated(userdata)
+		.then((user) => {
+		if (user.data.status === 'success');
+		$scope.isLoggedIn = true;
+		
+		})
+		.catch((err) => {
+		console.log(err);
+		});
+	}
 	$scope.imglang = 'assets/img/' + $scope.lang + '.png';
 	$scope.chgLang = function (lang){
 		$scope.imglang = 'assets/img/' + lang + '.png';
@@ -15,6 +28,7 @@ function ($scope, $uibModal, $http, URL_API) {
 	};
 	$http.get(URL_API + '/api/v1/experts/' + exid)
 	.then( function(res){
+		$scope.loaded = true;
 		$scope.exptdetail = res.data.data[0];
 	});
 	

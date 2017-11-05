@@ -41,10 +41,10 @@ function (authService, $uibModal, $scope, $http, URL_API) {
 	$scope.banner = {};
 	$scope.experts = [];
 	$scope.isLoggedIn = false;
-	const email = localStorage.getItem('x-user');
-	const userid = localStorage.getItem('userid');
-	if (email) {
-	  authService.ensureAuthenticated(userid, email)
+	$scope.favexptId = [];
+	const userdata = JSON.parse(localStorage.getItem('userdata'));
+	if (userdata) {
+	  authService.ensureAuthenticated(userdata)
 	  .then((user) => {
 		if (user.data.status === 'success');
 		$scope.isLoggedIn = true;
@@ -57,8 +57,40 @@ function (authService, $uibModal, $scope, $http, URL_API) {
 		$scope.imglang = 'assets/img/' + lang + '.png';
 		$scope.lang = lang;
 	};
+	$scope.favExpt = function (exptsId, check){
+		if($scope.isLoggedIn){
+			console.log(exptsId);
+			if(check === true){
+				$http.put(URL_API + '/api/v1/users/favorite/' + userdata._id, {
+					action: '$pull',
+					expertId: exptsId
+				}).then(function(res){
+					console.log(res.data);
+				}, function(err) {
+					console.log(err.data);
+				});
+			} else {
+				$http.put(URL_API + '/api/v1/users/favorite/' + userdata._id, {
+					action: '$push',
+					expertId: exptsId
+				}).then(function(res){
+					console.log(res.data);
+				}, function(err) {
+					console.log(err.data);
+				});
+			}
+			
+		} else {
+			var modalInstance = $uibModal.open({
+				animation: $scope.animationsEnabled,
+				templateUrl: 'loginModal.html',
+				controller: 'RegisModalController as ctrl'
+			});
+		}
+	};
 	$http.get(URL_API + '/api/v1/page/foryou')
 	.then( function(res){
+		console.log(res.data.data.experts);
 		$scope.loaded = true;
 		$scope.banners = res.data.data.banners;
 		for(var i = 0; i < $scope.banners.length; i++){
