@@ -94,6 +94,7 @@ h1.head-section-margin{
     display: inline;
     border-radius: 50%;
     max-width: 32px;
+    max-height: 32px;
 }
 .overlay-green{
     position: absolute;

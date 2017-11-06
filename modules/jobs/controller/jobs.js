@@ -41,11 +41,20 @@ function (authService, $scope, $uibModal, $http, URL_API) {
 		});
 	};
 	$scope.jobspostModal = function() {
-		var modalInstance = $uibModal.open({
-			animation: $scope.animationsEnabled,
-			templateUrl: '่jobspostModal.html',
-			controller: 'JobspostModalController as ctrl'
+		if($scope.isLoggedIn){
+			var modalInstance = $uibModal.open({
+				animation: $scope.animationsEnabled,
+				templateUrl: '่jobspostModal.html',
+				controller: 'JobspostModalController as ctrl'
+				});
+			
+		} else {
+			var modalInstance = $uibModal.open({
+				animation: $scope.animationsEnabled,
+				templateUrl: 'loginModal.html',
+				controller: 'RegisModalController as ctrl'
 			});
+		}
 	};
 
 }]);
@@ -67,8 +76,48 @@ angular
 
 angular
 .module('myApp')
-.controller('JobspostModalController', function ($scope, $uibModal, $uibModalInstance) {
+.controller('JobspostModalController', function (URL_API, $http, $scope, $uibModal, $uibModalInstance) {
+	$scope.lang = 'en';
 	console.log('JobspostModalController');
+	$http.get(URL_API + '/api/v1/job_types')
+	.then( function(res){
+				$scope.jobTypes = res.data.data;
+				console.log(res.data.data);
+	});
+	$scope.selectjob = function () {
+		console.log('selectjob');
+		$http.get(URL_API + '/api/v1/tags?jobType=' + $scope.datajob._id)
+		.then( function(res){
+				$scope.tags = res.data.data;
+				console.log(res.data.data);
+		});
+	};
+	$scope.submitPostJob = function() {
+		console.log($scope.postjob);
+		console.log($scope.datajob._id);
+		console.log($scope.datatag);
+
+		$http.post(URL_API + '/api/v1/jobs', {
+			name: $scope.postjob.name,
+			jobType: $scope.datajob._id,
+			tag: $scope.datatag._id,
+			price: $scope.postjob.price,
+            priceType: $scope.postjob.jobunit,
+            detail: $scope.postjob.des,
+            type: 'normal',
+						mobileNo: $scope.postjob.tel,
+						lineId: $scope.postjob.line
+		}).then(function(res){
+			console.log(res);
+			window.location.reload(true);
+		}, function(err) {
+			$scope.err = true;
+			$scope.errmsg = err.data.description;
+      console.log(err.data);
+			
+    });
+
+	};
 	$scope.closeMD = function() {
 		$uibModalInstance.close(false);
 	};

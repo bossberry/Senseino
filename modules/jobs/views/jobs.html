@@ -20,7 +20,7 @@
         <div class="col-sm-6 col-md-6 col-lg-6 job-post-repeat-col" ng-repeat="data in jobs" style="padding-left:0px;">
             <div class="job-post-wrapper" ng-click="jobsModal(data._id)">
                 <div class="col-sm-9 col-md-9 col-lg-9">
-                    {{data.name}}&nbsp;
+                    {{data.name[lang]}}&nbsp;
                     <div  class="status-new" ng-if="data.status=='NEW'"><span>{{data.status}}</span></div>
                     <div  class="status-prog" ng-if="data.status=='IN PROGRESS'"><span>{{data.status}}</span></div>
                 </div>
@@ -53,7 +53,7 @@
     <div class="modal-body job-modal-body" id="modal-body">
         <div class="job-topic-cover row">
             <div class="col-sm-9 col-md-9 col-lg-9">
-                {{jobdatas.name}}&nbsp;
+                {{jobdatas.name[lang]}}&nbsp;
                 <div class="status-new" ng-if="jobdatas.status=='NEW'"><span>{{jobdatas.status}}</span></div>
                 <div class="status-prog" ng-if="jobdatas.status=='IN PROGRESS'"><span>{{jobdatas.status}}</span></div>
             </div>
@@ -77,7 +77,7 @@
         </div>
         <div class="job-detail-cover row">
             <h2>รายละเอียด</h2> 
-            <p>{{jobdatas.detail}}
+            <p>{{jobdatas.detail[lang]}}
             </p>
         </div>
     </div>
@@ -91,13 +91,13 @@
         <span ng-click="closeMD()">X</span>
     </div>
     <div class="modal-body" id="modal-body">
-        <div class="form-group form-g-login-modal">
+        <form ng-submit="submitPostJob()" name="postJobForm" autocomplete="off">
             <div class="row form-group">
                 <div class="col-sm-3 col-md-3 col-lg-3">
                     <label>ชื่องาน</label>
                 </div>
                 <div class="col-sm-9 col-md-9 col-lg-9">
-                    <input type="text" placeholder="ชื่อโพสงาน และ รายละเอียดเบื้องต้น" class="form-control input-size-box">
+                    <input ng-model="postjob.name" type="text" placeholder="ชื่อโพสงาน และ รายละเอียดเบื้องต้น" class="form-control input-size-box" required>
                 </div>
             </div>
             <div class="row form-group">
@@ -105,19 +105,20 @@
                     <label>ประเภทงาน</label>
                 </div>
                 <div class="col-sm-5 col-md-5 col-lg-5">
-                    <select class="form-control input-size-box">
-                        <option value="" disabled selected>--เลือกประเภทงาน--</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
+                    <select 
+                        ng-change="selectjob()"
+                        class="form-control input-size-box"
+                        ng-model="datajob"
+                        ng-options="data as data.name[lang] for data in jobTypes track by data._id" required>
+                        <option value="" disabled>-- เลือกประเภท --</option>
                     </select>
                 </div>
                 <div class="col-sm-4 col-md-4 col-lg-4">
-                    <select class="form-control input-size-box">
-                        <option value="" disabled selected>--ภาษา--</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
+                    <select 
+                        class="form-control input-size-box"
+                        ng-model="datatag"
+                        ng-options="data as data.name[lang] for data in tags track by data._id" required>
+                        <option value="" disabled>-- เลือกภาษา --</option>
                     </select>
                 </div>
             </div>
@@ -126,7 +127,7 @@
                     <label>ราคา</label>
                 </div>
                 <div class="col-sm-9 col-md-9 col-lg-9">
-                    <input class="form-control jobsex-price input-size-box" type="text" placeholder="3000">
+                    <input ng-model="postjob.price" class="form-control jobsex-price input-size-box" type="text" placeholder="3000" required>
                 </div>
             </div>
             <div class="row form-group">
@@ -134,10 +135,10 @@
                     <label>รูปแบบงาน</label>
                 </div>
                 <div class="col-sm-9 col-md-9 col-lg-9">
-                    <div class="type-radio-jobsex">
-                        <input type="radio" name="optradio" id="radio1"><label for="radio1">ต่อชั่วโมง</label>
-                        <input type="radio" name="optradio" id="radio2"><label for="radio2">ต่อวัน</label>
-                        <input type="radio" name="optradio" id="radio3"><label for="radio3">ต่องาน</label>
+                    <div class="type-radio-jobsex" ng-init="postjob.jobunit='ต่อชั่วโมง'">
+                        <input type="radio" name="optradio" ng-model="postjob.jobunit" value="ต่อชั่วโมง" id="radio1"><label for="radio1">ต่อชั่วโมง</label>
+                        <input type="radio" name="optradio" ng-model="postjob.jobunit" value="ต่อวัน" id="radio2"><label for="radio2">ต่อวัน</label>
+                        <input type="radio" name="optradio" ng-model="postjob.jobunit" value="ต่องาน" id="radio3"><label for="radio3">ต่องาน</label>
                     </div>
                 </div>
             </div>
@@ -146,7 +147,7 @@
                     <label>รายละเอียด</label>
                 </div>
                 <div class="col-sm-9 col-md-9 col-lg-9">
-                    <textarea style="resize:none;"rows="4" cols="40"></textarea>
+                    <textarea ng-model="postjob.des" style="resize:none;"rows="4" cols="40" required></textarea>
                 </div>
             </div>
             <div class="row form-group">
@@ -154,20 +155,25 @@
                     <label>ข้อมูลติดต่อ</label>
                 </div>
                 <div class="col-sm-5 col-md-5 col-lg-5">
-                    <input class="form-control jobsex-tel input-size-box" type="text" placeholder="เบอร์โทร">
+                    <input ng-model="postjob.tel" ng-pattern="/^[0-9]{10,10}$/" class="form-control jobsex-tel input-size-box" type="text" placeholder="เบอร์โทร" required ng-minlength="10">
+                    <label></label><span class="msg-form-err" ng-show="regisForm.$dirty && regisForm.tel.$invalid">This is a required field</span>
                 </div>
                 <div class="col-sm-4 col-md-4 col-lg-4">
-                    <input class="form-control jobsex-line input-size-box" type="text" placeholder="Line ID">
+                    <input ng-model="postjob.line" class="form-control jobsex-line input-size-box" type="text" placeholder="Line ID">
                 </div>
+            </div>
+            <div class="row form-group">
+                <span class="msg-form-err" ng-if="err===true">{{errmsg}}</span>
             </div>
             <div class="row form-group">
                 <div class="col-sm-3 col-md-3 col-lg-3">
                     <label></label>
                 </div>
                 <div class="col-sm-9 col-md-9 col-lg-9">
-                   <button class="btn-action-jobspost btn" style="width:100%;">โพสงาน</button>
+                    <button class="btn-action-jobspost btn" ype="submit" style="width:100%;" ng-disabled="postJobForm.$invalid">โพสงาน</button>
                 </div>
             </div>
+        </form>
     </div>
 </script>
 </section>

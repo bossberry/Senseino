@@ -1,313 +1,92 @@
 
 angular
-.module('myApp')
-.controller('SearchController', ['$scope', 
-function ($scope) {
+.module('myApp') 
+.directive('myEnter', function () {
+return function (scope, element, attrs) {
+	element.bind('keydown keypress', function (event) {
+	if (event.which === 13) {
+		scope.$apply(function () {
+		scope.$eval(attrs.myEnter);
+		});
+		event.preventDefault();
+	}
+	});
+};
+})
+.controller('SearchController', ['authService', '$uibModal', '$scope', '$http', 'URL_API',
+function (authService, $uibModal, $scope, $http, URL_API) {
 	console.log('SearchController');
-	$scope.testimonials = [
-		{img:'https://via.placeholder.com/150x100'},
-		{img:'https://via.placeholder.com/150x100'},
-		{img:'https://via.placeholder.com/150x100'},
-		{img:'https://via.placeholder.com/150x100'},
-		{img:'https://via.placeholder.com/150x100'},
-		{img:'https://via.placeholder.com/150x100'},
-		{img:'https://via.placeholder.com/150x100'},
-		{img:'https://via.placeholder.com/150x100'},
-		{img:'https://via.placeholder.com/150x100'},
-		{img:'https://via.placeholder.com/150x100'}
-	];
-	$scope.course = [
-		{
-			img:'https://via.placeholder.com/150x100',
-			topic:'ภาษาจีนระดับต้น 1B XXXX(--)บทที่ 13-25',
-			descript:'ภาษาจีนระดับต้น 1B เรียนวันอังคาร, พฤหัสบดี 20.00 น.',
-			amount: 1,
-			full: 10,
-			price: 1900,
-			gen: 2,
-			pic: 'https://via.placeholder.com/76x76'
-		},
-		{
-			img:'https://via.placeholder.com/150x100',
-			topic:'ภาษาจีนระดับต้น 1B XXXX(--)บทที่ 13-25',
-			descript:'ภาษาจีนระดับต้น 1B เรียนวันอังคาร, พฤหัสบดี 20.00 น.',
-			amount: 1,
-			full: 10,
-			price: 1900,
-			gen: 2,
-			pic: 'https://via.placeholder.com/76x76'
-		},
-		{
-			img:'https://via.placeholder.com/150x100',
-			topic:'ภาษาจีนระดับต้น 1B XXXX(--)บทที่ 13-25',
-			descript:'ภาษาจีนระดับต้น 1B เรียนวันอังคาร, พฤหัสบดี 20.00 น.',
-			amount: 1,
-			full: 10,
-			price: 1900,
-			gen: 2,
-			pic: 'https://via.placeholder.com/76x76'
-		},
-		{
-			img:'https://via.placeholder.com/150x100',
-			topic:'ภาษาจีนระดับต้น 1B XXXX(--)บทที่ 13-25',
-			descript:'ภาษาจีนระดับต้น 1B เรียนวันอังคาร, พฤหัสบดี 20.00 น.',
-			amount: 1,
-			full: 10,
-			price: 1900,
-			gen: 2,
-			pic: 'https://via.placeholder.com/76x76'
-		},
-		{
-			img:'https://via.placeholder.com/150x100',
-			topic:'ภาษาจีนระดับต้น 1B XXXX(--)บทที่ 13-25',
-			descript:'ภาษาจีนระดับต้น 1B เรียนวันอังคาร, พฤหัสบดี 20.00 น.',
-			amount: 1,
-			full: 10,
-			price: 1900,
-			gen: 2,
-			pic: 'https://via.placeholder.com/76x76'
-		},
-		{
-			img:'https://via.placeholder.com/150x100',
-			topic:'ภาษาจีนระดับต้น 1B XXXX(--)บทที่ 13-25',
-			descript:'ภาษาจีนระดับต้น 1B เรียนวันอังคาร, พฤหัสบดี 20.00 น.',
-			amount: 1,
-			full: 10,
-			price: 1900,
-			gen: 2,
-			pic: 'https://via.placeholder.com/76x76'
-		},
-		{
-			img:'https://via.placeholder.com/150x100',
-			topic:'ภาษาจีนระดับต้น 1B XXXX(--)บทที่ 13-25',
-			descript:'ภาษาจีนระดับต้น 1B เรียนวันอังคาร, พฤหัสบดี 20.00 น.',
-			amount: 1,
-			full: 10,
-			price: 1900,
-			gen: 2,
-			pic: 'https://via.placeholder.com/76x76'
-		},
-		{
-			img:'https://via.placeholder.com/150x100',
-			topic:'ภาษาจีนระดับต้น 1B XXXX(--)บทที่ 13-25',
-			descript:'ภาษาจีนระดับต้น 1B เรียนวันอังคาร, พฤหัสบดี 20.00 น.',
-			amount: 1,
-			full: 10,
-			price: 1900,
-			gen: 2,
-			pic: 'https://via.placeholder.com/76x76'
-		},
-		{
-			img:'https://via.placeholder.com/150x100',
-			topic:'ภาษาจีนระดับต้น 1B XXXX(--)บทที่ 13-25',
-			descript:'ภาษาจีนระดับต้น 1B เรียนวันอังคาร, พฤหัสบดี 20.00 น.',
-			amount: 1,
-			full: 10,
-			price: 1900,
-			gen: 2,
-			pic: 'https://via.placeholder.com/76x76'
-		},
-		{
-			img:'https://via.placeholder.com/150x100',
-			topic:'ภาษาจีนระดับต้น 1B XXXX(--)บทที่ 13-25',
-			descript:'ภาษาจีนระดับต้น 1B เรียนวันอังคาร, พฤหัสบดี 20.00 น.',
-			amount: 1,
-			full: 10,
-			price: 1900,
-			gen: 2,
-			pic: 'https://via.placeholder.com/76x76'
-		},
-		{
-			img:'https://via.placeholder.com/150x100',
-			topic:'ภาษาจีนระดับต้น 1B XXXX(--)บทที่ 13-25',
-			descript:'ภาษาจีนระดับต้น 1B เรียนวันอังคาร, พฤหัสบดี 20.00 น.',
-			amount: 1,
-			full: 10,
-			price: 1900,
-			gen: 2,
-			pic: 'https://via.placeholder.com/76x76'
-		},
-	];
-	$scope.postjob = [
-		{
-			topic:'ชื่อโพสงานและรายละเอียดรายละเอียดเบื้องต้นของงานที่ต้องการ',
-			price: 3000,
-			unit: 'ต่อชั่วโมง',
-			status: 'NEW',
-			tag: ['นักแปลก', 'English'],
-			pic: 'https://via.placeholder.com/76x76',
-			name: 'ชื่อคนโพส'
-		},
-		{
-			topic:'ชื่อโพสงานและรายละเอียดรายละเอียดเบื้องต้นของงานที่ต้องการ',
-			price: 8000,
-			unit: 'ต่อวัน',
-			status: 'NEW',
-			tag: ['ล่าม', 'Korea'],
-			pic: 'https://via.placeholder.com/76x76',
-			name: 'ชื่อคนโพส'
-		},
-		{
-			topic:'ชื่อโพสงานและรายละเอียดรายละเอียดเบื้องต้นของงานที่ต้องการ',
-			price: 6000,
-			unit: 'ต่องาน',
-			status: 'IN PROGRESS',
-			tag: ['ครูสอนภาษา', 'Korea'],
-			pic: 'https://via.placeholder.com/76x76',
-			name: 'ชื่อคนโพส'
-		},{
-			topic:'ชื่อโพสงานและรายละเอียดรายละเอียดเบื้องต้นของงานที่ต้องการ',
-			price: 3000,
-			unit: 'ต่อชั่วโมง',
-			status: 'NEW',
-			tag: ['นักแปลก', 'English'],
-			pic: 'https://via.placeholder.com/76x76',
-			name: 'ชื่อคนโพส'
-		},
-		{
-			topic:'ชื่อโพสงานและรายละเอียดรายละเอียดเบื้องต้นของงานที่ต้องการ',
-			price: 8000,
-			unit: 'ต่อวัน',
-			status: 'NEW',
-			tag: ['ล่าม', 'Korea'],
-			pic: 'https://via.placeholder.com/76x76',
-			name: 'ชื่อคนโพส'
-		},
-		{
-			topic:'ชื่อโพสงานและรายละเอียดรายละเอียดเบื้องต้นของงานที่ต้องการ',
-			price: 6000,
-			unit: 'ต่องาน',
-			status: 'IN PROGRESS',
-			tag: ['ครูสอนภาษา', 'Korea'],
-			pic: 'https://via.placeholder.com/76x76',
-			name: 'ชื่อคนโพส'
+	var searchData = JSON.parse(localStorage.getItem('search'));
+	const userdata = JSON.parse(localStorage.getItem('userdata'));
+	$scope.lang = 'en';
+	$scope.loaded = true;
+	$scope.qnull = false;
+	if(searchData[1].experts.length === 0){
+		$scope.qnull = true;
+		$scope.keyword = searchData[0];
+		$scope.expertdata = '';
+		$scope.jobdata = '';
+	} else {
+		$scope.keyword = searchData[0];
+		$scope.expertdata = searchData[1].experts;
+		$scope.jobdata = searchData[1].jobs;
+	}
+	if (userdata) {
+		authService.ensureAuthenticated(userdata)
+		.then((user) => {
+			if (user.data.status === 'success');
+			$scope.isLoggedIn = true;
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+	}
+	$scope.chgLang = function (lang){
+		$scope.imglang = 'assets/img/' + lang + '.png';
+		$scope.lang = lang;
+	};
+	$scope.favExpt = function (exptsId, check){
+		if($scope.isLoggedIn){
+			console.log(exptsId);
+			if(check === true){
+				$http.put(URL_API + '/api/v1/users/favorite/' + userdata._id, {
+					action: '$pull',
+					expertId: exptsId
+				}).then(function(res){
+					console.log(res.data);
+				}, function(err) {
+					console.log(err.data);
+				});
+			} else {
+				$http.put(URL_API + '/api/v1/users/favorite/' + userdata._id, {
+					action: '$push',
+					expertId: exptsId
+				}).then(function(res){
+					console.log(res.data);
+				}, function(err) {
+					console.log(err.data);
+				});
+			}
+			
+		} else {
+			var modalInstance = $uibModal.open({
+				animation: $scope.animationsEnabled,
+				templateUrl: 'loginModal.html',
+				controller: 'RegisModalController as ctrl'
+			});
 		}
-	]
-	$scope.jobstumbnail = [
-		{
-			img:'https://via.placeholder.com/76x76',
-			name: 'งานล่าม',
-		},
-		{
-			img:'https://via.placeholder.com/76x76',
-			name: 'งานนักแปล',
-		},{
-			img:'https://via.placeholder.com/76x76',
-			name: 'งานครูสอนภาษา',
-		},{
-			img:'https://via.placeholder.com/76x76',
-			name: 'งานติวเตอร์',
-		},{
-			img:'https://via.placeholder.com/76x76',
-			name: 'งานไกด์',
-		},{
-			img:'https://via.placeholder.com/76x76',
-			name: 'งานพิธีกร',
-		},{
-			img:'https://via.placeholder.com/76x76',
-			name: 'งานครู MC',
-		},{
-			img:'https://via.placeholder.com/76x76',
-			name: 'งานที่ปรึกษา',
-		}
-	];
-	$scope.objects = [
-		{
-			id: 'id01',
-			img:'https://via.placeholder.com/186x278',
-			name: 'ล่าม08',
-			tag: 'Korea',
-			location: '2.8 km Lad Phrao'
-		},
-		{
-			id: 'id02',
-			img:'https://via.placeholder.com/186x278',
-			name: 'ล่าม02',
-			tag: 'Korea',
-			location: '5.6 km Chatuchak'
-		},
-		{
-			id: 'id03',
-			img:'https://via.placeholder.com/186x278',
-			name: 'ล่าม03',
-			tag: 'Korea',
-			location: '12 km Din Daeng'
-		},
-		{
-			id: 'id04',
-			img:'https://via.placeholder.com/186x278',
-			name: 'ล่าม04',
-			tag: 'Korea',
-			location: '27 km Lad Phrao'
-		},
-		{
-			id: 'id05',
-			img:'https://via.placeholder.com/186x278',
-			name: 'ล่าม05',
-			tag: 'Japan',
-			location: '34 km Din Daeng'
-		},
-		{
-			id: 'id06',
-			img:'https://via.placeholder.com/186x278',
-			name: 'ล่าม06',
-			tag: 'Japan',
-			location: '34 km Din Daeng'
-		},
-		{
-			id: 'id07',
-			img:'https://via.placeholder.com/186x278',
-			name: 'ล่าม07',
-			tag: 'Japan',
-			location: '34 km Din Daeng'
-		},
-		{
-			id: 'id08',
-			img:'https://via.placeholder.com/186x278',
-			name: 'ล่าม08',
-			tag: 'Japan',
-			location: '34 km Din Daeng'
-		},
-		{
-			id: 'id09',
-			img:'https://via.placeholder.com/186x278',
-			name: 'ล่าม09',
-			tag: 'Japan',
-			location: '34 km Din Daeng'
-		},
-		{
-			id: 'id10',
-			img:'https://via.placeholder.com/186x278',
-			name: 'ล่าม10',
-			tag: 'Japan',
-			location: '34 km Din Daeng'
-		}
-	];
-	$scope.dataArray = [
-		{
-		  src: 'https://via.placeholder.com/1920x600'
-		},
-		{
-		  src: 'https://via.placeholder.com/1920x600'
-		},
-		{
-		  src: 'https://via.placeholder.com/1920x600'
-		},
-		{
-		  src: 'https://via.placeholder.com/1920x600'
-		},
-		{
-		  src: 'https://via.placeholder.com/1920x600'
-		},
-		{
-		  src: 'https://via.placeholder.com/1920x600'
-		}
-	  ];
-
-	  
-	$scope.OnClick = function () {
-		$state.go('experts');
-		console.log('OnClick');
+	};
+	$scope.jobsModal = function (jobid){
+		var modalInstance = $uibModal.open({
+			animation: $scope.animationsEnabled,
+			templateUrl: 'jobModalHome.html',
+			controller: 'JobsModalController as ctrl',
+			resolve: {
+				jobid: function() {
+					return jobid;
+				}
+				}
+			});
 	};
 }]);
 

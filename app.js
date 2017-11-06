@@ -7,6 +7,7 @@ angular.module('myApp', [
 
 
 window.fbAsyncInit = function() {
+    console.log('fb');
     FB.init({ 
         appId: '1668838553138058',
         status: true, 

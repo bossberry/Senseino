@@ -1,4 +1,7 @@
-<aside data-ng-include="'/modules/topbars/views/topbar3.html'"></aside>  
+<div ng-if="loaded===true">
+<aside ng-show="!isLoggedIn" data-ng-include="'/modules/topbars/views/topbar3.html'"></aside> 
+<aside ng-show="isLoggedIn" data-ng-include="'/modules/topbars/views/topbar5.html'"></aside>
+</div>  
 <section class="margin-for-topbar-2">
     <div class="section-box row container-fluid help-sec-sup">
         <h1>Help & Support</h1>

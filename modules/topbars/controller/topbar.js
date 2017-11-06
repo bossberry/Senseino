@@ -12,15 +12,18 @@ function ($http, URL_API, $scope, $uibModal) {
 			controller: 'RegisModalController as ctrl'
 			});
 	};
-	$scope.searchAPI = function(userInputString, timeoutPromise) {
-		// $http.post(URL_API + '/api/v1/search', {textSearch: userInputString}, {timeout: timeoutPromise})
-		// .then(function(res){
-		// 	console.log(res.data.data.experts[0].jobType.name['th']);
-		// 	return res.data.data.experts[0].name['th'];
-		// }, function(err) {
-		// 	console.log(err.data);
-		// });;
-		return  $http.post(URL_API + '/api/v1/search', {textSearch: userInputString}, {timeout: timeoutPromise})
+	$scope.searchAPI = function() {
+		console.log($scope.keyword);
+		$http.post(URL_API + '/api/v1/search', {textSearch: $scope.keyword})
+		.then(function(res){
+			console.log(res.data.data);
+			localStorage.setItem('search',JSON.stringify([$scope.keyword, res.data.data]));
+			window.location.href = '/#/search';
+			window.location.reload()
+		}, function(err) {
+			console.log(err.data);
+		});;
+
 	};
 	$scope.logout = function(){
 		$http.post(URL_API + '/api/v1/users/logout', {
@@ -168,6 +171,10 @@ angular
 			controller: 'RegisModalController as ctrl'
 			});
 	};
+	$scope.scrollTo = function(id) {
+		$location.hash(id);
+		$anchorScroll();
+	 }
 });
 
 angular
