@@ -179,8 +179,47 @@ angular
 
 angular
 .module('myApp')
-.controller('JobsexpressModalController', function ($scope, $uibModal, $uibModalInstance) {
+.controller('JobsexpressModalController', function ($scope, $uibModal, $uibModalInstance, $http, URL_API) {
 	console.log('JobsexpressModalController');
+	$scope.lang = 'en';
+	$http.get(URL_API + '/api/v1/job_types')
+	.then( function(res){
+				$scope.jobTypes = res.data.data;
+				console.log(res.data.data);
+	});
+	$scope.selectjob = function () {
+		$http.get(URL_API + '/api/v1/tags?jobType=' + $scope.datajob._id)
+		.then( function(res){
+				$scope.tags = res.data.data;
+				console.log(res.data.data);
+		});
+	};
+	$scope.submitJobExpress = function() {
+		console.log($scope.postjob);
+		console.log($scope.datajob._id);
+		console.log($scope.datatag);
+
+		$http.post(URL_API + '/api/v1/jobs', {
+			name: $scope.postex.name,
+			jobType: $scope.datajob._id,
+			tag: $scope.datatag._id,
+			price: $scope.postex.price,
+            priceType: $scope.postex.jobunit,
+            detail: $scope.postex.des,
+            type: 'urgent',
+						mobileNo: $scope.postex.tel,
+						lineId: $scope.postex.line
+		}).then(function(res){
+			console.log(res);
+			window.location.reload(true);
+		}, function(err) {
+			$scope.err = true;
+			$scope.errmsg = err.data.description;
+      console.log(err.data);
+			
+    });
+
+	};
 	$scope.closeMD = function() {
 		$uibModalInstance.close(false);
 	};

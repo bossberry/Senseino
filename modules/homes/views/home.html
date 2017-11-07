@@ -2,7 +2,7 @@
 <aside ng-show="!isLoggedIn" data-ng-include="'/modules/topbars/views/topbar.html'"></aside> 
 <aside ng-show="isLoggedIn" data-ng-include="'/modules/topbars/views/topbar4.html'"></aside>
 </div>  
-<section  class="margin-for-topbar-main ">
+<section  class="margin-for-topbar-main " id="top">
     <center>
         <div ng-if="loaded===true">
         <jk-carousel
@@ -156,7 +156,7 @@
         <p>บริการ Outsource ผู้เชี่ยวชาญด้านภาษา</p>
         <p>ล่าม นักแปล ครูสอนภาษา ไกด์ พิธีกร MC ที่ปรึกษา สำหรับลูกค้าองค์กรในราคาพิเศษ</p>
         <button class="btn-action btn">ดูรายละเอียด</button>
-        <button class="btn backtotop"><span class="glyphicon glyphicon-menu-up"></span></button>
+        <button class="btn backtotop" ng-click="backtotop()"><span class="glyphicon glyphicon-menu-up"></span></button>
     </div>
     <div class="section-contact section-box container-fluid">
         <div class="col-sm-4 col-md-4 col-lg-4">

@@ -32,8 +32,8 @@ angular
 	   return Math.trunc(calcCrow(this.latme, this.lonme, this.latex, this.lonex)); 
 	}
  })
-.controller('HomeController', ['authService', '$uibModal', '$scope', '$http', 'URL_API',
-function (authService, $uibModal, $scope, $http, URL_API) {
+.controller('HomeController', ['authService', '$uibModal', '$scope', '$http', 'URL_API', '$location', '$anchorScroll',
+function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScroll) {
 	console.log('HomeController');
 	$scope.lang = 'en';
 	$scope.imglang = 'assets/img/' + $scope.lang + '.png';
@@ -53,6 +53,14 @@ function (authService, $uibModal, $scope, $http, URL_API) {
 		console.log(err);
 	  });
 	}
+	$scope.backtotop = function() {
+		// set the location.hash to the id of
+		// the element you wish to scroll to.
+		$location.hash('top');
+
+		// call $anchorScroll()
+		$anchorScroll();
+	};
 	$scope.chgLang = function (lang){
 		$scope.imglang = 'assets/img/' + lang + '.png';
 		$scope.lang = lang;

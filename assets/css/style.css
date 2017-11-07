@@ -238,3 +238,7 @@ a, a:hover, a:hover, a:active, a:visited {
     max-width: 250px;
 	text-align: left;
 }
+.dropdown-menu{
+	right: 0!important;
+	left: auto!important;
+}

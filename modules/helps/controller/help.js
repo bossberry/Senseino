@@ -25,6 +25,19 @@ function ($timeout, authService, $uibModal, $scope, $http, URL_API) {
 		$scope.imglang = 'assets/img/' + lang + '.png';
 		$scope.lang = lang;
 	};
+	$scope.searchApiHelp = function() {
+		console.log($scope.keywordhelp);
+		$http.post(URL_API + '/api/v1/search', {textSearch: $scope.keywordhelp})
+		.then(function(res){
+			console.log(res.data.data);
+			localStorage.setItem('search',JSON.stringify([$scope.keywordhelp, res.data.data]));
+			window.location.href = '/#/search';
+			window.location.reload()
+		}, function(err) {
+			console.log(err.data);
+		});;
+
+	};
 	$scope.groups = [
 		{
 		  title: 'FAQ - 1',
