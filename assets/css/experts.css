@@ -240,3 +240,14 @@
 .div#myContainer>img{
   height: 300px;
 }
+.btn-action-login, .btn-action-login:hover, .btn-action-login:active, .btn-action-login:focus, .btn-action-login:visited {
+  outline: none!important;
+}
+.btn-action-login{
+  width: 70%;
+  background-color: #FA1B25;
+  color: #fff;
+  box-shadow: 0 0 10px -1px #666;
+  padding: 10px 30px;
+  font-family: 'promptregular';
+}

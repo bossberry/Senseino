@@ -91,29 +91,32 @@
                 </div>
                 <div class="row form-group experts-cre-fg">
                     <div class="col-sm-12 col-md-12 col-lg-12">
-                        <label class="experts-cre-label">อัพโหลดรูปภาพหรือวีดีโอ</label>
-                    </div>
+                        <label class="experts-cre-label">อัพโหลดรูปภาพหรือวีดีโอ</label>                       
+                    </div>                    
                     <div class="col-sm-5ths col-md-5ths col-lg-5ths">
                         <span class="btn btn-media">
-                            <media-preview class="btn-media" preview-class="col-sm-5ths col-md-5ths col-lg-5ths" ng-model="myUpload" preview-container="myContainer"></media-preview>
+                            <media-preview multiple class="btn-media" preview-class="col-sm-5ths col-md-5ths col-lg-5ths" ng-model="myModel" preview-container="myContainer">
+                            </media-preview>
                         </span>
                     </div>
-                    <div id="myContainer"></div>
-                    <!-- <div class="col-sm-5ths col-md-5ths col-lg-5ths"> -->
-                        <!-- <span ng-click="exptFileDel(f)" class="rm-pic-expt-cre"><img src="assets/img/delete.png"></span>
-                        <div class="preview">
-                            <img ngf-src="!f.$error && f">
-                            <audio controls ngf-src="!f.$error && f"></audio>
-                            <video controls ngf-src="!f.$error && f"></video>
-                        </div> -->
-                        
-                    <!-- </div> -->
-
+                    <div class="col-sm-5ths col-md-5ths col-lg-5ths">
+                        <div ng-repeat="file in myModel">
+                            {{file.name}}
+                        </div>
+                    </div>
+                    <div id="myContainer">
+                        <div class="col-sm-5ths col-md-5ths col-lg-5ths">
+                            <div ng-repeat="file in myModel">
+                                {{file.name}}
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row form-group experts-cre-fg">
                     <span class="msg-form-err" ng-if="err===true">{{errmsg}}</span>
                 </div>
         </form>
+        <!-- <test color1="color1" data-method="clearPreview"></test>   -->
         </div>
     </div>
 </section>

@@ -121,4 +121,9 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 			}
 		});
 	};
+	$scope.dataArray = [
+		{src: 'http://via.placeholder.com/350x150'},
+		{src: 'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4'},
+		{src: 'http://via.placeholder.com/350x150'},
+	]
 }]);

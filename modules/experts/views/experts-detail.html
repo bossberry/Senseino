@@ -49,10 +49,14 @@
             <img width="350px" ng-src="{{exptdetail.profileImg[0].url}}">
         </div>
         <div  style="margin-top:20px;" class="col-offset-xs-8 col-offset-sm-8 col-offset-md-8 col-offset-lg-8 col-sm-5 col-md-5 col-lg-54">
-            <div class="expt-checboxfav">
-                <input type="checkbox" class="checkboxLabel main_street_input" id="id02" value="1">
-                <label for="id02"></label>
+            <div class="expt-checboxfav" ng-click="favExpt(exptdetail._id, exptdetail.isFavorite)">
+                <input type="checkbox" class="checkboxLabel main_street_input" id="{{exptdetail._id}}" value="1" ng-checked="exptdetail.isFavorite">
+                <label for="{{exptdetail._id}}"></label>
             </div>
+            <!-- <div  class="amPmCheckbox"  ng-click="favExpt(data._id, data.isFavorite)" >
+                <input type="checkbox" class="checkboxLabel main_street_input" id="{{data._id}}" value="1" ng-checked="data.isFavorite"/>
+                <label for="{{data._id}}"></label>
+            </div> -->
             <p class="expt-save-fav-p">Save to favorite <button class="btn btn-action-chatbrief"><img src="assets/img/chat.png">แชทและบรีฟงาน</button></p>
         </div>  
     </div>

@@ -1,21 +1,32 @@
 
 angular
     .module('myApp')
+      .directive("filesInput", function() {
+        return {
+          require: "ngModel",
+          link: function postLink(scope,elem,attrs,ngModel) {
+            elem.on("change", function(e) {
+              var files = elem[0].files;
+              ngModel.$setViewValue(files);
+            })
+          }
+        }
+      })
     .directive('mediaPreview', function ($log, $document) {
         var directive = {
             restrict: 'E',
-            scope: { model: '=?' },
-            template: '<input type="file" accept="image/*,video/*,audio/*" ng-model="model" />'+
-            '<input type="button" ng-click="clearPreview()" value="X" />',
+            require: '?ngModel',
+            scope: { 
+            model: '=?'},
+            template: '<input type="file" accept="image/*,video/*,audio/*" ng-model="model" />',
+            // '<input type="button" ng-click="clearPreview()" value="X" />'
             link: _link
         }
         return directive;
         function _link(scope, elem, attrs) {
-
             var $input = angular.element(elem.children().eq(0));
             // get the model controller
             var ngModel = $input.controller('ngModel');
-
             // the preview container
             var container;
 
@@ -57,12 +68,17 @@ angular
 
                 // get files from target
                 var files = $input[0].files;
-
+                // scope.inputMedia(files, previewClass, container);
                 // update model value
                 attrs.multiple ? ngModel.$setViewValue(files) : ngModel.$setViewValue(files[0]);
-
+                if(ngModel) {
+                    console.log(ngModel);
+                 // update model value
+                 attrs.multiple ? ngModel.$setViewValue(files) : ngModel.$setViewValue(files[0]);
+                       
+                }
                 // reset container
-                container.empty();
+                // container.empty();
 
                 // check if there are files to read
                 if (files && files.length) {
@@ -103,18 +119,18 @@ angular
                                 $mediaElement = angular.element(document.createElement('img'));
 
                             }
-                            $removeMedia = angular.element(document.createElement('input'));
+                            // $removeMedia = '<input type="button" ng-click="clearPreview()" value="X" /></div>';
                             // $divwarp = angular.element(document.createElement('div'));
                             // add the source
                             $mediaElement.attr('src', result);
                             // add the element class
                             $mediaElement.addClass(previewClass);
                             // append to the preview container
-                            container.append($mediaElement);
+                            // container.append($mediaElement);
                             
                             // Boss customize
                             // container.append('<div class="col-sm-5ths col-md-5ths col-lg-5ths"><img height="300px;"src="' + result + '"/>'+
-                            // '<input type="button" ng-click="test()" value="X" /></div>');
+                            // $removeMedia);
                         }
 
                         // read file
@@ -126,13 +142,13 @@ angular
 
             }
             // clear the preview and the input on click
-            scope.clearPreview = function () {
-                console.log('clearPreview');
-                // clear the input value
-                $input.val('');
-                // reset container
-                container.empty();
-            }
+            // scope.clearPreview = function (files) {
+            //     console.log('clearPreview');
+            //     // clear the input value
+            //     $input.val('');
+            //     // reset container
+            //     container.empty();
+            // }
 
             // bind change event
             elem.on('change', onChange);
@@ -151,6 +167,7 @@ angular
             console.log('ExpertsCreateController');
             $scope.lang = 'en';
             $scope.isLoggedIn = false;
+            $scope.filesArray = [];
             const userdata = JSON.parse(localStorage.getItem('userdata'));
             console.log(userdata);
             if (userdata) {
@@ -183,36 +200,6 @@ angular
                         console.log(res.data.data);
                     });
             };
-            $scope.exptFileDel = function (data) {
-                console.log(data);
-            }
-
-            $scope.uploadFiles = function (files, errFiles) {
-                console.log(files);
-                // $scope.files = files;
-                // $scope.errFiles = errFiles;
-                // angular.forEach(files, function(file) {
-                //     file.upload = Upload.upload({
-                //         url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
-                //         data: {file: file}
-                //     });
-
-                //     file.upload.then(function (response) {
-                //         $timeout(function () {
-                //             file.result = response.data;
-                //         });
-                //     }, function (response) {
-                //         if (response.status > 0)
-                //             $scope.errorMsg = response.status + ': ' + response.data;
-                //     }, function (evt) {
-                //         file.progress = Math.min(100, parseInt(100.0 * 
-                //                                  evt.loaded / evt.total));
-                //     });
-                // });
-            };
-
-
-
             $scope.submitexpertsCreate = function () {
                 console.log($scope.datajob._id);
                 console.log($scope.user);

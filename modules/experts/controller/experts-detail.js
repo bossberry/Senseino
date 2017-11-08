@@ -30,8 +30,39 @@ function (authService, $scope, $uibModal, $http, URL_API) {
 	.then( function(res){
 		$scope.loaded = true;
 		$scope.exptdetail = res.data.data[0];
+		console.log($scope.exptdetail);
 	});
-	
+	$scope.favExpt = function (exptsId, check){
+		if($scope.isLoggedIn){
+			console.log(exptsId);
+			if(check === true){
+				$http.put(URL_API + '/api/v1/users/favorite/' + userdata._id, {
+					action: '$pull',
+					expertId: exptsId
+				}).then(function(res){
+					console.log(res.data);
+				}, function(err) {
+					console.log(err.data);
+				});
+			} else {
+				$http.put(URL_API + '/api/v1/users/favorite/' + userdata._id, {
+					action: '$push',
+					expertId: exptsId
+				}).then(function(res){
+					console.log(res.data);
+				}, function(err) {
+					console.log(err.data);
+				});
+			}
+			
+		} else {
+			var modalInstance = $uibModal.open({
+				animation: $scope.animationsEnabled,
+				templateUrl: 'loginModal.html',
+				controller: 'RegisModalController as ctrl'
+			});
+		}
+	};
 	$scope.reviewModal = function(review) {
 		var modalInstance = $uibModal.open({
 			animation: $scope.animationsEnabled,
