@@ -237,3 +237,6 @@
   margin-right: 6%;
   top: 0;
 }
+.div#myContainer>img{
+  height: 300px;
+}
