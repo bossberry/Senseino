@@ -167,19 +167,15 @@ angular
                     $scope.filesArray.push(result);
                     $scope.$apply();
                     console.log($scope.filesArray)
-                    // $http.post(URL_API + '/api/v1/experts', {
-                    //     media: result,
-                    // }).then(function (res) {
-                    //     console.log(res);
-                    // }, function (err) {
-                    //     console.log(err.data);
-    
-                    // });
                 }
                 $reader.readAsDataURL(files);
             };
 
-            // $scope.uploadFile();
+            $scope.removePreImg = function(item) {
+                var index = $scope.filesArray.indexOf(item);
+                $scope.filesArray.splice(index, 1); 
+                console.log(item);
+            }
 
             const userdata = JSON.parse(localStorage.getItem('userdata'));
             if (userdata) {
