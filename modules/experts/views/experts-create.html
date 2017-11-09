@@ -102,7 +102,9 @@
                             
                         </span>
                     </div>
-                    <img ng-src="{{testABC}}">
+
+                    <img ng-repeat="file in filesArray" ng-src="{{file}}">
+                    <div>{{filesArray}}</div>
                     <div>{{testABC}}</div>
                     <!-- <div id="theContainer">
                     </div> -->

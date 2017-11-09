@@ -154,6 +154,7 @@ angular
             $scope.lang = 'en';
             $scope.isLoggedIn = false;
             $scope.filesArray = [];
+            $scope.testABC = 'test';
            
             $scope.uploadFile = function(e){
                 $scope.testABC = 'result';
@@ -161,8 +162,11 @@ angular
                 console.log(files);
                 var $reader = new FileReader();
                 $reader.onload = function (e) {
-                    result = e.target.result;
+                    var result = e.target.result;
                     // console.log(result);
+                    $scope.filesArray.push(result);
+                    $scope.$apply();
+                    console.log($scope.filesArray)
                     // $http.post(URL_API + '/api/v1/experts', {
                     //     media: result,
                     // }).then(function (res) {
@@ -171,10 +175,12 @@ angular
                     //     console.log(err.data);
     
                     // });
-                    
                 }
                 $reader.readAsDataURL(files);
             };
+
+            // $scope.uploadFile();
+
             const userdata = JSON.parse(localStorage.getItem('userdata'));
             if (userdata) {
                 authService.ensureAuthenticated(userdata)
