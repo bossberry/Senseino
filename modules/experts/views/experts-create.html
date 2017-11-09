@@ -9,7 +9,7 @@
     </div>
     <div class="section-box row container-fluid help-sec-faq"> 
         <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-2 col-lg-10 col-lg-offset-2">
-        <form ng-submit="submitexpertsCreate()" name="expertsCreate" autocomplete="off">
+        <form ng-submit="submitexpertsCreate(errpic)" name="expertsCreate" autocomplete="off">
                 <div class="wrap-btn-cre-expt">
                     <button class="btn btn-action" type="submit">เพิ่มประวัติ</button>
                  </div>
@@ -50,7 +50,7 @@
                     <label class="experts-cre-label">ราคา</label>
                 </div>
                 <div class="col-sm-5 col-md-5 col-lg-5">
-                    <input ng-model="user.price" class="form-control jobsex-price input-size-box" type="text" placeholder="3000" required>
+                    <input ng-model="user.price" class="form-control jobsex-price input-size-box" type="number" placeholder="3000" required>
                 </div>
             </div>
             <div class="row form-group experts-cre-fg">
@@ -91,20 +91,31 @@
                 </div>
                 <div class="row form-group experts-cre-fg">
                     <div class="col-sm-12 col-md-12 col-lg-12">
-                        <label class="experts-cre-label">อัพโหลดรูปภาพหรือวีดีโอ</label>                       
+                        <label class="experts-cre-label">อัพโหลดรูปภาพหรือวีดีโอ<span id="errpic" class="msg-form-err"ng-show="picErr">&nbsp;&nbsp;&nbsp;กรุณาอัพโหลดรูปภาพ</span></label>                       
                     </div>                    
-                    <div class="col-sm-5ths col-md-5ths col-lg-5ths">
+                    <div class="col-sm-4 col-md-4 col-lg-2 input-media-wrap">
                         <span class="btn btn-media">
                             <input type="file" onchange="angular.element(this).scope().uploadFile(this.files)" multiple>
                         </span>
                     </div>
-                    <div class="col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="file in filesArray track by $index">
+                    <div class="col-sm-4 col-md-4 col-lg-2 crop" ng-repeat="file in filesArray track by $index | limitTo: 5">
                         <img class="img-pre" width="100%" ng-src="{{file}}" alt="">
                         <a class="rm-pic-expt-cre" ng-click="removePreImg($index)"><img src="assets/img/delete.png"></a>
                     </div>
-                    
-                    <!-- <div id="theContainer">
-                    </div> -->
+                </div>
+                <div class="row form-group experts-cre-fg">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <label class="experts-cre-label">ผลงาน</label>                       
+                    </div>                    
+                    <div class="col-sm-4 col-md-4 col-lg-2 input-media-wrap">
+                        <span class="btn btn-media">
+                            <input type="file" onchange="angular.element(this).scope().uploadPort(this.files)" multiple>
+                        </span>
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-2 crop" ng-repeat="port in portMediaArray track by $index | limitTo: 5">
+                        <img class="img-pre" width="100%" ng-src="{{port}}" alt="">
+                        <a class="rm-pic-expt-cre" ng-click="removePortImg($index)"><img src="assets/img/delete.png"></a>
+                    </div>
                 </div>
                 <div class="row form-group experts-cre-fg">
                     <span class="msg-form-err" ng-if="err===true">{{errmsg}}</span>

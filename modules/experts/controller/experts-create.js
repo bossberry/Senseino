@@ -148,35 +148,49 @@ angular
 
     })
     
-    .controller('ExpertsCreateController', ['$interval', '$timeout', 'authService', '$scope', '$uibModal', '$http', 'URL_API',
-        function ($interval, $timeout, authService, $scope, $uibModal, $http, URL_API) {
+    .controller('ExpertsCreateController', ['$anchorScroll', '$location', '$interval', '$timeout', 'authService', '$scope', '$uibModal', '$http', 'URL_API',
+        function ($anchorScroll, $location, $interval, $timeout, authService, $scope, $uibModal, $http, URL_API) {
             console.log('ExpertsCreateController');
             $scope.lang = 'en';
             $scope.isLoggedIn = false;
             $scope.filesArray = [];
-            $scope.testABC = 'test';
-           
+            $scope.portMediaArray = [];
+            $scope.picToApi = [];
+            $scope.portToApi = [];
             $scope.uploadFile = function(e){
-                $scope.testABC = 'result';
+                    var files = e[0];
+                    $scope.picToApi.push(files);
+                    // console.log(files);
+                    var $reader = new FileReader();
+                    $reader.onload = function (e) {
+                        var result = e.target.result;
+                        // console.log(result);
+                        $scope.filesArray.push(result);
+                        $scope.$apply();
+                    }
+                $reader.readAsDataURL(files);
+
+            };
+            $scope.uploadPort = function(e){
                 var files = e[0];
-                console.log(files);
+                $scope.portToApi.push(files);
+                // console.log(files);
                 var $reader = new FileReader();
                 $reader.onload = function (e) {
                     var result = e.target.result;
                     // console.log(result);
-                    $scope.filesArray.push(result);
+                    $scope.portMediaArray.push(result);
                     $scope.$apply();
-                    console.log($scope.filesArray)
                 }
                 $reader.readAsDataURL(files);
             };
 
             $scope.removePreImg = function(item) {
-                var index = $scope.filesArray.indexOf(item);
-                $scope.filesArray.splice(index, 1); 
-                console.log(item);
+                $scope.filesArray.splice(item, 1);   
             }
-
+            $scope.removePortImg = function(item) {
+                $scope.portMediaArray.splice(item, 1);   
+            }
             const userdata = JSON.parse(localStorage.getItem('userdata'));
             if (userdata) {
                 authService.ensureAuthenticated(userdata)
@@ -208,30 +222,37 @@ angular
                         console.log(res.data.data);
                     });
             };
-            $scope.submitexpertsCreate = function () {
+            $scope.submitexpertsCreate = function (idachor) {
                 console.log($scope.datajob._id);
                 console.log($scope.user);
                 console.log($scope.datatag);
-                $http.post(URL_API + '/api/v1/experts', {
-                    name: $scope.user.exptname,
-                    jobType: $scope.datajob._id,
-                    tag: $scope.datatag._id,
-                    price: $scope.user.price,
-                    priceType: $scope.user.jobunit,
-                    location: $scope.user.price,
-                    detail: $scope.user.des,
-                    experience: $scope.user.exp,
-                    education: $scope.user.ed
-                    // pic:,
-                    // portfolio:
-                }).then(function (res) {
-                    console.log(res);
-                }, function (err) {
-                    $scope.err = true;
-                    $scope.errmsg = err.data.description;
-                    console.log(err.data);
+                console.log($scope.portToApi);
+                console.log($scope.picToApi);
+                if($scope.picToApi.length === 0){
+                    $scope.picErr = true;
+                    $location.hash(idachor);
+                    $anchorScroll();
+                }else {
+                    $http.post(URL_API + '/api/v1/experts', {
+                        name: $scope.user.exptname,
+                        jobType: $scope.datajob._id,
+                        tag: $scope.datatag._id,
+                        price: $scope.user.price,
+                        priceType: $scope.user.jobunit,
+                        detail: $scope.user.des,
+                        experience: $scope.user.exp,
+                        education: $scope.user.ed,
+                        pic: $scope.picToApi,
+                        portfolio: $scope.portToApi
+                    }).then(function (res) {
+                        console.log(res);
+                    }, function (err) {
+                        $scope.err = true;
+                        $scope.errmsg = err.data.description;
+                        console.log(err.data);
 
-                });
+                    });
+                }
             }
         }]);
 

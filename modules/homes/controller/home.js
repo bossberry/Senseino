@@ -53,6 +53,14 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 		console.log(err);
 	  });
 	}
+	$scope.slides =  [
+		'http://lorempixel.com/560/400/sports/1',
+		'http://lorempixel.com/560/400/sports/2',
+		'http://lorempixel.com/560/400/sports/3',
+		'http://lorempixel.com/560/400/sports/1',
+		'http://lorempixel.com/560/400/sports/2',
+		'http://lorempixel.com/560/400/sports/3'
+	  ];
 	$scope.backtotop = function() {
 		// set the location.hash to the id of
 		// the element you wish to scroll to.
@@ -106,6 +114,8 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 			$scope.bannersarr.push($scope.banner);
 		}
 		$scope.experts = res.data.data.experts;
+		$scope.slidesex = $scope.experts[0].experts[0].thumbImgUrl;
+		console.log($scope.experts[0].experts[0].thumbImgUrl);
 		$scope.jobTypes = res.data.data.jobTypes;
 		$scope.jobs = res.data.data.jobs;
 	});
