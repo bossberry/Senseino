@@ -95,22 +95,17 @@
                     </div>                    
                     <div class="col-sm-5ths col-md-5ths col-lg-5ths">
                         <span class="btn btn-media">
-                            <media-preview multiple class="btn-media" preview-class="col-sm-5ths col-md-5ths col-lg-5ths" ng-model="myModel" preview-container="myContainer">
-                            </media-preview>
+                            <!-- <media-preview call-fuc="testFunc()" multiple class="btn-media" preview-class="col-sm-5ths col-md-5ths col-lg-5ths" preview-container="theContainer">
+                            </media-preview> -->
+                            <!-- <input type="file" custom-on-change="uploadFile"> -->
+                            <input type="file" onchange="angular.element(this).scope().uploadFile(this.files)">
+                            
                         </span>
                     </div>
-                    <div class="col-sm-5ths col-md-5ths col-lg-5ths">
-                        <div ng-repeat="file in myModel">
-                            {{file.name}}
-                        </div>
-                    </div>
-                    <div id="myContainer">
-                        <div class="col-sm-5ths col-md-5ths col-lg-5ths">
-                            <div ng-repeat="file in myModel">
-                                {{file.name}}
-                            </div>
-                        </div>
-                    </div>
+                    <img ng-src="{{testABC}}">
+                    <div>{{testABC}}</div>
+                    <!-- <div id="theContainer">
+                    </div> -->
                 </div>
                 <div class="row form-group experts-cre-fg">
                     <span class="msg-form-err" ng-if="err===true">{{errmsg}}</span>
