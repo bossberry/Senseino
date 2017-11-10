@@ -1,6 +1,21 @@
 
 angular
 .module('myApp')
+.directive('carousel', function($timeout) {
+	return {
+	   restrict: 'E',
+	   scope: {
+		 links: '=' 
+	   },
+	   templateUrl: 'carousel.html',
+	   link: function(scope, element) {
+		 $timeout(function() {
+		   $('.carousel-indicators li',element).first().addClass('active');
+		   $('.carousel-inner .item',element).first().addClass('active');
+		 });
+	   }
+	}
+ })
 .filter('getDistance', function(){
 	return function(locate){
 		if (navigator.geolocation) {
@@ -53,14 +68,44 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 		console.log(err);
 	  });
 	}
-	$scope.slides =  [
-		'http://lorempixel.com/560/400/sports/1',
-		'http://lorempixel.com/560/400/sports/2',
-		'http://lorempixel.com/560/400/sports/3',
-		'http://lorempixel.com/560/400/sports/1',
-		'http://lorempixel.com/560/400/sports/2',
-		'http://lorempixel.com/560/400/sports/3'
-	  ];
+
+	$scope.slides = [
+		{
+		image: 'http://lorempixel.com/560/400/sports/1',
+		text: 'asd',
+		id: '1'
+	  },{
+		image: 'http://lorempixel.com/560/400/sports/1',
+		text: 'asd',
+		id: '1'
+	  },
+	  {
+		image: 'http://lorempixel.com/560/400/sports/1',
+		text: 'asd',
+		id: '1'
+	  },{
+		image: 'http://lorempixel.com/560/400/sports/1',
+		text: 'asd',
+		id: '1'
+	  },{
+		image: 'http://lorempixel.com/560/400/sports/1',
+		text: 'asd',
+		id: '1'
+	  },
+	  {
+		image: 'http://lorempixel.com/560/400/sports/1',
+		text: 'asd',
+		id: '1'
+	  }
+	];
+	// $scope.slides =  [
+	// 	'http://lorempixel.com/560/400/sports/1',
+	// 	'http://lorempixel.com/560/400/sports/2',
+	// 	'http://lorempixel.com/560/400/sports/3',
+	// 	'http://lorempixel.com/560/400/sports/1',
+	// 	'http://lorempixel.com/560/400/sports/2',
+	// 	'http://lorempixel.com/560/400/sports/3'
+	//   ];
 	$scope.backtotop = function() {
 		// set the location.hash to the id of
 		// the element you wish to scroll to.
@@ -106,7 +151,7 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 	};
 	$http.get(URL_API + '/api/v1/page/foryou')
 	.then( function(res){
-		console.log(res.data.data.experts);
+		// console.log(res.data.data.experts);
 		$scope.loaded = true;
 		$scope.banners = res.data.data.banners;
 		for(var i = 0; i < $scope.banners.length; i++){
@@ -115,7 +160,7 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 		}
 		$scope.experts = res.data.data.experts;
 		$scope.slidesex = $scope.experts[0].experts[0].thumbImgUrl;
-		console.log($scope.experts[0].experts[0].thumbImgUrl);
+		// console.log($scope.experts[0].experts[0].thumbImgUrl);
 		$scope.jobTypes = res.data.data.jobTypes;
 		$scope.jobs = res.data.data.jobs;
 	});
