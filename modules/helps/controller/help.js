@@ -16,7 +16,7 @@ function ($timeout, authService, $uibModal, $scope, $http, URL_API) {
 		})
 		.catch((err) => {
 			$scope.loaded = true;
-			console.log(err);
+			// console.log(err);
 		});
 	}else {
 		$scope.loaded = true;
@@ -38,6 +38,12 @@ function ($timeout, authService, $uibModal, $scope, $http, URL_API) {
 		});;
 
 	};
+	$http.get(URL_API + '/api/v1/faqs')
+	.then( function(res){
+        $scope.loaded = true;
+        $scope.faqArr = res.data.data;
+ 				console.log($scope.faqArr);
+    });
 	$scope.groups = [
 		{
 		  title: 'FAQ - 1',
