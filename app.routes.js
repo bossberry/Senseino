@@ -27,6 +27,10 @@ function config ($locationProvider, $routeProvider) {
             templateUrl: '/modules/experts/views/experts-criteria.html',
             controller: 'ExpertsCriteriaController'
         })
+        .when('/jobtype-experts:idJobtype', {
+            templateUrl: '/modules/experts/views/experts-jobtype.html',
+            controller: 'ExpertsJobtypeController'
+        })
         .when('/jobs', {
             templateUrl: '/modules/jobs/views/jobs.html',
             controller: 'JobsController'

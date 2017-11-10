@@ -282,3 +282,25 @@
   padding: 0px;
   margin-right: 15px;
 }
+.exptjob-tag{
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 15px !important;
+  line-height: 18px !important;
+  letter-spacing: 0.2px !important;
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+  color: #484848 !important;
+  background: none !important;
+  border: 1px solid #dce0e0 !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  display: inline-block !important;
+  outline: none !important;
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+  position: relative !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  width: auto !important;
+}
