@@ -212,3 +212,13 @@ div.status-prog>span{
     font-family: 'promptmedium';
     font-size: 18px;
 }
+.crop-img-banner{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+.crop-img-banner img.img-banner{
+width: 100%;
+height: auto;
+margin: -10% 0 0 0px;
+}

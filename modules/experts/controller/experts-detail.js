@@ -5,6 +5,8 @@ angular
 function (authService, $scope, $uibModal, $http, URL_API) {
     console.log('ExpertsDetailController');
 	$scope.lang = 'en';
+	$scope.profilePicArr = [];
+	$scope.loaded = false;
     var currenturl = window.location.href;
 	var exid = currenturl.substring(currenturl.search('/experts-detail')+ 15);
 	$scope.isLoggedIn = false;
@@ -30,7 +32,12 @@ function (authService, $scope, $uibModal, $http, URL_API) {
 	.then( function(res){
 		$scope.loaded = true;
 		$scope.exptdetail = res.data.data[0];
-		console.log($scope.exptdetail);
+		$scope.profilePic = $scope.exptdetail.profileImg;
+		for(var i = 0; i < $scope.profilePic.length; i++){
+			$scope.profilePic = {src:$scope.profilePic[i].url};
+			$scope.profilePicArr.push($scope.profilePic);
+		}
+		
 	});
 	$scope.favExpt = function (exptsId, check){
 		if($scope.isLoggedIn){

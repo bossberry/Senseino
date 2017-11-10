@@ -160,25 +160,7 @@ a:hover .header-profile-image {
     font-size: 18px;
     outline: none!important;
 }
-/* JK CAROUSEL */
-.jk-carousel .md-icon-button {
-    display: none;
-}
-.jk-carousel .radio-buttons-container md-radio-button .md-off {
-    background-color: #d5d5d5;
-    border: 0px;
-}
-md-radio-button .md-off, md-radio-button .md-on{
-    width: 10px;
-    height: 10px;
-}
-md-radio-button.md-checked .md-on{
-    transform: scale(1);
-    box-shadow: 0 0 10px -1px #666;
-}
-md-radio-button.md-default-theme .md-on, md-radio-button .md-on{
-    background-color : #FA1B25;
-}
+
 .logo-main, .search-ang{
     float: left;
 }

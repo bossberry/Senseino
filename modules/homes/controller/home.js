@@ -154,8 +154,9 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 		// console.log(res.data.data.experts);
 		$scope.loaded = true;
 		$scope.banners = res.data.data.banners;
+		console.log(res.data.data);
 		for(var i = 0; i < $scope.banners.length; i++){
-			$scope.banner = {src:$scope.banners[i].imgUrl};
+			$scope.banner = {src:$scope.banners[i].webImgUrl};
 			$scope.bannersarr.push($scope.banner);
 		}
 		$scope.experts = res.data.data.experts;
