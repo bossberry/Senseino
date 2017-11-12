@@ -133,6 +133,13 @@ angular
   };
   
   $scope.FBbtnLogin = function() {
+	FB.init({ 
+        appId: '1668838553138058',
+        status: true, 
+        cookie: true, 
+        xfbml: true,
+        version: 'v2.4'
+    });
 	FB.login(function(response) {
 		if (response.authResponse) {
 		 console.log('Welcome!  Fetching your information.... ');
