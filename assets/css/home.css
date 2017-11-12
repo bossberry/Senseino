@@ -9,11 +9,12 @@
 .experts-name{
     font-weight: bold;
     margin-top: 10px;
+    font-size: 18px;
 }
 .experts-tag{
     color: #fff;
     background-color: #17B89A;
-    font-size: 12px;
+    font-size: 16px;
     border-radius: 4px;
     padding: 0px 10px;
 }

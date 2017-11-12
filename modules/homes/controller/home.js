@@ -57,6 +57,32 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 	$scope.experts = [];
 	$scope.isLoggedIn = false;
 	$scope.favexptId = [];
+	$scope.images = [{
+    url: 'http://via.placeholder.com/350x150'
+  }, {
+    url: 'http://via.placeholder.com/350x150'
+  }, {
+    url: 'http://via.placeholder.com/350x150'
+  }, {
+    url: 'http://via.placeholder.com/350x150'
+  }, {
+    url: 'http://via.placeholder.com/350x150'
+  }, {
+    url: 'http://via.placeholder.com/350x150'
+  }];
+	$scope.slickConfig = {
+    enabled: true,
+    autoplay: true,
+    draggable: false,
+    autoplaySpeed: 3000,
+    method: {},
+    event: {
+        beforeChange: function (event, slick, currentSlide, nextSlide) {
+        },
+        afterChange: function (event, slick, currentSlide, nextSlide) {
+        }
+    }
+};
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
 	if (userdata) {
 	  authService.ensureAuthenticated(userdata)

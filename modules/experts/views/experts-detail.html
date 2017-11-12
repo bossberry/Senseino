@@ -2,10 +2,14 @@
 <aside ng-show="!isLoggedIn" data-ng-include="'/modules/topbars/views/topbar3.html'"></aside> 
 <aside ng-show="isLoggedIn" data-ng-include="'/modules/topbars/views/topbar5.html'"></aside>
 </div>  
-<section class=" container">
-<div class="section-box row container" style="margin-top:54px;">
-    <div class="col-lg-12 expt-detail-title">
-        <div class="col-sm-7 col-md-7 col-lg-7 expt-detail-title-cover-left">
+<section class="container-fluid" style="padding:0px;">
+<div class="section-box" style="margin-top:54px;">
+        <div class="expt-detail-title"></div>
+</div>
+        
+<div class="section-box">
+    <div class="container" style="margin-top:-180px;">
+        <div class="col-sm-7 col-md-7 col-lg-7 padding-left expt-detail-title-cover-left ">
             <h2>{{exptdetail.name[lang]}}</h2>
             <span class="expt-detail-title-span">{{exptdetail.tag.name[lang]}}</span>
             <span style="letter-spacing:-5px;">
@@ -19,9 +23,9 @@
         </div>
     </div>
 </div>
-<div class="section-box row container">
+<div class="section-box container">
     <div class="col-lg-12">
-        <div class="col-sm-7 col-md-7 col-lg-7" style="padding-left:80px;">
+        <div class="col-sm-7 col-md-7 col-lg-7" style="padding-left:30px;margin-top:30px;">
             <div class="col-sm-4 col-md-4 col-lg-4">
                 <p class="expt-detail-des-title">รายละเอียด</p>
             </div>
@@ -44,7 +48,7 @@
                 </p>
             </div>
         </div>
-        <div  style="margin-top:-180px;" class="col-sm-5 col-md-5 col-lg-5">
+        <div  style="margin-top:-120px;" class="col-sm-5 col-md-5 col-lg-5">
             <div class="tab-price-overlay"><span>฿ {{exptdetail.price}}<b> {{exptdetail.priceType}}</b></span></div>
             <div class="crop-expt-detail">
                 <!-- <img class="img-expt-detail" ng-src="{{exptdetail.profileImg[0].url}}"> -->
@@ -59,7 +63,8 @@
                
             </div>
         </div>
-        <div  style="margin-top:20px;" class="col-offset-xs-8 col-offset-sm-8 col-offset-md-8 col-offset-lg-8 col-sm-5 col-md-5 col-lg-54">
+        <div class="col-lg-12">
+        <div  style="margin-top:20px;" class="col-sm-offset-7 col-md-offset-7 col-lg-offset-7 col-sm-5 col-md-5 col-lg-5">
             <div class="expt-checboxfav" ng-click="favExpt(exptdetail._id, exptdetail.isFavorite)">
                 <input type="checkbox" class="checkboxLabel main_street_input" id="{{exptdetail._id}}" value="1" ng-checked="exptdetail.isFavorite">
                 <label for="{{exptdetail._id}}"></label>
@@ -69,12 +74,13 @@
                 <label for="{{data._id}}"></label>
             </div> -->
             <p class="expt-save-fav-p">Save to favorite <button class="btn btn-action-chatbrief"><img src="assets/img/chat.png">แชทและบรีฟงาน</button></p>
-        </div>  
+        </div> 
+        </div> 
     </div>
 </div>
-<div class="section-box row container">
+<div class="section-box container">
     <div class="col-sm-12 col-md-12 col-lg-12">
-    <h2 class="amount-review">{{exptdetail.reviews.length}} รีวิว</h2>
+    <h2 class="amount-review padding-left">{{exptdetail.reviews.length}} รีวิว</h2>
     </div>
     <!-- <div style="margin-bottom:50px;"class="col-sm-7 col-md-7 col-lg-7" ng-repeat="review in exptdetail.reviews | limitTo: 3"> -->
         <div style="margin-bottom:50px;"class="col-sm-7 col-md-7 col-lg-7">
@@ -143,7 +149,7 @@
         </div>
     </div>
 </div>
-<div class="section-box row container">
+<div class="section-box container">
     <div class="col-lg-12 padding-left">
         <h1 class="head-section-margin">ผลงาน</h1>
         <div class="col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="data in exptdetail.portfolio | limitTo: 5">

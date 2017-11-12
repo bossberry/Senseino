@@ -53,6 +53,18 @@
 	font-weight: normal;
 	font-style: normal;
 }
+@font-face
+{
+	font-family: 'slick';
+	src: url('../font/slick.eot');
+	src: url('../font/slick.eot?#iefix') format('embedded-opentype'),
+		/* url('../font/subset-Prompt-Regular.woff2') format('woff2'), */
+		url('../font/slick.woff') format('woff'),
+		url('./fonts/slick.svg#slick') format('svg'),
+		url('../font/slick.ttf') format('truetype');
+	font-weight: normal;
+    font-style: normal;
+}
 /* End Font Face */
 html{
 	background-color: #fff;
@@ -121,7 +133,7 @@ a, a:hover, a:hover, a:active, a:visited {
 	/* position: relative; */
 }
 .margin-for-topbar-main{
-	margin-top: 102px;
+	margin-top: 120px;
 }
 .margin-for-topbar-2{
 	margin-top: 70px;
@@ -263,4 +275,26 @@ md-radio-button.md-default-theme .md-on, md-radio-button .md-on{
 .dropdown-menu{
 	right: 0!important;
 	left: auto!important;
+}
+.experts-rating > img{ 
+	display: inline;
+}
+.slick-track{
+	float: left;
+}
+.crop-slide-img{
+	max-width: 100%;
+    max-height: 600px;
+    overflow: hidden;
+}
+.crop-slide-img img.slide-slick {
+    width: 100%;
+	height: auto;
+	/* width: auto;
+    height: 100%; */
+    margin: 0px 0 0 0px;
+}
+.slick-item, .slick-item:focus, .slick-item:active, .slick-item>a:focus, .slick-item>a:active {
+	outline: none;
+	text-decoration: none;
 }
