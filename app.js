@@ -3,7 +3,7 @@
 angular.module('myApp', [
     'ui.bootstrap', 'ngRoute', 'ngMaterial', 'jkAngularCarousel', 'angucomplete-alt', 'slickCarousel',
     'myApp.auth', 'myApp.routes', 'myApp.core', 'myApp.services', 'myApp.config'])
-    .constant('URL_API', 'http://54.255.237.25:3000');
+    .constant('URL_API', 'http://54.255.237.25:3000')
 
     // , 'jkAngularCarousel'
 // window.fbAsyncInit = function() {
@@ -16,3 +16,28 @@ angular.module('myApp', [
 //         version: 'v2.4'
 //     });
 // };
+
+.factory('socketio', ['$rootScope', function($rootScope){
+    var socket = io.connect();
+    return {
+        on: function (eventName, callback) {
+            socket.on(eventName, function() {
+                var args = arguments;
+                $rootScope.$apply(function () {
+                    callback.apply(socket, args);
+                });
+            });
+        },
+        emit: function (eventName, data, callback){
+            socket.emit(eventName, data, function(){
+                var args = arguments;
+                $rootScope.$apply(function() {
+                    if (callback){
+                        callback.apply(socket, args);
+                    }
+                });
+            })
+        }
+    };
+}]);
+   
