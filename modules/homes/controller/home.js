@@ -57,6 +57,26 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 	$scope.experts = [];
 	$scope.isLoggedIn = false;
 	$scope.favexptId = [];
+	var currenturl = window.location.href;
+	var line = currenturl.substring(currenturl.search('/?code='));
+	var code = line.substring(5);
+	$scope.arrcode = code.split('&');
+	console.log($scope.arrcode[0]);
+	$http({
+		method: 'POST',
+		url: 'https://api.line.me/oauth2/v2.1/token',
+		data: {
+			grant_type: 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==', 
+			code:$scope.arrcode[0], 
+			client_id:'1538336480',
+			client_secret:'001b6eaf4ec2d177f17ec7596ebb6c79'
+		},
+		headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).then( function(res){
+			console.log(res);
+		}, function(err) {
+			console.log(err);
+		});
 	$scope.images = [{
     url: 'http://via.placeholder.com/350x150'
   }, {
