@@ -12,57 +12,20 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 chat-wrapper-body">
         <div style="padding:0px;" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-            <div class="one-msg-user">
+            <div ng-click="entryRoom(room._id)" class="one-msg-user" ng-repeat="room in chatRoom">
+                <!-- <a ng-click="entryRoom(room._id)"> -->
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-user-thumnail-left">
                     <img src="assets/img/Icon App.png">
                 </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:0px;">
                     <h2>Senseino Consultant</h2>
-                    <p>ต้องการจ้างงานด่วน...</p>
+                    <p class="lastmsg-leftchat">{{room.lastMsg}}</p>
                 </div>
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                     <h2>#ABCDE</h2>
                     <p><span class="btn tag-category">งานด่วน</span></p>
                 </div>
-            </div>
-            <div class="one-msg-user">
-                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-user-thumnail-left">
-                    <img src="assets/img/Icon App.png">
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <h2>Senseino Consultant</h2>
-                    <p>ต้องการจ้างงานด่วน...</p>
-                </div>
-                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                    <h2>#ABCDE</h2>
-                    <p><span class="btn tag-category">งานด่วน</span></p>
-                </div>
-            </div>
-            <div class="one-msg-user">
-                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-user-thumnail-left">
-                    <img src="assets/img/Icon App.png">
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <h2>Senseino Consultant</h2>
-                    <p>ต้องการจ้างงานด่วน...</p>
-                </div>
-                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                    <h2>#ABCDE</h2>
-                    <p><span class="btn tag-category">งานด่วน</span></p>
-                </div>
-            </div>
-            <div class="one-msg-user">
-                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-user-thumnail-left">
-                    <img src="assets/img/Icon App.png">
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <h2>Senseino Consultant</h2>
-                    <p>ต้องการจ้างงานด่วน...</p>
-                </div>
-                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                    <h2>#ABCDE</h2>
-                    <p><span class="btn tag-category">งานด่วน</span></p>
-                </div>
+                <!-- </a> -->
             </div>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 chat-msg-body">

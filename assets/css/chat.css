@@ -33,6 +33,7 @@
 .one-msg-user{
     border-bottom: 1px solid #f4f4f4;
     display: flex;
+    cursor: pointer;
 }
 .chat-user-thumnail-left{
     text-align: center;
@@ -171,4 +172,9 @@
     right: 10px;
     top: 20px;
     outline: none;
+}
+.lastmsg-leftchat{
+    width: 100%;
+    overflow: hidden;
+    color: #a0a0a0;
 }
