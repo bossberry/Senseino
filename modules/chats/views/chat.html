@@ -12,66 +12,41 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 chat-wrapper-body">
         <div style="padding:0px;" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-            <div ng-click="entryRoom(room._id)" class="one-msg-user" ng-repeat="room in chatRoom">
-                <!-- <a ng-click="entryRoom(room._id)"> -->
+            <div ng-click="entryRoom(room._id)" class="one-msg-user" ng-repeat="room in chatRoom  track by $index">
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-user-thumnail-left">
-                    <img src="assets/img/Icon App.png">
+                    <img width="48px" height="48px" ng-src="{{room[checkRole[$index]].imgUrl}}">
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:0px;">
-                    <h2>Senseino Consultant</h2>
+                    <h2>{{room[checkRole[$index]].firstName}} {{room[checkRole[$index]].lastName}}</h2>
                     <p class="lastmsg-leftchat">{{room.lastMsg}}</p>
                 </div>
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                     <h2>#ABCDE</h2>
                     <p><span class="btn tag-category">งานด่วน</span></p>
                 </div>
-                <!-- </a> -->
             </div>
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 chat-msg-body">
-            <ol class="chat">
-                <li class="other">
-                    <div class="avatar"><img src="assets/img/Icon App.png" draggable="false"></div>
-                    <div class="msg">
-                        <p>สวัสดีค่ะ</p>
-                    </div>
-                </li>
-                <li class="self">
-                    <div class="avatar"><img src="assets/img/Icon App.png" draggable="false"></div>
-                    <div class="msg">
-                        <p>hydroderm is the highly desired anti-aging cream on the block.</p>
-                    </div>
-                </li>
-                <li class="other">
-                    <div class="avatar"><img src="assets/img/Icon App.png" draggable="false"></div>
-                    <div class="msg">
-                        <p>สวัสดีค่ะ</p>
-                    </div>
-                </li>
-                <li class="other">
-                    <div class="avatar"><img src="assets/img/Icon App.png" draggable="false"></div>
-                    <div class="msg">
-                        <p>สวัสดีค่ะ</p>
-                    </div>
-                </li>
-                <li class="self">
-                    <div class="avatar"><img src="assets/img/Icon App.png" draggable="false"></div>
-                    <div class="msg">
-                        <p>hydroderm is the highly desired anti-aging cream on the block.</p>
-                    </div>
-                </li>
-                <li class="self">
-                    <div class="avatar"><img src="assets/img/Icon App.png" draggable="false"></div>
-                    <div class="msg">
-                        <p>hydroderm is the highly desired anti-aging cream on the block.</p>
-                    </div>
-                </li>
-                <li class="self">
-                    <div class="avatar"><img src="assets/img/Icon App.png" draggable="false"></div>
-                    <div class="msg">
-                        <p>hydroderm is the highly desired anti-aging cream on the block.</p>
-                    </div>
-                </li>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 chat-msg-body" scroll>
+            <div ng-if="isReachtop">
+                <center>
+                    <img width="32px"src="assets/img/ajax-loader.gif">
+                </center>
+            </div>
+            <ol class="chat" >
+                <div ng-repeat="msg in chatMsg">
+                    <li ng-if="msg.user._id != userId" class="other">
+                        <div class="avatar"><img ng-src="{{msg.user.imgUrl}}" draggable="false"></div>
+                        <div class="msg">
+                            <p>{{msg.message}}</p>
+                        </div>
+                    </li>
+                    <li ng-if="msg.user._id === userId" class="self">
+                        <!-- <div class="avatar"><img ng-src="{{msg.user.imgUrl}}" draggable="false"></div> -->
+                        <div class="msg">
+                            <p>{{msg.message}}</p>
+                        </div>
+                    </li>
+                </div>
             </ol>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-right-body">

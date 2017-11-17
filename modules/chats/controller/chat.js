@@ -1,15 +1,63 @@
 angular
 .module('myApp')
+.directive('scroll', function() {
+	var directive = {
+		restrict: 'A',
+		link: link
+	};
+	return directive;
+	function link(scope, element, attrs) {
+	var raw = element[0];
+	element.bind('scroll', function () {
+		// console.log('in scroll');
+        // console.log(raw.scrollTop);
+        // console.log(raw.scrollTop + raw.offsetHeight);
+        // console.log(raw.scrollHeight);
+		if (raw.scrollTop + raw.offsetHeight === raw.scrollHeight) {
+		scope.$emit('reachBottom');
+		}
+		if (raw.scrollTop === 0) {
+		scope.$emit('reachTop');
+		}
+	});
+	}
+})
 .controller('ChatController', ['$scope', '$uibModal', 'URL_API', '$http',
 function ($scope, $uibModal, URL_API, $http) {
 	console.log('ChatController');
 	$scope.chatRoom = [];
 	$scope.IDRoom = [];
+	$scope.checkRole = [];
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
+	$scope.userId = userdata._id
+	$scope.roomIdG = '';
 	if(!userdata){
 		window.location.href = '/'
 	}else {
+		$scope.$on('reachTop', function(event, data) {
+			$scope.getHistory();
+		});
 
+		$scope.getHistory = function(){
+			$scope.isReachtop = true;
+			var lastmsg = $scope.chatMsg[$scope.chatMsg.length-1]._id
+			$http({
+				method: 'GET',
+				url: URL_API + '/api/v1/messages?roomId=' + $scope.roomIdG + '&pagination=' + lastmsg,
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+					'x-access-token': userdata.accessToken,
+					'lang': $scope.lang,
+					'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
+				}
+			}).then(function (res) {
+				console.log(res.data.data);
+				$scope.isReachtop = false;
+				// $scope.chatMsg = res.data.data;
+			}, function (err) {
+				console.log(err.data);
+			});
+		}
 		console.log(userdata);
 		var socket = null;
 		var socket = io.connect('http://54.255.237.25:5000', {
@@ -31,7 +79,6 @@ function ($scope, $uibModal, URL_API, $http) {
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded',
 				'x-access-token': userdata.accessToken,
-				// 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjU5ZTIwYmUwYTc0YzM4NzY5MmY0OGIzNyIsImZpcnN0TmFtZSI6IkF0dGhhcG9uIiwibGFzdE5hbWUiOiJLZXRoaXJhbiIsIm1vYmlsZU5vIjoiMDg3MTExMDgyNSIsImVtYWlsIjoiYXR0aGFwb24ua3JAZ21haWwuY29tIn0sImlhdCI6MTUxMDc5NzA4MywiZXhwIjoxNzY5OTk3MDgzfQ.stVYAnN1OQ0IJVCd90NzWgGrMwoYvoLWjmgIrZkAmpQ',
 				'lang': $scope.lang,
 				'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
 			}
@@ -39,12 +86,18 @@ function ($scope, $uibModal, URL_API, $http) {
 			if(res.data.data === 0){
 				console.log(res);
 			} else {
-				
+				$scope.chatRoom = res.data.data;
 				for(var i = 0; i< res.data.data.length; i++){
-					console.log(i + ' : ' + res.data.data[i]);
-					$scope.chatRoom.push(res.data.data[i]);
 					$scope.IDRoom.push(res.data.data[i]._id)
+					if (res.data.data[i].employer._id === userdata._id ){
+						console.log('boss is Employer');
+						$scope.checkRole[i] = 'expertUser';
+					} else {
+						$scope.checkRole[i] = 'employer';
+						console.log('boss is ExpertUser');
+					}
 				}
+				// console.log(res.data.data);
 				console.log($scope.chatRoom);
 				socket.emit('room:joined',$scope.IDRoom);
 				socket.on('room:joined', function(message){
@@ -56,19 +109,24 @@ function ($scope, $uibModal, URL_API, $http) {
 		});
 
 		$scope.entryRoom = function(roomId){
+			$scope.roomIdG = roomId
 			console.log('entryRoom : ' + roomId);
+			socket.emit('message:read',{"room":roomId, "user":userdata._id});
+			socket.on('message:readed', function(message){
+				console.log(message);
+            })
 			$http({
 				method: 'GET',
 				url: URL_API + '/api/v1/messages?roomId=' + roomId,
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded',
 					'x-access-token': userdata.accessToken,
-					// 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjU5ZTIwYmUwYTc0YzM4NzY5MmY0OGIzNyIsImZpcnN0TmFtZSI6IkF0dGhhcG9uIiwibGFzdE5hbWUiOiJLZXRoaXJhbiIsIm1vYmlsZU5vIjoiMDg3MTExMDgyNSIsImVtYWlsIjoiYXR0aGFwb24ua3JAZ21haWwuY29tIn0sImlhdCI6MTUxMDc5NzA4MywiZXhwIjoxNzY5OTk3MDgzfQ.stVYAnN1OQ0IJVCd90NzWgGrMwoYvoLWjmgIrZkAmpQ',
 					'lang': $scope.lang,
 					'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
 				}
 			}).then(function (res) {
 				console.log(res.data.data);
+				$scope.chatMsg = res.data.data;
 			}, function (err) {
 				console.log(err.data);
 			});
