@@ -8,7 +8,7 @@ angular
 	return directive;
 	function link(scope, element, attrs) {
 	var raw = element[0];
-	element.bind('scroll', function () {
+		element.bind('scroll', function () {
 		// console.log('in scroll');
         // console.log(raw.scrollTop);
         // console.log(raw.scrollTop + raw.offsetHeight);
@@ -22,7 +22,7 @@ angular
 	});
 	}
 })
-.controller('ChatController', ['$scope', '$uibModal', 'URL_API', '$http',
+.controller('ChatController', ['$scope', '$uibModal', 'URL_API', '$http', 
 function ($scope, $uibModal, URL_API, $http) {
 	console.log('ChatController');
 	$scope.chatRoom = [];
@@ -31,16 +31,63 @@ function ($scope, $uibModal, URL_API, $http) {
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
 	$scope.userId = userdata._id
 	$scope.roomIdG = '';
+	$scope.chatMsg = [];
 	if(!userdata){
 		window.location.href = '/'
 	}else {
+		$scope.ChatupFile = function(e){
+			var files = e[0];
+			if (files.type === 'image/jpeg'){
+				var picChatUp = [] ;
+				picChatUp.push(files);
+				var fd = new FormData();
+				fd.append('file', picChatUp[0]);
+				console.log(files.type);
+				$scope.typeFile = 'image';
+			} else {
+
+			}
+			
+			$http.post(URL_API + '/api/v1/upload/chat', fd, {
+				transformRequest: angular.identity,
+				headers: {
+					'Content-Type': undefined,
+					"Authorization": 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+				}
+			}).then(function (res) {
+					if(res.data.data){
+						console.log(res.data.data.url);
+						socket.emit('message:send',{"room":$scope.roomIdG, "user":userdata._id, "message":res.data.data.url, "type": $scope.typeFile} );
+						socket.on('message:broadcast', function(message){
+							console.log(message);
+						});
+					}else {
+						console.log(res);
+					}
+				}, function (err) {
+					console.log(err.data);
+
+				});
+
+		};
+		$scope.chatPushMsg = function(e){
+			socket.emit('message:send',{"room":$scope.roomIdG, "user":userdata._id, "message":$scope.msgsend, "type":"message"} );
+			socket.on('message:broadcast', function(message){
+				console.log(message);
+			});
+			socket.on('ping', function (message) {
+                console.log(message);
+                // socket.emit('pong', {beat: 1});
+            });
+		};
+
 		$scope.$on('reachTop', function(event, data) {
 			$scope.getHistory();
 		});
 
 		$scope.getHistory = function(){
 			$scope.isReachtop = true;
-			var lastmsg = $scope.chatMsg[$scope.chatMsg.length-1]._id
+			var lastmsg = $scope.chatMsg[0]._id;			
 			$http({
 				method: 'GET',
 				url: URL_API + '/api/v1/messages?roomId=' + $scope.roomIdG + '&pagination=' + lastmsg,
@@ -51,14 +98,15 @@ function ($scope, $uibModal, URL_API, $http) {
 					'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
 				}
 			}).then(function (res) {
-				console.log(res.data.data);
 				$scope.isReachtop = false;
-				// $scope.chatMsg = res.data.data;
+				for(var i = 0; i < res.data.data.length; i++){
+					$scope.chatMsg.unshift(res.data.data[i]);
+				}
 			}, function (err) {
 				console.log(err.data);
 			});
 		}
-		console.log(userdata);
+		// console.log(userdata);
 		var socket = null;
 		var socket = io.connect('http://54.255.237.25:5000', {
 			query: 'token=' + userdata.accessToken + '&lang=' + 'th'
@@ -84,7 +132,7 @@ function ($scope, $uibModal, URL_API, $http) {
 			}
 		}).then(function (res) {
 			if(res.data.data === 0){
-				console.log(res);
+				$scope.chatRoom = 0;
 			} else {
 				$scope.chatRoom = res.data.data;
 				for(var i = 0; i< res.data.data.length; i++){
@@ -97,27 +145,34 @@ function ($scope, $uibModal, URL_API, $http) {
 						console.log('boss is ExpertUser');
 					}
 				}
-				// console.log(res.data.data);
-				console.log($scope.chatRoom);
 				socket.emit('room:joined',$scope.IDRoom);
 				socket.on('room:joined', function(message){
 					console.log(message);
-				})
+				});
+				$scope.entryRoom(res.data.data[0]);
 			}
 		}, function (err) {
 			console.log(err.data);
 		});
-
-		$scope.entryRoom = function(roomId){
-			$scope.roomIdG = roomId
-			console.log('entryRoom : ' + roomId);
-			socket.emit('message:read',{"room":roomId, "user":userdata._id});
+		
+		$scope.entryRoom = function(room){
+			console.log(room);
+			$scope.roomDataG = room;
+			$scope.Stateroom = room.state;
+			$scope.chatMsg = [];
+			$scope.roomIdG = room._id
+			if (room.employer._id === userdata._id ){
+				$scope.roomName = room.expertUser.firstName + ' ' + room.expertUser.lastName;
+			} else {
+				$scope.roomName = room.employer.firstName + ' ' + room.employer.lastName;
+			}
+			socket.emit('message:read',{"room":room._id, "user":userdata._id});
 			socket.on('message:readed', function(message){
-				console.log(message);
+				// console.log(message);
             })
 			$http({
 				method: 'GET',
-				url: URL_API + '/api/v1/messages?roomId=' + roomId,
+				url: URL_API + '/api/v1/messages?roomId=' + room._id,
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded',
 					'x-access-token': userdata.accessToken,
@@ -126,27 +181,119 @@ function ($scope, $uibModal, URL_API, $http) {
 				}
 			}).then(function (res) {
 				console.log(res.data.data);
-				$scope.chatMsg = res.data.data;
+				for(var i = 0; i < res.data.data.length; i++){
+					$scope.chatMsg.unshift(res.data.data[i]);
+				}
 			}, function (err) {
 				console.log(err.data);
 			});
+			
 		};
-		$scope.offerPrice = function() {
-			var modalInstance = $uibModal.open({
+		$scope.viewOfferPrice = function(roomData) {
+			$http({
+				method: 'GET',
+				url: URL_API + '/api/v1/quotations/' +roomData.quotation,
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+					'x-access-token': userdata.accessToken,
+					'lang': $scope.lang,
+					'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
+				}
+			}).then(function (res) {
+				// console.log(res);
+				var quotation = res.data.data;
+				var modalInstance = $uibModal.open({
+				animation: $scope.animationsEnabled,
+				templateUrl: 'viewOfferPriceModal.html',
+				controller: 'ViewOfferPriceModalController as ctrl',
+				resolve : { 
+					quotation : function() {
+					   return quotation;
+					}
+				}
+				});
+			}, function (err) {
+				console.log(err.data);
+			});
+			
+		};
+		$scope.offerPrice = function(roomData) {
+			console.log(roomData);
+			
+			
+			$http({
+				method: 'GET',
+				url: URL_API + '/api/v1/quotations/' +roomData.quotation,
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+					'x-access-token': userdata.accessToken,
+					'lang': $scope.lang,
+					'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
+				}
+			}).then(function (res) {
+				// console.log(res);
+				var quotation = res.data.data;
+				var modalInstance = $uibModal.open({
 				animation: $scope.animationsEnabled,
 				templateUrl: 'offerPriceModal.html',
-				controller: 'OfferPriceModalController as ctrl'
+				controller: 'OfferPriceModalController as ctrl',
+				resolve : { 
+					quotation : function() {
+					   return quotation;
+					}
+				}
 				});
+			}, function (err) {
+				console.log(err.data);
+			});
+			
 		};
 
 
 	}
 }]);
-
 angular
 .module('myApp')
-.controller('OfferPriceModalController', function ($scope, $uibModal, $uibModalInstance) {
+.controller('ViewOfferPriceModalController', function ($scope, $uibModal, $uibModalInstance, quotation) {
+	$scope.lang = 'en';
+	console.log('ViewOfferPriceModalController');
+	console.log(quotation[0]);
+	$scope.vQT = quotation[0]
+	$scope.closeMD = function() {
+		$uibModalInstance.close(false);
+	};
+	$scope.paid = function() {
+		$uibModalInstance.close(false);
+		var modalInstance = $uibModal.open({
+			animation: $scope.animationsEnabled,
+			templateUrl: 'paidModal.html',
+			controller: 'ViewOfferPriceModalController as ctrl',
+			resolve : { 
+				quotation : function() {
+				   return quotation;
+				}
+			}
+		});
+	};
+	$scope.checkpaid = function() {
+		$uibModalInstance.close(false);
+		var modalInstance = $uibModal.open({
+			animation: $scope.animationsEnabled,
+			templateUrl: 'checkpaidModal.html',
+			controller: 'ViewOfferPriceModalController as ctrl',
+			resolve : { 
+				quotation : function() {
+				   return quotation;
+				}
+			}
+		});
+	}
+});
+angular
+.module('myApp')
+.controller('OfferPriceModalController', function ($scope, $uibModal, $uibModalInstance, quotation) {
 	console.log('OfferPriceModalController');
+	console.log(quotation);
 	$scope.closeMD = function() {
 		$uibModalInstance.close(false);
 	};

@@ -28,17 +28,27 @@ function (authService, $scope, $uibModal, $http, URL_API) {
 		$scope.jobTypes = res.data.data.jobTypes;
 		$scope.jobs = res.data.data.jobs;
 	});
-	$scope.jobsModal = function (jobid){
-	var modalInstance = $uibModal.open({
-		animation: $scope.animationsEnabled,
-		templateUrl: 'jobModal.html',
-		controller: 'JobsModalController as ctrl',
-		resolve: {
-			jobid: function() {
-			  return jobid;
-			}
-		  }
-		});
+	$scope.jobsModal = function (jobdata){
+		if($scope.isLoggedIn){
+			var modalInstance = $uibModal.open({
+				animation: $scope.animationsEnabled,
+				templateUrl: 'jobModal.html',
+				controller: 'JobsModalController as ctrl',
+				resolve: {
+					jobdata: function() {
+						return jobdata;
+					}
+					}
+				});
+		}
+		else {
+			var modalInstance = $uibModal.open({
+				animation: $scope.animationsEnabled,
+				templateUrl: 'loginModal.html',
+				controller: 'RegisModalController as ctrl'
+			});
+		}
+	
 	};
 	$scope.jobspostModal = function() {
 		if($scope.isLoggedIn){
@@ -61,14 +71,34 @@ function (authService, $scope, $uibModal, $http, URL_API) {
 
 angular
 .module('myApp')
-.controller('JobsModalController', function (URL_API, $http, $scope, $uibModal, jobid, $uibModalInstance) {
+.controller('JobsModalController', function (URL_API, $http, $scope, $uibModal, jobdata, $uibModalInstance) {
 	console.log('modalController');
+	const userdata = JSON.parse(localStorage.getItem('userdata'));
 	$scope.lang = 'en';
-	$scope.id = jobid;
+	$scope.id = jobdata._id;
 	$http.get(URL_API + '/api/v1/jobs/'+ $scope.id)
 	.then( function(res){
 		$scope.jobdatas = res.data.data[0];
 	});
+	$scope.chatToEmployer = function () {
+		$http.post(URL_API + '/api/v1/rooms', 
+		{
+			employerId : $scope.jobdatas.user._id,
+			expertUserId: userdata._id,
+			message:"Hello world",
+			createBy : "expert"
+		}).then(function (res) {
+				console.log(res);
+				window.location.href = '/#/chat'
+			}, function (err) {
+				// console.log(err.data);
+				if(err.data.code === 40022){
+					window.location.href = '/#/chat'
+				}else{
+					console.log(err.data);
+				}
+		});
+	};
 	$scope.closeMD = function() {
 		$uibModalInstance.close(false);
 	};

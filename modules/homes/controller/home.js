@@ -211,17 +211,17 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 		$scope.jobTypes = res.data.data.jobTypes;
 		$scope.jobs = res.data.data.jobs;
 	});
-	$scope.jobsModal = function (jobid){
-	var modalInstance = $uibModal.open({
-		animation: $scope.animationsEnabled,
-		templateUrl: 'jobModalHome.html',
-		controller: 'JobsModalController as ctrl',
-		resolve: {
-			jobid: function() {
-				return jobid;
-			}
-			}
-		});
+	$scope.jobsModal = function (jobdata){
+		var modalInstance = $uibModal.open({
+			animation: $scope.animationsEnabled,
+			templateUrl: 'jobModalHome.html',
+			controller: 'JobsModalController as ctrl',
+			resolve: {
+				jobdata: function() {
+					return jobdata;
+				}
+				}
+			});
 	};
 	$scope.dataArray = [
 		{src: 'http://via.placeholder.com/350x150'},

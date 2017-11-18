@@ -154,7 +154,7 @@
         </div>
         <div class="col-sm-9 col-md-9 col-lg-9" style="padding-left:0px;"> 
             <div class="col-sm-6 col-md-6 col-lg-6 job-post-repeat-col" ng-repeat="data in jobs" style="padding-left:0px;">
-                <div class="job-post-wrapper" ng-click="jobsModal(data._id)">
+                <div class="job-post-wrapper" ng-click="jobsModal(data)">
                     <div class="col-sm-9 col-md-9 col-lg-9">
                         {{data.name[lang]}}&nbsp;
                         <div  class="status-new" ng-if="data.status=='NEW'"><span>{{data.status}}</span></div>

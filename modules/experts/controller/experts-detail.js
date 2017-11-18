@@ -23,6 +23,35 @@ function (authService, $scope, $uibModal, $http, URL_API) {
 		console.log(err);
 		});
 	}
+	$scope.chatExpt = function () {
+		if($scope.isLoggedIn){
+			$http.post(URL_API + '/api/v1/rooms', 
+			{
+				employerId : userdata._id,
+				expertId: $scope.exptID,
+				expertUserId: $scope.exptUserId,
+				message:"Hello world",
+				createBy : "employer"
+			}).then(function (res) {
+					console.log(res);
+					window.location.href = '/#/chat'
+				}, function (err) {
+					// console.log(err.data);
+					if(err.data.code === 40022){
+						window.location.href = '/#/chat'
+					}else{
+						console.log(err.data);
+					}
+			});
+			
+		} else {
+			var modalInstance = $uibModal.open({
+				animation: $scope.animationsEnabled,
+				templateUrl: 'loginModal.html',
+				controller: 'RegisModalController as ctrl'
+			});
+		}
+	};
 	$scope.imglang = 'assets/img/' + $scope.lang + '.png';
 	$scope.chgLang = function (lang){
 		$scope.imglang = 'assets/img/' + lang + '.png';
@@ -32,6 +61,9 @@ function (authService, $scope, $uibModal, $http, URL_API) {
 	.then( function(res){
 		$scope.loaded = true;
 		$scope.exptdetail = res.data.data[0];
+		console.log($scope.exptdetail);
+		$scope.exptID = $scope.exptdetail._id;
+		$scope.exptUserId = $scope.exptdetail.user._id;
 		$scope.profilePic = $scope.exptdetail.profileImg;
 		for(var i = 0; i < $scope.profilePic.length; i++){
 			$scope.profilePic = {src:$scope.profilePic[i].url};

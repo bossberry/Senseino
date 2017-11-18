@@ -9,6 +9,7 @@ return function (scope, element, attrs) {
 		scope.$eval(attrs.myEnter);
 		});
 		event.preventDefault();
+		event.currentTarget.value = "";
 	}
 	});
 };
