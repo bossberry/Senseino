@@ -24,6 +24,7 @@ angular
 })
 .controller('ChatController', ['$scope', '$uibModal', 'URL_API', '$http', 
 function ($scope, $uibModal, URL_API, $http) {
+	$scope.lang = 'en';
 	console.log('ChatController');
 	$scope.chatRoom = [];
 	$scope.IDRoom = [];
@@ -75,10 +76,10 @@ function ($scope, $uibModal, URL_API, $http) {
 			socket.on('message:broadcast', function(message){
 				console.log(message);
 			});
-			socket.on('ping', function (message) {
-                console.log(message);
-                // socket.emit('pong', {beat: 1});
-            });
+			// socket.on('ping', function (message) {
+            //     console.log(message);
+            //     socket.emit('pong', {beat: 1});
+            // });
 		};
 
 		$scope.$on('reachTop', function(event, data) {
@@ -94,7 +95,6 @@ function ($scope, $uibModal, URL_API, $http) {
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded',
 					'x-access-token': userdata.accessToken,
-					'lang': $scope.lang,
 					'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
 				}
 			}).then(function (res) {
@@ -120,26 +120,34 @@ function ($scope, $uibModal, URL_API, $http) {
 				console.log('Error UnauthorizedError || invalid_token');
 			}
 		});
-	
+		socket.on('message:broadcast', function(message){
+			console.log(message);
+		});
 		$http({
 			method: 'GET',
 			url: URL_API + '/api/v1/rooms',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded',
 				'x-access-token': userdata.accessToken,
-				'lang': $scope.lang,
 				'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
 			}
 		}).then(function (res) {
 			if(res.data.data === 0){
 				$scope.chatRoom = 0;
 			} else {
+				console.log(res.data.data);
 				$scope.chatRoom = res.data.data;
 				for(var i = 0; i< res.data.data.length; i++){
 					$scope.IDRoom.push(res.data.data[i]._id)
 					if (res.data.data[i].employer._id === userdata._id ){
 						console.log('boss is Employer');
 						$scope.checkRole[i] = 'expertUser';
+						// if(res.data.data[i].expert!=null){
+						// 	$scope.checkRole[i] = 'expert';
+						// }else {
+						// 	$scope.checkRole[i] = 'expertUser';
+						// }
+						
 					} else {
 						$scope.checkRole[i] = 'employer';
 						console.log('boss is ExpertUser');
@@ -159,11 +167,16 @@ function ($scope, $uibModal, URL_API, $http) {
 			console.log(room);
 			$scope.roomDataG = room;
 			$scope.Stateroom = room.state;
+			$scope.Statemsg = room.stateMessage;
+			console.log($scope.Statemsg);
 			$scope.chatMsg = [];
 			$scope.roomIdG = room._id
+			
 			if (room.employer._id === userdata._id ){
+				$scope.btnOffPrice = false;
 				$scope.roomName = room.expertUser.firstName + ' ' + room.expertUser.lastName;
 			} else {
+				$scope.btnOffPrice = true;
 				$scope.roomName = room.employer.firstName + ' ' + room.employer.lastName;
 			}
 			socket.emit('message:read',{"room":room._id, "user":userdata._id});
@@ -176,7 +189,6 @@ function ($scope, $uibModal, URL_API, $http) {
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded',
 					'x-access-token': userdata.accessToken,
-					'lang': $scope.lang,
 					'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
 				}
 			}).then(function (res) {
@@ -190,13 +202,13 @@ function ($scope, $uibModal, URL_API, $http) {
 			
 		};
 		$scope.viewOfferPrice = function(roomData) {
+			console.log(roomData);
 			$http({
 				method: 'GET',
 				url: URL_API + '/api/v1/quotations/' +roomData.quotation,
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded',
 					'x-access-token': userdata.accessToken,
-					'lang': $scope.lang,
 					'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
 				}
 			}).then(function (res) {
@@ -217,36 +229,18 @@ function ($scope, $uibModal, URL_API, $http) {
 			});
 			
 		};
-		$scope.offerPrice = function(roomData) {
+		$scope.OfferPrice = function(roomData) {
 			console.log(roomData);
-			
-			
-			$http({
-				method: 'GET',
-				url: URL_API + '/api/v1/quotations/' +roomData.quotation,
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded',
-					'x-access-token': userdata.accessToken,
-					'lang': $scope.lang,
-					'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
+			var modalInstance = $uibModal.open({
+			animation: $scope.animationsEnabled,
+			templateUrl: 'offerPriceModal.html',
+			controller: 'OfferPriceModalController as ctrl',
+			resolve : { 
+				roomData : function() {
+				   return roomData;
 				}
-			}).then(function (res) {
-				// console.log(res);
-				var quotation = res.data.data;
-				var modalInstance = $uibModal.open({
-				animation: $scope.animationsEnabled,
-				templateUrl: 'offerPriceModal.html',
-				controller: 'OfferPriceModalController as ctrl',
-				resolve : { 
-					quotation : function() {
-					   return quotation;
-					}
-				}
-				});
-			}, function (err) {
-				console.log(err.data);
+			}
 			});
-			
 		};
 
 
@@ -291,9 +285,36 @@ angular
 });
 angular
 .module('myApp')
-.controller('OfferPriceModalController', function ($scope, $uibModal, $uibModalInstance, quotation) {
+.controller('OfferPriceModalController', function ($http, URL_API, $scope, $uibModal, $uibModalInstance, roomData) {
 	console.log('OfferPriceModalController');
-	console.log(quotation);
+	const userdata = JSON.parse(localStorage.getItem('userdata'));
+	console.log(roomData);
+	console.log(userdata);
+	$scope.creQT = function (){
+		console.log($scope.workname);
+		console.log($scope.workprice);
+		console.log($scope.workjobunit);
+		console.log($scope.workdes);
+		$http.post(URL_API + '/api/v1/quotations', {
+			name: $scope.workname,
+			employerId: roomData.employer._id,
+			price: $scope.workprice,
+			priceType: $scope.workjobunit,
+			detail: $scope.workdes,
+			roomId: roomData._id,
+			expertUserId: userdata._id
+		
+		}).then(function (res) {
+			console.log(res);
+		
+		}, function (err) {
+			console.log(err.data);
+		});
+		
+	};
+	
+
+
 	$scope.closeMD = function() {
 		$uibModalInstance.close(false);
 	};

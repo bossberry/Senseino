@@ -77,6 +77,26 @@
     margin: 0px;
     font-family: 'prompt'
 }
+.chat-title-right-ask{
+    background: rgba(0, 96, 208, 0.1);
+    padding: 10px;
+}
+.chat-title-right-ask > h3{
+    color: #0060d0;
+    font-size: 18px;
+    margin: 0px;
+    font-family: 'prompt'
+}
+.chat-title-right-w8paid{
+    background: #feebec;    
+    padding: 10px;
+}
+.chat-title-right-w8paid > h3{
+    color: #FA1B25;
+    font-size: 18px;
+    margin: 0px;
+    font-family: 'prompt'
+}
 .chat-right-des{
     padding: 10px;
 }

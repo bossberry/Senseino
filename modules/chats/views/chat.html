@@ -14,10 +14,14 @@
         <div style="padding:0px;height: 100%;overflow-y: scroll;" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
             <div ng-click="entryRoom(room)" class="one-msg-user" ng-repeat="room in chatRoom  track by $index">
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-user-thumnail-left">
+                    <!-- <img ng-if="checkRole[$index]==='expert'" width="48px" height="48px" ng-src="{{room[checkRole[$index]].thumbImgUrl}}"> -->
                     <img width="48px" height="48px" ng-src="{{room[checkRole[$index]].imgUrl}}">
+                    <!-- <img ng-if="checkRole[$index]==='employer'" width="48px" height="48px" ng-src="{{room[checkRole[$index]].imgUrl}}"> -->
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:0px;">
+                    <!-- <h2 ng-if="checkRole[$index]==='expert'">{{room.expertUser.firstName}} {{room.expertUser.lastName}}</h2> -->
                     <h2>{{room[checkRole[$index]].firstName}} {{room[checkRole[$index]].lastName}}</h2>
+                    <!-- <h2 ng-if="checkRole[$index]==='employer'">{{room[checkRole[$index]].firstName}} {{room[checkRole[$index]].lastName}}</h2> -->
                     <p class="lastmsg-leftchat">{{room.lastMsg}}</p>
                 </div>
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
@@ -42,35 +46,67 @@
                     <li ng-if="msg.user._id != userId" class="other">
                         <div class="avatar"><img ng-src="{{msg.user.imgUrl}}" draggable="false"></div>
                         <div ng-if="msg.action==='system'" class="msgsys">
-                            <p>{{msg.message}}</p>
+                            <p ng-if="msg.type==='message'">{{msg.message}}</p>
+                            <img ng-if="msg.type==='image'" ng-src="{{msg.message}}">
                         </div>
                         <div ng-if="msg.action==='quotation'" class="msg">
-                            <p>{{msg.message}}</p>
+                            <p ng-if="msg.type==='message'">{{msg.message}}
+                                <button style="display:block;" class="btn btn-action" ng-click="viewOfferPrice(roomDataG)">ดูรายละเอียดใบเสนอราคา</button>
+                            </p>
+                            <img ng-if="msg.type==='image'" ng-src="{{msg.message}}">
+                        </div>
+                        <div ng-if="msg.action==='handOver'" class="msg">
+                            <p ng-if="msg.type==='message'">{{msg.message}}
+                                <button style="display:block;" class="btn btn-action" ng-click="viewOfferPrice(roomDataG)">ดูรายละเอียดและตอบรับ</button>
+                            </p>
+                            <img ng-if="msg.type==='image'" ng-src="{{msg.message}}">
+                        </div>
+                        <div ng-if="msg.action===null" class="msg">
+                            <p ng-if="msg.type==='message'">{{msg.message}}</p>
+                            <img ng-if="msg.type==='image'" ng-src="{{msg.message}}">
                         </div>
                     </li>
                     <li ng-if="msg.user._id === userId" class="self">
                         <!-- <div class="avatar"><img ng-src="{{msg.user.imgUrl}}" draggable="false"></div> -->
-                        <div class="msg">
-                            <p>{{msg.message}}</p>
+                        <div ng-if="msg.action==='system'" class="msgsys">
+                            <p ng-if="msg.type==='message'">{{msg.message}}</p>
+                            <img ng-if="msg.type==='image'" ng-src="{{msg.message}}">
+                        </div>
+                        <div ng-if="msg.action==='quotation'" class="msg">
+                            <p ng-if="msg.type==='message'">{{msg.message}}
+                                <button style="display:block;" class="btn btn-action" ng-click="viewOfferPrice(roomDataG)">ดูรายละเอียดใบเสนอราคา</button>
+                            </p>
+                            <img ng-if="msg.type==='image'" ng-src="{{msg.message}}">
+                        </div>
+                        <div ng-if="msg.action==='handOver'" class="msg">
+                            <p ng-if="msg.type==='message'">{{msg.message}}
+                                <button style="display:block;" class="btn btn-action" ng-click="viewOfferPrice(roomDataG)">ดูรายละเอียดานและตอบรับ</button>
+                            </p>
+                            <img ng-if="msg.type==='image'" ng-src="{{msg.message}}">
+                        </div>
+                        <div ng-if="msg.action===null" class="msg">
+                            <p ng-if="msg.type==='message'">{{msg.message}}</p>
+                            <img ng-if="msg.type==='image'" ng-src="{{msg.message}}">
                         </div>
                     </li>
                 </div>
             </ol>
         </div>
         <div ng-if="Stateroom===1" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-right-body">
-            <div class="chat-title-right"><h3><img src="assets/img/Group.png">&nbsp;สอบถาม</h3></div>
+            <div class="chat-title-right-ask"><h3><img src="assets/img/Group.png">&nbsp;สอบถาม</h3></div>
             <div class="chat-right-des">
-                <p>Audios book and music can be used as tools for motivation. The audiobook is such a great
-                learning tools, while you are commuting, or just on delivery out for a
+                <p>
+                    {{Statemsg[lang]}}
                 </p>
+                <button ng-if="btnOffPrice" ng-click="OfferPrice(roomDataG)" class="btn btn-action-full">เสนอราคา</button>
             </div>
         </div>
         <div ng-if="Stateroom===2" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-right-body">
-            <div class="chat-title-right"><h3><img src="assets/img/Group.png">&nbsp;รอชำระเงิน</h3></div>
+            <div class="chat-title-right-w8paid"><h3><img src="assets/img/Group.png">&nbsp;รอชำระเงิน</h3></div>
             <div class="chat-right-des">
-                <p>Audios book and music can be used as tools for motivation. The audiobook is such a great
-                learning tools, while you are commuting, or just on delivery out for a
-                </p>
+                    <p>
+                        {{Statemsg[lang]}}
+                    </p>
                 <button ng-click="viewOfferPrice(roomDataG)" class="btn btn-action-full">ดูรายละเอียดใบเสนอราคา</button>
             </div>
         </div>
@@ -92,12 +128,13 @@
     </div>
     <div class="modal-body" id="modal-body">
         <div class="form-group form-g-login-modal">
+            <form ng-submit="creQT()" name="expertsCreate" autocomplete="off">
             <div class="row form-group">
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                     <label>ชื่องาน</label>
                 </div>
                 <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                    <input type="text" placeholder="ชื่อโพสงาน และ รายละเอียดเบื้องต้น" class="form-control input-size-box">
+                    <input ng-model="workname" type="text" placeholder="ชื่อโพสงาน และ รายละเอียดเบื้องต้น" class="form-control input-size-box" required>
                 </div>
             </div>
             <div class="row form-group">
@@ -105,7 +142,7 @@
                     <label>ราคา</label>
                 </div>
                 <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                    <input class="form-control jobsex-price input-size-box" type="text" placeholder="3000">
+                    <input ng-model="workprice" class="form-control jobsex-price input-size-box" type="number" placeholder="3000" required>
                 </div>
             </div>
             <div class="row form-group">
@@ -113,10 +150,10 @@
                     <label>รูปแบบงาน</label>
                 </div>
                 <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                    <div class="type-radio-jobsex">
-                        <input type="radio" name="optradio" id="radio1"><label for="radio1">ต่อชั่วโมง</label>
-                        <input type="radio" name="optradio" id="radio2"><label for="radio2">ต่อวัน</label>
-                        <input type="radio" name="optradio" id="radio3"><label for="radio3">ต่องาน</label>
+                    <div class="type-radio-jobsex" ng-init="workjobunit='hour'">
+                        <input type="radio" name="optradio" ng-model="workjobunit" value="hour" id="radio1"><label for="radio1">ต่อชั่วโมง</label>
+                        <input type="radio" name="optradio" ng-model="workjobunit" value="day" id="radio2"><label for="radio2">ต่อวัน</label>
+                        <input type="radio" name="optradio" ng-model="workjobunit" value="job" id="radio3"><label for="radio3">ต่องาน</label>
                     </div>
                 </div>
             </div>
@@ -125,14 +162,15 @@
                     <label>รายละเอียด</label>
                 </div>
                 <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                    <textarea style="resize:none;"rows="4" cols="40"></textarea>
+                    <textarea ng-model="workdes" style="resize:none;"rows="4" cols="40" required></textarea>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                   <button class="btn-action-jobexpress btn" style="width:100%;">เสนอราคา</button>
+                   <button type="submit" class="btn-action-jobexpress btn" style="width:100%;">เสนอราคา</button>
                 </div>
             </div>
+            </form>
         </div>
 </script>
 <script type="text/ng-template" id="viewOfferPriceModal.html">
