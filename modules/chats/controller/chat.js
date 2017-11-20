@@ -36,6 +36,114 @@ function ($scope, $uibModal, URL_API, $http) {
 	if(!userdata){
 		window.location.href = '/'
 	}else {
+		var socket = null;
+		var socket = io.connect('http://54.255.237.25:5000', {
+			query: 'token=' + userdata.accessToken + '&lang=' + 'th',
+			reconnection: true,
+			reconnectionDelay: 1000,
+			reconnectionDelayMax : 5000,
+			reconnectionAttempts: 99999
+		});
+		socket.on('connect', function() {
+			console.log('connect');
+			socket.emit('pong', {beat: 1});
+		});
+		socket.on( 'disconnect', function () {
+			console.log('disconnected to server');
+			socket.connect();
+		} );
+		socket.on("error", function(error) {
+			if (error.type == "UnauthorizedError" || error.code == "invalid_token") {
+				console.log('Error UnauthorizedError || invalid_token');
+			}
+		});
+		socket.on('room:joined', function(message){
+					// console.log(message);
+		});
+		socket.on('message:broadcast', function(message){
+			// console.log(message);
+			// message.data[0];
+			$scope.chatMsg.push(message.data[0]);
+			$scope.$apply();
+		});
+		socket.on('message:readed', function(message){
+				// console.log(message);
+        });
+		$http({
+			method: 'GET',
+			url: URL_API + '/api/v1/rooms',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+				'x-access-token': userdata.accessToken,
+				'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
+			}
+		}).then(function (res) {
+			if(res.data.data === 0){
+				$scope.chatRoom = 0;
+			} else {
+				// console.log(res.data.data);
+				$scope.chatRoom = res.data.data;
+				for(var i = 0; i< res.data.data.length; i++){
+					$scope.IDRoom.push(res.data.data[i]._id)
+					if (res.data.data[i].employer._id === userdata._id ){
+						// console.log('boss is Employer');
+						$scope.checkRole[i] = 'expertUser';
+						// if(res.data.data[i].expert!=null){
+						// 	$scope.checkRole[i] = 'expert';
+						// }else {
+						// 	$scope.checkRole[i] = 'expertUser';
+						// }
+						
+					} else {
+						$scope.checkRole[i] = 'employer';
+						// console.log('boss is ExpertUser');
+					}
+				}
+				$scope.entryRoom(res.data.data[0]);
+			}
+		}, function (err) {
+			console.log(err.data);
+		});
+
+		$scope.entryRoom = function(room){
+			socket.emit('room:join',[room._id]);
+			socket.emit('message:read',{"room":room._id, "user":userdata._id});
+			$scope.roomDataG = room;
+			$scope.Stateroom = room.state;
+			$scope.Statemsg = room.stateMessage;
+			$scope.chatMsg = [];
+			$scope.roomIdG = room._id
+			
+			if (room.employer._id === userdata._id ){
+				$scope.btnOffPrice = false;
+				$scope.roomName = room.expertUser.firstName + ' ' + room.expertUser.lastName;
+			} else {
+				$scope.btnOffPrice = true;
+				$scope.roomName = room.employer.firstName + ' ' + room.employer.lastName;
+			}
+			
+			
+			
+			$http({
+				method: 'GET',
+				url: URL_API + '/api/v1/messages?roomId=' + room._id,
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+					'x-access-token': userdata.accessToken,
+					'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
+				}
+			}).then(function (res) {
+				// console.log(res.data.data);
+				for(var i = 0; i < res.data.data.length; i++){
+					$scope.chatMsg.unshift(res.data.data[i]);
+				}
+			}, function (err) {
+				console.log(err.data);
+			});
+			
+		};
+
+
 		$scope.ChatupFile = function(e){
 			var files = e[0];
 			if (files.type === 'image/jpeg'){
@@ -59,9 +167,6 @@ function ($scope, $uibModal, URL_API, $http) {
 					if(res.data.data){
 						console.log(res.data.data.url);
 						socket.emit('message:send',{"room":$scope.roomIdG, "user":userdata._id, "message":res.data.data.url, "type": $scope.typeFile} );
-						socket.on('message:broadcast', function(message){
-							console.log(message);
-						});
 					}else {
 						console.log(res);
 					}
@@ -73,9 +178,7 @@ function ($scope, $uibModal, URL_API, $http) {
 		};
 		$scope.chatPushMsg = function(e){
 			socket.emit('message:send',{"room":$scope.roomIdG, "user":userdata._id, "message":$scope.msgsend, "type":"message"} );
-			socket.on('message:broadcast', function(message){
-				console.log(message);
-			});
+			
 			// socket.on('ping', function (message) {
             //     console.log(message);
             //     socket.emit('pong', {beat: 1});
@@ -105,102 +208,11 @@ function ($scope, $uibModal, URL_API, $http) {
 			}, function (err) {
 				console.log(err.data);
 			});
-		}
-		// console.log(userdata);
-		var socket = null;
-		var socket = io.connect('http://54.255.237.25:5000', {
-			query: 'token=' + userdata.accessToken + '&lang=' + 'th'
-		});
-		socket.on('connect', function() {
-			console.log('connect');
-			socket.emit('pong', {beat: 1});
-		});
-		socket.on("error", function(error) {
-			if (error.type == "UnauthorizedError" || error.code == "invalid_token") {
-				console.log('Error UnauthorizedError || invalid_token');
-			}
-		});
-		socket.on('message:broadcast', function(message){
-			console.log(message);
-		});
-		$http({
-			method: 'GET',
-			url: URL_API + '/api/v1/rooms',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded',
-				'x-access-token': userdata.accessToken,
-				'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
-			}
-		}).then(function (res) {
-			if(res.data.data === 0){
-				$scope.chatRoom = 0;
-			} else {
-				console.log(res.data.data);
-				$scope.chatRoom = res.data.data;
-				for(var i = 0; i< res.data.data.length; i++){
-					$scope.IDRoom.push(res.data.data[i]._id)
-					if (res.data.data[i].employer._id === userdata._id ){
-						console.log('boss is Employer');
-						$scope.checkRole[i] = 'expertUser';
-						// if(res.data.data[i].expert!=null){
-						// 	$scope.checkRole[i] = 'expert';
-						// }else {
-						// 	$scope.checkRole[i] = 'expertUser';
-						// }
-						
-					} else {
-						$scope.checkRole[i] = 'employer';
-						console.log('boss is ExpertUser');
-					}
-				}
-				socket.emit('room:joined',$scope.IDRoom);
-				socket.on('room:joined', function(message){
-					console.log(message);
-				});
-				$scope.entryRoom(res.data.data[0]);
-			}
-		}, function (err) {
-			console.log(err.data);
-		});
-		
-		$scope.entryRoom = function(room){
-			console.log(room);
-			$scope.roomDataG = room;
-			$scope.Stateroom = room.state;
-			$scope.Statemsg = room.stateMessage;
-			console.log($scope.Statemsg);
-			$scope.chatMsg = [];
-			$scope.roomIdG = room._id
-			
-			if (room.employer._id === userdata._id ){
-				$scope.btnOffPrice = false;
-				$scope.roomName = room.expertUser.firstName + ' ' + room.expertUser.lastName;
-			} else {
-				$scope.btnOffPrice = true;
-				$scope.roomName = room.employer.firstName + ' ' + room.employer.lastName;
-			}
-			socket.emit('message:read',{"room":room._id, "user":userdata._id});
-			socket.on('message:readed', function(message){
-				// console.log(message);
-            })
-			$http({
-				method: 'GET',
-				url: URL_API + '/api/v1/messages?roomId=' + room._id,
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded',
-					'x-access-token': userdata.accessToken,
-					'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
-				}
-			}).then(function (res) {
-				console.log(res.data.data);
-				for(var i = 0; i < res.data.data.length; i++){
-					$scope.chatMsg.unshift(res.data.data[i]);
-				}
-			}, function (err) {
-				console.log(err.data);
-			});
-			
 		};
+		// console.log(userdata);
+	
+		
+		
 		$scope.viewOfferPrice = function(roomData) {
 			console.log(roomData);
 			$http({
