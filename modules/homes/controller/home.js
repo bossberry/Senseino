@@ -22,8 +22,13 @@ angular
 			navigator.geolocation.getCurrentPosition(function(position){
 				this.latme = position.coords.latitude;
 				this.lonme = position.coords.longitude;
-				this.latex = locate.lat;
-				this.lonex = locate.lon;
+				if(locate===null){
+					this.latex = '';
+					this.lonex = '';
+				} else {
+					this.latex = locate.lat;
+					this.lonex = locate.lon;
+				}
 			});
 		}
 		function calcCrow(lat1, lon1, lat2, lon2) 
@@ -77,19 +82,7 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 		}, function(err) {
 			console.log(err);
 		});
-	$scope.images = [{
-    url: 'http://via.placeholder.com/350x150'
-  }, {
-    url: 'http://via.placeholder.com/350x150'
-  }, {
-    url: 'http://via.placeholder.com/350x150'
-  }, {
-    url: 'http://via.placeholder.com/350x150'
-  }, {
-    url: 'http://via.placeholder.com/350x150'
-  }, {
-    url: 'http://via.placeholder.com/350x150'
-  }];
+
 	$scope.slickConfig = {
     enabled: true,
     autoplay: true,
@@ -144,14 +137,6 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 		id: '1'
 	  }
 	];
-	// $scope.slides =  [
-	// 	'http://lorempixel.com/560/400/sports/1',
-	// 	'http://lorempixel.com/560/400/sports/2',
-	// 	'http://lorempixel.com/560/400/sports/3',
-	// 	'http://lorempixel.com/560/400/sports/1',
-	// 	'http://lorempixel.com/560/400/sports/2',
-	// 	'http://lorempixel.com/560/400/sports/3'
-	//   ];
 	$scope.backtotop = function() {
 		// set the location.hash to the id of
 		// the element you wish to scroll to.
@@ -207,7 +192,6 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 		}
 		$scope.experts = res.data.data.experts;
 		$scope.slidesex = $scope.experts[0].experts[0].thumbImgUrl;
-		// console.log($scope.experts[0].experts[0].thumbImgUrl);
 		$scope.jobTypes = res.data.data.jobTypes;
 		$scope.jobs = res.data.data.jobs;
 	});
@@ -223,9 +207,5 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 				}
 			});
 	};
-	$scope.dataArray = [
-		{src: 'http://via.placeholder.com/350x150'},
-		{src: 'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4'},
-		{src: 'http://via.placeholder.com/350x150'},
-	]
+
 }]);

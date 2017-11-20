@@ -31,9 +31,10 @@
     padding: 0px;
 }
 .one-msg-user{
-    border-bottom: 1px solid #f4f4f4;
+    border-bottom: 1px solid #d4d7dc;
     display: flex;
     cursor: pointer;
+    background: #e2e8f1;
 }
 .chat-user-thumnail-left{
     text-align: center;
@@ -206,11 +207,7 @@
     top: 20px;
     outline: none;
 }
-.lastmsg-leftchat{
-    width: 100%;
-    overflow: hidden;
-    color: #a0a0a0;
-}
+
 .image-upload{
 position: absolute;
 top: 20px;
@@ -297,4 +294,28 @@ width: 32px;
 .txt-slip{
     margin-top: -12%;
     color: #FA1B25;
+}
+.namechat{
+    font-size: 14px;
+    font-weight: bold;
+    color: #303030;
+}
+.readnamechat{
+    font-size: 14px;
+    font-weight: normal;
+    color: #484848;
+}
+.readmsg{
+    background: #fff!important;
+}
+.readlastmsg{
+    font-weight: normal!important;
+    width: 100%;
+    overflow: hidden;
+    color: #a0a0a0!important;
+}
+
+.lastmsg-leftchat{
+    color: #303030;
+    font-weight: bold;
 }

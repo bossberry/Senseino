@@ -64,6 +64,7 @@ function ($scope, $uibModal, URL_API, $http) {
 			// console.log(message);
 			// message.data[0];
 			$scope.chatMsg.push(message.data[0]);
+			$scope.updatelistRoom();
 			$scope.$apply();
 		});
 		socket.on('message:readed', function(message){
@@ -104,8 +105,36 @@ function ($scope, $uibModal, URL_API, $http) {
 		}, function (err) {
 			console.log(err.data);
 		});
+		$scope.updatelistRoom = function() {
+			$http({
+				method: 'GET',
+				url: URL_API + '/api/v1/rooms',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+					'x-access-token': userdata.accessToken,
+					'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
+				}
+			}).then(function (res) {
+				if(res.data.data === 0){
+					$scope.chatRoom = 0;
+				} else {
+					$scope.chatRoom = res.data.data;
+					for(var i = 0; i< res.data.data.length; i++){
+						$scope.IDRoom.push(res.data.data[i]._id)
+						if (res.data.data[i].employer._id === userdata._id ){
+							$scope.checkRole[i] = 'expertUser';
+						} else {
+							$scope.checkRole[i] = 'employer';
+						}
+					}
+				}
+			}, function (err) {
+				console.log(err.data);
+			});
+		};
 
 		$scope.entryRoom = function(room){
+			console.log(room);
 			socket.emit('room:join',[room._id]);
 			socket.emit('message:read',{"room":room._id, "user":userdata._id});
 			$scope.roomDataG = room;
