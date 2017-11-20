@@ -24,8 +24,8 @@ function authService($http, URL_API) {
         method: 'POST',
         url: URL_API + '/api/v1/users/register',
         data: {
-            firstname: firstname,
-            lastname: lastname,
+            firstName: firstname,
+            lastName: lastname,
             email: email,
             type:'email',
             password: password

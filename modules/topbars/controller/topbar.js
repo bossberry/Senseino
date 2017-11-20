@@ -105,7 +105,9 @@ angular
 		authService.RegisByEmail($scope.user.firstname, $scope.user.lastname, $scope.user.tel, $scope.user.email, $scope.user.password)
 		.then((user) => {
 		  console.log(user.data);
-		  localStorage.setItem('token', user.data.data.accessToken);
+		  localStorage.setItem('userdata', JSON.stringify(user.data.data));
+		//   localStorage.setItem('token', user.data.data.accessToken);
+			window.location.reload(true);
 		})
 		.catch((err) => {
 		  console.log(err);
