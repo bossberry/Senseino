@@ -1,18 +1,19 @@
 <aside data-ng-include="'/modules/topbars/views/topbar6.html'"></aside>  
 <section class="chat-section">
-   <div class="container-fluid">
+   <div class="chat-all-warpper">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 chat-head-wrapper">
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-head-left">
             <h3>ข้อความ/ออเดอร์</h3>
         </div>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 chat-head-msg">
             <h3>{{roomName}}</h3>
+            <div ng-show="roomnotfound">คุณไม่เคยส่งหรือได้รับข้อความเลย</div>
             <!-- <h4>#ABCDE</h4> -->
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 chat-wrapper-body">
-        <div style="padding:0px;height: 100%;overflow-y: scroll;" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                        
+        <div class="left-msg-warp col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <div ng-show="roomnotfound">ไม่มีข้อความเลย</div>
             <div ng-click="entryRoom(room)" ng-class="{readmsg: room.isReaded===true}" class="one-msg-user" ng-repeat="room in chatRoom  track by $index">
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-user-thumnail-left">
                     <!-- <img ng-if="checkRole[$index]==='expert'" width="48px" height="48px" ng-src="{{room[checkRole[$index]].thumbImgUrl}}"> -->
@@ -92,6 +93,12 @@
                     </li>
                 </div>
             </ol>
+        </div>
+        <div ng-if="roomnotfound" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-right-body">
+            <div class="chat-title-right-ask"><h3><img src="assets/img/Group.png">&nbsp;</h3></div>
+            <div class="chat-right-des">
+               
+            </div>
         </div>
         <div ng-if="Stateroom===1" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-right-body">
             <div class="chat-title-right-ask"><h3><img src="assets/img/Group.png">&nbsp;สอบถาม</h3></div>

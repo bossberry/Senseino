@@ -135,41 +135,44 @@ function ($scope, $uibModal, URL_API, $http) {
 
 		$scope.entryRoom = function(room){
 			console.log(room);
-			socket.emit('room:join',[room._id]);
-			socket.emit('message:read',{"room":room._id, "user":userdata._id});
-			$scope.roomDataG = room;
-			$scope.Stateroom = room.state;
-			$scope.Statemsg = room.stateMessage;
-			$scope.chatMsg = [];
-			$scope.roomIdG = room._id
-			
-			if (room.employer._id === userdata._id ){
-				$scope.btnOffPrice = false;
-				$scope.roomName = room.expertUser.firstName + ' ' + room.expertUser.lastName;
-			} else {
-				$scope.btnOffPrice = true;
-				$scope.roomName = room.employer.firstName + ' ' + room.employer.lastName;
+			if(room === undefined){
+				$scope.roomnotfound = true;
+			}else {
+				socket.emit('room:join',[room._id]);
+				socket.emit('message:read',{"room":room._id, "user":userdata._id});
+				$scope.roomDataG = room;
+				$scope.Stateroom = room.state;
+				$scope.Statemsg = room.stateMessage;
+				$scope.chatMsg = [];
+				$scope.roomIdG = room._id
+				
+				if (room.employer._id === userdata._id ){
+					$scope.btnOffPrice = false;
+					$scope.roomName = room.expertUser.firstName + ' ' + room.expertUser.lastName;
+				} else {
+					$scope.btnOffPrice = true;
+					$scope.roomName = room.employer.firstName + ' ' + room.employer.lastName;
+				}
+				
+				
+				
+				$http({
+					method: 'GET',
+					url: URL_API + '/api/v1/messages?roomId=' + room._id,
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded',
+						'x-access-token': userdata.accessToken,
+						'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
+					}
+				}).then(function (res) {
+					// console.log(res.data.data);
+					for(var i = 0; i < res.data.data.length; i++){
+						$scope.chatMsg.unshift(res.data.data[i]);
+					}
+				}, function (err) {
+					console.log(err.data);
+				});
 			}
-			
-			
-			
-			$http({
-				method: 'GET',
-				url: URL_API + '/api/v1/messages?roomId=' + room._id,
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded',
-					'x-access-token': userdata.accessToken,
-					'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
-				}
-			}).then(function (res) {
-				// console.log(res.data.data);
-				for(var i = 0; i < res.data.data.length; i++){
-					$scope.chatMsg.unshift(res.data.data[i]);
-				}
-			}, function (err) {
-				console.log(err.data);
-			});
-			
 		};
 
 

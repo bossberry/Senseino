@@ -1,5 +1,6 @@
 .chat-section{
     display: flex;
+    flex-direction: column;
 }
 
 .chat-head-wrapper{
@@ -27,7 +28,7 @@
     margin-top: 0px;
 }
 .chat-wrapper-body{
-    height: 500px;
+    height: 75vh;
     padding: 0px;
 }
 .one-msg-user{
@@ -43,7 +44,7 @@
 .chat-msg-body{
     max-width: 1200px;
     border-left: 1px solid #f4f4f4;
-    height: 100%;
+    height: 75vh;
     padding: 20px;
     overflow-y: scroll;
 }
@@ -318,4 +319,8 @@ width: 32px;
 .lastmsg-leftchat{
     color: #303030;
     font-weight: bold;
+}
+.left-msg-warp{
+    height: 75vh;
+    overflow-y: scroll;
 }
