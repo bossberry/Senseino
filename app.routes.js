@@ -51,6 +51,14 @@ function config ($locationProvider, $routeProvider) {
             templateUrl: '/modules/chats/views/chat.html',
             controller: 'ChatController'
         })
+        .when('/profile', {
+            templateUrl: '/modules/profiles/views/profile.html',
+            controller: 'ProfileController'
+        })
+        .when('/setting', {
+            templateUrl: '/modules/profiles/views/setting.html',
+            controller: 'SettingController'
+        })
         .otherwise({
             redirectTo: '/'
         });

@@ -1,0 +1,15 @@
+.profile-top-wrap{
+    background-color: #17B89A;
+    text-align: center;
+    padding: 30px;
+}
+.profile-crop {
+    margin: 0 auto;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+}
+.profile-crop > img{
+    max-width: 150px;
+}
