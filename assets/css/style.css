@@ -262,11 +262,19 @@ md-radio-button.md-default-theme .md-on, md-radio-button .md-on{
     width: 32px;
 }
 .amPmCheckbox input[type="checkbox"]:checked + label {
+	cursor: pointer;
     background: url('../img/favoriteactive.png')  no-repeat;
     height:32px;
 }
 .msg-form-err{
 	color: #FA1B25;
+    opacity: 0.8;
+	font-size: 12px;
+    max-width: 250px;
+	text-align: left;
+}
+.msg-form-success{
+	color: #17b89a;
     opacity: 0.8;
 	font-size: 12px;
     max-width: 250px;
@@ -283,15 +291,20 @@ md-radio-button.md-default-theme .md-on, md-radio-button .md-on{
 	float: left;
 }
 .crop-slide-img{
-	max-width: 100%;
-    max-height: 600px;
-    overflow: hidden;
+	/* max-width: 300px; */
+	max-height: 600px;
+	height: 500px;
+
+	overflow: hidden;
 }
 .crop-slide-img img.slide-slick {
+
+
+	object-fit: cover;
     width: 100%;
-	height: auto;
+	height: 100%; 
 	/* width: auto;
-    height: 100%; */
+    height: 100%;*/
     margin: 0px 0 0 0px;
 }
 .slick-item, .slick-item:focus, .slick-item:active, .slick-item>a:focus, .slick-item>a:active {

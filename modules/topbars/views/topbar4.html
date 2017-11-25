@@ -8,7 +8,7 @@
             <ul class="topbar-menu">
                 <li ng-click="jobsexpressModal()" class="menu-jobsexpress"><img src="assets/img/jobsexpress.png">งานด่วน</li>
                 <li><a ng-href="/#/helps">ช่วยเหลือ</a></li>
-                <li ng-click="loginModal()">โพสงาน</li>
+                <li><a ng-href="/#/experts-create">โพสงาน</a></li>
                 <li><a href="/#/chat"><img src="assets/img/inbox.png"></a></li>
                 <li class="dropdown" uib-dropdown>
                     <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
@@ -18,14 +18,14 @@
                     </a>
                     <ul class="dropdown-menu" role="menu">
                     <li>
-                        <a ng-href="/#/profile">งาน</a>
+                        <a ng-href="/#/profile">{{multilingual[lang].tab_profile_profile}}</a>
                     </li>
                     <li>
-                        <a ng-href="/#/setting">ตั้งค่า</a>
+                        <a ng-href="/#/setting">{{multilingual[lang].tab_profile_setting}}</a>
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a ng-click="logout()">Signout</a>
+                        <a ng-click="logout()">{{multilingual[lang].tab_profile_signout}}</a>
                     </li>
                     </ul>
                 </li>

@@ -38,6 +38,8 @@ function ($uibModal, authService, $scope, $http, URL_API) {
 	.then( function(res){
 		$scope.loaded = true;
 		console.log(res.data.data);
+		$scope.jobTypesRow = [{}];
+		console.log($scope.jobTypesRow.length);
 		$scope.jobTypes = res.data.data.jobTypes;
 		$scope.experts = res.data.data.experts;
 	});

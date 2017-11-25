@@ -3,7 +3,16 @@
     text-align: center;
     padding: 30px;
 }
+.profile-top-wrap >h2 {
+    color: #fff;
+    font-size: 18px;
+}
+.profile-top-wrap >p {
+    color: #fff;
+    font-size: 16px;
+}
 .profile-crop {
+    border: 2px solid #149e82;
     margin: 0 auto;
     border-radius: 50%;
     width: 150px;
@@ -12,4 +21,18 @@
 }
 .profile-crop > img{
     max-width: 150px;
+}
+.form-g-setting > label {
+    float: left;
+    margin-left: 30px;
+}
+.form-g-setting > input{
+    height: 50px;
+    border-radius: 4px;
+    max-width: 250px;
+    margin-left: 220px;
+}
+.section-shadow{
+    padding: 15px;
+    box-shadow: 0px 1px 5px #888888;
 }

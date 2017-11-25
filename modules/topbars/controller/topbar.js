@@ -5,6 +5,12 @@ angular
 function ($http, URL_API, $scope, $uibModal) {
 	console.log('TopbarController');
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
+	$http.get('multilingual.json') 
+	.then(function (data) {
+		$scope.multilingual = data.data
+	}, function (error) {
+		console.log('error');
+	});
 	$scope.regis = function() {
 		var modalInstance = $uibModal.open({
 			animation: $scope.animationsEnabled,
@@ -55,7 +61,7 @@ angular
 .module('myApp')
 .controller('RegisModalController', function (authService, $location, URL_API, $http, $scope, $uibModal, $uibModalInstance) {
 	console.log('RegisModalController');
-	console.log(authService.test());
+	
 	$scope.submitEmailLogin = function(){
 		console.log($scope.login);
 		authService.LoginByEmail($scope.login.username, $scope.login.password)
@@ -145,10 +151,42 @@ angular
 	FB.login(function(response) {
 		if (response.authResponse) {
 		 console.log('Welcome!  Fetching your information.... ');
-		 FB.api('/me?fields=id,name,email,first_name,last_name,age_range,picture.type(large)', function(response) {
+		 FB.api('/me?fields=id,name,email,first_name,last_name,age_range,picture.type(large),user_mobile_phone', function(response) {
 		   console.log('Good to see you, ' + response.name + '.');
 		   console.log(response);
 		   console.log(response.perms);
+			// $http.post(URL_API + '/api/v1/users/register', {
+			// 	firstName: response.first_name,
+			// 	lastName: response.last_name,
+			// 	mobileNo: response.user_mobile_phone,
+			// 	email: response.email,
+			// 	imgUrl: response.picture.data.url,
+			// 	socialId: response.id,
+			// 	socialToken: response.first_name,
+			// 	type: 'facebook',
+			// }).then(function (res) {
+			// 	$uibModalInstance.close(false);
+			// 	window.location.reload();
+			// 	console.log(res);
+			
+			// }, function (err) {
+			// 	console.log(err.data);
+			// });	
+
+
+
+			// $http.post(URL_API + '/api/v1/users/login', {
+			// 	username: response.first_name,
+			// 	type: response.last_name,
+			// 	credential: response.user_mobile_phone,
+			// }).then(function (res) {
+			// 	$uibModalInstance.close(false);
+			// 	window.location.reload();
+			// 	console.log(res);
+			
+			// }, function (err) {
+			// 	console.log(err.data);
+			// });	
 		 }, {perms:'user_address, user_mobile_phone'});
 		} else {
 		 console.log('User cancelled login or did not fully authorize.');

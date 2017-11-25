@@ -26,17 +26,18 @@
     transition: all .3s linear;
   }
 .textcover-img{
+    word-break: break-word;
     left: 0;
     position: absolute;
     text-align: center;
-    top: 40px;
+    top: 40%;
     width: 100%;
     padding-left: 25px;
     padding-right: 25px;
     margin: 0 auto;
     color: #FFF;
     font-family: 'promptmedium';
-    font-size: 18px;
+    font-size: 16px;
 }
 .jobinterest-wrapper{
   text-align: center;
@@ -273,6 +274,8 @@
 }
 
 .crop img.img-pre {
+  object-fit: none;
+  object-position: center;
   width: auto;
   height: 300px;
   margin: 0px 0 0 0px;
@@ -302,4 +305,26 @@
   text-align: center !important;
   text-decoration: none !important;
   width: auto !important;
+}
+.thmnail-himsg{
+  display: inline;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+}
+.chatinputsayhi{
+  resize: none;
+  height: 285px;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 20px;
+  padding-right: 50px;
+}
+#jobrow > slick > button.slick-next{
+  top: 50%;
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 30px;
 }

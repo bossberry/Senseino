@@ -41,6 +41,9 @@
     text-align: center;
     margin-top: 17px;
 }
+.chat-user-thumnail-left > img{
+    border-radius: 50%;
+}
 .chat-msg-body{
     max-width: 1200px;
     border-left: 1px solid #f4f4f4;
@@ -323,4 +326,101 @@ width: 32px;
 .left-msg-warp{
     height: 75vh;
     overflow-y: scroll;
+    overflow-x: hidden;
+}
+.center-cropped {
+    object-fit: cover; /* Do not scale the image */
+    object-position: center; /* Center the image within the element */
+    height: 300px;
+    width: 100%;
+    margin-top: 10px;
+}
+.chat-title-right-green {
+    background: rgba(0, 219, 87, 0.5);
+    padding: 10px;
+}
+.chat-title-right-green > h3{
+    color: #00b22d;
+    font-size: 18px;
+    margin: 0px;
+    font-family: 'prompt'
+}
+.btn-action-full-green {
+    background-color: #00b22d;
+    color: #fff;
+    box-shadow: 0 0 10px -1px #666;
+    padding: 10px 30px;
+    font-family: 'promptregular';
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/****************** Star Rating **********************/
+.acidjs-rating-stars,
+.acidjs-rating-stars label::before
+{
+    display: inline-block;
+}
+ 
+/* .acidjs-rating-stars label:hover,
+.acidjs-rating-stars label:hover ~ label
+{
+    color: #189800;
+} */
+ 
+.acidjs-rating-stars *
+{
+    margin: 0;
+    padding: 0;
+}
+ 
+.acidjs-rating-stars input
+{
+    display: none;
+}
+ 
+.acidjs-rating-stars
+{
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+ 
+.acidjs-rating-stars label
+{
+    color: #ccc;
+}
+ 
+.acidjs-rating-stars label::before
+{
+    content: "\2605";
+    width: 18px;
+    line-height: 18px;
+    text-align: center;
+    font-size: 18px;
+    cursor: pointer;
+}
+ 
+.acidjs-rating-stars input:checked ~ label
+{
+    color: #FA1B25;
+}
+ 
+.acidjs-rating-disabled
+{
+    opacity: .50;
+     
+    -webkit-pointer-events: none;
+    -moz-pointer-events: none;
+    pointer-events: none;
 }

@@ -12,17 +12,21 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 chat-wrapper-body">
-        <div class="left-msg-warp col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <div class="left-msg-warp col-xs-4 col-sm-4 col-md-4 col-lg-4">
                         <div ng-show="roomnotfound">ไม่มีข้อความเลย</div>
             <div ng-click="entryRoom(room)" ng-class="{readmsg: room.isReaded===true}" class="one-msg-user" ng-repeat="room in chatRoom  track by $index">
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-user-thumnail-left">
-                    <!-- <img ng-if="checkRole[$index]==='expert'" width="48px" height="48px" ng-src="{{room[checkRole[$index]].thumbImgUrl}}"> -->
-                    <img width="48px" height="48px" ng-src="{{room[checkRole[$index]].imgUrl}}">
-                    <!-- <img ng-if="checkRole[$index]==='employer'" width="48px" height="48px" ng-src="{{room[checkRole[$index]].imgUrl}}"> -->
+                    <img ng-if="checkRole[$index]==='expert'" width="48px" height="48px" ng-src="{{room[checkRole[$index]].thumbImgUrl}}">
+                    <!-- <img width="48px" height="48px" ng-src="{{room[checkRole[$index]].imgUrl}}"> -->
+                    <img ng-if="checkRole[$index]==='employer'" width="48px" height="48px" ng-src="{{room[checkRole[$index]].imgUrl}}">
+                    <img ng-if="checkRole[$index]==='expertUser'" width="48px" height="48px" ng-src="{{room[checkRole[$index]].thumbImgUrl}}">
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:0px;">
                     <!-- <h2 ng-if="checkRole[$index]==='expert'">{{room.expertUser.firstName}} {{room.expertUser.lastName}}</h2> -->
-                    <h2 ng-class="{readnamechat: room.isReaded===true}" class="namechat">{{room[checkRole[$index]].firstName}} {{room[checkRole[$index]].lastName}}</h2>
+                    <h2 ng-class="{readnamechat: room.isReaded===true}" ng-if="checkRole[$index]==='employer'" class="namechat">{{room[checkRole[$index]].firstName}} {{room[checkRole[$index]].lastName}}</h2>
+                    <h2 ng-class="{readnamechat: room.isReaded===true}" ng-if="checkRole[$index]==='expert'" class="namechat">{{room[checkRole[$index]].name[lang]}}</h2>
+                    <h2 ng-class="{readnamechat: room.isReaded===true}" ng-if="checkRole[$index]==='expertUser'" class="namechat">{{room[checkRole[$index]].firstName}} {{room[checkRole[$index]].lastName}}</h2>
+                    
                     <!-- <h2 ng-if="checkRole[$index]==='employer'">{{room[checkRole[$index]].firstName}} {{room[checkRole[$index]].lastName}}</h2> -->
                     <p ng-class="{readlastmsg: room.isReaded===true}" class="lastmsg-leftchat">{{room.lastMsg}}</p>
                 </div>
@@ -46,7 +50,11 @@
             <ol class="chat" >
                 <div ng-repeat="msg in chatMsg">
                     <li ng-if="msg.user._id != userId" class="other">
-                        <div class="avatar"><img ng-src="{{msg.user.imgUrl}}" draggable="false"></div>
+                        <div class="avatar">
+                            <img ng-if="msg.action == 'system'" ng-src="{{msg.user.imgUrl}}" draggable="false">
+                            <img ng-if="msg.action == 'review'" ng-src="{{msg.user.imgUrl}}" draggable="false">
+                            <img ng-if="msg.action != 'system' && msg.action != 'review'" ng-src="{{exPic}}" draggable="false">
+                        </div>
                         <div ng-if="msg.action==='system'" class="msgsys">
                             <p ng-if="msg.type==='message'">{{msg.message}}</p>
                             <img ng-if="msg.type==='image'" ng-src="{{msg.message}}">
@@ -57,14 +65,21 @@
                             </p>
                             <img ng-if="msg.type==='image'" ng-src="{{msg.message}}">
                         </div>
+                        <div ng-if="msg.action==='review'" class="msgsys">
+                                <p ng-if="msg.type==='message'">{{msg.message}}
+                                    <button style="display:block;" class="btn btn-action" ng-click="review(roomDataG)">รีวิว</button>
+                                </p>
+                                <img ng-if="msg.type==='image'" ng-src="{{msg.message}}">
+                            </div>
                         <div ng-if="msg.action==='handOver'" class="msg">
                             <p ng-if="msg.type==='message'">{{msg.message}}
-                                <button style="display:block;" class="btn btn-action" ng-click="viewOfferPrice(roomDataG)">ดูรายละเอียดและตอบรับ</button>
+                                <button style="display:block;" class="btn btn-action" ng-click="viewOfferPrice(roomDataG)">ดูรายละเอียดงานและตอบรับ</button>
                             </p>
                             <img ng-if="msg.type==='image'" ng-src="{{msg.message}}">
                         </div>
                         <div ng-if="msg.action===null" class="msg">
                             <p ng-if="msg.type==='message'">{{msg.message}}</p>
+                            <p ng-if="msg.type===null">{{msg.message}}</p>
                             <img ng-if="msg.type==='image'" ng-src="{{msg.message}}">
                         </div>
                     </li>
@@ -75,32 +90,33 @@
                             <img ng-if="msg.type==='image'" ng-src="{{msg.message}}">
                         </div>
                         <div ng-if="msg.action==='quotation'" class="msg">
-                            <p ng-if="msg.type==='message'">{{msg.message}}
+                            <p ng-if="msg.type==='message'">{{msg.user.imgUrl}}
                                 <button style="display:block;" class="btn btn-action" ng-click="viewOfferPrice(roomDataG)">ดูรายละเอียดใบเสนอราคา</button>
                             </p>
                             <img ng-if="msg.type==='image'" ng-src="{{msg.message}}">
                         </div>
                         <div ng-if="msg.action==='handOver'" class="msg">
                             <p ng-if="msg.type==='message'">{{msg.message}}
-                                <button style="display:block;" class="btn btn-action" ng-click="viewOfferPrice(roomDataG)">ดูรายละเอียดานและตอบรับ</button>
+                                <button style="display:block;" class="btn btn-action" ng-click="viewOfferPrice(roomDataG)">ดูรายละเอียดงาน</button>
                             </p>
                             <img ng-if="msg.type==='image'" ng-src="{{msg.message}}">
                         </div>
                         <div ng-if="msg.action===null" class="msg">
                             <p ng-if="msg.type==='message'">{{msg.message}}</p>
+                            <p ng-if="msg.type===null">{{msg.message}}</p>
                             <img ng-if="msg.type==='image'" ng-src="{{msg.message}}">
                         </div>
                     </li>
                 </div>
             </ol>
         </div>
-        <div ng-if="roomnotfound" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-right-body">
+        <div ng-if="roomnotfound" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 chat-right-body">
             <div class="chat-title-right-ask"><h3><img src="assets/img/Group.png">&nbsp;</h3></div>
             <div class="chat-right-des">
                
             </div>
         </div>
-        <div ng-if="Stateroom===1" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-right-body">
+        <div ng-if="Stateroom===1" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 chat-right-body">
             <div class="chat-title-right-ask"><h3><img src="assets/img/Group.png">&nbsp;สอบถาม</h3></div>
             <div class="chat-right-des">
                 <p>
@@ -109,16 +125,58 @@
                 <button ng-if="btnOffPrice" ng-click="OfferPrice(roomDataG)" class="btn btn-action-full">เสนอราคา</button>
             </div>
         </div>
-        <div ng-if="Stateroom===2" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-right-body">
+        <div ng-if="Stateroom===2" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 chat-right-body">
             <div class="chat-title-right-w8paid"><h3><img src="assets/img/Group.png">&nbsp;รอชำระเงิน</h3></div>
             <div class="chat-right-des">
                     <p>
                         {{Statemsg[lang]}}
                     </p>
-                <button ng-click="viewOfferPrice(roomDataG)" class="btn btn-action-full">ดูรายละเอียดใบเสนอราคา</button>
+                <button ng-if="btnOffPrice" ng-click="updateQT(roomDataG)" class="btn btn-action-full">แก้ไขใบเสนอราคา</button>
+                <button ng-if="!btnOffPrice" ng-click="viewOfferPrice(roomDataG)" class="btn btn-action-full">ดูรายละเอียดใบเสนอราคา</button>
             </div>
         </div>
-        <div class="col-sm-offset-3 col-md-offset-3 col-lg-offset-3 col-sm-6 col-md-6 col-lg-6 chat-msg-body-input">
+        <div ng-if="Stateroom===3" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 chat-right-body">
+            <div class="chat-title-right-green"><h3><img src="assets/img/Group.png">&nbsp;ทำงาน</h3></div>
+            <div class="chat-right-des">
+                    <p>
+                        {{Statemsg[lang]}}
+                    </p>
+                <button ng-if="btnOffPrice" ng-click="sendJob(roomDataG)" class="btn btn-action-full">ส่งมอบงาน</button>
+                <!-- <button ng-if="btnOffPrice" ng-click="updateQT(roomDataG)" class="btn btn-action-full">แก้ไขงาน</button> -->
+                <button ng-if="!btnOffPrice" ng-click="viewOfferPrice(roomDataG)" class="btn btn-action-full" disabled>ตอบรับงาน</button>
+            </div>
+        </div>
+        <div ng-if="Stateroom===4" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 chat-right-body">
+            <div class="chat-title-right-green"><h3><img src="assets/img/Group.png">&nbsp;ทำงาน</h3></div>
+            <div class="chat-right-des">
+                    <p>
+                        {{Statemsg[lang]}}
+                    </p>
+                <button ng-if="btnOffPrice" ng-click="updateQT(roomDataG)" class="btn btn-action-full" disabled>ส่งมอบงาน</button>
+                <button ng-if="!btnOffPrice" ng-click="acceptJob(roomDataG)" class="btn btn-action-full">ตอบรับงาน</button>
+            </div>
+        </div>
+        <div ng-if="Stateroom===5" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 chat-right-body">
+            <div class="chat-title-right-green"><h3><img src="assets/img/Group.png">&nbsp;เสร็จสิ้น</h3></div>
+            <div class="chat-right-des">
+                    <p>
+                        {{Statemsg[lang]}}
+                    </p>
+                <button ng-if="btnOffPrice" ng-click="updateQT(roomDataG)" class="btn btn-action-full-green">งานเสร็จสิ้นแล้ว</button>
+                <button ng-if="!btnOffPrice" ng-click="review(roomDataG)" class="btn btn-action-full-green">รีวิว</button>
+            </div>
+        </div>
+        <div ng-if="Stateroom===6" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 chat-right-body">
+            <div class="chat-title-right-green"><h3><img src="assets/img/Group.png">&nbsp;เสร็จสิ้น</h3></div>
+            <div class="chat-right-des">
+                    <p>
+                        {{Statemsg[lang]}}
+                    </p>
+                <button ng-if="btnOffPrice" class="btn btn-action-full">งานเสร็จสิ้นแล้ว</button>
+                <button ng-if="!btnOffPrice" ng-click="" class="btn btn-action-full-green">จ้างงานอีกครั้ง</button>
+            </div>
+        </div>
+        <div class="col-sm-offset-4 col-md-offset-4 col-lg-offset-4 col-sm-6 col-md-6 col-lg-6 chat-msg-body-input">
             <textarea id="inputMsg" my-enter="chatPushMsg()" ng-model="msgsend" class="chatinput" row="10" cols="100%" placeholder="แจ้งรายละเอียดงานที่ต้องการ"></textarea>
             <div class="image-upload">
             <label for="file-input">
@@ -181,6 +239,58 @@
             </form>
         </div>
 </script>
+<script type="text/ng-template" id="updateQT.html">
+    <div class="modal-header modal-regis-header">
+        เสนอราคา
+        <span ng-click="closeMD()">X</span>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div class="form-group form-g-login-modal">
+            <form ng-submit="updateQT()" name="expertsCreate" autocomplete="off">
+            <div class="row form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label>ชื่องาน</label>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <input ng-model="qtData.name[lang]" type="text" placeholder="ชื่อโพสงาน และ รายละเอียดเบื้องต้น" class="form-control input-size-box" required>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label>ราคา</label>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <input ng-model="qtData.price" class="form-control jobsex-price input-size-box" type="number" placeholder="3000" required>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label>รูปแบบงาน</label>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <div class="type-radio-jobsex" ng-init="workjobunit='hour'">
+                        <input type="radio" name="optradio" ng-model="qtData.priceType" value="hour" id="radio1"><label for="radio1">ต่อชั่วโมง</label>
+                        <input type="radio" name="optradio" ng-model="qtData.priceType" value="day" id="radio2"><label for="radio2">ต่อวัน</label>
+                        <input type="radio" name="optradio" ng-model="qtData.priceType" value="job" id="radio3"><label for="radio3">ต่องาน</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label>รายละเอียด</label>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <textarea ng-model="qtData.detail[lang]" style="resize:none;"rows="4" cols="40" required></textarea>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                   <button type="submit" class="btn-action-jobexpress btn" style="width:100%;">แก้ไขใบสนอราคา</button>
+                </div>
+            </div>
+            </form>
+        </div>
+</script>
 <script type="text/ng-template" id="viewOfferPriceModal.html">
     <div class="modal-header modal-regis-header">
         ใบเสนอราคา
@@ -195,7 +305,8 @@
             <h2>ราคา<span><div class="crrc">฿</div> {{vQT.price}}</span></h2>
             <p>{{vQT.priceType}}</p>
         </div>
-        <button style="margin-top:30px;font-size:22px;" ng-click="paid()" class="btn btn-action-full">ชำระเงิน</button>
+        <button ng-if="!btnOffPrice" style="margin-top:30px;font-size:22px;" ng-click="paid()" class="btn btn-action-full">ชำระเงิน</button>
+        <button ng-if="btnOffPrice" style="margin-top:30px;font-size:22px;" ng-click="updateQT()" class="btn btn-action-full">แก้ไขใบสนอราคา</button>
         
     </div>
 </script>
@@ -218,7 +329,8 @@
                 <label>คูปอง</label>
             </div>
             <div class="col-sm-6 col-md-6 col-lg-6">
-                <input type="text" placeholder="CODE" class="form-control input-size-box">
+                <input onchange="angular.element(this).scope().checkCode()" ng-model="codepro" type="text" placeholder="CODE" class="form-control input-size-box">
+                <label ng-if="rsCode">{{rsCode.name[lang]}}</label>
             </div>
         </div>
         
@@ -229,7 +341,7 @@
                 <label>รวมยอด</label>
             </div>
             <div class="col-sm-6 col-md-6 col-lg-6">
-                <label style="float:right;"><div class="crrc">฿</div>{{vQT.price}}</label>
+                <label style="float:right;"><div class="crrc">฿</div>{{rsdisc}}</label>
             </div>
         </div>
     </div>
@@ -238,9 +350,10 @@
             <center>
             <h1>เลือกช่องทางการชำระเงิน</h1>
             <div class="type-radio-jobsex" >
-                <input type="radio" name="optradio" ng-model="user.jobunit" value="ต่อชั่วโมง" id="radio1" class="ng-pristine ng-untouched ng-valid ng-not-empty" aria-invalid="false"><label for="radio1">บัตรเครดิต/เดบิต </label>
-                <input type="radio" name="optradio" ng-model="user.jobunit" value="ต่อวัน" id="radio2" class="ng-pristine ng-untouched ng-valid ng-not-empty" aria-invalid="false"><label for="radio2">บัญชีธนาคาร</label>
+                <input type="radio" name="optradio" ng-model="paidtype" value="credit" id="radio1" class="ng-pristine ng-untouched ng-valid ng-not-empty" aria-invalid="false"><label for="radio1">บัตรเครดิต/เดบิต </label>
+                <input type="radio" name="optradio" ng-model="paidtype" value="moneytran" id="radio2" class="ng-pristine ng-untouched ng-valid ng-not-empty" aria-invalid="false"><label for="radio2">บัญชีธนาคาร</label>
             </div>
+            <label class="msg-form-err" ng-if="notpaid">กรุณาเลือกช่องทางการชำระเงิน</label>
             <button style="margin-top:30px;font-size:22px;" ng-click="checkpaid()" class="btn btn-action-full">ชำระเงิน</button>
             </center>
         </div>
@@ -271,7 +384,7 @@
             <div class="col-sm-4 col-md-4 col-lg-4">
                 <img src="assets/img/bank.png">
             </div>
-            <div class="col-sm-8 col-md-8 col-lg-8" style="text-align:left;">
+            <div class="col-sm-8 col-md-8 col-lg-8" style="text-align:left;padding-top: 10px;">
                 <p>บริษัท เซนเซโนะ จำกัด</p>
                 <p>ธนาคารทหารไทย</p>
                 <p>บัญชีเลขที่ 266-2-04468</p>
@@ -280,12 +393,57 @@
         <div class="row form-group bank-wrap">
             <div class="input-slip">
                 <span class="btn btn-slip">
-                    <input type="file" onchange="angular.element(this).scope().uploadFile(this.files)" multiple>
+                    <input type="file" onchange="angular.element(this).scope().uploadSlip(this.files)">
                     <p class="txt-slip">อัพโหลดหลักฐานการโอน</p>
                 </span>
             </div>
+            <div class="col-sm-12 col-md-12 col-lg-12" ng-repeat="slip in slipArray track by $index | limitTo: 5">
+                <img class="center-cropped" ng-src="{{slip}}" alt="">
+                <a class="rm-pic-expt-cre" ng-click="removeSlip($index)"><img src="assets/img/delete.png"></a>
+            </div>
         </div>
-        <button style="margin-top:30px;font-size:22px;" ng-click="" class="btn btn-action-full">ยืนยันการชำระเงิน</button>
+        <center>
+            <span class="msg-form-err" ng-if="err===true">{{errmsg}}</span>
+        </center>
+        <button style="margin-top:30px;font-size:22px;" ng-click="confirmPurchase()" class="btn btn-action-full">ยืนยันการชำระเงิน</button>
+    </div>
+</script>
+<script type="text/ng-template" id="review.html">
+    <div class="modal-header modal-regis-header">
+        รีวิว
+        <span ng-click="closeMD()">X</span>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div class="form-group" style="min-height:400px;">
+                <div style="padding-bottom:20px;border-bottom:1px solid #F4F4F4;"class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+                        <img class="thmnail-himsg"  ng-src="{{workerpic}}">
+                    </div>
+                    <div class="col-sm-9 col-md-9 col-lg-9">
+                        <h2 style="display:inline-block;"class="name-review">{{workername}}</h2>
+                    </div>
+                    
+                    <div class="col-offset-xs-6 col-offset-sm-6 col-offset-md-6 col-offset-lg-6 col-sm-9 col-md-9 col-lg-9">
+                        <!-- <h2 style="display:inline-block;color:#6f6f6fd5;" class="name-review">{{exptdata.tag.name[lang]}}</h2> -->
+                        <div class="acidjs-rating-stars">
+                            <form>
+                                <input type="radio" ng-model="rating" name="group-2" id="group-2-0" value="5" /><label for="group-2-0"></label>
+                                <input type="radio" ng-model="rating" name="group-2" id="group-2-1" value="4" /><label for="group-2-1"></label>
+                                <input type="radio" ng-model="rating" checked="checked" name="group-2" id="group-2-2" value="3" /><label for="group-2-2"></label>
+                                <input type="radio" ng-model="rating" name="group-2" id="group-2-3" value="2" /><label for="group-2-3"></label>
+                                <input type="radio" ng-model="rating" name="group-2" id="group-2-4"  value="1" /><label for="group-2-4"></label>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <textarea id="inputMsg" ng-model="msgsend" class="chatinputsayhi" row="20" cols="100%" placeholder="เล่าประสบการณ์กับผู้ใช้นี้" required></textarea>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <button style="width:100%;"class="btn btn-action" ng-click="sendReview()" type="submit" >ส่งวิว</button>
+                </div>
+        </div>
     </div>
 </script>
 </section>

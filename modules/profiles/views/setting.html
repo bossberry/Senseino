@@ -10,114 +10,93 @@
     <h2>{{user.firstName}} {{user.lastName}}</h2>
     <p><img style="display:inline;"src="assets/img/location.png">{{user.address || '-'}}</p>
 </div>
-<div class="section-box container">
-    <h1 class="head-section-margin">ประวัติงาน<span class="see-all-wrap float-r"><button class="btn btn-more" style="margin-top:-10px;"><img src="assets/img/jobsexpress.png">โพสประวัติ</button></span></h1>
-    <slick infinite=true slides-to-show="5" slides-to-scroll="1">
-        <div class="slick-item col-sm-5 col-md-4 col-lg-2" ng-repeat="data in user.experts">
-            <a ng-href="/#/experts-detail{{data._id}}">
-                <div class="crop-slide-img">
-                <img class="slide-slick" ng-src="{{data.profileImg[0].url}}">
+<div class="section-box col-sm-6 col-md-6 col-lg-6 ">
+    <div class="section-shadow ">
+        <h1 class="head-section-margin">ข้อมูลส่วนตัว</h1>
+        <form ng-submit="updateProfile()" name="upProfile" autocomplete="off">
+            <div class="form-group form-g-setting">
+                <label>ชื่อ</label>
+                <input type="text" ng-model="user.firstName" ng-pattern="/^[a-zA-Z\s]*$/" name="firstname" class="form-control" placeholder="ชื่อ" required ng-minlength="2"/>
+            </div>
+            <div class="form-group form-g-setting">
+                <label>นามสกุล</label>
+                <input type="text" ng-model="user.lastName" ng-pattern="/^[a-zA-Z\s]*$/"  name="lastname" class="form-control" placeholder="นามสกุล" required ng-minlength="2"/>
+            </div>
+            <div class="form-group form-g-setting">
+                <label>เบอร์โทร</label>
+                <input type="text" ng-model="user.mobileNo" ng-pattern="/^[0-9]{10,10}$/"  name="tel" class="form-control" placeholder="089-999-9999" required ng-minlength="10"/>
+            </div>
+            <div class="form-group form-g-setting">
+                <label>อีเมล</label>
+                <input type="email" ng-model="user.email" name="email" class="form-control" placeholder="name@gmail.com" required ng-minlength="10"/>
+            </div>
+            <div class="form-group form-g-setting">
+                <label>เลขบัตรประชาชน</label>
+                <input type="idCard" ng-model="user.idCard" name="idCard" class="form-control" placeholder="เลขบัตรประชาชน" required ng-minlength="13"/>
+            </div> 
+            <div class="form-group form-g-setting">
+                <label>ที่อยู่</label>
+                <input type="text" ng-model="user.address" ng-pattern="/^[a-zA-Z\s]*$/" name="address" class="form-control" placeholder="ที่อยู่" required ng-minlength="10"/>
+            </div>
+            <h1 class="head-section-margin">บัญชีธนาคาร</h1>
+            <div class="form-group form-g-setting col-lg-12">
+                <!-- <div class="col-sm-3 col-md-3 col-lg-2"> -->
+                    <label>ธนาคาร</label>
+                <!-- </div> -->
+                <div style="margin-left:120px;"class="col-sm-6 col-md-6 col-lg-6">
+                    <select 
+                        class="form-control input-size-box"
+                        ng-model="user.bankAccount"
+                        ng-options="data as data.name[lang] for data in bank track by data._id" required>
+                        <option value="" disabled>-- เลือกประเภท --</option>
+                    </select>
                 </div>
-                <p class="experts-name">{{data.name[lang]}}</p>
-                <span class="experts-tag">{{data.tag.name[lang]}}</span>
-            </a>
-        </div>
-    </slick>
-</div>
-<div class="section-box container">
-    <h1 class="head-section-margin">โพสงาน<span class="see-all-wrap float-r"><button class="btn btn-more" style="margin-top:-10px;"><img src="assets/img/jobsexpress.png">โพสงาน</button></span></h1>
-    <div class="col-sm-6 col-md-6 col-lg-6 job-post-repeat-col" ng-repeat="data in user.jobs" style="padding-left:0px;">
-        <div class="job-post-wrapper" ng-click="jobsModal(data)">
-            <div class="col-sm-9 col-md-9 col-lg-9">
-                {{data.name[lang]}}&nbsp;
-                <div  class="status-new" ng-if="data.status=='NEW'"><span>{{data.status}}</span></div>
-                <div  class="status-prog" ng-if="data.status=='IN PROGRESS'"><span>{{data.status}}</span></div>
             </div>
-            <div class="col-sm-3 col-md-3 col-lg-3">
-                <p class="job-price">
-                <span class="currency-ssn">$</span>
-                {{data.price}}
-                </p>
-                <p class="job-unit">
-                {{data.priceType}}
-                </p>     
+            <div class="form-group form-g-setting">
+                <label>เลขบัญชีธนาคาร</label>
+                <input type="text" ng-model="user.billingName" ng-pattern="/^[0-9]{10,10}$/" name="address" class="form-control" placeholder="เลขบัญชีธนาคาร" required ng-minlength="13"/>
             </div>
-            <div class="col-sm-7 col-md-7 col-lg-7">
-                <button class="btn tag-category">{{data.jobType.name[lang]}}</button>
-                <button class="btn tag-category">{{data.tag.name[lang]}}</button>
+            <div class="form-group form-g-setting" style="text-align:center">
+                <button style="width:250px;"class="btn btn-action" type="submit" ng-disabled="myForm.$invalid">บันทึกข้อมูลส่วนตัว</button>
             </div>
-            <div class="col-sm-5 col-md-5 col-lg-5" style="text-align:right;">
-                <p class="job-name">{{data.user.firstName}} {{data.user.lastName}}</p>
-                <img class="jobs-tumbnail-poster" ng-src="{{data.user.imgUrl}}">  
+            <div class="form-group form-g-setting">
+                <h1 class="head-section-margin">ไฟล์แนบเอกสาร</h1> 
+                <div class="row">          
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        <span class="btn btn-media">
+                            <input type="file" onchange="angular.element(this).scope().uploadFile(this.files)" multiple>
+                        </span>
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 crop" ng-repeat="file in filesArray track by $index | limitTo: 5">
+                        <img class="img-pre" width="100%" ng-src="{{file}}" alt="">
+                        <a class="rm-pic-expt-cre" ng-click="removeFile($index)"><img src="assets/img/delete.png"></a>
+                    </div>
+                </div>         
             </div>
-        </div>
+        </form>
     </div>
 </div>
-<div class="section-box container">
-    <h1 class="head-section-margin">รายการโปรด</h1>
-    <slick 
-    infinite=true 
-    slides-to-show="5" 
-    slides-to-scroll="1">
-        <div class="slick-item col-sm-5 col-md-4 col-lg-2" ng-repeat="data in user.expertFavorite">
-            <div  class="amPmCheckbox"  ng-click="favExpt(data._id, data.isFavorite)" >
-                <input type="checkbox" class="checkboxLabel main_street_input" id="{{data._id}}" value="1" ng-checked="data.isFavorite"/>
-                <label for="{{data._id}}"></label>
+<div class="section-box col-sm-6 col-md-6 col-lg-6">
+    <div class="section-shadow">
+        <h1 class="head-section-margin">เปลี่ยนรหัสผ่าน</h1>
+        <form ng-submit="submitChangePass()" name="changePassForm" autocomplete="off">
+            <div class="form-group form-g-setting">
+                <label>รหัสผ่านเดิม</label>
+                <input type="password" id="passOld" ng-model="passOld" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/" name="password" class="form-control" placeholder="รหัสผ่าน" required ng-minlength="10"/>
             </div>
-            <a ng-href="/#/experts-detail{{data._id}}">
-                <div class="crop-slide-img">
-                <img class="slide-slick" ng-src="{{data.profileImg[0].url}}">
-                </div>
-                <p class="experts-name">{{data.name[lang]}}</p>
-                <span class="experts-tag">{{data.tag.name[lang]}}</span>
-                <div class="experts-rating" ng-if="data.rating===0">
-                    <img src="assets/img/rating.png">
-                    <img src="assets/img/rating.png">
-                    <img src="assets/img/rating.png">
-                    <img src="assets/img/rating.png">
-                    <img src="assets/img/rating.png">
-                </div>
-                <div class="experts-rating" ng-if="data.rating===1">
-                    <img src="assets/img/rating-active.png">
-                    <img src="assets/img/rating.png">
-                    <img src="assets/img/rating.png">
-                    <img src="assets/img/rating.png">
-                    <img src="assets/img/rating.png">
-                </div>
-                <div class="experts-rating" ng-if="data.rating===2">
-                    <img src="assets/img/rating-active.png">
-                    <img src="assets/img/rating-active.png">
-                    <img src="assets/img/rating.png">
-                    <img src="assets/img/rating.png">
-                    <img src="assets/img/rating.png">
-                </div>
-                <div class="experts-rating" ng-if="data.rating===3">
-                    <img src="assets/img/rating-active.png">
-                    <img src="assets/img/rating-active.png">
-                    <img src="assets/img/rating-active.png">
-                    <img src="assets/img/rating.png">
-                    <img src="assets/img/rating.png">
-                </div>
-                <div class="experts-rating" ng-if="data.rating===4">
-                    <img src="assets/img/rating-active.png">
-                    <img src="assets/img/rating-active.png">
-                    <img src="assets/img/rating-active.png">
-                    <img src="assets/img/rating-active.png">
-                    <img src="assets/img/rating.png">
-                </div>
-                <div class="experts-rating" ng-if="data.rating===5">
-                    <img src="assets/img/rating-active.png">
-                    <img src="assets/img/rating-active.png">
-                    <img src="assets/img/rating-active.png">
-                    <img src="assets/img/rating-active.png">
-                    <img src="assets/img/rating-active.png">
-                </div>
-                <p><img style="display:inline;"src="assets/img/location.png">{{data.location | getDistance}} km {{data.location.name}}</p>
-            </a>
-        </div>
-    </slick>
+            <div class="form-group form-g-setting">
+                <label>รหัสผ่านใหม่</label>
+                <input style="margin-bottom:10px;"type="password" id="newpass" onkeyup="angular.element(this).scope().checkMatchPass()" ng-model="passwordNew" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/" name="password" class="form-control" placeholder="รหัสผ่าน" required ng-minlength="10"/>
+                <input type="password" id="conpass" onkeyup="angular.element(this).scope().checkMatchPass()" ng-model="password" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/" name="password" class="form-control" placeholder="รหัสผ่าน" required ng-minlength="10"/>
+                <label></label><span class="msg-form-err" id='conmessage' style="margin-left: 130px;"></span>
+                <label></label><span ng-hide="msgsucc" class="msg-form-success">{{succmsg}}</span>
+                <label></label><span ng-hide="msgerr" class="msg-form-err">{{errmsg}}</span>
+            </div>
+            <div class="form-group form-g-setting" style="text-align:center">
+                <button style="width:250px;"class="btn btn-action" type="submit" ng-disabled="myForm.$invalid">บันทึกรหัสผ่าน</button>
+            </div>
+        </form>
+    </div>
 </div>
-<script type="text/ng-template" id="reviewModal.html">
-  
-</script>
 </section>
+<aside data-ng-include="'/modules/footers/views/footer.html'"></aside> 

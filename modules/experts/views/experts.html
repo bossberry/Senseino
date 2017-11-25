@@ -8,8 +8,27 @@
         <h1 class="head-section-margin">ประเภทงาน</h1>
     </div>
 </div>
-<div class="">
-    <div class="col-sm-1 col-md-1 col-lg-1" ng-repeat="data in jobTypes">
+<div class="section-box container-fluid" ng-repeat="ex in jobTypesRow">
+    <div class="col-lg-12" id="jobrow">
+        <slick 
+        infinite=true 
+        slides-to-show="10" 
+        slides-to-scroll="1">
+            <div class="slick-item col-sm-5 col-md-4 col-lg-2" ng-repeat="data in jobTypes">
+                <a ng-href="/#/jobtype-experts{{data._id}}">
+                    <!-- <div class="wrap">  
+                        <figure class="tint">
+                            <img style="width:100%" ng-src="{{data.imgExpertUrl}}">
+                        </figure>  
+                    </div> -->
+                    <img style="width:100%" ng-src="{{data.imgExpertUrl}}">
+                    <p class="textcover-img">{{data.name[lang]}}</p>
+                </a>
+            </div>
+        </slick>
+    </div>
+</div>
+    <!-- <div class="col-sm-1 col-md-1 col-lg-1" ng-repeat="data in jobTypes">
     <a ng-href="/#/jobtype-experts{{data._id}}">
         <div class="wrap">  
             <figure class="tint">
@@ -18,8 +37,8 @@
         </div>
         <p class="textcover-img">{{data.name[lang]}}</p>
     </a>
-    </div>
-</div>
+    </div> -->
+
 <!-- <div class="container">
     <div class="col-lg-12">
         <div class="col-sm-6 col-md-6 col-lg-6">

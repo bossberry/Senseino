@@ -23,26 +23,19 @@ function (authService, $scope, $uibModal, $http, URL_API) {
 		console.log(err);
 		});
 	}
-	$scope.chatExpt = function () {
+	$scope.chatExpt = function (exptdetail) {
 		if($scope.isLoggedIn){
-			$http.post(URL_API + '/api/v1/rooms', 
-			{
-				employerId : userdata._id,
-				expertId: $scope.exptID,
-				expertUserId: $scope.exptUserId,
-				message:"Hello world",
-				createBy : "employer"
-			}).then(function (res) {
-					console.log(res);
-					window.location.href = '/#/chat'
-				}, function (err) {
-					// console.log(err.data);
-					if(err.data.code === 40022){
-						window.location.href = '/#/chat'
-					}else{
-						console.log(err.data);
+			var modalInstance = $uibModal.open({
+				animation: $scope.animationsEnabled,
+				templateUrl: 'hiMsg.html',
+				controller: 'HimsgModalController as ctrl',
+				resolve: {
+					exptdetail: function() {
+					  return exptdetail;
 					}
+				  }
 			});
+			
 			
 		} else {
 			var modalInstance = $uibModal.open({
@@ -122,6 +115,39 @@ angular
 	console.log('ReviewModalController');
 	console.log(review);
 	$scope.reviews = review
+	$scope.closeMD = function() {
+		$uibModalInstance.close(false);
+	};
+	
+});
+angular
+.module('myApp')
+.controller('HimsgModalController', function ($scope, $uibModal, $uibModalInstance, exptdetail, $http, URL_API) {
+	$scope.lang = 'en';
+	// console.log('HimsgModalController');
+	const userdata = JSON.parse(localStorage.getItem('userdata'));
+	$scope.exptdata = exptdetail
+	$scope.sendMsg = function () {
+		$http.post(URL_API + '/api/v1/rooms', 
+			{
+				employerId : userdata._id,
+				expertId: exptdetail._id,
+				expertUserId: exptdetail.user._id,
+				message: $scope.msgsend,
+				createBy : "employer"
+			}).then(function (res) {
+					$uibModalInstance.close(false);
+					window.location.href = '/#/chat'
+				}, function (err) {
+					if(err.data.code === 40022){
+						$uibModalInstance.close(false);
+						window.location.href = '/#/chat'
+					}else{
+						console.log(err.data);
+					}
+			});
+	};
+	
 	$scope.closeMD = function() {
 		$uibModalInstance.close(false);
 	};
