@@ -290,5 +290,22 @@
         <button class="btn dialog-action btn-action" type="button" ng-click="confirmDeleteWidget()"><img src="assets/img/chat.png">&nbsp;&nbsp;แชทเสนอราคา</button>
     </div>
 </script>
+<script type="text/ng-template" id="lineLoginModal.html">
+    <div class="modal-header modal-regis-header">
+        เข้าสู่ระบบด้วย Line
+        <span ng-click="closeMD()">X</span>
+    </div>
+    <div class="modal-body modal-regis-body" id="modal-body">
+    <form ng-submit="regisLine()" name="regisForm" autocomplete="off" style="margin-bottom:20px;">
+        <div class="form-group form-g-login-modal">
+            <input type="email" name="email"  ng-model="email" placeholder="อีเมล" class="form-control login-ip-email" required>
+        </div>
+        <div class="form-group form-g-login-modal" ng-if="loginerr===true">
+            <span class="msg-form-err" >{{loginerrmsg}}</span>
+        </div> 
+        <button class="btn btn-action-login" type="submit">เข้าสู่ระบบ</button>
+    </form>
+    </div>
+</script>
 </section>
 <aside data-ng-include="'/modules/footers/views/footer.html'"></aside> 
