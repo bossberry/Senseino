@@ -312,34 +312,34 @@ md-radio-button.md-default-theme .md-on, md-radio-button .md-on{
 }
 @media (max-width: 1700px) {
 	.crop-slide-img{
-		height: 480px;
+		height: 450px;
 		overflow: hidden;
 	}
 }
 
 @media (max-width: 1600px) {
 	.crop-slide-img{
-		height: 450px;
+		height: 400px;
 		overflow: hidden;
 	}
 }
 @media (max-width: 1550px) {
 	.crop-slide-img{
-		height: 420px;
+		height: 380px;
 		overflow: hidden;
 	}
 }
 
 @media (max-width: 1500px) {
 	.crop-slide-img{
-		height: 400px;
+		height: 360px;
 		overflow: hidden;
 	}
 }
 
 @media (max-width: 1400px) {
 	.crop-slide-img{
-		height: 350px;
+		height: 340px;
 		overflow: hidden;
 	}
 }
@@ -352,7 +352,7 @@ md-radio-button.md-default-theme .md-on, md-radio-button .md-on{
 
 @media (max-width: 1200px) {
 	.crop-slide-img{
-		height: 300px;
+		height: 260px;
 		overflow: hidden;
 	}
 }
