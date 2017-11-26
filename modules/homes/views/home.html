@@ -2,6 +2,7 @@
 <aside ng-show="!isLoggedIn" data-ng-include="'/modules/topbars/views/topbar.html'"></aside> 
 <aside ng-show="isLoggedIn" data-ng-include="'/modules/topbars/views/topbar4.html'"></aside>
 </div>  
+
 <section  class="margin-for-topbar-main " id="top">
     <center>
         <div class="crop-img-banner">
@@ -18,7 +19,7 @@
         </div>
         </div>
     </center>
-    
+   
     <div class="section-box container-fluid" ng-if="loaded===true" ng-repeat="ex in experts">
         <div class="col-lg-12">
                 <!-- col-sm-5ths col-md-5ths col-lg-5ths -->

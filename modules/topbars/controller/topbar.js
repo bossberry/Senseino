@@ -186,7 +186,7 @@ angular
 			
 			// }, function (err) {
 			// 	console.log(err.data);
-			// });	
+			// });		
 		 }, {perms:'user_address, user_mobile_phone'});
 		} else {
 		 console.log('User cancelled login or did not fully authorize.');

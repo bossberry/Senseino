@@ -318,7 +318,7 @@ function ($scope, $uibModal, URL_API, $http) {
 	
 		$scope.sendJob = function(room){
 			$http.put(URL_API + '/api/v1/quotations/state/' + room.quotation._id, {
-				state: 'closejob'
+				state: 'closeJob'
 			}).then(function (res) {
 				window.location.reload();
 				console.log(res);
@@ -353,9 +353,24 @@ function ($scope, $uibModal, URL_API, $http) {
 			}
 			});
 		};
+		$scope.hireAgain = function(room){
+			$http.put(URL_API + '/api/v1/quotations/state/' + room.quotation._id, {
+				state: 'newJob'
+			}).then(function (res) {
+				window.location.reload();
+				console.log(res);
+			
+			}, function (err) {
+				console.log(err.data);
+			});
 
+		};
 		
-
+		$scope.test = function() {
+			console.log('test');
+			document.getElementById('creditPaid').click();
+	
+		};
 	}
 }]);
 angular
@@ -396,9 +411,24 @@ angular
 		
 	
 	};
-	$scope.checkpaid = function() {
+	
+	$scope.checkpaid = function(rsdisc) {
 		$scope.notpaid = false;
 		if($scope.paidtype === "credit"){
+			$uibModalInstance.close(false);
+			var modalInstance = $uibModal.open({
+				animation: $scope.animationsEnabled,
+				templateUrl: 'omisepaid.html',
+				controller: 'OmiseModalController as ctrl',
+				resolve : { 
+					quotation : function() {
+					return quotation;
+					},
+					rsdisc : function(){
+						return rsdisc;
+					}
+				}
+			});
 		}else if ($scope.paidtype === "moneytran") {
 			$uibModalInstance.close(false);
 			var modalInstance = $uibModal.open({
@@ -685,6 +715,89 @@ angular
 		});
 	};
 
+	$scope.closeMD = function() {
+		$uibModalInstance.close(false);
+	};
+});
+
+angular
+.module('myApp')
+.controller('OmiseModalController', function ($http, URL_API, $scope, $uibModal, $uibModalInstance, quotation, rsdisc) {
+	$scope.lang = 'en';
+	const userdata = JSON.parse(localStorage.getItem('userdata'));
+	console.log(quotation);
+	console.log(rsdisc);
+	$scope.amount = rsdisc * 100;
+	$scope.omiseCon = function () {
+		console.log('omiseCon');
+		Omise.setPublicKey('pkey_test_55wt1kvw6lyyr2u7svp');
+		var cardInformation = {
+			name:             document.querySelector('[data-name="nameOnCard"]').value,
+			number:           document.querySelector('[data-name="cardNumber"]').value,
+			expiration_month: document.querySelector('[data-name="expiryMonth"]').value,
+			expiration_year:  document.querySelector('[data-name="expiryYear"]').value,
+			security_code:    document.querySelector('[data-name="securityCode"]').value
+		  };
+		
+		  Omise.createToken('card', cardInformation, function(statusCode, response) {
+			if (statusCode === 200) {
+			  // Success: send back the TOKEN_ID to your server. The TOKEN_ID can be
+			  // found in `response.id`.
+			//   checkoutForm.omiseToken.value = response.id;
+				console.log(response);
+				// console.log(response.id);
+				var datajson = JSON.stringify({channel:"creditCard",quotationId:quotation[0]._id, card:response.card.id, promotionId: ""});
+				console.log(datajson);
+
+
+				var parameter = JSON.stringify({channel:"creditCard",quotationId:quotation[0]._id, card:response.card.id, promotionId: ""});
+
+
+				$http.post(URL_API + '/api/v1/purchase', parameter)
+				.then(function (res) {
+						// $scope.err = false;
+						// localStorage.removeItem('rsCodeg');
+						// $uibModalInstance.close(false);
+						// window.location.reload();
+						console.log(res);
+					
+					}, function (err) {
+						console.log(err);
+						$scope.err = true;
+						$scope.errmsg = err.data;
+					});
+				// $http({
+				// 	method: 'POST',
+				// 	url: URL_API + '/api/v1/purchase',
+				// 	data: datajson,
+				// 	transformRequest: angular.identity,
+				// 	headers: {
+				// 		'Content-Type': 'application/json',
+				// 		'x-access-token':userdata.accessToken,
+				// 		'x-user':userdata.email,
+				// 		'Authorization':'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+				// 	}
+				// }).then(function (res) {
+				// 	// $scope.err = false;
+				// 	// localStorage.removeItem('rsCodeg');
+				// 	// $uibModalInstance.close(false);
+				// 	// window.location.reload();
+				// 	console.log(res);
+				
+				// }, function (err) {
+				// 	console.log(err);
+				// 	$scope.err = true;
+				// 	$scope.errmsg = err.data;
+				// });
+			}
+			else {
+				console.log(response);
+			  // Error: display an error message. Note that `response.message` contains
+			  // a preformatted error message. Also note that `response.code` will be
+			  // "invalid_card" in case of validation error on the card.
+			}
+		  });
+	}
 	$scope.closeMD = function() {
 		$uibModalInstance.close(false);
 	};
