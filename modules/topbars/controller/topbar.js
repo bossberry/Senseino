@@ -159,32 +159,32 @@ angular
 		$scope.authres = response.authResponse;
 		if (response.authResponse) {
 		 FB.api('/me?fields=id,name,email,first_name,last_name,age_range,picture.type(large)', function(response) {
-		//    console.log(response);
+		   console.log(response);
 		   $scope.prores = response;
-		   $http({
-			method: 'POST',
-			url: URL_API + '/api/v1/users/register',
-			data: { 
-				firstName: $scope.prores.first_name,
-				lastName: $scope.prores.last_name,
-				mobileNo: '',
-				email: $scope.prores.email,
-				imgUrl: resline.pictureUrl,
-				socialId: $scope.authres.userID,
-				socialToken: $scope.authres.accessToken,
-				type: 'facebook'
-			},
-			headers: {
-				'Content-Type': 'application/json',
-				'platform' : 'web',
-				// 'lang' : 'en',
-				'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
-			}
-			}).then( function(res){
-				console.log(res);
-			}, function(err) {
-				console.log(err);
-			});
+		//    $http({
+		// 	method: 'POST',
+		// 	url: URL_API + '/api/v1/users/register',
+		// 	data: { 
+		// 		firstName: $scope.prores.first_name,
+		// 		lastName: $scope.prores.last_name,
+		// 		mobileNo: '',
+		// 		email: $scope.prores.email,
+		// 		imgUrl: $scope.prores.picture.type[large],
+		// 		socialId: $scope.authres.userID,
+		// 		socialToken: $scope.authres.accessToken,
+		// 		type: 'facebook'
+		// 	},
+		// 	headers: {
+		// 		'Content-Type': 'application/json',
+		// 		'platform' : 'web',
+		// 		// 'lang' : 'en',
+		// 		'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+		// 	}
+		// 	}).then( function(res){
+		// 		console.log(res);
+		// 	}, function(err) {
+		// 		console.log(err);
+		// 	});
 		 });
 		} else {
 		 console.log('User cancelled login or did not fully authorize.');
