@@ -227,8 +227,8 @@ angular
 		url: URL_API + '/api/v1/users/register',
 		data: { 
 			firstName: resline.displayName,
-			lastName: 'line',
-			mobileNo: '0990508882',
+			lastName: '',
+			mobileNo: '',
 			email: $scope.email,
 			imgUrl: resline.pictureUrl,
 			socialId: resline.userId,
