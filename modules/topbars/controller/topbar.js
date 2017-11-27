@@ -151,7 +151,7 @@ angular
         version: 'v2.4'
 	});
 	FB.getLoginStatus(function(response) {
-		statusChangeCallback(response);
+		// statusChangeCallback(response);
 		console.log(response);
 	});
 	// FB.login(function(response) {
