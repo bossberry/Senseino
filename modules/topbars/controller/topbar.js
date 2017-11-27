@@ -156,14 +156,14 @@ angular
 	// });
 	FB.login(function(response) {
 		console.log(response);
-		// if (response.authResponse) {
-		//  FB.api('/me?fields=id,name,email,first_name,last_name,age_range,picture.type(large)', function(response) {
-		//    console.log(response);
-		//  }, {perms:'user_address, user_mobile_phone'});
-		// } else {
-		//  console.log('User cancelled login or did not fully authorize.');
-		// }
-	},{scope: 'public_profile,email'});
+		if (response.authResponse) {
+		 FB.api('/me?fields=id,name,email,first_name,last_name,age_range,picture.type(large)', function(response) {
+		   console.log(response);
+		 }, {perms:'user_address, user_mobile_phone'});
+		} else {
+		 console.log('User cancelled login or did not fully authorize.');
+		}
+	});
 	};
 
 	$scope.closeMD = function() {
