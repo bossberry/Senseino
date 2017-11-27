@@ -5,6 +5,8 @@ angular
 function ($http, URL_API, $scope, $uibModal) {
 	console.log('TopbarController');
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
+	console.log(userdata);
+	$scope.authen = userdata;
 	$http.get('multilingual.json') 
 	.then(function (data) {
 		$scope.multilingual = data.data
@@ -151,7 +153,7 @@ angular
 	FB.login(function(response) {
 		if (response.authResponse) {
 		 console.log('Welcome!  Fetching your information.... ');
-		 FB.api('/me?fields=id,name,email,first_name,last_name,age_range,picture.type(large),user_mobile_phone', function(response) {
+		 FB.api('/me?fields=id,name,email,first_name,last_name,age_range,picture.type(large)', function(response) {
 		   console.log('Good to see you, ' + response.name + '.');
 		   console.log(response);
 		   console.log(response.perms);

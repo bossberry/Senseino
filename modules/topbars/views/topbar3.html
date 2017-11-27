@@ -21,8 +21,8 @@
     </div>
     <div class="modal-body modal-regis-body" id="modal-body">
         <button ng-click="FBbtnLogin()" class="btn btn-regis-face"><img src="">สมัครสมาชิกด้วย Facebook</button>
-        <a href="https://access.line.me/dialog/oauth/weblogin?response_type=code&client_id= 1538336480&redirect_uri=http://ec2-54-255-237-25.ap-southeast-1.compute.amazonaws.com/
-        &state=login" class="btn btn-regis-line"><img src="">สมัครสมาชิกด้วย LINE</a>
+        <a href="http://ec2-54-255-237-25.ap-southeast-1.compute.amazonaws.com:3000/api/v1/auth/line"
+        class="btn btn-regis-line"><img src="">สมัครสมาชิกด้วย LINE</a>
         <p>หรือ</p>
         <button class="btn btn-regis-email" ng-click="regisEmail()"><img src="">สมัครสมาชิกด้วยอีเมล</button>
         <p>มี Account แล้ว?&nbsp;&nbsp;<a ng-click="loginModal()" class="regis-login-btn">เข้าสู่ระบบ</a></p>
@@ -57,7 +57,7 @@
     </div>
     <div class="form-group form-g-regis-modal">
         <label>รหัสผ่าน</label>
-        <input type="password" ng-model="user.password" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/" name="password" class="form-control" placeholder="รหัสผ่าน" required ng-minlength="10"/>
+        <input type="password" ng-model="user.password" ng-pattern="/^(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{4,20})$/" name="password" class="form-control" placeholder="รหัสผ่าน" required ng-minlength="4 " maxlength="10"/>
         <label></label><span class="msg-form-err" ng-show="regisForm.$dirty && regisForm.password.$error.required">This is a required field</span>
         <label></label><span class="msg-form-err" ng-show="regisForm.$dirty && regisForm.password.$invalid">This field is invalid </span><br/><br/>
         <span class="msg-form-err" ng-if="err===true">{{errmsg}}</span>
@@ -89,11 +89,12 @@
     <p class="line-behide"><span>หรือ เข้าสู่ระบบด้วย </span></p>
     <div class="login-modal-opt">
         <div class="col-sm-6 col-md-6 col-lg-6">
-            <a href="https://access.line.me/dialog/oauth/weblogin?response_type=code&client_id= 1538336480&redirect_uri=http://ec2-54-255-237-25.ap-southeast-1.compute.amazonaws.com/
-            &state=login" class=""><img src="assets/img/btn_line.png"></a>
+            <a href="http://ec2-54-255-237-25.ap-southeast-1.compute.amazonaws.com:3000/api/v1/auth/line" class=""><img src="assets/img/btn_line.png"></a>
+            <!-- <a href="https://access.line.me/dialog/oauth/weblogin?response_type=code&client_id= 1538336480&redirect_uri=http://127.0.0.1:8081/
+            &state=login" class=""><img src="assets/img/btn_line.png"></a> -->
         </div>
         <div class="col-sm-6 col-md-6 col-lg-6">
-            <a ng-click="FBbtnLogin()"  class=""><img src="assets/img/btn_fb.png"></a>
+            <a ng-click="FBbtnLogin()" class=""><img src="assets/img/btn_fb.png"></a>
         </div>
     </div>
     <p>ยังไม่เป็นสมาชิก? <span class="login-modal-linkregis" ng-click="regis()">สมัครสมาชิก</span></p>

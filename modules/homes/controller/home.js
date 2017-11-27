@@ -68,43 +68,53 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 	if(currenturl.indexOf("/?state=lineCallback&response=") > -1){
 		var responseUrl = line.substring(28);
 		var delHash = responseUrl.slice(0, -2);
-		console.log(decodeURI(delHash));
+		// console.log(decodeURI(delHash));
 		$scope.lineData = decodeURI(delHash);
-		var modalInstance = $uibModal.open({
-			animation: $scope.animationsEnabled,
-			templateUrl: 'lineLoginModal.html',
-			controller: 'LineLoginModal as ctrl',
-			resolve : { 
-				lineData : function() {
-				   return $scope.lineData;
-				}
+		// console.log($scope.lineData);
+		var obj = JSON.parse($scope.lineData);
+		var resline = obj.data;
+		console.log(resline);
+		$http({
+			method: 'POST',
+			url: URL_API + '/api/v1/users/login',
+			data: { 
+				username:resline.userId,
+				type: 'line',
+				credential: resline.accessToken,
+			},
+			headers: {
+				'Content-Type': 'application/json',
+				'platform' : 'web',
+				// 'lang' : 'en',
+				'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
 			}
+			}).then( function(res){
+				$http({method: 'GET', url: URL_API + '/api/v1/users/'+ res.data.data._id, 
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+					'x-access-token': res.data.data.accessToken,
+					'x-user': res.data.data.email,
+					'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+				}
+				}).then( function(res){
+					localStorage.setItem('userdata', JSON.stringify(res.data.data.profile));
+					 window.location.href = '/#/';
+				});
+			}, function(err) {
+				console.log(err);
+				var modalInstance = $uibModal.open({
+				animation: $scope.animationsEnabled,
+				templateUrl: 'lineLoginModal.html',
+				controller: 'LineLoginModal as ctrl',
+				resolve : { 
+					lineData : function() {
+					return $scope.lineData;
+					}
+				}
+				});
 			});
 	}
 	
-	// console.log(line);
-	// console.log(responseUrl);
-	
-	// console.log(delHash);
-	
-	// $scope.arrcode = code.split('&');
-	// console.log($scope.arrcode[0]);
-	// $http({
-	// 	method: 'POST',
-	// 	url: 'https://api.line.me/oauth2/v2.1/token',
-	// 	data: {
-	// 		grant_type: 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==', 
-	// 		code:$scope.arrcode[0], 
-	// 		client_id:'1538336480',
-	// 		client_secret:'001b6eaf4ec2d177f17ec7596ebb6c79'
-	// 	},
-	// 	headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-	// 	}).then( function(res){
-	// 		console.log(res);
-	// 	}, function(err) {
-	// 		console.log(err);
-	// 	});
-
 	$scope.slickConfig = {
     enabled: true,
     autoplay: true,
@@ -130,35 +140,6 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 	  });
 	}
 
-	$scope.slides = [
-		{
-		image: 'http://lorempixel.com/560/400/sports/1',
-		text: 'asd',
-		id: '1'
-	  },{
-		image: 'http://lorempixel.com/560/400/sports/1',
-		text: 'asd',
-		id: '1'
-	  },
-	  {
-		image: 'http://lorempixel.com/560/400/sports/1',
-		text: 'asd',
-		id: '1'
-	  },{
-		image: 'http://lorempixel.com/560/400/sports/1',
-		text: 'asd',
-		id: '1'
-	  },{
-		image: 'http://lorempixel.com/560/400/sports/1',
-		text: 'asd',
-		id: '1'
-	  },
-	  {
-		image: 'http://lorempixel.com/560/400/sports/1',
-		text: 'asd',
-		id: '1'
-	  }
-	];
 	$scope.backtotop = function() {
 		// set the location.hash to the id of
 		// the element you wish to scroll to.
@@ -239,28 +220,32 @@ angular
 	console.log('LineLoginModal');
 	$scope.lang = 'en';
 	$scope.regisLine = function () {
-		console.log($scope.email);
-		
 		var obj = JSON.parse(lineData);
-		console.log(obj.data);
 		var resline = obj.data;
-		$http.post(URL_API + '/api/v1/users/register', {
-				firstName: resline.displayName,
-				lastName: 'line',
-				mobileNo: '0990508882',
-				email: $scope.email,
-				imgUrl: resline.pictureUrl,
-				socialId: resline.userId,
-				socialToken: resline.accessToken,
-				type: 'line',
-			}).then(function (res) {
-				// $uibModalInstance.close(false);
-				// window.location.reload();
-				console.log(res);
-			
-			}, function (err) {
-				console.log(err.data);
-			});
+		$http({
+		method: 'POST',
+		url: URL_API + '/api/v1/users/register',
+		data: { 
+			firstName: resline.displayName,
+			lastName: 'line',
+			mobileNo: '0990508882',
+			email: $scope.email,
+			imgUrl: resline.pictureUrl,
+			socialId: resline.userId,
+			socialToken: resline.accessToken,
+			type: 'line'
+		},
+		headers: {
+			'Content-Type': 'application/json',
+			'platform' : 'web',
+			// 'lang' : 'en',
+			'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+		}
+		}).then( function(res){
+			console.log(res);
+		}, function(err) {
+			console.log(err);
+		});
 	};
 	
 	

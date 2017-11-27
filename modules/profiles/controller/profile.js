@@ -6,7 +6,7 @@ function (authService, $uibModal, $scope, $http, URL_API) {
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
 	$scope.lang = 'en';
 	$scope.loaded = true;
-
+	console.log(userdata);
 	if (userdata) {
 		authService.ensureAuthenticated(userdata)
 		.then((user) => {
@@ -17,6 +17,10 @@ function (authService, $uibModal, $scope, $http, URL_API) {
 			console.log(err);
 		});
 	}
+
+
+
+	
 	$scope.favExpt = function (exptsId){
 		console.log(exptsId);
 		$http.put(URL_API + '/api/v1/users/favorite/' + userdata._id, {
