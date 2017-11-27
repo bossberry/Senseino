@@ -184,6 +184,36 @@ angular
 				console.log(res);
 			}, function(err) {
 				console.log(err);
+				$http({
+					method: 'POST',
+					url: URL_API + '/api/v1/users/login',
+					data: { 
+						username: $scope.authres.userID,
+						type: 'facebook',
+						credential: $scope.authres.accessToken,
+					},
+					headers: {
+						'Content-Type': 'application/json',
+						'platform' : 'web',
+						// 'lang' : 'en',
+						'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+					}
+					}).then( function(res){
+						console.log(res);
+						// $http({method: 'GET', url: URL_API + '/api/v1/users/'+ res.data.data._id, 
+						// headers: {
+						// 	'Content-Type': 'application/x-www-form-urlencoded',
+						// 	'x-access-token': res.data.data.accessToken,
+						// 	'x-user': res.data.data.email,
+						// 	'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+						// }
+						// }).then( function(res){
+						// 	localStorage.setItem('userdata', JSON.stringify(res.data.data.profile));
+						// 	 window.location.href = '/#/';
+						// });
+					}, function(err) {
+						console.log(err);
+					});
 			});
 		 });
 		} else {
