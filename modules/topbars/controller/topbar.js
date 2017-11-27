@@ -149,14 +149,40 @@ angular
         cookie: true, 
         xfbml: true,
         version: 'v2.4'
-    });
-	FB.login(function(response) {
-		if (response.authResponse) {
-		 console.log('Welcome!  Fetching your information.... ');
-		 FB.api('/me?fields=id,name,email,first_name,last_name,age_range,picture.type(large)', function(response) {
-		   console.log('Good to see you, ' + response.name + '.');
-		   console.log(response);
-		   console.log(response.perms);
+	});
+	FB.getLoginStatus(function(response) {
+		statusChangeCallback(response);
+		console.log(response);
+	});
+	// FB.login(function(response) {
+	// 	if (response.authResponse) {
+	// 	 FB.api('/me?fields=id,name,email,first_name,last_name,age_range,picture.type(large)', function(response) {
+	// 	   console.log(response);
+
+		//    $http({
+		// 	method: 'POST',
+		// 	url: URL_API + '/api/v1/users/register',
+		// 	data: { 
+		// 		firstName: resline.displayName,
+		// 		lastName: 'line',
+		// 		mobileNo: '0990508882',
+		// 		email: $scope.email,
+		// 		imgUrl: resline.pictureUrl,
+		// 		socialId: resline.userId,
+		// 		socialToken: resline.accessToken,
+		// 		type: 'line'
+		// 	},
+		// 	headers: {
+		// 		'Content-Type': 'application/json',
+		// 		'platform' : 'web',
+		// 		// 'lang' : 'en',
+		// 		'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+		// 	}
+		// 	}).then( function(res){
+		// 		console.log(res);
+		// 	}, function(err) {
+		// 		console.log(err);
+		// 	});
 			// $http.post(URL_API + '/api/v1/users/register', {
 			// 	firstName: response.first_name,
 			// 	lastName: response.last_name,
@@ -189,11 +215,11 @@ angular
 			// }, function (err) {
 			// 	console.log(err.data);
 			// });		
-		 }, {perms:'user_address, user_mobile_phone'});
-		} else {
-		 console.log('User cancelled login or did not fully authorize.');
-		}
-	});
+	// 	 }, {perms:'user_address, user_mobile_phone'});
+	// 	} else {
+	// 	 console.log('User cancelled login or did not fully authorize.');
+	// 	}
+	// });
 	};
 
 	$scope.closeMD = function() {
