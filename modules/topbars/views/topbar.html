@@ -42,6 +42,9 @@
         class="btn btn-regis-line"><img src="">สมัครสมาชิกด้วย LINE</a>
         <p>หรือ</p>
         <button class="btn btn-regis-email" ng-click="regisEmail()"><img src="">สมัครสมาชิกด้วยอีเมล</button>
+        <div class="form-group form-g-login-modal" ng-if="loginerr===true">
+            <span class="msg-form-err" >Email นี้ ถูกใช้ไปแล้ว</span>
+        </div> 
         <p>มี Account แล้ว?&nbsp;&nbsp;<a ng-click="loginModal()" class="regis-login-btn">เข้าสู่ระบบ</a></p>
     </div>
 </script>
@@ -111,7 +114,7 @@
             &state=login" class=""><img src="assets/img/btn_line.png"></a> -->
         </div>
         <div class="col-sm-6 col-md-6 col-lg-6">
-            <a ng-click="FBbtnLogin()" class=""><img src="assets/img/btn_fb.png"></a>
+            <a style="cursor:pointer;" ng-click="FBbtnLogin()" class=""><img src="assets/img/btn_fb.png"></a>
         </div>
     </div>
     <p>ยังไม่เป็นสมาชิก? <span class="login-modal-linkregis" ng-click="regis()">สมัครสมาชิก</span></p>

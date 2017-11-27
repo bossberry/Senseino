@@ -212,6 +212,7 @@ angular
 						// 	 window.location.href = '/#/';
 						// });
 					}, function(err) {
+						$scope.loginerr = true;
 						console.log(err);
 					});
 			});
