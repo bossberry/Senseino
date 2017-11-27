@@ -2,6 +2,7 @@
 <aside ng-show="!isLoggedIn" data-ng-include="'/modules/topbars/views/topbar.html'"></aside> 
 <aside ng-show="isLoggedIn" data-ng-include="'/modules/topbars/views/topbar4.html'"></aside>
 </div>  
+
 <section  class="margin-for-topbar-main " id="top">
     <center>
         <div class="crop-img-banner">
@@ -18,7 +19,7 @@
         </div>
         </div>
     </center>
-    
+   
     <div class="section-box container-fluid" ng-if="loaded===true" ng-repeat="ex in experts">
         <div class="col-lg-12">
                 <!-- col-sm-5ths col-md-5ths col-lg-5ths -->
@@ -143,8 +144,7 @@
         </div>
     </div>
         
-    <div class="section-box container-fluid home-section-job-wrapper">
-        <!-- <div class="overlay-green container"></div> -->
+    <!-- <div class="section-box container-fluid home-section-job-wrapper">
         <h1 class="head-section-jobs">Jobs<span class="float-r-jobs"><a href="/#/jobs" class="btn btn-more">ดูทั้งหมด ></a></span></h1>
         <div class="col-sm-3 col-md-3 col-lg-3 "> 
             <div class="col-sm-6 col-md-6 col-lg-5 job-tumbnail-repeat-col" ng-repeat="data in jobTypes">
@@ -180,10 +180,10 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="section-box  container-fluid">
+    </div> -->
+    <!-- <div class="section-box  container-fluid">
         <div class="col-lg-12">
-            <h1 class="head-section-margin">ออนไลน์คอร์ส<span class="see-all-wrap float-r"><a href="http://www.senseino.com/show_course.php" target="_blank" class="btn btn-more">ดูทั้งหมด ></a></span></h1>
+            <h1 class="head-section-margin">ออนไลน์คอร์ส<span class="see-all-wrap float-r"><a href="http://www.senseino.com/show_course.php" target="_blank" class="btn btn-more">ดูทั้งหมด ></a></span></h1> -->
             <!-- <div class="col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="data in course | limitTo: 10">
                 <div class="wrapper-coursebox">
                     <img style="width:100%" ng-src="{{data.img}}">
@@ -200,8 +200,8 @@
             <!-- <div class="iframe-wrapper">
                 <iframe class="home-iframe" src="http://www.senseino.com/show_course.php" scrolling="no"></iframe>
             </div> -->
-        </div>
-    </div>
+        <!-- </div>
+    </div> -->
     <!-- <div class="section-box  container-fluid">
         <div class="col-lg-12">
             <center>
@@ -288,6 +288,23 @@
     </div>
     <div class="modal-footer job-modal-footer">
         <button class="btn dialog-action btn-action" type="button" ng-click="confirmDeleteWidget()"><img src="assets/img/chat.png">&nbsp;&nbsp;แชทเสนอราคา</button>
+    </div>
+</script>
+<script type="text/ng-template" id="lineLoginModal.html">
+    <div class="modal-header modal-regis-header">
+        เข้าสู่ระบบด้วย Line
+        <span ng-click="closeMD()">X</span>
+    </div>
+    <div class="modal-body modal-regis-body" id="modal-body">
+    <form ng-submit="regisLine()" name="regisForm" autocomplete="off" style="margin-bottom:20px;">
+        <div class="form-group form-g-login-modal">
+            <input type="email" name="email"  ng-model="email" placeholder="อีเมล" class="form-control login-ip-email" required>
+        </div>
+        <div class="form-group form-g-login-modal" ng-if="loginerr===true">
+            <span class="msg-form-err" >{{loginerrmsg}}</span>
+        </div> 
+        <button class="btn btn-action-login" type="submit">เข้าสู่ระบบ</button>
+    </form>
     </div>
 </script>
 </section>

@@ -225,34 +225,34 @@ angular
                     });
             };
             $scope.submitexpertsCreate = function (idachor) {
-                var fd = new FormData();                
+                // var fd = new FormData();                
                 console.log($scope.datajob._id);
                 console.log($scope.user);
                 console.log($scope.datatag);
                 console.log($scope.portToApi);
                 console.log($scope.picToApi);
-                fd.append('pic', $scope.picToApi);
+                // fd.append('pic', $scope.picToApi);
                 if($scope.picToApi.length === 0){
                     $scope.picErr = true;
                     $location.hash(idachor);
                     $anchorScroll();
                 }else {
-                    var url = URL_API + '/api/v1/upload';
-                    $http.post(url, fd, {
-                        transformRequest: angular.identity,
-                        headers: {
-                            'Content-Type': undefined,
-                            'x-access-token': userdata.accessToken,
-                            "Authorization": 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
-                        }
-                    }).then(function (res) {
-                            console.log(res);
-                        }, function (err) {
-                            $scope.err = true;
-                            $scope.errmsg = err.data.description;
-                            console.log(err.data);
+                    // var url = URL_API + '/api/v1/upload';
+                    // $http.post(url, fd, {
+                    //     transformRequest: angular.identity,
+                    //     headers: {
+                    //         'Content-Type': undefined,
+                    //         'x-access-token': userdata.accessToken,
+                    //         "Authorization": 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+                    //     }
+                    // }).then(function (res) {
+                    //         console.log(res);
+                    //     }, function (err) {
+                    //         $scope.err = true;
+                    //         $scope.errmsg = err.data.description;
+                    //         console.log(err.data);
     
-                        });
+                    //     });
                     $http.post(URL_API + '/api/v1/experts', {
                         name: $scope.user.exptname,
                         jobType: $scope.datajob._id,

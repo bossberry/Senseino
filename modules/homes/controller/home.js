@@ -63,25 +63,47 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 	$scope.isLoggedIn = false;
 	$scope.favexptId = [];
 	var currenturl = window.location.href;
-	var line = currenturl.substring(currenturl.search('/?code='));
-	var code = line.substring(5);
-	$scope.arrcode = code.split('&');
-	console.log($scope.arrcode[0]);
-	$http({
-		method: 'POST',
-		url: 'https://api.line.me/oauth2/v2.1/token',
-		data: {
-			grant_type: 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==', 
-			code:$scope.arrcode[0], 
-			client_id:'1538336480',
-			client_secret:'001b6eaf4ec2d177f17ec7596ebb6c79'
-		},
-		headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-		}).then( function(res){
-			console.log(res);
-		}, function(err) {
-			console.log(err);
-		});
+	// console.log(currenturl);
+	var line = currenturl.substring(currenturl.search('/?state=lineCallback&response='));
+	if(currenturl.indexOf("/?state=lineCallback&response=") > -1){
+		var responseUrl = line.substring(28);
+		var delHash = responseUrl.slice(0, -2);
+		console.log(decodeURI(delHash));
+		$scope.lineData = decodeURI(delHash);
+		var modalInstance = $uibModal.open({
+			animation: $scope.animationsEnabled,
+			templateUrl: 'lineLoginModal.html',
+			controller: 'LineLoginModal as ctrl',
+			resolve : { 
+				lineData : function() {
+				   return $scope.lineData;
+				}
+			}
+			});
+	}
+	
+	// console.log(line);
+	// console.log(responseUrl);
+	
+	// console.log(delHash);
+	
+	// $scope.arrcode = code.split('&');
+	// console.log($scope.arrcode[0]);
+	// $http({
+	// 	method: 'POST',
+	// 	url: 'https://api.line.me/oauth2/v2.1/token',
+	// 	data: {
+	// 		grant_type: 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==', 
+	// 		code:$scope.arrcode[0], 
+	// 		client_id:'1538336480',
+	// 		client_secret:'001b6eaf4ec2d177f17ec7596ebb6c79'
+	// 	},
+	// 	headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+	// 	}).then( function(res){
+	// 		console.log(res);
+	// 	}, function(err) {
+	// 		console.log(err);
+	// 	});
 
 	$scope.slickConfig = {
     enabled: true,
@@ -209,3 +231,41 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 	};
 
 }]);
+
+
+angular
+.module('myApp')
+.controller('LineLoginModal', function ($scope, $uibModal, $uibModalInstance, $http, URL_API, lineData) {
+	console.log('LineLoginModal');
+	$scope.lang = 'en';
+	$scope.regisLine = function () {
+		console.log($scope.email);
+		
+		var obj = JSON.parse(lineData);
+		console.log(obj.data);
+		var resline = obj.data;
+		$http.post(URL_API + '/api/v1/users/register', {
+				firstName: resline.displayName,
+				lastName: 'line',
+				mobileNo: '0990508882',
+				email: $scope.email,
+				imgUrl: resline.pictureUrl,
+				socialId: resline.userId,
+				socialToken: resline.accessToken,
+				type: 'line',
+			}).then(function (res) {
+				// $uibModalInstance.close(false);
+				// window.location.reload();
+				console.log(res);
+			
+			}, function (err) {
+				console.log(err.data);
+			});
+	};
+	
+	
+	$scope.closeMD = function() {
+		$uibModalInstance.close(false);
+	};
+	
+});

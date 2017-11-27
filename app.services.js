@@ -26,6 +26,7 @@ function authService($http, URL_API) {
         data: {
             firstName: firstname,
             lastName: lastname,
+            mobileNo: tel,
             email: email,
             type:'email',
             password: password
