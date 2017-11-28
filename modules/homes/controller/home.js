@@ -85,7 +85,7 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 			headers: {
 				'Content-Type': 'application/json',
 				'platform' : 'web',
-				// 'lang' : 'en',
+				'lang' : 'en',
 				'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
 			}
 			}).then( function(res){
@@ -238,7 +238,7 @@ angular
 		headers: {
 			'Content-Type': 'application/json',
 			'platform' : 'web',
-			// 'lang' : 'en',
+			'lang' : 'en',
 			'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
 		}
 		}).then( function(res){

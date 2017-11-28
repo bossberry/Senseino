@@ -141,8 +141,65 @@ angular
 			
         // });
   };
-  
-  $scope.FBbtnLogin = function() {
+	$scope.FBbtnLogin = function() {
+        FB.init({
+            appId: '1668838553138058',
+            status: true,
+            cookie: true,
+            xfbml: true,
+            version: 'v2.4'
+        });
+        // FB.getLoginStatus(function(response) {
+        // 	// statusChangeCallback(response);
+        // 	console.log(response);
+        // });
+        FB.login(function(response) {
+            $scope.authres = response.authResponse;
+            console.log($scope.authres);
+            if (response.authResponse) {
+                FB.api('/me?fields=id,name,email,first_name,last_name,age_range,picture.type(large)', function(response) {
+                    $scope.prores = response;
+                    console.log($scope.prores);
+                    $http({
+                        method: 'POST',
+                        url: URL_API + '/api/v1/users/login',
+                        data: {
+                            username: $scope.authres.userID,
+                            type: 'facebook',
+                            credential: $scope.authres.accessToken,
+                        },
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'platform' : 'web',
+                            'lang' : 'en',
+                            'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+                        }
+                    }).then( function(res){
+                        console.log(res);
+                        $http({method: 'GET', url: URL_API + '/api/v1/users/'+ res.data.data._id,
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded',
+                                'x-access-token': res.data.data.accessToken,
+                                'x-user': res.data.data.email,
+                                'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+                            }
+                        }).then( function(res){
+                        	console.log(res);
+                            localStorage.setItem('userdata', JSON.stringify(res.data.data.profile));
+                            // window.location.href = '/#/';
+                            location.reload(true);
+                        });
+                    }, function(err) {
+                        $scope.loginerr = true;
+                        console.log(err);
+                    });
+                });
+            } else {
+                console.log('User cancelled login or did not fully authorize.');
+            }
+        });
+    };
+  $scope.FBbtnRegis = function() {
 	FB.init({ 
         appId: '1668838553138058',
         status: true, 
@@ -150,78 +207,63 @@ angular
         xfbml: true,
         version: 'v2.4'
 	});
-	// FB.getLoginStatus(function(response) {
-	// 	// statusChangeCallback(response);
-	// 	console.log(response);
-	// });
 	FB.login(function(response) {
-		// console.log(response);
 		$scope.authres = response.authResponse;
+        console.log($scope.authres);
 		if (response.authResponse) {
 		 FB.api('/me?fields=id,name,email,first_name,last_name,age_range,picture.type(large)', function(response) {
-		   console.log(response);
 		   $scope.prores = response;
-		   $http({
-			method: 'POST',
-			url: URL_API + '/api/v1/users/register',
-			data: { 
-				firstName: $scope.prores.first_name,
-				lastName: $scope.prores.last_name,
-				mobileNo: '',
-				email: $scope.prores.email,
-				imgUrl: $scope.prores.picture.data.url,
-				socialId: $scope.authres.userID,
-				socialToken: $scope.authres.accessToken,
-				type: 'facebook'
-			},
-			headers: {
-				'Content-Type': 'application/json',
-				'platform' : 'web',
-				// 'lang' : 'en',
-				'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
-			}
-			}).then( function(res){
-				console.log(res);
-			}, function(err) {
-				console.log(err);
-				$http({
-					method: 'POST',
-					url: URL_API + '/api/v1/users/login',
-					data: { 
-						username: $scope.authres.userID,
-						type: 'facebook',
-						credential: $scope.authres.accessToken,
-					},
-					headers: {
-						'Content-Type': 'application/json',
-						'platform' : 'web',
-						// 'lang' : 'en',
-						'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
-					}
-					}).then( function(res){
-						console.log(res);
-						// $http({method: 'GET', url: URL_API + '/api/v1/users/'+ res.data.data._id, 
-						// headers: {
-						// 	'Content-Type': 'application/x-www-form-urlencoded',
-						// 	'x-access-token': res.data.data.accessToken,
-						// 	'x-user': res.data.data.email,
-						// 	'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
-						// }
-						// }).then( function(res){
-						// 	localStorage.setItem('userdata', JSON.stringify(res.data.data.profile));
-						// 	 window.location.href = '/#/';
-						// });
-					}, function(err) {
-						$scope.loginerr = true;
-						console.log(err);
-					});
-			});
+             console.log($scope.prores);
+             $scope.FBdata = { authres: $scope.authres, prores: $scope.prores }
+             if($scope.prores.email === null || $scope.prores.email === undefined){
+				 console.log('ไม่มี อีเมล');
+                 $uibModalInstance.close(false);
+                 var modalInstance = $uibModal.open({
+                     animation: $scope.animationsEnabled,
+                     templateUrl: 'regisFBwithEmail.html',
+                     controller: 'RegisFBwithEmailModal as ctrl',
+                     resolve : {
+                         FBdata : function() {
+                             return $scope.FBdata;
+                         }
+                     }
+                 });
+			 } else {
+                 $http({
+                     method: 'POST',
+                     url: URL_API + '/api/v1/users/register',
+                     data: {
+                         firstName: $scope.prores.first_name,
+                         lastName: $scope.prores.last_name,
+                         mobileNo: '',
+                         email: $scope.prores.email,
+                         imgUrl: $scope.prores.picture.data.url,
+                         socialId: $scope.authres.userID,
+                         socialToken: $scope.authres.accessToken,
+                         type: 'facebook'
+                     },
+                     headers: {
+                         'Content-Type': 'application/json',
+                         'platform' : 'web',
+                         'lang' : 'en',
+                         'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+                     }
+                 }).then( function(res){
+                     console.log(res);
+                 }, function(err) {
+                     console.log(err);
+                     $scope.loginerr = true;
+                     $scope.errmsg = err.data.description;
+
+                 });
+			 }
+
 		 });
 		} else {
 		 console.log('User cancelled login or did not fully authorize.');
 		}
 	});
-	};
+  };
 
 	$scope.closeMD = function() {
 		$uibModalInstance.close(false);
@@ -301,3 +343,77 @@ angular
 	};
 	
 });
+
+angular
+    .module('myApp')
+    .controller('RegisFBwithEmailModal', function ($scope, $uibModal, $uibModalInstance, $http, URL_API, FBdata) {
+        console.log('RegisFBwithEmailModal');
+        $scope.lang = 'en';
+        $scope.regisFBcon = function () {
+            console.log(FBdata);
+            // var obj = JSON.parse(FBdata);
+            // var resFB = obj.data;
+            // console.log(resFB);
+            $http({
+                method: 'POST',
+                url: URL_API + '/api/v1/users/register',
+                data: {
+                    firstName: FBdata.prores.first_name,
+                    lastName: FBdata.prores.last_name,
+                    mobileNo: '',
+                    email: $scope.email,
+                    imgUrl: FBdata.prores.picture.data.url,
+                    socialId: FBdata.authres.userID,
+                    socialToken: FBdata.authres.accessToken,
+                    type: 'facebook'
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'platform' : 'web',
+                    'lang' : 'en',
+                    'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+                }
+            }).then( function(res){
+                console.log(res);
+                $http({
+                    method: 'POST',
+                    url: URL_API + '/api/v1/users/login',
+                    data: {
+                        username:res.data.data._id,
+                        type: 'facebook',
+                        credential: res.data.data.accessToken,
+                    },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'platform' : 'web',
+                        'lang' : 'en',
+                        'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+                    }
+                }).then( function(res){
+                    $http({method: 'GET', url: URL_API + '/api/v1/users/'+ res.data.data._id,
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'x-access-token': res.data.data.accessToken,
+                            'x-user': res.data.data.email,
+                            'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+                        }
+                    }).then( function(res){
+                        localStorage.setItem('userdata', JSON.stringify(res.data.data.profile));
+                        window.location.href = '/#/';
+                    });
+                }, function(err) {
+                    console.log(err);
+                });
+            }, function(err) {
+                console.log(err);
+                $scope.loginerr = true;
+                $scope.loginerrmsg = err.data.description;
+            });
+        };
+
+
+        $scope.closeMD = function() {
+            $uibModalInstance.close(false);
+        };
+
+    });

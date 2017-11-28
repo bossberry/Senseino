@@ -37,13 +37,13 @@
         <span ng-click="closeMD()">X</span>
     </div>
     <div class="modal-body modal-regis-body" id="modal-body">
-        <button ng-click="FBbtnLogin()" class="btn btn-regis-face"><img src="">สมัครสมาชิกด้วย Facebook</button>
+        <button ng-click="FBbtnRegis()" class="btn btn-regis-face"><img src="">สมัครสมาชิกด้วย Facebook</button>
         <a href="http://ec2-54-255-237-25.ap-southeast-1.compute.amazonaws.com:3000/api/v1/auth/line"
         class="btn btn-regis-line"><img src="">สมัครสมาชิกด้วย LINE</a>
         <p>หรือ</p>
         <button class="btn btn-regis-email" ng-click="regisEmail()"><img src="">สมัครสมาชิกด้วยอีเมล</button>
         <div class="form-group form-g-login-modal" ng-if="loginerr===true">
-            <span class="msg-form-err" >Email นี้ ถูกใช้ไปแล้ว</span>
+            <span class="msg-form-err" >{{errmsg}}</span>
         </div> 
         <p>มี Account แล้ว?&nbsp;&nbsp;<a ng-click="loginModal()" class="regis-login-btn">เข้าสู่ระบบ</a></p>
     </div>
@@ -119,5 +119,22 @@
     </div>
     <p>ยังไม่เป็นสมาชิก? <span class="login-modal-linkregis" ng-click="regis()">สมัครสมาชิก</span></p>
     </div>
+    </div>
+</script>
+<script type="text/ng-template" id="regisFBwithEmail.html">
+    <div class="modal-header modal-regis-header">
+        สมัครสมาชิกด้วย Facebook
+        <span ng-click="closeMD()">X</span>
+    </div>
+    <div class="modal-body modal-regis-body" id="modal-body">
+        <form ng-submit="regisFBcon()" name="regisForm" autocomplete="off" style="margin-bottom:20px;">
+            <div class="form-group form-g-login-modal">
+                <input type="email" name="email"  ng-model="email" placeholder="อีเมล" class="form-control login-ip-email" required>
+            </div>
+            <div class="form-group form-g-login-modal" ng-if="loginerr===true">
+                <span class="msg-form-err" >{{loginerrmsg}}</span>
+            </div>
+            <button class="btn btn-action-login" type="submit">สมัครสมาชิก</button>
+        </form>
     </div>
 </script>
