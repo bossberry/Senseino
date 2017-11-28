@@ -3,7 +3,6 @@ angular
 .module('myApp')
 .controller('ExpertsController', ['$uibModal', 'authService', '$scope', '$http', 'URL_API',
 function ($uibModal, authService, $scope, $http, URL_API) {
-	console.log('ExpertsController');
 	$scope.lang = 'en';
 	$scope.imglang = 'assets/img/' + $scope.lang + '.png';
 	$scope.isLoggedIn = false;
@@ -16,7 +15,6 @@ function ($uibModal, authService, $scope, $http, URL_API) {
 		$scope.isLoggedIn = true;
 		})
 		.catch((err) => {
-		console.log(err);
 		});
 	}
 	$scope.chgLang = function (lang){
@@ -37,9 +35,7 @@ function ($uibModal, authService, $scope, $http, URL_API) {
 	$http.get(URL_API + '/api/v1/page/expert')
 	.then( function(res){
 		$scope.loaded = true;
-		console.log(res.data.data);
 		$scope.jobTypesRow = [{}];
-		console.log($scope.jobTypesRow.length);
 		$scope.jobTypes = res.data.data.jobTypes;
 		$scope.experts = res.data.data.experts;
 	});

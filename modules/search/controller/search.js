@@ -16,7 +16,6 @@ return function (scope, element, attrs) {
 })
 .controller('SearchController', ['authService', '$uibModal', '$scope', '$http', 'URL_API',
 function (authService, $uibModal, $scope, $http, URL_API) {
-	console.log('SearchController');
 	var searchData = JSON.parse(localStorage.getItem('search'));
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
 	$scope.lang = 'en';
@@ -39,7 +38,6 @@ function (authService, $uibModal, $scope, $http, URL_API) {
 			$scope.isLoggedIn = true;
 		})
 		.catch((err) => {
-			console.log(err);
 		});
 	}
 	$scope.chgLang = function (lang){
@@ -48,24 +46,19 @@ function (authService, $uibModal, $scope, $http, URL_API) {
 	};
 	$scope.favExpt = function (exptsId, check){
 		if($scope.isLoggedIn){
-			console.log(exptsId);
 			if(check === true){
 				$http.put(URL_API + '/api/v1/users/favorite/' + userdata._id, {
 					action: '$pull',
 					expertId: exptsId
 				}).then(function(res){
-					console.log(res.data);
 				}, function(err) {
-					console.log(err.data);
 				});
 			} else {
 				$http.put(URL_API + '/api/v1/users/favorite/' + userdata._id, {
 					action: '$push',
 					expertId: exptsId
 				}).then(function(res){
-					console.log(res.data);
 				}, function(err) {
-					console.log(err.data);
 				});
 			}
 			

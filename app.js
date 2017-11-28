@@ -5,18 +5,6 @@ angular.module('myApp', [
     'myApp.auth', 'myApp.routes', 'myApp.core', 'myApp.services', 'myApp.config'])
     .constant('URL_API', 'http://54.255.237.25:3000')
 
-    // , 'jkAngularCarousel'
-// window.fbAsyncInit = function() {
-//     console.log('fb');
-//     FB.init({ 
-//         appId: '1668838553138058',
-//         status: true, 
-//         cookie: true, 
-//         xfbml: true,
-//         version: 'v2.4'
-//     });
-// };
-
 .factory('socketio', ['$rootScope', function($rootScope){
     var socket = io.connect();
     return {

@@ -3,15 +3,12 @@ angular
 .module('myApp')
 .controller('TopbarController', ['$http', 'URL_API', '$scope', '$uibModal',
 function ($http, URL_API, $scope, $uibModal) {
-	console.log('TopbarController');
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
-	console.log(userdata);
 	$scope.authen = userdata;
 	$http.get('multilingual.json') 
 	.then(function (data) {
 		$scope.multilingual = data.data
 	}, function (error) {
-		console.log('error');
 	});
 	$scope.regis = function() {
 		var modalInstance = $uibModal.open({
@@ -21,26 +18,32 @@ function ($http, URL_API, $scope, $uibModal) {
 			});
 	};
 	$scope.searchAPI = function() {
-		console.log($scope.keyword);
 		$http.post(URL_API + '/api/v1/search', {textSearch: $scope.keyword})
 		.then(function(res){
-			console.log(res.data.data);
 			localStorage.setItem('search',JSON.stringify([$scope.keyword, res.data.data]));
 			window.location.href = '/#/search';
 			window.location.reload()
 		}, function(err) {
-			console.log(err.data);
 		});;
 
 	};
 	$scope.logout = function(){
-		$http.post(URL_API + '/api/v1/users/logout', {
-			email: userdata.email,
+		$http({
+			method: 'POST',
+			url: URL_API + '/api/v1/users/logout',
+			data: {
+				email: userdata.email
+			},
+			headers: {
+				'Content-Type': 'application/json',
+				'platform' : 'web',
+				'lang' : 'en',
+				'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+			}
 		}).then(function(res){
 			window.localStorage.clear();
 			window.location.reload(true);
 		}, function(err) {
-			console.log(err.data);
 		});
 	};
 	$scope.loginModal = function() {
@@ -62,16 +65,12 @@ function ($http, URL_API, $scope, $uibModal) {
 angular
 .module('myApp')
 .controller('RegisModalController', function (authService, $location, URL_API, $http, $scope, $uibModal, $uibModalInstance) {
-	console.log('RegisModalController');
 	
 	$scope.submitEmailLogin = function(){
-		console.log($scope.login);
 		authService.LoginByEmail($scope.login.username, $scope.login.password)
 		.then((user) => {
-			console.log(user);
 			$http.get(URL_API + '/api/v1/users/'+user.data.data._id)
 			.then( function(res){
-				console.log(res);
 			});
 			$http({method: 'GET', url: URL_API + '/api/v1/users/'+user.data.data._id, 
 			headers: {
@@ -86,60 +85,22 @@ angular
 			});
 		})
 		.catch((err) => {
-		  console.log(err);
 		  $scope.loginerr = true;
 		  $scope.loginerrmsg = err.data.description;
 		});
-
-
-		// console.log($scope.login);
-		// $http.post(URL_API + '/api/v1/users/login', {
-		// 	username: $scope.login.username,
-		// 	type: 'email',
-		// 	credential: $scope.login.password
-		// }).then(function(res){
-		// 	console.log(res);
-		// }, function(err) {
-		// 	$scope.loginerr = true;
-		// 	$scope.loginerrmsg = err.data.description;
-        //     console.log(err.data);
-			
-		// });
 	};
 	
 	$scope.submitEmailRegis = function() {
-		console.log('Form is submitted with following user', $scope.user);
 
 		authService.RegisByEmail($scope.user.firstname, $scope.user.lastname, $scope.user.tel, $scope.user.email, $scope.user.password)
 		.then((user) => {
-		  console.log(user.data);
 		  localStorage.setItem('userdata', JSON.stringify(user.data.data));
-		//   localStorage.setItem('token', user.data.data.accessToken);
-			window.location.reload(true);
+		  window.location.reload(true);
 		})
 		.catch((err) => {
-		  console.log(err);
 		  $scope.err = true;
 		  $scope.errmsg = err.data.description;
-		  console.log(err.data);
 		});
-
-		// $http.post(URL_API + '/api/v1/users/register', {
-		// 	firstName: $scope.user.firstname,
-		// 	lastName: $scope.user.lastname,
-		// 	mobileNo: $scope.user.tel,
-		// 	email:$scope.user.email,
-		// 	type:'email',
-		// 	password:$scope.user.password
-
-		// }).then(function(res){
-		// 	console.log(res);
-		// }, function(err) {
-		// 	$scope.err = true;
-		// 	$scope.errmsg = err.data.description;
-        //     console.log(err.data);
-			
-        // });
   };
 	$scope.FBbtnLogin = function() {
         FB.init({
@@ -149,17 +110,12 @@ angular
             xfbml: true,
             version: 'v2.4'
         });
-        // FB.getLoginStatus(function(response) {
-        // 	// statusChangeCallback(response);
-        // 	console.log(response);
-        // });
+  
         FB.login(function(response) {
             $scope.authres = response.authResponse;
-            console.log($scope.authres);
             if (response.authResponse) {
                 FB.api('/me?fields=id,name,email,first_name,last_name,age_range,picture.type(large)', function(response) {
                     $scope.prores = response;
-                    console.log($scope.prores);
                     $http({
                         method: 'POST',
                         url: URL_API + '/api/v1/users/login',
@@ -175,7 +131,6 @@ angular
                             'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
                         }
                     }).then( function(res){
-                        console.log(res);
                         $http({method: 'GET', url: URL_API + '/api/v1/users/'+ res.data.data._id,
                             headers: {
                                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -184,18 +139,15 @@ angular
                                 'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
                             }
                         }).then( function(res){
-                        	console.log(res);
                             localStorage.setItem('userdata', JSON.stringify(res.data.data.profile));
                             // window.location.href = '/#/';
                             location.reload(true);
                         });
                     }, function(err) {
                         $scope.loginerr = true;
-                        console.log(err);
                     });
                 });
             } else {
-                console.log('User cancelled login or did not fully authorize.');
             }
         });
     };
@@ -209,14 +161,11 @@ angular
 	});
 	FB.login(function(response) {
 		$scope.authres = response.authResponse;
-        console.log($scope.authres);
 		if (response.authResponse) {
 		 FB.api('/me?fields=id,name,email,first_name,last_name,age_range,picture.type(large)', function(response) {
 		   $scope.prores = response;
-             console.log($scope.prores);
              $scope.FBdata = { authres: $scope.authres, prores: $scope.prores }
              if($scope.prores.email === null || $scope.prores.email === undefined){
-				 console.log('ไม่มี อีเมล');
                  $uibModalInstance.close(false);
                  var modalInstance = $uibModal.open({
                      animation: $scope.animationsEnabled,
@@ -249,9 +198,7 @@ angular
                          'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
                      }
                  }).then( function(res){
-                     console.log(res);
                  }, function(err) {
-                     console.log(err);
                      $scope.loginerr = true;
                      $scope.errmsg = err.data.description;
 
@@ -260,7 +207,6 @@ angular
 
 		 });
 		} else {
-		 console.log('User cancelled login or did not fully authorize.');
 		}
 	});
   };
@@ -298,25 +244,18 @@ angular
 angular
 .module('myApp')
 .controller('JobsexpressModalController', function ($scope, $uibModal, $uibModalInstance, $http, URL_API) {
-	console.log('JobsexpressModalController');
 	$scope.lang = 'en';
 	$http.get(URL_API + '/api/v1/job_types')
 	.then( function(res){
 				$scope.jobTypes = res.data.data;
-				console.log(res.data.data);
 	});
 	$scope.selectjob = function () {
 		$http.get(URL_API + '/api/v1/tags?jobType=' + $scope.datajob._id)
 		.then( function(res){
 				$scope.tags = res.data.data;
-				console.log(res.data.data);
 		});
 	};
 	$scope.submitJobExpress = function() {
-		console.log($scope.postjob);
-		console.log($scope.datajob._id);
-		console.log($scope.datatag);
-
 		$http.post(URL_API + '/api/v1/jobs', {
 			name: $scope.postex.name,
 			jobType: $scope.datajob._id,
@@ -328,12 +267,10 @@ angular
 						mobileNo: $scope.postex.tel,
 						lineId: $scope.postex.line
 		}).then(function(res){
-			console.log(res);
 			window.location.reload(true);
 		}, function(err) {
 			$scope.err = true;
 			$scope.errmsg = err.data.description;
-      console.log(err.data);
 			
     });
 
@@ -347,13 +284,8 @@ angular
 angular
     .module('myApp')
     .controller('RegisFBwithEmailModal', function ($scope, $uibModal, $uibModalInstance, $http, URL_API, FBdata) {
-        console.log('RegisFBwithEmailModal');
         $scope.lang = 'en';
         $scope.regisFBcon = function () {
-            console.log(FBdata);
-            // var obj = JSON.parse(FBdata);
-            // var resFB = obj.data;
-            // console.log(resFB);
             $http({
                 method: 'POST',
                 url: URL_API + '/api/v1/users/register',
@@ -374,7 +306,6 @@ angular
                     'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
                 }
             }).then( function(res){
-                console.log(res);
                 $http({
                     method: 'POST',
                     url: URL_API + '/api/v1/users/login',
@@ -402,10 +333,8 @@ angular
                         window.location.href = '/#/';
                     });
                 }, function(err) {
-                    console.log(err);
                 });
             }, function(err) {
-                console.log(err);
                 $scope.loginerr = true;
                 $scope.loginerrmsg = err.data.description;
             });

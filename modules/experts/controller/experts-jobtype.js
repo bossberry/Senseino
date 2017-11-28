@@ -3,7 +3,6 @@ angular
 .module('myApp')
 .controller('ExpertsJobtypeController', ['authService', '$scope', '$http', 'URL_API',
 function (authService, $scope, $http, URL_API) {
-	console.log('ExpertsJobtypeController');
     $scope.lang = 'en';
     var currenturl = window.location.href;
     var jobTypesId = currenturl.substring(currenturl.search('/jobtype-experts')+ 16);
@@ -17,7 +16,6 @@ function (authService, $scope, $http, URL_API) {
 		$scope.isLoggedIn = true;
 		})
 		.catch((err) => {
-		// console.log(err);
 		});
 	}
 	$scope.chgLang = function (lang){

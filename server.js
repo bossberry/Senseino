@@ -20,7 +20,6 @@ function ensureSecure(req, res, next) {
         return next();
     }
     ;
-    // console.log(req.hostname)
     res.redirect('https://' + req.hostname + req.url); // express 4.x
 }
 
@@ -40,15 +39,12 @@ if (env[processEnv].protocol == 'https') {
         ca: fs.readFileSync(join(__dirname, './cert/senseino.co.ca'))
     };
 
-    // console.log('Server start https');
     var server = https.createServer(options, app);
     server.listen(port, function () {
-        console.log("website start on port: " + port);
     });
 }
 
 var httpsServer = http.createServer(app);
 httpsServer.listen(80, function () {
-    console.log("website start on port: " + 80);
 });
 

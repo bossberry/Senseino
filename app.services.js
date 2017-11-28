@@ -16,7 +16,12 @@ function authService($http, URL_API) {
         method: 'POST',
         url: URL_API + '/api/v1/users/login',
         data: {username:username, credential:password, type:'email'},
-        headers: {'Content-Type': 'application/json'}
+        headers: {
+            'Content-Type': 'application/json',
+            'platform': 'web',
+            'lang': 'en',
+            'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+        }
         });
     };
     this.RegisByEmail = function(firstname, lastname, tel, email, password) {
@@ -31,7 +36,12 @@ function authService($http, URL_API) {
             type:'email',
             password: password
         },
-        headers: {'Content-Type': 'application/json'}
+        headers: {
+            'Content-Type': 'application/json',
+            'platform': 'web',
+            'lang': 'en',
+            'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
+        }
         });
     };
     this.ensureAuthenticated = function(userdata) {

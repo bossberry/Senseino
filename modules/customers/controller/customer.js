@@ -3,7 +3,6 @@ angular
 .module('myApp')
 .controller('CustomerController', ['$scope', '$location', '$anchorScroll',
 function ($scope, $location, $anchorScroll) {
-	console.log('CustomerController');
 	$scope.scrollTo = function(id) {
 		$location.hash(id);
 		$anchorScroll();

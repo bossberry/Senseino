@@ -8,7 +8,10 @@
             <h3>ข้อความ/ออเดอร์</h3>
         </div>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 chat-head-msg">
-            <h3>{{roomName}}</h3>
+            <h3>
+                <img style="border-radius:50%;"width="38px" height="38px" ng-src="{{exPic}}" draggable="false">
+                {{roomName}}
+            </h3>
             <div ng-show="roomnotfound">คุณไม่เคยส่งหรือได้รับข้อความเลย</div>
             <!-- <h4>#ABCDE</h4> -->
         </div>
@@ -427,7 +430,9 @@
         <label>Security code</label>
         <input type="text" data-name="securityCode" class="form-control" placeholder="123" />
     </div>
-
+    <center>
+        <span class="msg-form-err" ng-if="ckerr">{{errmsg}}</span>
+    </center>
     <div class="form-group">
         <button class="btn btn-action">Checkout</button>
     </div>

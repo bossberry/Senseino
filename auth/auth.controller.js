@@ -21,7 +21,6 @@
             $location.path('/status');
           })
           .catch((err) => {
-            console.log(err);
           });
         };
       }
@@ -37,7 +36,6 @@
             $location.path('/status');
           })
           .catch((err) => {
-            console.log(err);
           });
         };
       }
@@ -54,7 +52,6 @@
             vm.isLoggedIn = true;
           })
           .catch((err) => {
-            console.log(err);
           });
         }
       }

@@ -3,7 +3,6 @@ angular
 .module('myApp')
 .controller('HelpController', ['$timeout', 'authService', '$uibModal', '$scope', '$http', 'URL_API',
 function ($timeout, authService, $uibModal, $scope, $http, URL_API) {
-	console.log('HelpController');
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
 	$scope.lang = 'en';
 	$scope.isLoggedIn = false;
@@ -16,7 +15,6 @@ function ($timeout, authService, $uibModal, $scope, $http, URL_API) {
 		})
 		.catch((err) => {
 			$scope.loaded = true;
-			// console.log(err);
 		});
 	}else {
 		$scope.loaded = true;
@@ -26,15 +24,12 @@ function ($timeout, authService, $uibModal, $scope, $http, URL_API) {
 		$scope.lang = lang;
 	};
 	$scope.searchApiHelp = function() {
-		console.log($scope.keywordhelp);
 		$http.post(URL_API + '/api/v1/search', {textSearch: $scope.keywordhelp})
 		.then(function(res){
-			console.log(res.data.data);
 			localStorage.setItem('search',JSON.stringify([$scope.keywordhelp, res.data.data]));
 			window.location.href = '/#/search';
 			window.location.reload()
 		}, function(err) {
-			console.log(err.data);
 		});;
 
 	};
@@ -42,7 +37,6 @@ function ($timeout, authService, $uibModal, $scope, $http, URL_API) {
 	.then( function(res){
         $scope.loaded = true;
         $scope.faqArr = res.data.data;
- 				console.log($scope.faqArr);
     });
 	$scope.groups = [
 		{
