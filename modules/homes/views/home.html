@@ -23,7 +23,7 @@
     <div class="section-box container-fluid" ng-if="loaded===true" ng-repeat="ex in experts">
         <div class="col-lg-12">
                 <!-- col-sm-5ths col-md-5ths col-lg-5ths -->
-            <h1 class="head-section-margin">{{ex.jobType.name[lang]}}<span class="see-all-wrap float-r"><a ng-href="/#/experts{{ex.jobType._id}}" class="btn btn-more">ดูทั้งหมด ></a></span></h1>
+            <h1 class="head-section-margin">{{ex.jobType.name[lang]}}<span class="see-all-wrap float-r"><a ng-href="/#/experts{{ex.jobType._id}}" class="btn btn-more" translate="MTR.SEEALL"></a></span></h1>
             
             <slick 
             infinite=true 
@@ -214,10 +214,10 @@
     </div> -->
     <div class="section-box wrapper-customer  container-fluid">
         <div class="overlay-red row  container-fluid"></div>
-        <h1>สำหรับลูกค้าองค์กร</h1>
-        <p>บริการ Outsource ผู้เชี่ยวชาญด้านภาษา</p>
-        <p>ล่าม นักแปล ครูสอนภาษา ไกด์ พิธีกร MC ที่ปรึกษา สำหรับลูกค้าองค์กรในราคาพิเศษ</p>
-        <button class="btn-action btn">ดูรายละเอียด</button>
+        <h1 translate="FORYOU.CTM-FORORG"></h1>
+        <p translate="FORYOU.CTM-PARA1"></p>
+        <p translate="FORYOU.CTM-PARA2"></p>
+        <button class="btn-action btn" translate="MTR.BTN-SeeDetail"></button>
         <button class="btn backtotop" ng-click="backtotop()"><span class="glyphicon glyphicon-menu-up"></span></button>
     </div>
     <div class="section-contact section-box container-fluid">
@@ -235,7 +235,7 @@
                 <img src="assets/img/support.png" alt="">
             </div>
             <div class="col-sm-6 col-md-6 col-lg-6">
-                <h1 style="margin-top:15px;">บริการช่วยเหลือ</h1>
+                <h1 style="margin-top:15px;" translate="FORYOU.HelpService"></h1>
             </div>
         </div>
         <div class="col-sm-4 col-md-4 col-lg-4">
@@ -251,8 +251,7 @@
     </div>
 
 <script type="text/ng-template" id="jobModalHome.html">
-    <div class="modal-header job-modal-header">
-        รายละเอียด
+    <div class="modal-header job-modal-header" translate="MODAL.JOB-TITLE">
         <span ng-click="closeMD()">X</span>
     </div>
     <div class="modal-body job-modal-body" id="modal-body">
@@ -281,18 +280,17 @@
             </div>
         </div>
         <div class="job-detail-cover row">
-            <h2>รายละเอียด</h2> 
+            <h2 translate="MODAL.JOB-Detail"></h2> 
             <p>{{jobdatas.detail[lang]}}
             </p>
         </div>
     </div>
     <div class="modal-footer job-modal-footer">
-        <button class="btn dialog-action btn-action" type="button" ng-click="confirmDeleteWidget()"><img src="assets/img/chat.png">&nbsp;&nbsp;แชทเสนอราคา</button>
+        <button class="btn dialog-action btn-action" type="button" ng-click="confirmDeleteWidget()"><img src="assets/img/chat.png" translate="MODAL.JOB-BTN-Offer"></button>
     </div>
 </script>
 <script type="text/ng-template" id="lineLoginModal.html">
-    <div class="modal-header modal-regis-header">
-        เข้าสู่ระบบด้วย Line
+    <div class="modal-header modal-regis-header" translate="MODAL.Line-TITLE">
         <span ng-click="closeMD()">X</span>
     </div>
     <div class="modal-body modal-regis-body" id="modal-body">
@@ -303,7 +301,7 @@
         <div class="form-group form-g-login-modal" ng-if="loginerr===true">
             <span class="msg-form-err" >{{loginerrmsg}}</span>
         </div> 
-        <button class="btn btn-action-login" type="submit">เข้าสู่ระบบ</button>
+        <button class="btn btn-action-login" type="submit" translate="MTS.BTN-Login"></button>
     </form>
     </div>
 </script>

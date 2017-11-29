@@ -27,21 +27,21 @@
     <div class="col-lg-12">
         <div class="col-sm-7 col-md-7 col-lg-7" style="padding-left:30px;margin-top:30px;">
             <div class="col-sm-4 col-md-4 col-lg-4">
-                <p class="expt-detail-des-title">รายละเอียด</p>
+                <p class="expt-detail-des-title" translate="MTR.DETAIL"></p>
             </div>
             <div class="col-sm-8 col-md-8 col-lg-8">
                 <p class="expt-detail-des-body">{{exptdetail.detail[lang]}}
                 </p>
             </div>
             <div class="col-sm-4 col-md-4 col-lg-4">
-                <p class="expt-detail-des-title">ประสบการณ์</p>
+                <p class="expt-detail-des-title" translate="MTR.EXP"></p>
             </div>
             <div class="col-sm-8 col-md-8 col-lg-8">
                 <p class="expt-detail-des-body">{{exptdetail.experience[lang]}}
                 </p>
             </div>
             <div class="col-sm-4 col-md-4 col-lg-4">
-                <p class="expt-detail-des-title">การศึกษา</p>
+                <p class="expt-detail-des-title" translate="MTR.ED"></p>
             </div>
             <div class="col-sm-8 col-md-8 col-lg-8">
                 <p class="expt-detail-des-body">{{exptdetail.education[lang]}}
@@ -73,7 +73,7 @@
                 <input type="checkbox" class="checkboxLabel main_street_input" id="{{data._id}}" value="1" ng-checked="data.isFavorite"/>
                 <label for="{{data._id}}"></label>
             </div> -->
-            <p class="expt-save-fav-p">Save to favorite <button ng-click="chatExpt(exptdetail)" class="btn btn-action-chatbrief"><img src="assets/img/chat.png">แชทและบรีฟงาน</button></p>
+            <p class="expt-save-fav-p" translate="MTR.SAVEFAV"><button ng-click="chatExpt(exptdetail)" class="btn btn-action-chatbrief"><img src="assets/img/chat.png" translate="MTR.CHAT-BRIEF"></button></p>
         </div> 
         </div> 
     </div>
@@ -144,23 +144,23 @@
     <div class="col-sm-12 col-md-12 col-lg-12">
         <div class="col-sm-7 col-md-7 col-lg-7">
             <center>
-                    <button ng-if="exptdetail.reviews!=0" ng-click="reviewModal(exptdetail.reviews)" class="btn btn-more">ดูรีวิวทั้งหมด</button>
+                    <button ng-if="exptdetail.reviews!=0" ng-click="reviewModal(exptdetail.reviews)" class="btn btn-more" translate="MTR.SeeRVAll"></button>
             </center>
         </div>
     </div>
 </div>
 <div class="section-box container">
     <div class="col-lg-12 padding-left"  style="padding-right:90px;">
-        <h1 class="head-section-margin">ผลงาน</h1>
+        <h1 class="head-section-margin"  translate="MTR.PORT"></h1>
         <div class="col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="data in exptdetail.portfolio | limitTo: 5">
             <img style="width:100%" ng-src="{{data}}">
-            <p>ผลงาน</p>
+            <p translate="MTR.PORT"></p>
         </div>
     </div>
 </div>
 <div class="section-box container-fluid" ng-repeat="ex in experts">
         <div class="col-lg-12">
-            <h1 class="head-section-margin">{{ex.jobType.name[lang]}}<span class="see-all-wrap float-r"><a ng-href="/#/experts{{ex.jobType._id}}" class="btn btn-more">ดูทั้งหมด ></a></span></h1>
+            <h1 class="head-section-margin">{{ex.jobType.name[lang]}}<span class="see-all-wrap float-r"><a ng-href="/#/experts{{ex.jobType._id}}" class="btn btn-more" translate="MTR.SEEALL"></a></span></h1>
             <div class="col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="data in ex.experts | limitTo: 5">
                 <div class="amPmCheckbox">
                     <input type="checkbox" class="checkboxLabel main_street_input" id="{{data._id}}" value="1" />
@@ -300,8 +300,7 @@
     </div>
 </script>
 <script type="text/ng-template" id="hiMsg.html">
-    <div class="modal-header modal-regis-header">
-        ส่งข้อความถึงฟรีแลนซ์
+    <div class="modal-header modal-regis-header" translate="MODAL.HiM-TITLE">
         <span ng-click="closeMD()">X</span>
     </div>
     <div class="modal-body" id="modal-body">
@@ -364,7 +363,7 @@
                 <textarea id="inputMsg" ng-model="msgsend" class="chatinputsayhi" row="20" cols="100%" placeholder="แจ้งรายละเอียดงานที่ต้องการ" required></textarea>
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12">
-                <button style="width:100%;"class="btn btn-action" type="submit" >ส่งข้อความ</button>
+                <button style="width:100%;"class="btn btn-action" type="submit" translate="MTR.SendMSG"></button>
             </div>
             </form>
         </div>

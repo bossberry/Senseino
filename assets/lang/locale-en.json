@@ -13,6 +13,8 @@
         "EXPERT": "EXPERTS",
         "JOBS": "JOBS",
         "COURSES": "COURSES",
+        "ENTERPRISE": "Enterprise",
+        "CONTACT": "ติดต่อเรา",
         "APP_DES": "ใช้งาน Senseino ได้ง่ายๆ ผ่านแอพ "
     },
     "MODAL": {
@@ -51,6 +53,52 @@
         "LOGIN_ASKREGIS": "ยังไม่เป็นสมาชิก? ",
         "LOGIN_BTNREGIS": "สมัครสมาชิก",
         "RegisFB_TITLE": "สมัครสมาชิกด้วย Facebook",
-        "RegisFB_BTNREGIS": "สมัครสมาชิก"
+        "RegisFB_BTNREGIS": "สมัครสมาชิก",
+        "JOB-TITLE": "รายละเอียด",
+        "JOB-Detail": "รายละเอียด",
+        "JOB-BTN-Offer": "  แชทเสนอราคา",
+        "Line-TITLE": "เข้าสู่ระบบด้วย Line"
+    },
+    "MTR": {
+        "ERR-Pic-VID": "   กรุณาอัพโหลดรูปภาพ",
+        "SEEALL": "See All >",
+        "BTN-SeeDetail": "ดูรายละเอียด",
+        "BTN-Login": "เข้าสู่ระบบ",
+        "WORKTYPE": "ประเภทงาน",
+        "TYPESELECT": "-- เลือกประเภท --",
+        "LANGSELECT": "-- เลือกภาษา --",
+        "PRICE": "ราคา",
+        "JOBUNIT": "รูปแบบงาน",
+        "JOBUNIT-H": "ชั่วโมง",
+        "JOBUNIT-D": "ต่อวัน",
+        "JOBUNIT-J": "ต่องาน",
+        "DETAIL": "รายละเอียด",
+        "EXP": "ประสบการณ์",
+        "ED": "การศึกษา",
+        "UP-Pic-VID": "อัพโหลดรูปภาพหรือวีดีโอ",
+        "SAVEFAV": "Save to favorite ",
+        "CHAT-BRIEF": "แชทและบรีฟงาน",
+        "SeeRVAll": "ดูรีวิวทั้งหมด",
+        "SendMSG": "ส่งข้อความ"
+        
+    },
+    "FORYOU": {
+        "CTM-FORORG": "สำหรับลูกค้าองค์กร",
+        "CTM-PARA1": "บริการ Outsource ผู้เชี่ยวชาญด้านภาษา",
+        "CTM-PARA2": "ล่าม นักแปล ครูสอนภาษา ไกด์ พิธีกร MC ที่ปรึกษา สำหรับลูกค้าองค์กรในราคาพิเศษ",
+        "HelpService": "บริการช่วยเหลือ"
+    },
+    "EXPERT": {
+        "TYPE-TITLE": "ประเภทงาน",
+        "INTR-TITLE": "สนใจสมัครงาน",
+        "INTR-PARA1": "ผู้เชี่ยวชาญด้านภาษา ล่าม นักแปล ครูสอนภาษา",
+        "INTR-PARA2": "ติวเตอร์ ไกด์ พิธีกร MC ที่ปรึกษา",
+        "INTR-REGIS": "สมัครงาน",
+        "CRE-TITLE": "ประวัติงาน",
+        "BTN-CRE-EXPT": "เพิ่มประวัติ",
+        "CRE-NAME": "ชื่อประวัติ",
+        "PORT": "ผลงาน"
+
+
     }
 }

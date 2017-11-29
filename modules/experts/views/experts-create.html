@@ -4,19 +4,19 @@
 </div>   
 <section class="margin-for-topbar-5">
     <div class="section-box row container-fluid experts-cre-sec-sup">
-        <h1>ประวัติงาน</h1>
+        <h1 translate="EXPERT.CRE-TITLE"></h1>
         <!-- <button class="btn btn-action">เพิ่มประวัติ</button> -->
     </div>
     <div class="section-box row container-fluid help-sec-faq"> 
         <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-2 col-lg-10 col-lg-offset-2">
         <form ng-submit="submitexpertsCreate(errpic)" name="expertsCreate" autocomplete="off">
                 <div class="wrap-btn-cre-expt">
-                    <button class="btn btn-action" type="submit">เพิ่มประวัติ</button>
+                    <button class="btn btn-action" type="submit" translate="EXPERT.BTN-CRE-EXPT"></button>
                  </div>
             <div class="form-group">
                 <div class="row form-group experts-cre-fg">
                     <div class="col-sm-3 col-md-3 col-lg-2">
-                        <label class="experts-cre-label">ชื่อประวัติ</label>
+                        <label class="experts-cre-label" translate="EXPERT.CRE-NAME"></label>
                     </div>
                     <div class="col-sm-5 col-md-5 col-lg-5">
                         <input type="text" ng-model="user.exptname" placeholder="ล่าม" class="form-control input-size-box" required ng-minlength="2">
@@ -25,7 +25,7 @@
             </div>
             <div class="row form-group experts-cre-fg">
                 <div class="col-sm-3 col-md-3 col-lg-2">
-                    <label class="experts-cre-label">ประเภทงาน</label>
+                    <label class="experts-cre-label" translate="MTR.WORKTYPE"></label>
                 </div>
                 <div class="col-sm-3 col-md-3 col-lg-2">
                      <select 
@@ -33,7 +33,7 @@
                         class="form-control input-size-box"
                         ng-model="datajob"
                         ng-options="data as data.name[lang] for data in jobTypes track by data._id" required>
-                        <option value="" disabled>-- เลือกประเภท --</option>
+                        <option value="" disabled translate="MTR.TYPESELECT"></option>
                     </select>
                 </div>
                 <div class="col-sm-3 col-md-3 col-lg-2">
@@ -41,13 +41,13 @@
                         class="form-control input-size-box"
                         ng-model="datatag"
                         ng-options="data as data.name[lang] for data in tags track by data._id" required>
-                        <option value="" disabled>-- เลือกภาษา --</option>
+                        <option value="" disabled translate="MTR.LANGSELECT"></option>
                     </select>
                 </div>
             </div>
             <div class="row form-group experts-cre-fg">
                 <div class="col-sm-3 col-md-3 col-lg-2">
-                    <label class="experts-cre-label">ราคา</label>
+                    <label class="experts-cre-label" translate="MTR.PRICE"></label>
                 </div>
                 <div class="col-sm-5 col-md-5 col-lg-5">
                     <input ng-model="user.price" class="form-control jobsex-price input-size-box" type="number" placeholder="3000" required>
@@ -55,19 +55,19 @@
             </div>
             <div class="row form-group experts-cre-fg">
                 <div class="col-sm-3 col-md-3 col-lg-2">
-                    <label class="experts-cre-label">รูปแบบงาน</label>
+                    <label class="experts-cre-label" translate="MTR.JOBUNIT">รูปแบบงาน</label>
                 </div>
                 <div class="col-sm-5 col-md-5 col-lg-5">
                     <div class="type-radio-jobsex" ng-init="user.jobunit='ต่อชั่วโมง'">
-                        <input type="radio" name="optradio" ng-model="user.jobunit" value="ต่อชั่วโมง" id="radio1"><label for="radio1">ต่อชั่วโมง</label>
-                        <input type="radio" name="optradio" ng-model="user.jobunit" value="ต่อวัน" id="radio2"><label for="radio2">ต่อวัน</label>
-                        <input type="radio" name="optradio" ng-model="user.jobunit" value="ต่องาน" id="radio3"><label for="radio3">ต่องาน</label>
+                        <input type="radio" name="optradio" ng-model="user.jobunit" value="ต่อชั่วโมง" id="radio1"><label for="radio1" translate="MTR.JOBUNIT-H"></label>
+                        <input type="radio" name="optradio" ng-model="user.jobunit" value="ต่อวัน" id="radio2"><label for="radio2" translate="MTR.JOBUNIT-D"></label>
+                        <input type="radio" name="optradio" ng-model="user.jobunit" value="ต่องาน" id="radio3"><label for="radio3" translate="MTR.JOBUNIT-J"></label>
                     </div>
                 </div>
             </div>
             <div class="row form-group experts-cre-fg">
                     <div class="col-sm-3 col-md-3 col-lg-2">
-                        <label class="experts-cre-label">รายละเอียด</label>
+                        <label class="experts-cre-label" translate="MTR.DETAIL"></label>
                     </div>
                     <div class="col-sm-5 col-md-5 col-lg-5">
                         <textarea ng-model="user.des" style="resize:none;"rows="4" cols="40" required></textarea>
@@ -75,7 +75,7 @@
                 </div>
                 <div class="row form-group experts-cre-fg">
                     <div class="col-sm-3 col-md-3 col-lg-2">
-                        <label class="experts-cre-label">ประสบการณ์</label>
+                        <label class="experts-cre-label" translate="MTR.EXP"></label>
                     </div>
                     <div class="col-sm-5 col-md-5 col-lg-5">
                         <textarea ng-model="user.exp" style="resize:none;"rows="4" cols="40" required></textarea>
@@ -83,7 +83,7 @@
                 </div>
                 <div class="row form-group experts-cre-fg">
                     <div class="col-sm-3 col-md-3 col-lg-2">
-                        <label class="experts-cre-label">การศึกษา</label>
+                        <label class="experts-cre-label" translate="MTR.ED"></label>
                     </div>
                     <div class="col-sm-5 col-md-5 col-lg-5">
                         <textarea ng-model="user.ed" style="resize:none;"rows="4" cols="40" required></textarea>
@@ -91,7 +91,7 @@
                 </div>
                 <div class="row form-group experts-cre-fg">
                     <div class="col-sm-12 col-md-12 col-lg-12">
-                        <label class="experts-cre-label">อัพโหลดรูปภาพหรือวีดีโอ<span id="errpic" class="msg-form-err"ng-show="picErr">&nbsp;&nbsp;&nbsp;กรุณาอัพโหลดรูปภาพ</span></label>                       
+                        <label class="experts-cre-label" translate="MTR.UP-Pic-VID"><span id="errpic" class="msg-form-err"ng-show="picErr" translate="MTR.ERR-Pic-VID"></span></label>                       
                     </div>                    
                     <div class="col-sm-4 col-md-4 col-lg-2 input-media-wrap">
                         <span class="btn btn-media">
@@ -105,7 +105,7 @@
                 </div>
                 <div class="row form-group experts-cre-fg">
                     <div class="col-sm-12 col-md-12 col-lg-12">
-                        <label class="experts-cre-label">ผลงาน</label>                       
+                        <label class="experts-cre-label" translate="EXPERT.PORT"></label>                       
                     </div>                    
                     <div class="col-sm-4 col-md-4 col-lg-2 input-media-wrap">
                         <span class="btn btn-media">

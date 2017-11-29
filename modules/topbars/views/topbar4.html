@@ -12,9 +12,7 @@
                 <li><a href="/#/chat"><img src="assets/img/inbox.png"></a></li>
                 <li class="dropdown" uib-dropdown>
                     <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
-                    <!-- <img ng-src="/{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" /> -->
                     <img ng-src="{{authen.imgUrl}}" alt="{{authen.firstName}}" class="header-profile-image" />
-                    <!-- <span ng-bind="authen.firstName"></span> <b class="caret"></b> -->
                     <span ng-bind=""></span> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu" role="menu">
@@ -38,7 +36,7 @@
             <ul class="topbar-menu-sub">
                 <li><a ng-href="/#/home" translate="TOPBAR.FORYOU"></a></li>
                 <li><a ng-href="/#/experts" translate="TOPBAR.EXPERT"></a></li>
-                <li><a ng-href="/#/jobs" translate="TOPBAR.JOB"></a></li>
+                <li><a ng-href="/#/jobs" translate="TOPBAR.JOBS"></a></li>
                 <li><a ng-href="/#/courses" translate="TOPBAR.COURSES"></a></li>
             </ul>
         </div>
