@@ -52,9 +52,9 @@ angular
 	   return Math.trunc(calcCrow(this.latme, this.lonme, this.latex, this.lonex)); 
 	}
  })
-.controller('HomeController', ['authService', '$uibModal', '$scope', '$http', 'URL_API', '$location', '$anchorScroll',
-function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScroll) {
-	console.log('HomeController');
+.controller('HomeController', ['$translate', 'authService', '$uibModal', '$scope', '$http', 'URL_API', '$location', '$anchorScroll',
+function ($translate, authService, $uibModal, $scope, $http, URL_API, $location, $anchorScroll) {
+	// console.log('HomeController');
 	$scope.lang = 'en';
 	$scope.imglang = 'assets/img/' + $scope.lang + '.png';
 	$scope.bannersarr = [];
@@ -64,6 +64,12 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 	$scope.favexptId = [];
 	var currenturl = window.location.href;
 	// console.log(currenturl);
+	$scope.chgLang = function (lang){
+		$scope.imglang = 'assets/img/' + lang + '.png';
+		// $scope.lang = lang;
+		$translate.use(lang);
+		
+	};
 	var line = currenturl.substring(currenturl.search('/?state=lineCallback&response='));
 	if(currenturl.indexOf("/?state=lineCallback&response=") > -1){
 		var responseUrl = line.substring(28);
@@ -73,7 +79,7 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 		// console.log($scope.lineData);
 		var obj = JSON.parse($scope.lineData);
 		var resline = obj.data;
-		console.log(resline);
+		// console.log(resline);
 		$http({
 			method: 'POST',
 			url: URL_API + '/api/v1/users/login',
@@ -101,7 +107,7 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 					 window.location.href = '/#/';
 				});
 			}, function(err) {
-				console.log(err);
+				// console.log(err);
 				var modalInstance = $uibModal.open({
 				animation: $scope.animationsEnabled,
 				templateUrl: 'lineLoginModal.html',
@@ -136,7 +142,7 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 		$scope.isLoggedIn = true;
 	  })
 	  .catch((err) => {
-		console.log(err);
+		// console.log(err);
 	  });
 	}
 
@@ -148,30 +154,27 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 		// call $anchorScroll()
 		$anchorScroll();
 	};
-	$scope.chgLang = function (lang){
-		$scope.imglang = 'assets/img/' + lang + '.png';
-		$scope.lang = lang;
-	};
+	
 	$scope.favExpt = function (exptsId, check){
 		if($scope.isLoggedIn){
-			console.log(exptsId);
+			// console.log(exptsId);
 			if(check === true){
 				$http.put(URL_API + '/api/v1/users/favorite/' + userdata._id, {
 					action: '$pull',
 					expertId: exptsId
 				}).then(function(res){
-					console.log(res.data);
+					// console.log(res.data);
 				}, function(err) {
-					console.log(err.data);
+					// console.log(err.data);
 				});
 			} else {
 				$http.put(URL_API + '/api/v1/users/favorite/' + userdata._id, {
 					action: '$push',
 					expertId: exptsId
 				}).then(function(res){
-					console.log(res.data);
+					// console.log(res.data);
 				}, function(err) {
-					console.log(err.data);
+					// console.log(err.data);
 				});
 			}
 			
@@ -188,7 +191,7 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 		// console.log(res.data.data.experts);
 		$scope.loaded = true;
 		$scope.banners = res.data.data.banners;
-		console.log(res.data.data);
+		// console.log(res.data.data);
 		for(var i = 0; i < $scope.banners.length; i++){
 			$scope.banner = {src:$scope.banners[i].webImgUrl};
 			$scope.bannersarr.push($scope.banner);
@@ -217,7 +220,7 @@ function (authService, $uibModal, $scope, $http, URL_API, $location, $anchorScro
 angular
 .module('myApp')
 .controller('LineLoginModal', function ($scope, $uibModal, $uibModalInstance, $http, URL_API, lineData) {
-	console.log('LineLoginModal');
+	// console.log('LineLoginModal');
 	$scope.lang = 'en';
 	$scope.regisLine = function () {
 		var obj = JSON.parse(lineData);
@@ -242,9 +245,9 @@ angular
 			'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
 		}
 		}).then( function(res){
-			console.log(res);
+			// console.log(res);
 		}, function(err) {
-			console.log(err);
+			// console.log(err);
 		});
 	};
 	

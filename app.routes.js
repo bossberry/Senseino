@@ -62,5 +62,8 @@ function config ($locationProvider, $routeProvider) {
         .otherwise({
             redirectTo: '/'
         });
-        // $locationProvider.html5Mode(true);
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+          });
 };

@@ -5,8 +5,26 @@ angular
     .config(configs);
 
 // httpRequestInterceptor.$inject = ['$rootScope'];
+var translations = {
+    HEADLINE: 'What an awesome module!',
+    PARAGRAPH: 'Srsly!',
+    NAMESPACE: {
+      PARAGRAPH: 'And it comes with awesome features!'
+    }
+  };
+   
+function configs($httpProvider,$translateProvider) {
+ 
+    $translateProvider.useStaticFilesLoader({
+        prefix: 'assets/lang/locale-',
+        suffix: '.json'
+    });
 
-function configs($httpProvider) {
+    $translateProvider.fallbackLanguage("en");
+    $translateProvider.preferredLanguage('en');
+    $translateProvider.useSanitizeValueStrategy('escapeParameters');
+
+
     const userdata = JSON.parse(localStorage.getItem('userdata'));
     if(userdata === null || userdata === undefined){
         $httpProvider.defaults.headers.common = { 

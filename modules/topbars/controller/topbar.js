@@ -5,11 +5,14 @@ angular
 function ($http, URL_API, $scope, $uibModal) {
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
 	$scope.authen = userdata;
-	$http.get('multilingual.json') 
-	.then(function (data) {
-		$scope.multilingual = data.data
-	}, function (error) {
-	});
+	$scope.lang = 'en';
+	
+		$http.get('multilingual.json') 
+		.then(function (data) {
+			$scope.multilingual = data.data
+		}, function (error) {
+		});
+
 	$scope.regis = function() {
 		var modalInstance = $uibModal.open({
 			animation: $scope.animationsEnabled,
