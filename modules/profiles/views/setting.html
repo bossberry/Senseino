@@ -12,55 +12,53 @@
 </div>
 <div class="section-box col-sm-6 col-md-6 col-lg-6 ">
     <div class="section-shadow ">
-        <h1 class="head-section-margin">ข้อมูลส่วนตัว</h1>
+        <h1 class="head-section-margin" translate="SETTING.TITLE"></h1>
         <form ng-submit="updateProfile()" name="upProfile" autocomplete="off">
             <div class="form-group form-g-setting">
-                <label>ชื่อ</label>
+                <label translate="MTR.NAME"></label>
                 <input type="text" ng-model="user.firstName" ng-pattern="/^[a-zA-Z\s]*$/" name="firstname" class="form-control" placeholder="ชื่อ" required ng-minlength="2"/>
             </div>
             <div class="form-group form-g-setting">
-                <label>นามสกุล</label>
+                <label  translate="MTR.LASTNAME"></label>
                 <input type="text" ng-model="user.lastName" ng-pattern="/^[a-zA-Z\s]*$/"  name="lastname" class="form-control" placeholder="นามสกุล" required ng-minlength="2"/>
             </div>
             <div class="form-group form-g-setting">
-                <label>เบอร์โทร</label>
+                <label translate="MTR.TEL"></label>
                 <input type="text" ng-model="user.mobileNo" ng-pattern="/^[0-9]{10,10}$/"  name="tel" class="form-control" placeholder="089-999-9999" required ng-minlength="10"/>
             </div>
             <div class="form-group form-g-setting">
-                <label>อีเมล</label>
+                <label translate="MTR.EMAIL"></label>
                 <input type="email" ng-model="user.email" name="email" class="form-control" placeholder="name@gmail.com" required ng-minlength="10"/>
             </div>
             <div class="form-group form-g-setting">
-                <label>เลขบัตรประชาชน</label>
+                <label translate="MTR.IDCARD"></label>
                 <input type="idCard" ng-model="user.idCard" name="idCard" class="form-control" placeholder="เลขบัตรประชาชน" required ng-minlength="13"/>
             </div> 
             <div class="form-group form-g-setting">
-                <label>ที่อยู่</label>
+                <label translate="MTR.ADDR"></label>
                 <input type="text" ng-model="user.address" ng-pattern="/^[a-zA-Z\s]*$/" name="address" class="form-control" placeholder="ที่อยู่" required ng-minlength="10"/>
             </div>
-            <h1 class="head-section-margin">บัญชีธนาคาร</h1>
+            <h1 class="head-section-margin" translate="MTR.BANK-TITLE"></h1>
             <div class="form-group form-g-setting col-lg-12">
-                <!-- <div class="col-sm-3 col-md-3 col-lg-2"> -->
-                    <label>ธนาคาร</label>
-                <!-- </div> -->
+                    <label translate="MTR.BANK"></label>
                 <div style="margin-left:120px;"class="col-sm-6 col-md-6 col-lg-6">
                     <select 
                         class="form-control input-size-box"
                         ng-model="user.bankAccount"
                         ng-options="data as data.name[lang] for data in bank track by data._id" required>
-                        <option value="" disabled>-- เลือกประเภท --</option>
+                        <option value="" disabled translate="MTR.TYPESELECT"></option>
                     </select>
                 </div>
             </div>
             <div class="form-group form-g-setting">
-                <label>เลขบัญชีธนาคาร</label>
+                <label translate="MTR.NO-BANK"></label>
                 <input type="text" ng-model="user.billingName" ng-pattern="/^[0-9]{10,10}$/" name="address" class="form-control" placeholder="เลขบัญชีธนาคาร" required ng-minlength="13"/>
             </div>
             <div class="form-group form-g-setting" style="text-align:center">
-                <button style="width:250px;"class="btn btn-action" type="submit" ng-disabled="myForm.$invalid">บันทึกข้อมูลส่วนตัว</button>
+                <button style="width:250px;"class="btn btn-action" type="submit" ng-disabled="myForm.$invalid" translate="SETTING.BTN-SAVE"></button>
             </div>
             <div class="form-group form-g-setting">
-                <h1 class="head-section-margin">ไฟล์แนบเอกสาร</h1> 
+                <h1 class="head-section-margin" translate="SETTING.FILE-ATTCH"></h1> 
                 <div class="row">          
                     <div class="col-sm-4 col-md-4 col-lg-4">
                         <span class="btn btn-media">
@@ -78,14 +76,14 @@
 </div>
 <div class="section-box col-sm-6 col-md-6 col-lg-6">
     <div class="section-shadow">
-        <h1 class="head-section-margin">เปลี่ยนรหัสผ่าน</h1>
+        <h1 class="head-section-margin" translate="SETTING.CHANG-PASS"></h1>
         <form ng-submit="submitChangePass()" name="changePassForm" autocomplete="off">
             <div class="form-group form-g-setting">
-                <label>รหัสผ่านเดิม</label>
+                <label translate="SETTING.OLD-PASS"></label>
                 <input type="password" id="passOld" ng-model="passOld" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/" name="password" class="form-control" placeholder="รหัสผ่าน" required ng-minlength="10"/>
             </div>
             <div class="form-group form-g-setting">
-                <label>รหัสผ่านใหม่</label>
+                <label translate="SETTING.NEW-PASS"></label>
                 <input style="margin-bottom:10px;"type="password" id="newpass" onkeyup="angular.element(this).scope().checkMatchPass()" ng-model="passwordNew" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/" name="password" class="form-control" placeholder="รหัสผ่าน" required ng-minlength="10"/>
                 <input type="password" id="conpass" onkeyup="angular.element(this).scope().checkMatchPass()" ng-model="password" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/" name="password" class="form-control" placeholder="รหัสผ่าน" required ng-minlength="10"/>
                 <label></label><span class="msg-form-err" id='conmessage' style="margin-left: 130px;"></span>
@@ -93,7 +91,7 @@
                 <label></label><span ng-hide="msgerr" class="msg-form-err">{{errmsg}}</span>
             </div>
             <div class="form-group form-g-setting" style="text-align:center">
-                <button style="width:250px;"class="btn btn-action" type="submit" ng-disabled="myForm.$invalid">บันทึกรหัสผ่าน</button>
+                <button style="width:250px;"class="btn btn-action" type="submit" ng-disabled="myForm.$invalid" translate="SETTING.BTN-SAVE-PASS"></button>
             </div>
         </form>
     </div>

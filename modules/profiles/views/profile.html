@@ -11,7 +11,7 @@
         <p><img style="display:inline;"src="assets/img/location.png">{{user.address || '-'}}</p>
     </div>
     <div class="section-box container">
-        <h1 class="head-section-margin">ประวัติงาน<span class="see-all-wrap float-r"><button class="btn btn-more" style="margin-top:-10px;"><img src="assets/img/jobsexpress.png">โพสประวัติ</button></span></h1>
+        <h1 class="head-section-margin" translate="PROFILE.TITLE"><span class="see-all-wrap float-r"><button class="btn btn-more" style="margin-top:-10px;" translate="PROFILE.BTN-POST"><img src="assets/img/jobsexpress.png"></button></span></h1>
         <slick infinite=true slides-to-show="5" slides-to-scroll="1">
             <div class="slick-item col-sm-5 col-md-4 col-lg-2" ng-repeat="data in user.experts">
                 <a ng-href="/#/experts-detail{{data._id}}">
@@ -25,7 +25,7 @@
         </slick>
     </div>
     <div class="section-box container">
-        <h1 class="head-section-margin">โพสงาน<span class="see-all-wrap float-r"><button class="btn btn-more" style="margin-top:-10px;"><img src="assets/img/jobsexpress.png">โพสงาน</button></span></h1>
+        <h1 class="head-section-margin" translate="PROFILE.BTN-POST"><span class="see-all-wrap float-r"><button class="btn btn-more" style="margin-top:-10px;" translate="PROFILE.BTN-POST"><img src="assets/img/jobsexpress.png"></button></span></h1>
         <div class="col-sm-6 col-md-6 col-lg-6 job-post-repeat-col" ng-repeat="data in user.jobs" style="padding-left:0px;">
             <div class="job-post-wrapper" ng-click="jobsModal(data)">
                 <div class="col-sm-9 col-md-9 col-lg-9">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-sm-3 col-md-3 col-lg-3">
                     <p class="job-price">
-                    <span class="currency-ssn">$</span>
+                    <span class="currency-ssn">฿</span>
                     {{data.price}}
                     </p>
                     <p class="job-unit">
@@ -54,7 +54,7 @@
         </div>
     </div>
     <div class="section-box container">
-        <h1 class="head-section-margin">รายการโปรด</h1>
+        <h1 class="head-section-margin" translate="PROFILE.FAV"></h1>
         <slick 
         infinite=true 
         slides-to-show="5" 
