@@ -5,13 +5,12 @@ angular
     .config(configs);
 
 // httpRequestInterceptor.$inject = ['$rootScope'];
-function configs($httpProvider,$translateProvider) {
+function configs($httpProvider, $translateProvider) {
  
     $translateProvider.useStaticFilesLoader({
         prefix: 'assets/lang/locale-',
         suffix: '.json'
     });
-
     $translateProvider.fallbackLanguage("en");
     $translateProvider.preferredLanguage('en');
     $translateProvider.useSanitizeValueStrategy('escapeParameters');
@@ -20,11 +19,15 @@ function configs($httpProvider,$translateProvider) {
     const userdata = JSON.parse(localStorage.getItem('userdata'));
     if(userdata === null || userdata === undefined){
         $httpProvider.defaults.headers.common = { 
+            'platform': 'web',
+            'lang': 'en',
             'Content-Type': 'application/x-www-form-urlencoded',
             'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
         };
     } else {
         $httpProvider.defaults.headers.common = { 
+            'platform': 'web',
+            'lang': 'en',
             'Content-Type': 'application/x-www-form-urlencoded',
             'x-access-token': userdata.accessToken,
             'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='

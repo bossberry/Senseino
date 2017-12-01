@@ -1,16 +1,14 @@
 'use strict';
 angular.module('myApp.services', [])
         .service('authService', authService)
-        authService.$inject = ['$http', 'URL_API'];
+        authService.$inject = ['$translate', '$http', 'URL_API'];
      
-function authService($http, URL_API) {
+function authService($translate, $http, URL_API) {
     /*jshint validthis: true */
 
     this.test = function() {
         return 'working';
     };
-
-    const baseURL = 'http://localhost:3000/auth/';
     this.LoginByEmail = function(username, password) {
         return $http({
         method: 'POST',
@@ -19,7 +17,7 @@ function authService($http, URL_API) {
         headers: {
             'Content-Type': 'application/json',
             'platform': 'web',
-            'lang': 'en',
+            'lang': $translate.use(),
             'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
         }
         });
@@ -39,7 +37,7 @@ function authService($http, URL_API) {
         headers: {
             'Content-Type': 'application/json',
             'platform': 'web',
-            'lang': 'en',
+            'lang': $translate.use(),
             'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
         }
         });
@@ -49,7 +47,10 @@ function authService($http, URL_API) {
             method: 'GET',
             url: URL_API + '/api/v1/users/' + userdata._id,
             headers: {
-                'x-user' : userdata.email
+                'x-user' : userdata.email,
+                'platform': 'web',
+                'lang': $translate.use(),
+                'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
             }
         });
     };

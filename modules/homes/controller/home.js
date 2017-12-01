@@ -89,14 +89,16 @@ function ($translate, authService, $uibModal, $scope, $http, URL_API, $location,
 			},
 			headers: {
 				'Content-Type': 'application/json',
-				'platform' : 'web',
-				'lang' : 'en',
+				'platform': 'web',
+                'lang': $translate.use(),
 				'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
 			}
 			}).then( function(res){
 				$http({method: 'GET', url: URL_API + '/api/v1/users/'+ res.data.data._id, 
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded',
+					'platform': 'web',
+					'lang': $translate.use(),
 					'x-access-token': res.data.data.accessToken,
 					'x-user': res.data.data.email,
 					'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
@@ -239,8 +241,8 @@ angular
 		},
 		headers: {
 			'Content-Type': 'application/json',
-			'platform' : 'web',
-			'lang' : 'en',
+			'platform': 'web',
+			'lang': $translate.use(),
 			'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
 		}
 		}).then( function(res){

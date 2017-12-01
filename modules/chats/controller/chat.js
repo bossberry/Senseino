@@ -75,6 +75,8 @@ function ($scope, $uibModal, URL_API, $http) {
 			url: URL_API + '/api/v1/rooms',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded',
+				'platform': 'web',
+                'lang': $translate.use(),
 				'x-access-token': userdata.accessToken,
 				'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
 			}
@@ -112,6 +114,8 @@ function ($scope, $uibModal, URL_API, $http) {
 				url: URL_API + '/api/v1/rooms',
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded',
+					'platform': 'web',
+					'lang': $translate.use(),
 					'x-access-token': userdata.accessToken,
 					'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
 				}
@@ -180,6 +184,8 @@ function ($scope, $uibModal, URL_API, $http) {
 					url: URL_API + '/api/v1/messages?roomId=' + room._id,
 					headers: {
 						'Content-Type': 'application/x-www-form-urlencoded',
+						'platform': 'web',
+						'lang': $translate.use(),
 						'x-access-token': userdata.accessToken,
 						'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
 					}
@@ -212,6 +218,8 @@ function ($scope, $uibModal, URL_API, $http) {
 				transformRequest: angular.identity,
 				headers: {
 					'Content-Type': undefined,
+					'platform': 'web',
+					'lang': $translate.use(),
 					"Authorization": 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
 				}
 			}).then(function (res) {
@@ -243,6 +251,8 @@ function ($scope, $uibModal, URL_API, $http) {
 				url: URL_API + '/api/v1/messages?roomId=' + $scope.roomIdG + '&pagination=' + lastmsg,
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded',
+					'platform': 'web',
+					'lang': $translate.use(),
 					'x-access-token': userdata.accessToken,
 					'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
 				}
@@ -265,6 +275,8 @@ function ($scope, $uibModal, URL_API, $http) {
 				url: URL_API + '/api/v1/quotations/' +roomData.quotation._id,
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded',
+					'platform': 'web',
+					'lang': $translate.use(),
 					'x-access-token': userdata.accessToken,
 					'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
 				}
@@ -519,6 +531,8 @@ angular
 			transformRequest: angular.identity,
 			headers: {
 				'Content-Type': undefined,
+				'platform': 'web',
+                'lang': $translate.use(),
 				'x-access-token': userdata.accessToken,
 				"Authorization": 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
 			}
@@ -536,6 +550,8 @@ angular
 					transformRequest: angular.identity,
 					headers: {
 						'Content-Type': undefined,
+						'platform': 'web',
+						'lang': $translate.use(),
 						'x-access-token':userdata.accessToken,
 						'x-user':userdata.email,
 						'Authorization':'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
@@ -697,8 +713,8 @@ angular
 					},
 					headers: {
 						'Content-Type': 'application/json',
-						'platform' : 'web',
-						'lang' : 'en',
+						'platform': 'web',
+						'lang': $translate.use(),
 						'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
 					}
 					}).then( function(res){

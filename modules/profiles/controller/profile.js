@@ -23,6 +23,8 @@ function ($translate, authService, $uibModal, $scope, $http, URL_API) {
 			$http({method: 'GET', url: URL_API + '/api/v1/users/'+ userdata._id, 
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded',
+				'platform': 'web',
+                'lang': $translate.use(),
 				'x-access-token': userdata.accessToken,
 				'x-user': userdata.email,
 				'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='

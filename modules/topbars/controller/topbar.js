@@ -39,8 +39,8 @@ function ($translate, $http, URL_API, $scope, $uibModal) {
 			},
 			headers: {
 				'Content-Type': 'application/json',
-				'platform' : 'web',
-				'lang' : 'en',
+				'platform': 'web',
+                'lang': $translate.use(),
 				'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
 			}
 		}).then(function(res){
@@ -78,6 +78,8 @@ angular
 			$http({method: 'GET', url: URL_API + '/api/v1/users/'+user.data.data._id, 
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded',
+				'platform': 'web',
+                'lang': $translate.use(),
 				'x-access-token': user.data.data.accessToken,
 				'x-user': user.data.data.email,
 				'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
@@ -129,15 +131,17 @@ angular
                         },
                         headers: {
                             'Content-Type': 'application/json',
-                            'platform' : 'web',
-                            'lang' : 'en',
+                            'platform': 'web',
+							'lang': $translate.use(),
                             'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
                         }
                     }).then( function(res){
                         $http({method: 'GET', url: URL_API + '/api/v1/users/'+ res.data.data._id,
                             headers: {
                                 'Content-Type': 'application/x-www-form-urlencoded',
-                                'x-access-token': res.data.data.accessToken,
+								'x-access-token': res.data.data.accessToken,
+								'platform': 'web',
+								'lang': $translate.use(),
                                 'x-user': res.data.data.email,
                                 'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
                             }
@@ -196,8 +200,8 @@ angular
                      },
                      headers: {
                          'Content-Type': 'application/json',
-                         'platform' : 'web',
-                         'lang' : 'en',
+                         'platform': 'web',
+						 'lang': $translate.use(),
                          'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
                      }
                  }).then( function(res){
@@ -304,8 +308,8 @@ angular
                 },
                 headers: {
                     'Content-Type': 'application/json',
-                    'platform' : 'web',
-                    'lang' : 'en',
+                    'platform': 'web',
+					'lang': $translate.use(),
                     'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
                 }
             }).then( function(res){
@@ -319,15 +323,17 @@ angular
                     },
                     headers: {
                         'Content-Type': 'application/json',
-                        'platform' : 'web',
-                        'lang' : 'en',
+                        'platform': 'web',
+						'lang': $translate.use(),
                         'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
                     }
                 }).then( function(res){
                     $http({method: 'GET', url: URL_API + '/api/v1/users/'+ res.data.data._id,
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
-                            'x-access-token': res.data.data.accessToken,
+							'x-access-token': res.data.data.accessToken,
+							'platform': 'web',
+							'lang': $translate.use(),
                             'x-user': res.data.data.email,
                             'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw=='
                         }
