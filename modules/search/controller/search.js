@@ -15,7 +15,7 @@ return function (scope, element, attrs) {
 };
 })
 .controller('SearchController', ['$translate', 'authService', '$uibModal', '$scope', '$http', 'URL_API',
-function (authService, $uibModal, $scope, $http, URL_API) {
+function ($translate, authService, $uibModal, $scope, $http, URL_API) {
 	var searchData = JSON.parse(localStorage.getItem('search'));
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
 	$scope.lang = $translate.use();
