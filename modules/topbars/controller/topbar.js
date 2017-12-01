@@ -1,11 +1,11 @@
 
 angular
 .module('myApp')
-.controller('TopbarController', ['$http', 'URL_API', '$scope', '$uibModal',
-function ($http, URL_API, $scope, $uibModal) {
+.controller('TopbarController', ['$translate', '$http', 'URL_API', '$scope', '$uibModal',
+function ($translate, $http, URL_API, $scope, $uibModal) {
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
 	$scope.authen = userdata;
-	$scope.lang = 'en';
+	$scope.lang = $translate.use();
 	
 		$http.get('multilingual.json') 
 		.then(function (data) {
@@ -246,8 +246,8 @@ angular
 
 angular
 .module('myApp')
-.controller('JobsexpressModalController', function ($scope, $uibModal, $uibModalInstance, $http, URL_API) {
-	$scope.lang = 'en';
+.controller('JobsexpressModalController', function ($translate, $scope, $uibModal, $uibModalInstance, $http, URL_API) {
+	$scope.lang = $translate.use();
 	$http.get(URL_API + '/api/v1/job_types')
 	.then( function(res){
 				$scope.jobTypes = res.data.data;
@@ -286,8 +286,8 @@ angular
 
 angular
     .module('myApp')
-    .controller('RegisFBwithEmailModal', function ($scope, $uibModal, $uibModalInstance, $http, URL_API, FBdata) {
-        $scope.lang = 'en';
+    .controller('RegisFBwithEmailModal', function ($translate, $scope, $uibModal, $uibModalInstance, $http, URL_API, FBdata) {
+        $scope.lang = $translate.use();
         $scope.regisFBcon = function () {
             $http({
                 method: 'POST',

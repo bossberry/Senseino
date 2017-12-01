@@ -1,9 +1,9 @@
 angular
 .module('myApp') 
-.controller('ProfileController', ['authService', '$uibModal', '$scope', '$http', 'URL_API',
-function (authService, $uibModal, $scope, $http, URL_API) {
+.controller('ProfileController', ['$translate', 'authService', '$uibModal', '$scope', '$http', 'URL_API',
+function ($translate, authService, $uibModal, $scope, $http, URL_API) {
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
-	$scope.lang = 'en';
+	$scope.lang = $translate.use();
 	$scope.loaded = true;
 	if (userdata) {
 		authService.ensureAuthenticated(userdata)

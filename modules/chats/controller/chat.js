@@ -22,9 +22,9 @@ angular
 	});
 	}
 })
-.controller('ChatController', ['$scope', '$uibModal', 'URL_API', '$http', 
+.controller('ChatController', ['$translate', '$scope', '$uibModal', 'URL_API', '$http', 
 function ($scope, $uibModal, URL_API, $http) {
-	$scope.lang = 'en';
+	$scope.lang = $translate.use();
 	console.log('ChatController');
 	$scope.chatRoom = [];
 	$scope.IDRoom = [];
@@ -375,8 +375,8 @@ function ($scope, $uibModal, URL_API, $http) {
 }]);
 angular
 .module('myApp')
-.controller('ViewOfferPriceModalController', function ($scope, $uibModal, $uibModalInstance, $http, URL_API, quotation, roomData) {
-	$scope.lang = 'en';
+.controller('ViewOfferPriceModalController', function ($translate, $scope, $uibModal, $uibModalInstance, $http, URL_API, quotation, roomData) {
+	$scope.lang = $translate.use();
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
 	$scope.vQT = quotation[0];
 	$scope.rsdisc = $scope.vQT.price;
@@ -560,8 +560,8 @@ angular
 });
 angular
 .module('myApp')
-.controller('OfferPriceModalController', function ($http, URL_API, $scope, $uibModal, $uibModalInstance, roomData) {
-	$scope.lang = 'en';
+.controller('OfferPriceModalController', function ($translate, $http, URL_API, $scope, $uibModal, $uibModalInstance, roomData) {
+	$scope.lang = $translate.use();
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
 	$scope.qtData = roomData.quotation;
 
@@ -618,8 +618,8 @@ angular
 
 angular
 .module('myApp')
-.controller('ReviewModalController', function ($http, URL_API, $scope, $uibModal, $uibModalInstance, roomData) {
-	$scope.lang = 'en';
+.controller('ReviewModalController', function ($translate, $http, URL_API, $scope, $uibModal, $uibModalInstance, roomData) {
+	$scope.lang = $translate.use();
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
 
 	if(roomData.expert != null) {
@@ -658,8 +658,8 @@ angular
 
 angular
 .module('myApp')
-.controller('OmiseModalController', function ($http, URL_API, $scope, $uibModal, $uibModalInstance, quotation, rsdisc) {
-	$scope.lang = 'en';
+.controller('OmiseModalController', function ($translate, $http, URL_API, $scope, $uibModal, $uibModalInstance, quotation, rsdisc) {
+	$scope.lang = $translate.use();
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
 	console.log(quotation);
 	console.log(rsdisc);

@@ -1,10 +1,10 @@
 angular
 .module('myApp') 
-.controller('SettingController', ['authService', '$uibModal', '$scope', '$http', 'URL_API', '$timeout',
+.controller('SettingController', ['$translate', 'authService', '$uibModal', '$scope', '$http', 'URL_API', '$timeout',
 function (authService, $uibModal, $scope, $http, URL_API, $timeout) {
 	console.log('SettingController');
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
-	$scope.lang = 'en';
+	$scope.lang = $translate.use();
 	$scope.loaded = true;
 	
 	$scope.filesArray = [];

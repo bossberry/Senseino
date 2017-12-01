@@ -1,9 +1,9 @@
 
 angular
 .module('myApp')
-.controller('ExpertsController', ['$uibModal', 'authService', '$scope', '$http', 'URL_API',
-function ($uibModal, authService, $scope, $http, URL_API) {
-	$scope.lang = 'en';
+.controller('ExpertsController', ['$translate', '$uibModal', 'authService', '$scope', '$http', 'URL_API',
+function ($translate, $uibModal, authService, $scope, $http, URL_API) {
+	$scope.lang = $translate.use();
 	$scope.imglang = 'assets/img/' + $scope.lang + '.png';
 	$scope.isLoggedIn = false;
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
@@ -20,6 +20,7 @@ function ($uibModal, authService, $scope, $http, URL_API) {
 	$scope.chgLang = function (lang){
 		$scope.imglang = 'assets/img/' + lang + '.png';
 		$scope.lang = lang;
+		$translate.use(lang);
 	};
 	$scope.exptCre = function (){
 		if($scope.isLoggedIn){

@@ -14,11 +14,11 @@ return function (scope, element, attrs) {
 	});
 };
 })
-.controller('SearchController', ['authService', '$uibModal', '$scope', '$http', 'URL_API',
+.controller('SearchController', ['$translate', 'authService', '$uibModal', '$scope', '$http', 'URL_API',
 function (authService, $uibModal, $scope, $http, URL_API) {
 	var searchData = JSON.parse(localStorage.getItem('search'));
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
-	$scope.lang = 'en';
+	$scope.lang = $translate.use();
 	$scope.loaded = true;
 	$scope.qnull = false;
 	if(searchData[1].experts.length === 0){
@@ -43,6 +43,7 @@ function (authService, $uibModal, $scope, $http, URL_API) {
 	$scope.chgLang = function (lang){
 		$scope.imglang = 'assets/img/' + lang + '.png';
 		$scope.lang = lang;
+		$translate.use(lang);
 	};
 	$scope.favExpt = function (exptsId, check){
 		if($scope.isLoggedIn){

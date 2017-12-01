@@ -1,9 +1,9 @@
 
 angular
 .module('myApp')
-.controller('ExpertsJobtypeController', ['authService', '$scope', '$http', 'URL_API',
-function (authService, $scope, $http, URL_API) {
-    $scope.lang = 'en';
+.controller('ExpertsJobtypeController', ['$translate', 'authService', '$scope', '$http', 'URL_API',
+function ($translate, authService, $scope, $http, URL_API) {
+    $scope.lang = $translate.use();
     var currenturl = window.location.href;
     var jobTypesId = currenturl.substring(currenturl.search('/jobtype-experts')+ 16);
 	$scope.imglang = 'assets/img/' + $scope.lang + '.png';
@@ -20,7 +20,8 @@ function (authService, $scope, $http, URL_API) {
 	}
 	$scope.chgLang = function (lang){
 		$scope.imglang = 'assets/img/' + lang + '.png';
-		$scope.lang = lang;
+        $scope.lang = lang;
+        $translate.use(lang);
     };
     $scope.tagArr = [];
 	$http.get(URL_API + '/api/v1/experts?jobType=' + jobTypesId + '&sortValue=-1')

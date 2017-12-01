@@ -1,9 +1,8 @@
 angular
 .module('myApp')
-.controller('JobsController', ['authService', '$scope', '$uibModal', '$http', 'URL_API',
-function (authService, $scope, $uibModal, $http, URL_API) {
-	console.log('JobsController');
-	$scope.lang = 'en';
+.controller('JobsController', ['$translate', 'authService', '$scope', '$uibModal', '$http', 'URL_API',
+function ($translate, authService, $scope, $uibModal, $http, URL_API) {
+	$scope.lang = $translate.use();
 	$scope.imglang = 'assets/img/' + $scope.lang + '.png';
 	$scope.isLoggedIn = false;
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
@@ -21,6 +20,7 @@ function (authService, $scope, $uibModal, $http, URL_API) {
 	$scope.chgLang = function (lang){
 		$scope.imglang = 'assets/img/' + lang + '.png';
 		$scope.lang = lang;
+		$translate.use(lang);
 	};
 	$http.get(URL_API + '/api/v1/page/job')
 	.then( function(res){
@@ -71,10 +71,9 @@ function (authService, $scope, $uibModal, $http, URL_API) {
 
 angular
 .module('myApp')
-.controller('JobsModalController', function (URL_API, $http, $scope, $uibModal, jobdata, $uibModalInstance) {
-	console.log('modalController');
+.controller('JobsModalController', function ($translate, URL_API, $http, $scope, $uibModal, jobdata, $uibModalInstance) {
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
-	$scope.lang = 'en';
+	$scope.lang = $translate.use();
 	$scope.id = jobdata._id;
 	$http.get(URL_API + '/api/v1/jobs/'+ $scope.id)
 	.then( function(res){
@@ -106,9 +105,8 @@ angular
 
 angular
 .module('myApp')
-.controller('JobspostModalController', function (URL_API, $http, $scope, $uibModal, $uibModalInstance) {
-	$scope.lang = 'en';
-	console.log('JobspostModalController');
+.controller('JobspostModalController', function ($translate, URL_API, $http, $scope, $uibModal, $uibModalInstance) {
+	$scope.lang = $translate.use();
 	$http.get(URL_API + '/api/v1/job_types')
 	.then( function(res){
 				$scope.jobTypes = res.data.data;

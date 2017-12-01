@@ -61,7 +61,6 @@
         "POSTWORK-TITLE": "โพสงาน",
         "POSTWORK-NAME": "ชื่องาน",
         "OFFER-TITLE": "เสนอราคา"
-
     },
     "MTR": {
         "ERR-Pic-VID": "   กรุณาอัพโหลดรูปภาพ",
@@ -100,8 +99,7 @@
         "BTN-POSTWORK": "  โพสงาน",
         "CONTACT": "ข้อมูลติดต่อ",
         "BTN-OFFER": "เสนอราคา",
-        "BTN-REVIEW": "ส่งวิว"
-        
+        "BTN-REVIEW": "ส่งวิว" 
     },
     "FORYOU": {
         "CTM-FORORG": "สำหรับลูกค้าองค์กร",

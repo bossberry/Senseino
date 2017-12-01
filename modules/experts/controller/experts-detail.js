@@ -1,10 +1,9 @@
 
 angular
 .module('myApp')
-.controller('ExpertsDetailController', ['authService', '$scope', '$uibModal', '$http', 'URL_API',
-function (authService, $scope, $uibModal, $http, URL_API) {
-    console.log('ExpertsDetailController');
-	$scope.lang = 'en';
+.controller('ExpertsDetailController', ['$translate', 'authService', '$scope', '$uibModal', '$http', 'URL_API',
+function ($translate, authService, $scope, $uibModal, $http, URL_API) {
+	$scope.lang = $translate.use();
 	$scope.profilePicArr = [];
 	$scope.loaded = false;
     var currenturl = window.location.href;
@@ -49,6 +48,7 @@ function (authService, $scope, $uibModal, $http, URL_API) {
 	$scope.chgLang = function (lang){
 		$scope.imglang = 'assets/img/' + lang + '.png';
 		$scope.lang = lang;
+		$translate.use(lang);
 	};
 	$http.get(URL_API + '/api/v1/experts/' + exid)
 	.then( function(res){
@@ -122,8 +122,8 @@ angular
 });
 angular
 .module('myApp')
-.controller('HimsgModalController', function ($scope, $uibModal, $uibModalInstance, exptdetail, $http, URL_API) {
-	$scope.lang = 'en';
+.controller('HimsgModalController', function ($translate, $scope, $uibModal, $uibModalInstance, exptdetail, $http, URL_API) {
+	$scope.lang = $translate.use();
 	// console.log('HimsgModalController');
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
 	$scope.exptdata = exptdetail

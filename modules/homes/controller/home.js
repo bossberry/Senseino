@@ -54,8 +54,7 @@ angular
  })
 .controller('HomeController', ['$translate', 'authService', '$uibModal', '$scope', '$http', 'URL_API', '$location', '$anchorScroll',
 function ($translate, authService, $uibModal, $scope, $http, URL_API, $location, $anchorScroll) {
-	// console.log('HomeController');
-	$scope.lang = 'en';
+	$scope.lang = $translate.use();
 	$scope.imglang = 'assets/img/' + $scope.lang + '.png';
 	$scope.bannersarr = [];
 	$scope.banner = {};
@@ -66,7 +65,7 @@ function ($translate, authService, $uibModal, $scope, $http, URL_API, $location,
 	// console.log(currenturl);
 	$scope.chgLang = function (lang){
 		$scope.imglang = 'assets/img/' + lang + '.png';
-		// $scope.lang = lang;
+		$scope.lang = lang;
 		$translate.use(lang);
 		
 	};
@@ -219,9 +218,9 @@ function ($translate, authService, $uibModal, $scope, $http, URL_API, $location,
 
 angular
 .module('myApp')
-.controller('LineLoginModal', function ($scope, $uibModal, $uibModalInstance, $http, URL_API, lineData) {
+.controller('LineLoginModal', function ($translate, $scope, $uibModal, $uibModalInstance, $http, URL_API, lineData) {
 	// console.log('LineLoginModal');
-	$scope.lang = 'en';
+	$scope.lang = $translate.use();
 	$scope.regisLine = function () {
 		var obj = JSON.parse(lineData);
 		var resline = obj.data;

@@ -5,14 +5,6 @@ angular
     .config(configs);
 
 // httpRequestInterceptor.$inject = ['$rootScope'];
-var translations = {
-    HEADLINE: 'What an awesome module!',
-    PARAGRAPH: 'Srsly!',
-    NAMESPACE: {
-      PARAGRAPH: 'And it comes with awesome features!'
-    }
-  };
-   
 function configs($httpProvider,$translateProvider) {
  
     $translateProvider.useStaticFilesLoader({

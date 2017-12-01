@@ -1,10 +1,10 @@
 
 angular
 .module('myApp')
-.controller('HelpController', ['$timeout', 'authService', '$uibModal', '$scope', '$http', 'URL_API',
-function ($timeout, authService, $uibModal, $scope, $http, URL_API) {
+.controller('HelpController', ['$translate', '$timeout', 'authService', '$uibModal', '$scope', '$http', 'URL_API',
+function ($translate, $timeout, authService, $uibModal, $scope, $http, URL_API) {
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
-	$scope.lang = 'en';
+	$scope.lang = $translate.use();
 	$scope.isLoggedIn = false;
 	if (userdata) {
 		authService.ensureAuthenticated(userdata)
@@ -22,6 +22,7 @@ function ($timeout, authService, $uibModal, $scope, $http, URL_API) {
 	$scope.chgLang = function (lang){
 		$scope.imglang = 'assets/img/' + lang + '.png';
 		$scope.lang = lang;
+		$translate.use(lang);
 	};
 	$scope.searchApiHelp = function() {
 		$http.post(URL_API + '/api/v1/search', {textSearch: $scope.keywordhelp})

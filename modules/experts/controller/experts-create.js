@@ -148,10 +148,9 @@ angular
 
     })
     
-    .controller('ExpertsCreateController', ['$anchorScroll', '$location', '$interval', '$timeout', 'authService', '$scope', '$uibModal', '$http', 'URL_API',
+    .controller('ExpertsCreateController', ['$translate', '$anchorScroll', '$location', '$interval', '$timeout', 'authService', '$scope', '$uibModal', '$http', 'URL_API',
         function ($anchorScroll, $location, $interval, $timeout, authService, $scope, $uibModal, $http, URL_API) {
-            console.log('ExpertsCreateController');
-            $scope.lang = 'en';
+            $scope.lang = $translate.use();
             $scope.isLoggedIn = false;
             $scope.filesArray = [];
             $scope.portMediaArray = [];
@@ -215,6 +214,7 @@ angular
             $scope.chgLang = function (lang) {
                 $scope.imglang = 'assets/img/' + lang + '.png';
                 $scope.lang = lang;
+                $translate.use(lang);
             };
             $scope.selectjob = function () {
                 console.log('selectjob');
