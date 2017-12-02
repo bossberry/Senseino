@@ -19,11 +19,11 @@ function ($translate, $timeout, authService, $uibModal, $scope, $http, URL_API) 
 	// 		controller: 'FooterController as ctrl'
 	// 		});
 	// };
-	$scope.chgLang = function (lang){
-		$scope.imglang = 'assets/img/' + lang + '.png';
-		$scope.lang = lang;
-		$translate.use(lang);
-	};
+	// $scope.chgLang = function (lang){
+	// 	$scope.imglang = 'assets/img/' + lang + '.png';
+	// 	$scope.lang = lang;
+	// 	$translate.use(lang);
+	// };
 	$http.get(URL_API + '/api/v1/faqs')
 	.then( function(res){
         $scope.loaded = true;
