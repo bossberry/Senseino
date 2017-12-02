@@ -35,7 +35,7 @@ ul.footer-link{
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 }
-ul.footer-link>li, ul.footer-link>li:active, ul.footer-link>li:focus, ul.footer-link>li:hover{
+ul.footer-link>a>li, ul.footer-link>a>li:active, ul.footer-link>a>li:focus, ul.footer-link>a>li:hover{
 	margin-bottom: 12px;
 	cursor: pointer;
 	outline: none;

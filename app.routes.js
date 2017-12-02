@@ -59,6 +59,18 @@ function config ($locationProvider, $routeProvider) {
             templateUrl: '/modules/profiles/views/setting.html',
             controller: 'SettingController'
         })
+        .when('/term-service', {
+            templateUrl: '/modules/footers/views/term-service.html',
+            controller: 'FooterController'
+        })
+        .when('/policy', {
+            templateUrl: '/modules/footers/views/policy.html',
+            controller: 'FooterController'
+        })
+        .when('/setting', {
+            templateUrl: '/modules/profiles/views/setting.html',
+            controller: 'SettingController'
+        })
         .otherwise({
             redirectTo: '/'
         });
