@@ -3,7 +3,7 @@
     right: 0;
     bottom: 0;
 	left: 0;
-	background-color: #f4f4f4;
+	background-color: #fff;
     padding: 60px 100px;
 }
 .footer-wrapper-top{
@@ -35,9 +35,10 @@ ul.footer-link{
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 }
-ul.footer-link>li{
+ul.footer-link>li, ul.footer-link>li:active, ul.footer-link>li:focus, ul.footer-link>li:hover{
 	margin-bottom: 12px;
 	cursor: pointer;
+	outline: none;
 }
 
 .styled-dropdown,.styled-dropdown:focus{
@@ -75,4 +76,10 @@ ul.footer-link>li{
 	clear: both;
 	padding-left:20px;
 	padding-top: 10px;
+}
+.modal-footer-body {
+    padding-top: 30px;
+	text-align: center;
+	height: 800px;
+    overflow-y: scroll;
 }

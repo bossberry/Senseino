@@ -67,16 +67,19 @@
 }
 /* End Font Face */
 html{
-	background-color: #fff;
+	background-color: #F4F4F4;
 	/* max-width: 1200px; */
 	margin: 0 auto;
 	overflow-x: hidden;
 }
 body{
+	background-color: #fff;
 	max-width: 1400px;
     margin: 0 auto;
     font-family: 'promptregular';
-    color: #484848;
+	color: #484848;
+	height: auto;
+	padding-right: 0px!important;
 }
 h1{
 	font-size: 19px;
@@ -103,7 +106,7 @@ h3{
     width: 20%;
     float: left;
 }
-a, a:hover, a:hover, a:active, a:visited {
+a, a:hover, a:hover, a:active, a:visited, a:focus {
  text-decoration: none;
  color: #484848;
 }
@@ -295,7 +298,7 @@ md-radio-button.md-default-theme .md-on, md-radio-button .md-on{
 .crop-slide-img{
 	/* max-width: 300px; */
 	/* max-height: 500px; */
-	height: 500px;
+	height: 340px;
 	overflow: hidden;
 }
 .crop-slide-img img.slide-slick {
@@ -314,27 +317,27 @@ md-radio-button.md-default-theme .md-on, md-radio-button .md-on{
 }
 @media (max-width: 1700px) {
 	.crop-slide-img{
-		height: 450px;
+		height: 340px;
 		overflow: hidden;
 	}
 }
 
 @media (max-width: 1600px) {
 	.crop-slide-img{
-		height: 400px;
+		height: 340px;
 		overflow: hidden;
 	}
 }
 @media (max-width: 1550px) {
 	.crop-slide-img{
-		height: 380px;
+		height: 340px;
 		overflow: hidden;
 	}
 }
 
 @media (max-width: 1500px) {
 	.crop-slide-img{
-		height: 360px;
+		height: 340px;
 		overflow: hidden;
 	}
 }

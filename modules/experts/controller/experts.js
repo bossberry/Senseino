@@ -39,6 +39,7 @@ function ($translate, $uibModal, authService, $scope, $http, URL_API) {
 		$scope.jobTypesRow = [{}];
 		$scope.jobTypes = res.data.data.jobTypes;
 		$scope.experts = res.data.data.experts;
+		// console.log($scope.jobTypes);
 	});
 	
 }]);

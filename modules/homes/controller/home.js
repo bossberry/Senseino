@@ -198,9 +198,16 @@ function ($translate, authService, $uibModal, $scope, $http, URL_API, $location,
 			$scope.bannersarr.push($scope.banner);
 		}
 		$scope.experts = res.data.data.experts;
+		// console.log($scope.experts);
 		$scope.slidesex = $scope.experts[0].experts[0].thumbImgUrl;
 		$scope.jobTypes = res.data.data.jobTypes;
 		$scope.jobs = res.data.data.jobs;
+	});
+	$http.get(URL_API + '/api/v1/page/expert')
+	.then( function(res){
+		$scope.loaded = true;
+		$scope.jobTypesRow = [{}];
+		$scope.jobTypes = res.data.data.jobTypes;
 	});
 	$scope.jobsModal = function (jobdata){
 		var modalInstance = $uibModal.open({
