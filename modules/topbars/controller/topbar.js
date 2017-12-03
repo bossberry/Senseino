@@ -67,7 +67,7 @@ function ($translate, $http, URL_API, $scope, $uibModal) {
 
 angular
 .module('myApp')
-.controller('RegisModalController', function (authService, $location, URL_API, $http, $scope, $uibModal, $uibModalInstance) {
+.controller('RegisModalController', function ($translate, authService, $location, URL_API, $http, $scope, $uibModal, $uibModalInstance) {
 	
 	$scope.submitEmailLogin = function(){
 		authService.LoginByEmail($scope.login.username, $scope.login.password)
