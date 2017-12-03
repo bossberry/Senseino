@@ -6,7 +6,7 @@ function (authService, $scope, $http, URL_API) {
     $scope.lang = $translate.use();
     var currenturl = window.location.href;
     var jobTypesId = currenturl.substring(currenturl.search('/experts')+ 8);
-	$scope.imglang = 'assets/img/' + $scope.lang + '.png';
+	$scope.imglang = 'assets/img/flag_' + $scope.lang + '.png';
 	$scope.isLoggedIn = false;
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
 	
@@ -20,7 +20,7 @@ function (authService, $scope, $http, URL_API) {
 		});
 	}
 	$scope.chgLang = function (lang){
-		$scope.imglang = 'assets/img/' + lang + '.png';
+		$scope.imglang = 'assets/img/flag_' + lang + '.png';
 		$scope.lang = lang;
 		$translate.use(lang);
     };

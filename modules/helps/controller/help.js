@@ -5,6 +5,7 @@ angular
 function ($translate, $timeout, authService, $uibModal, $scope, $http, URL_API) {
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
 	$scope.lang = $translate.use();
+	$scope.imglang = 'assets/img/flag_' + $scope.lang + '.png';
 	$scope.isLoggedIn = false;
 	if (userdata) {
 		authService.ensureAuthenticated(userdata)
@@ -20,7 +21,7 @@ function ($translate, $timeout, authService, $uibModal, $scope, $http, URL_API) 
 		$scope.loaded = true;
 	}
 	$scope.chgLang = function (lang){
-		$scope.imglang = 'assets/img/' + lang + '.png';
+		$scope.imglang = 'assets/img/flag_' + lang + '.png';
 		$scope.lang = lang;
 		$translate.use(lang);
 	};

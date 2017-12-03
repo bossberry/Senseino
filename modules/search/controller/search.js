@@ -19,6 +19,7 @@ function ($translate, authService, $uibModal, $scope, $http, URL_API) {
 	var searchData = JSON.parse(localStorage.getItem('search'));
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
 	$scope.lang = $translate.use();
+	$scope.imglang = 'assets/img/flag_' + $scope.lang + '.png';
 	$scope.loaded = true;
 	$scope.qnull = false;
 	if(searchData[1].experts.length === 0){
@@ -41,7 +42,7 @@ function ($translate, authService, $uibModal, $scope, $http, URL_API) {
 		});
 	}
 	$scope.chgLang = function (lang){
-		$scope.imglang = 'assets/img/' + lang + '.png';
+		$scope.imglang = 'assets/img/flag_' + lang + '.png';
 		$scope.lang = lang;
 		$translate.use(lang);
 	};

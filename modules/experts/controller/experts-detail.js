@@ -44,9 +44,9 @@ function ($translate, authService, $scope, $uibModal, $http, URL_API) {
 			});
 		}
 	};
-	$scope.imglang = 'assets/img/' + $scope.lang + '.png';
+	$scope.imglang = 'assets/img/flag_' + $scope.lang + '.png';
 	$scope.chgLang = function (lang){
-		$scope.imglang = 'assets/img/' + lang + '.png';
+		$scope.imglang = 'assets/img/flag_' + lang + '.png';
 		$scope.lang = lang;
 		$translate.use(lang);
 	};

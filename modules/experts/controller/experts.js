@@ -18,7 +18,7 @@ function ($translate, $uibModal, authService, $scope, $http, URL_API) {
 		});
 	}
 	$scope.chgLang = function (lang){
-		$scope.imglang = 'assets/img/' + lang + '.png';
+		$scope.imglang = 'assets/img/flag_' + lang + '.png';
 		$scope.lang = lang;
 		$translate.use(lang);
 	};

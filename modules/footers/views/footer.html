@@ -7,24 +7,24 @@
 
         <li class="dropdown sort-dropdown styled-dropdown" uib-dropdown>
             <a class="dropdown-toggle" uib-dropdown-toggle role="button">
-                <span><img ng-src="{{imglang}}">&nbsp;&nbsp;{{lang | uppercase}}</span>
+                <img ng-src="{{imglang}}"  width="28px"><span translate="MTR.chlang"></span>
             <b class="glyphicon glyphicon-triangle-bottom ic-dropdown"></b>
             </a>
             <ul class="dropdown-menu" role="menu">
             <li>
-                <a ng-click="chgLang('th')"><img src="assets/img/th.png">&nbsp;&nbsp;TH</a>
+                <a ng-click="chgLang('th')"><img src="assets/img/flag_th.png" width="28px">&nbsp;&nbsp;ไทย</a>
             </li>
             <li>
-                <a ng-click="chgLang('en')"><img src="assets/img/en.png">&nbsp;&nbsp;EN</a>
+                <a ng-click="chgLang('en')"><img src="assets/img/flag_en.png" width="28px">&nbsp;&nbsp;English</a>
             </li>
             <li>
-                <a ng-click="chgLang('cn')"><img src="assets/img/cn.png">&nbsp;&nbsp;CN</a>
+                <a ng-click="chgLang('cn')"><img src="assets/img/flag_cn.png" width="28px">&nbsp;&nbsp;中文</a>
             </li>
             <li>
-                <a ng-click="chgLang('jp')"><img src="assets/img/jp.png">&nbsp;&nbsp;JP</a>
+                <a ng-click="chgLang('jp')"><img src="assets/img/flag_jp.png" width="28px">&nbsp;&nbsp;日本語</a>
             </li>
             <li>
-                <a ng-click="chgLang('kr')"><img src="assets/img/kr.png">&nbsp;&nbsp;KR</a>
+                <a ng-click="chgLang('kr')"><img src="assets/img/flag_kr.png" width="28px">&nbsp;&nbsp;한국어</a>
             </li>
             </ul>
         </li>
@@ -46,8 +46,8 @@
             <h2 translate="FOOTER.DW-PARA"></h2>
         </div>
         <div class="col-sm-offset-2 col-md-offset-2 col-lg-offset-2 col-sm-12 col-md-12 col-lg-12 footer-img-right">
-            <img class="" src="assets/img/Appstore.png" alt="">
-            <img class="" src="assets/img/Playstore.png" alt="">
+            <a href="https://itunes.apple.com/us/app/senseino/id1316376945?ls=1&mt=8"><img class="" src="assets/img/Appstore.png" alt=""></a>
+            <a href="https://play.google.com/store/apps/details?id=com.senseino"><img class="" src="assets/img/Playstore.png" alt=""></a>
         </div>
     </div>
 </div>

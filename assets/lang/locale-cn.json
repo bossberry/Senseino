@@ -63,6 +63,7 @@
         "OFFER-TITLE": "Price Offer"
     },
     "MTR": {
+        "chlang": "  中文",
         "ERR-Pic-VID": "   Please Upload Picture",
         "SEEALL": "See All >",
         "REVIEW": "Review",

@@ -3,7 +3,7 @@ angular
 .controller('JobsController', ['$translate', 'authService', '$scope', '$uibModal', '$http', 'URL_API',
 function ($translate, authService, $scope, $uibModal, $http, URL_API) {
 	$scope.lang = $translate.use();
-	$scope.imglang = 'assets/img/' + $scope.lang + '.png';
+	$scope.imglang = 'assets/img/flag_' + $scope.lang + '.png';
 	$scope.isLoggedIn = false;
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
 
@@ -18,7 +18,7 @@ function ($translate, authService, $scope, $uibModal, $http, URL_API) {
 	  });
 	}
 	$scope.chgLang = function (lang){
-		$scope.imglang = 'assets/img/' + lang + '.png';
+		$scope.imglang = 'assets/img/flag_' + lang + '.png';
 		$scope.lang = lang;
 		$translate.use(lang);
 	};
@@ -113,17 +113,17 @@ angular
 				console.log(res.data.data);
 	});
 	$scope.selectjob = function () {
-		console.log('selectjob');
+		// console.log('selectjob');
 		$http.get(URL_API + '/api/v1/tags?jobType=' + $scope.datajob._id)
 		.then( function(res){
 				$scope.tags = res.data.data;
-				console.log(res.data.data);
+				// console.log(res.data.data);
 		});
 	};
 	$scope.submitPostJob = function() {
-		console.log($scope.postjob);
-		console.log($scope.datajob._id);
-		console.log($scope.datatag);
+		// console.log($scope.postjob);
+		// console.log($scope.datajob._id);
+		// console.log($scope.datatag);
 
 		$http.post(URL_API + '/api/v1/jobs', {
 			name: $scope.postjob.name,
@@ -136,7 +136,7 @@ angular
 						mobileNo: $scope.postjob.tel,
 						lineId: $scope.postjob.line
 		}).then(function(res){
-			console.log(res);
+			// console.log(res);
 			window.location.reload(true);
 		}, function(err) {
 			$scope.err = true;

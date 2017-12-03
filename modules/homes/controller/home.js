@@ -55,7 +55,7 @@ angular
 .controller('HomeController', ['$translate', 'authService', '$uibModal', '$scope', '$http', 'URL_API', '$location', '$anchorScroll',
 function ($translate, authService, $uibModal, $scope, $http, URL_API, $location, $anchorScroll) {
 	$scope.lang = $translate.use();
-	$scope.imglang = 'assets/img/' + $scope.lang + '.png';
+	$scope.imglang = 'assets/img/flag_' + $scope.lang + '.png';
 	$scope.bannersarr = [];
 	$scope.banner = {};
 	$scope.experts = [];
@@ -64,7 +64,7 @@ function ($translate, authService, $uibModal, $scope, $http, URL_API, $location,
 	var currenturl = window.location.href;
 	// console.log(currenturl);
 	$scope.chgLang = function (lang){
-		$scope.imglang = 'assets/img/' + lang + '.png';
+		$scope.imglang = 'assets/img/flag_' + lang + '.png';
 		$scope.lang = lang;
 		$translate.use(lang);
 		
