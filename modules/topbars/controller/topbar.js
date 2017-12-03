@@ -151,6 +151,7 @@ angular
                             location.reload(true);
                         });
                     }, function(err) {
+						console.log(err);
                         $scope.loginerr = true;
                     });
                 });
