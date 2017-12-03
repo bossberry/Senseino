@@ -24,31 +24,31 @@
     </div>
 </div>
 <div class="section-box container">
-    <div class="col-lg-12">
-        <div class="col-sm-7 col-md-7 col-lg-7" style="padding-left:30px;margin-top:30px;">
-            <div class="col-sm-4 col-md-4 col-lg-4">
-                <p class="expt-detail-des-title" translate="MTR.DETAIL"></p>
-            </div>
-            <div class="col-sm-8 col-md-8 col-lg-8">
-                <p class="expt-detail-des-body">{{exptdetail.detail[lang]}}
-                </p>
-            </div>
-            <div class="col-sm-4 col-md-4 col-lg-4">
-                <p class="expt-detail-des-title" translate="MTR.EXP"></p>
-            </div>
-            <div class="col-sm-8 col-md-8 col-lg-8">
-                <p class="expt-detail-des-body">{{exptdetail.experience[lang]}}
-                </p>
-            </div>
-            <div class="col-sm-4 col-md-4 col-lg-4">
-                <p class="expt-detail-des-title" translate="MTR.ED"></p>
-            </div>
-            <div class="col-sm-8 col-md-8 col-lg-8">
-                <p class="expt-detail-des-body">{{exptdetail.education[lang]}}
-                </p>
-            </div>
+    <div class="col-sm-12 col-md-7 col-lg-7" style="padding-left:30px;margin-top:30px;">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <p class="expt-detail-des-title" translate="MTR.DETAIL"></p>
         </div>
-        <div  style="margin-top:-120px;" class="col-sm-12 col-md-5 col-lg-5">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <p class="expt-detail-des-body">{{exptdetail.detail[lang]}}
+            </p>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <p class="expt-detail-des-title" translate="MTR.EXP"></p>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <p class="expt-detail-des-body">{{exptdetail.experience[lang]}}
+            </p>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <p class="expt-detail-des-title" translate="MTR.ED"></p>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <p class="expt-detail-des-body">{{exptdetail.education[lang]}}
+            </p>
+        </div>
+    </div>
+    <div  style="margin-top:-120px;" class="col-sm-12 col-md-5 col-lg-5">
+        <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="tab-price-overlay"><span>฿ {{exptdetail.price}}<b> {{exptdetail.priceType}}</b></span></div>
             <div class="crop-expt-detail">
                 <!-- <img class="img-expt-detail" ng-src="{{exptdetail.profileImg[0].url}}"> -->
@@ -60,23 +60,20 @@
                     max-height="400" >
                     </jk-carousel>
                 </div>
-               
             </div>
-        </div>
-        <div class="col-lg-12">
-        <div  style="margin-top:20px;" class="col-md-offset-7 col-lg-offset-7 col-sm-5 col-md-5 col-lg-5">
+            </div>
+        <div style="margin-top:20px;" class="col-sm-12 col-md-5 col-lg-5">
+            <!-- <div  style="margin-top:-120px;" class="col-md-offset-7 col-lg-offset-7 col-sm-5 col-md-5 col-lg-5"> -->
             <div class="expt-checboxfav" ng-click="favExpt(exptdetail._id, exptdetail.isFavorite)">
                 <input type="checkbox" class="checkboxLabel main_street_input" id="{{exptdetail._id}}" value="1" ng-checked="exptdetail.isFavorite">
-                <label for="{{exptdetail._id}}"></label>
+                <label style="margin-top:-10px;" for="{{exptdetail._id}}"></label>
             </div>
-            <!-- <div  class="amPmCheckbox"  ng-click="favExpt(data._id, data.isFavorite)" >
-                <input type="checkbox" class="checkboxLabel main_street_input" id="{{data._id}}" value="1" ng-checked="data.isFavorite"/>
-                <label for="{{data._id}}"></label>
-            </div> -->
             <p class="expt-save-fav-p" translate="MTR.SAVEFAV"><button ng-click="chatExpt(exptdetail)" class="btn btn-action-chatbrief"><img src="assets/img/chat.png" translate="MTR.CHAT-BRIEF"></button></p>
         </div> 
-        </div> 
     </div>
+</div>
+        
+   
 </div>
 <div class="section-box container">
     <div class="col-sm-12 col-md-12 col-lg-12">
@@ -151,10 +148,10 @@
 </div>
 <div class="section-box container">
     <div class="col-lg-12 padding-left"  style="padding-right:90px;">
-        <h1 class="head-section-margin"  translate="MTR.PORT"></h1>
+        <h1 class="head-section-margin"  translate="EXPERT.PORT"></h1>
         <div class="col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="data in exptdetail.portfolio | limitTo: 5">
             <img style="width:100%" ng-src="{{data}}">
-            <p translate="MTR.PORT"></p>
+            <p translate="EXPERT.PORT"></p>
         </div>
     </div>
 </div>
