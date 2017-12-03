@@ -152,6 +152,9 @@ angular
                         });
                     }, function(err) {
 						console.log(err);
+						if(err.status === 404){
+							$scope.loginerrmsg = err.data.description;
+						}
                         $scope.loginerr = true;
                     });
                 });
