@@ -23,15 +23,16 @@ angular
 	}
 })
 .controller('ChatController', ['$translate', '$scope', '$uibModal', 'URL_API', '$http', 
-function ($scope, $uibModal, URL_API, $http) {
+function ($translate, $scope, $uibModal, URL_API, $http) {
 	$scope.lang = $translate.use();
-	console.log('ChatController');
+	// console.log('ChatController');
 	$scope.chatRoom = [];
 	$scope.IDRoom = [];
 	$scope.checkRole = [];
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
 	$scope.roomIdG = '';
 	$scope.chatMsg = [];
+	$scope.imgTop = false;
 	if(!userdata){
 		window.location.href = '/'
 	}else {
@@ -45,7 +46,7 @@ function ($scope, $uibModal, URL_API, $http) {
 			reconnectionAttempts: 99999
 		});
 		socket.on('connect', function() {
-			console.log('connect');
+			// console.log('connect');
 			socket.emit('pong', {beat: 1});
 		});
 		socket.on( 'disconnect', function () {
@@ -84,7 +85,7 @@ function ($scope, $uibModal, URL_API, $http) {
 			if(res.data.data === 0){
 				$scope.chatRoom = 0;
 			} else {
-				console.log(res.data.data);
+				// console.log(res.data.data);
 				$scope.chatRoom = res.data.data;
 				for(var i = 0; i< res.data.data.length; i++){
 					$scope.IDRoom.push(res.data.data[i]._id)
@@ -139,7 +140,7 @@ function ($scope, $uibModal, URL_API, $http) {
 		};
 
 		$scope.entryRoom = function(room){
-			console.log(room);
+			// console.log(room);
 			$scope.exPic = null;
 			if(room === undefined){
 				$scope.roomnotfound = true;
@@ -153,18 +154,18 @@ function ($scope, $uibModal, URL_API, $http) {
 				$scope.roomIdG = room._id
 				
 				if (room.employer._id === userdata._id ){
-					console.log('iffff');
 					$scope.btnOffPrice = false;
 					$scope.roomName = room.expertUser.firstName + ' ' + room.expertUser.lastName;
 					if(room.expert!=null){
-						console.log('expert != null');
+						// console.log('expert != null');
 						$scope.exPic = room.expert.thumbImgUrl;
+						$scope.imgTop = true;
 					}else {
-						console.log('expert == null');
+						// console.log('expert == null');
 						$scope.exPic = room.expertUser.imgUrl;
 					}
 				} else {
-					console.log('elsee');
+					// console.log('elsee');
 					$scope.exPic = room.employer.imgUrl;
 					// if(room.expert!=null){
 					// 	console.log('expert != null');
@@ -190,7 +191,7 @@ function ($scope, $uibModal, URL_API, $http) {
 						'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
 					}
 				}).then(function (res) {
-					console.log(res.data.data);
+					// console.log(res.data.data);
 					for(var i = 0; i < res.data.data.length; i++){
 						$scope.chatMsg.unshift(res.data.data[i]);
 					}

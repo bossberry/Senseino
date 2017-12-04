@@ -9,7 +9,7 @@
         </div>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 chat-head-msg">
             <h3>
-                <img style="border-radius:50%;"width="38px" height="38px" ng-src="{{exPic}}" draggable="false">
+                <img ng-if="imgTop"style="border-radius:50%;"width="38px" height="38px" ng-src="{{exPic}}" draggable="false">
                 {{roomName}}
             </h3>
             <div ng-show="roomnotfound" translate="CHAT.NEVERCHAT"></div>
@@ -122,7 +122,7 @@
             </div>
         </div>
         <div ng-if="Stateroom===1" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 chat-right-body">
-            <div class="chat-title-right-ask"><h3 translate="CHAT.ST-ASK"><img src="assets/img/Group.png"></h3></div>
+            <div class="chat-title-right-ask"><h3 translate="CHAT.ST-ASK"></h3></div>
             <div class="chat-right-des">
                 <p>
                     {{Statemsg[lang]}}

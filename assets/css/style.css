@@ -381,3 +381,9 @@ md-radio-button.md-default-theme .md-on, md-radio-button .md-on{
 		overflow: hidden;
 	}
 }
+
+pre{
+    padding: 0px!important;
+    background: none!important;
+    border: none!important;
+}

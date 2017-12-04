@@ -149,7 +149,7 @@ angular
     })
     
     .controller('ExpertsCreateController', ['$translate', '$anchorScroll', '$location', '$interval', '$timeout', 'authService', '$scope', '$uibModal', '$http', 'URL_API',
-        function ($anchorScroll, $location, $interval, $timeout, authService, $scope, $uibModal, $http, URL_API) {
+        function ($translate, $anchorScroll, $location, $interval, $timeout, authService, $scope, $uibModal, $http, URL_API) {
             $scope.lang = $translate.use();
             $scope.isLoggedIn = false;
             $scope.filesArray = [];
@@ -191,8 +191,6 @@ angular
                 $scope.portMediaArray.splice(item, 1);   
             }
             const userdata = JSON.parse(localStorage.getItem('userdata'));
-            console.log(userdata);
-            
             if (userdata) {
                 authService.ensureAuthenticated(userdata)
                     .then((user) => {
@@ -207,8 +205,7 @@ angular
                 .then(function (res) {
                     $scope.loaded = true;
                     $scope.jobTypes = res.data.data;
-                    console.log(res.data.data);
-                    console.log($scope.jobTypes[0]._id);
+                
                 });
             $scope.imglang = 'assets/img/flag_' + $scope.lang + '.png';
             $scope.chgLang = function (lang) {
