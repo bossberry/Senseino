@@ -12,13 +12,49 @@
         <div class="col-sm-7 col-md-7 col-lg-7 padding-left expt-detail-title-cover-left ">
             <h2>{{exptdetail.name[lang]}}</h2>
             <span class="expt-detail-title-span">{{exptdetail.tag.name[lang]}}</span>
-            <span style="letter-spacing:-5px;">
-                <img src="assets/img/rating-active.png">
-                <img src="assets/img/rating-active.png">
-                <img src="assets/img/rating-active.png">
-                <img src="assets/img/rating.png">
-                <img src="assets/img/rating.png">
+            <span style="letter-spacing:-5px;" ng-if="exptdetail.rating===0">
+                    <img src="assets/img/rating.png">
+                    <img src="assets/img/rating.png">
+                    <img src="assets/img/rating.png">
+                    <img src="assets/img/rating.png">
+                    <img src="assets/img/rating.png">
             </span>
+            <span style="letter-spacing:-5px;" ng-if="exptdetail.rating===1">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating.png">
+                    <img src="assets/img/rating.png">
+                    <img src="assets/img/rating.png">
+                    <img src="assets/img/rating.png">
+            </span>
+            <span style="letter-spacing:-5px;" ng-if="exptdetail.rating===2">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating.png">
+                    <img src="assets/img/rating.png">
+                    <img src="assets/img/rating.png">
+            </span>
+            <span style="letter-spacing:-5px;" ng-if="exptdetail.rating===3">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating.png">
+                    <img src="assets/img/rating.png">
+            </span>
+            <span style="letter-spacing:-5px;" ng-if="exptdetail.rating===4">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating.png">
+            </span>
+            <span style="letter-spacing:-5px;" ng-if="exptdetail.rating===5">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating-active.png">
+                    <img src="assets/img/rating-active.png">
+            </span>
+            
             <p><img src="assets/img/location.png">{{exptdetail.location | getDistance}} km {{exptdetail.location.name}}</p>
         </div>
     </div>

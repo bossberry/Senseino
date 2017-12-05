@@ -1,7 +1,7 @@
 angular
 .module('myApp') 
 .controller('SettingController', ['$translate', 'authService', '$uibModal', '$scope', '$http', 'URL_API', '$timeout',
-function (authService, $uibModal, $scope, $http, URL_API, $timeout) {
+function ($translate, authService, $uibModal, $scope, $http, URL_API, $timeout) {
 	console.log('SettingController');
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
 	$scope.lang = $translate.use();

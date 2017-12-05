@@ -38,6 +38,7 @@ function ($translate, authService, $uibModal, $scope, $http, URL_API) {
 			
 	};
 		$scope.user = userdata;
+		console.log($scope.user);
 	
 
 }]);
