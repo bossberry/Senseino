@@ -385,5 +385,10 @@ md-radio-button.md-default-theme .md-on, md-radio-button .md-on{
 pre{
     padding: 0px!important;
     background: none!important;
-    border: none!important;
+	border: none!important;
+	white-space: -moz-pre-wrap!important; /* Mozilla, supported since 1999 */
+    white-space: -pre-wrap!important; /* Opera */
+    white-space: -o-pre-wrap!important; /* Opera */
+    white-space: pre-wrap!important; /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space */
+    word-wrap: break-word!important;
 }

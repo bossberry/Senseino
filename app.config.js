@@ -11,9 +11,11 @@ function configs($httpProvider, $translateProvider) {
         prefix: 'assets/lang/locale-',
         suffix: '.json'
     });
+    $translateProvider.useLocalStorage();
     $translateProvider.fallbackLanguage("en");
     $translateProvider.preferredLanguage('en');
     $translateProvider.useSanitizeValueStrategy('escapeParameters');
+   
 
 
     const userdata = JSON.parse(localStorage.getItem('userdata'));
