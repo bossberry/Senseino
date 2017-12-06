@@ -38,7 +38,8 @@ function ($translate, $scope, $uibModal, URL_API, $http) {
 	}else {
 		$scope.userId = userdata._id
 		var socket = null;
-		var socket = io.connect('http://54.255.237.25:5000', {
+		// var socket = io.connect('http://54.255.237.25:5000', {
+		var socket = io.connect('https://senseino.co:3000', {
 			query: 'token=' + userdata.accessToken + '&lang=' + 'th',
 			reconnection: true,
 			reconnectionDelay: 1000,

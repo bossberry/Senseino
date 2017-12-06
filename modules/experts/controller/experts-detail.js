@@ -54,7 +54,7 @@ function ($translate, authService, $scope, $uibModal, $http, URL_API) {
 	.then( function(res){
 		$scope.loaded = true;
 		$scope.exptdetail = res.data.data[0];
-		console.log($scope.exptdetail);
+		// console.log($scope.exptdetail);
 		$scope.exptID = $scope.exptdetail._id;
 		$scope.exptUserId = $scope.exptdetail.user._id;
 		$scope.profilePic = $scope.exptdetail.profileImg;
