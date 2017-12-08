@@ -59,10 +59,9 @@ function ($translate, authService, $scope, $uibModal, $http, URL_API) {
 		$scope.exptUserId = $scope.exptdetail.user._id;
 		$scope.profilePic = $scope.exptdetail.profileImg;
 		for(var i = 0; i < $scope.profilePic.length; i++){
-			$scope.profilePic = {src:$scope.profilePic[i].url};
-			$scope.profilePicArr.push($scope.profilePic);
-		}
-		
+			$scope.profilePicAdapt = {src:$scope.profilePic[i].url};
+			$scope.profilePicArr.push($scope.profilePicAdapt);
+		}	
 	});
 	$scope.favExpt = function (exptsId, check){
 		if($scope.isLoggedIn){

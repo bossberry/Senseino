@@ -202,15 +202,17 @@ function ($translate, $scope, $uibModal, URL_API, $http) {
 			}
 		};
 
-
+		$scope.clickChatupFile = function(){
+			$("#inputUploadFile").click();
+		};
 		$scope.ChatupFile = function(e){
 			var files = e[0];
-			if (files.type === 'image/jpeg'){
+			if (files.type === 'image/jpeg' || files.type === 'image/png' || files.type === 'image/gif'){
 				var picChatUp = [] ;
 				picChatUp.push(files);
 				var fd = new FormData();
 				fd.append('file', picChatUp[0]);
-				console.log(files.type);
+				// console.log(files.type);
 				$scope.typeFile = 'image';
 			} else {
 
@@ -226,7 +228,8 @@ function ($translate, $scope, $uibModal, URL_API, $http) {
 				}
 			}).then(function (res) {
 					if(res.data.data){
-						console.log(res.data.data.url);
+						// console.log(res);
+						// console.log(res.data.data.url);
 						socket.emit('message:send',{"room":$scope.roomIdG, "user":userdata._id, "message":res.data.data.url, "type": $scope.typeFile} );
 					}else {
 						console.log(res);
@@ -238,7 +241,9 @@ function ($translate, $scope, $uibModal, URL_API, $http) {
 
 		};
 		$scope.chatPushMsg = function(e){
+			
 			socket.emit('message:send',{"room":$scope.roomIdG, "user":userdata._id, "message":$scope.msgsend, "type":"message"} );
+			$scope.msgsend = null;
 		};
 
 		$scope.$on('reachTop', function(event, data) {

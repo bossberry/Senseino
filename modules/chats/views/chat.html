@@ -46,7 +46,7 @@
                 </div>
             </div>
         </div>
-        <div id="chatScroll" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 chat-msg-body" scroll>
+        <div id="chatScroll" class="col-xs-5 col-sm-5 col-md-5 col-lg-5 chat-msg-body" scroll>
             <div ng-if="isReachtop">
                 <center>
                     <img width="32px"src="assets/img/ajax-loader.gif">
@@ -115,13 +115,13 @@
                 </div>
             </ol>
         </div>
-        <div ng-if="roomnotfound" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 chat-right-body">
+        <div ng-if="roomnotfound" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-right-body">
             <div class="chat-title-right-ask"><h3><img src="assets/img/Group.png">&nbsp;</h3></div>
             <div class="chat-right-des">
                
             </div>
         </div>
-        <div ng-if="Stateroom===1" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 chat-right-body">
+        <div ng-if="Stateroom===1" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-right-body">
             <div class="chat-title-right-ask"><h3 translate="CHAT.ST-ASK"></h3></div>
             <div class="chat-right-des">
                 <p>
@@ -130,7 +130,7 @@
                 <button ng-if="btnOffPrice" ng-click="OfferPrice(roomDataG)" class="btn btn-action-full" translate="CHAT.ST-OFFER"></button>
             </div>
         </div>
-        <div ng-if="Stateroom===2" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 chat-right-body">
+        <div ng-if="Stateroom===2" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-right-body">
             <div class="chat-title-right-w8paid"><h3><img src="assets/img/Group.png" translate="CHAT.ST-WATI"></h3></div>
             <div class="chat-right-des">
                     <p>
@@ -140,7 +140,7 @@
                 <button ng-if="!btnOffPrice" ng-click="viewOfferPrice(roomDataG)" class="btn btn-action-full" translate="CHAT.V-Offer"></button>
             </div>
         </div>
-        <div ng-if="Stateroom===3" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 chat-right-body">
+        <div ng-if="Stateroom===3" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-right-body">
             <div class="chat-title-right-green"><h3><img src="assets/img/Group.png" translate="CHAT.ST-WORK"></h3></div>
             <div class="chat-right-des">
                     <p>
@@ -151,7 +151,7 @@
                 <button ng-if="!btnOffPrice" ng-click="viewOfferPrice(roomDataG)" class="btn btn-action-full" disabled translate="CHAT.BTN-Accpt"></button>
             </div>
         </div>
-        <div ng-if="Stateroom===4" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 chat-right-body">
+        <div ng-if="Stateroom===4" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-right-body">
             <div class="chat-title-right-green"><h3><img src="assets/img/Group.png" translate="CHAT.ST-WORK"></h3></div>
             <div class="chat-right-des">
                     <p>
@@ -161,7 +161,7 @@
                 <button ng-if="!btnOffPrice" ng-click="acceptJob(roomDataG)" class="btn btn-action-full" translate="CHAT.BTN-Accpt"></button>
             </div>
         </div>
-        <div ng-if="Stateroom===5" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 chat-right-body">
+        <div ng-if="Stateroom===5" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-right-body">
             <div class="chat-title-right-green"><h3><img src="assets/img/Group.png" translate="CHAT.ST-SUCCESS"></h3></div>
             <div class="chat-right-des">
                     <p>
@@ -171,7 +171,7 @@
                 <button ng-if="!btnOffPrice" ng-click="review(roomDataG)" class="btn btn-action-full-green" translate="CHAT.ST-REVIEW"></button>
             </div>
         </div>
-        <div ng-if="Stateroom===6" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 chat-right-body">
+        <div ng-if="Stateroom===6" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-right-body">
             <div class="chat-title-right-green"><h3><img src="assets/img/Group.png"  translate="CHAT.ST-SUCCESS"></h3></div>
             <div class="chat-right-des">
                     <p>
@@ -181,14 +181,26 @@
                 <button ng-if="!btnOffPrice" ng-click="hireAgain(roomDataG)" class="btn btn-action-full-green" translate="CHAT.BTN-HireAgain"></button>
             </div>
         </div>
-        <div class="col-sm-offset-4 col-md-offset-4 col-lg-offset-4 col-sm-6 col-md-6 col-lg-6 chat-msg-body-input">
-            <textarea id="inputMsg" my-enter="chatPushMsg()" ng-model="msgsend" class="chatinput" row="10" cols="100%" placeholder="แจ้งรายละเอียดงานที่ต้องการ"></textarea>
+        <div class="col-sm-offset-4 col-md-offset-4 col-lg-offset-4 col-sm-5 col-md-5 col-lg-5 chat-msg-body-input">
+            <!-- <textarea id="inputMsg" my-enter="chatPushMsg()" ng-model="msgsend" class="chatinput" row="10" cols="100%" placeholder="แจ้งรายละเอียดงานที่ต้องการ"></textarea>
             <div class="image-upload">
             <label for="file-input">
                 <img src="assets/img/chatfile.png" style="pointer-events: none"/>
             </label>
             <input id="file-input" type="file" onchange="angular.element(this).scope().ChatupFile(this.files)" >
-            </div>     
+            </div>      -->
+            <div class="input-group">
+                <input type="text" my-enter="chatPushMsg()" ng-model="msgsend" name="inputMessage" id="inputMsg" placeholder="Type Message ..." class="form-control">
+                <span class="input-group-btn">
+                    <button type="button" class="btn background-color-super-red color-white  btn-flat" ng-click="chatPushMsg()">Send</button>
+                </span>
+                <span class="input-group-btn">
+                    <button type="button" class="btn background-color-super-red color-white btn-flat" ng-click="clickChatupFile()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                    <input onchange="angular.element(this).scope().ChatupFile(this.files)" class="hide inputImageFile" data-num="1" type="file" name="img_url1" id="inputUploadFile" file-model="image.imgUrl">
+                </span>
+            </div>
         </div>
     </div>
     

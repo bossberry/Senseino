@@ -36,6 +36,14 @@
     display: flex;
     cursor: pointer;
     background: #e2e8f1;
+    padding-bottom: 10px;
+}
+.one-msg-user:active, .one-msg-user:focus{
+    outline: none;
+}
+.one-msg-user:hover {
+    background: #fce8e9!important;
+    cursor: pointer;
 }
 .chat-user-thumnail-left{
     text-align: center;
@@ -433,4 +441,17 @@ width: 32px;
     -webkit-pointer-events: none;
     -moz-pointer-events: none;
     pointer-events: none;
+}
+.btn.btn-flat {
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-width: 1px;
+}
+.background-color-super-red {
+    background: #fa2832;
+}
+.color-white {
+    color: #fff;
 }
