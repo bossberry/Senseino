@@ -165,7 +165,7 @@
   padding: 50px 150px;
   color: #fff;
 }
-.experts-cre-sec-sup > h1{
+.experts-cre-sec-sup >div > h1{
   display: inline-block;
   float: left;
   font-size: 32px;
@@ -194,7 +194,7 @@
   float: right;
   margin-top: -150px;
   clear: both;
-  margin-right: 40%;
+  margin-right: 30%;
 }
 .wrap-btn-cre-expt   > button {
   margin-right: -120px;

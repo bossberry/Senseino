@@ -4,7 +4,7 @@ angular
 .controller('ExpertsController', ['$translate', '$uibModal', 'authService', '$scope', '$http', 'URL_API',
 function ($translate, $uibModal, authService, $scope, $http, URL_API) {
 	$scope.lang = $translate.use();
-	$scope.imglang = 'assets/img/' + $scope.lang + '.png';
+	$scope.imglang = 'assets/img/flag_' + $scope.lang + '.png';
 	$scope.isLoggedIn = false;
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
 	

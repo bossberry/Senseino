@@ -99,7 +99,8 @@
         "BTN-POSTWORK": "仕事の投稿",
         "CONTACT": "コンタクト",
         "BTN-OFFER": "値段を提案する。",
-        "BTN-REVIEW": "レビュー" 
+        "BTN-REVIEW": "レビュー",
+        "chlang": "日本語"
     },
     "FORYOU": {
         "CTM-FORORG": "組織の顧客向け",

@@ -91,7 +91,11 @@ angular
 		})
 		.catch((err) => {
 		  $scope.loginerr = true;
-		  $scope.loginerrmsg = err.data.description;
+		  if(err.data.description!= null){
+			$scope.loginerrmsg = err.data.description;
+		  } else {
+			$scope.loginerrmsg = err.data;
+		  }
 		});
 	};
 	

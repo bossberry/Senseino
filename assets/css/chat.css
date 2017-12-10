@@ -55,7 +55,7 @@
 .chat-msg-body{
     max-width: 1200px;
     border-left: 1px solid #f4f4f4;
-    height: 75vh;
+    height: 83vh;
     padding: 20px;
     overflow-y: scroll;
 }
@@ -63,6 +63,7 @@
     max-width: 1200px;
     border-left: 1px solid #f4f4f4;
     padding: 0px;
+    margin-top: -4vh;
 }
 .chatinput:hover, .chatinput:focus{
     outline: none;
@@ -78,6 +79,7 @@
 .chat-right-body{
     border-left: 1px solid #f4f4f4;
     padding: 0px;
+    /* height: 87vh; */
     height: 100%;
 }
 .chat-title-right{
@@ -332,7 +334,7 @@ width: 32px;
     font-weight: bold;
 }
 .left-msg-warp{
-    height: 75vh;
+    height: 87vh;
     overflow-y: scroll;
     overflow-x: hidden;
 }

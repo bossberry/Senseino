@@ -3,8 +3,11 @@
 <aside ng-show="isLoggedIn" data-ng-include="'/modules/topbars/views/topbar5.html'"></aside>
 </div>   
 <section class="margin-for-topbar-5">
-    <div class="section-box row container-fluid experts-cre-sec-sup">
-        <h1 translate="EXPERT.CRE-TITLE"></h1>
+    <div class="section-box container-fluid experts-cre-sec-sup">
+        <div class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+                <h1 translate="EXPERT.CRE-TITLE"></h1>
+        </div>
+        
         <!-- <button class="btn btn-action">เพิ่มประวัติ</button> -->
     </div>
     <div class="section-box row container-fluid help-sec-faq"> 
@@ -70,7 +73,7 @@
                         <label class="experts-cre-label" translate="MTR.DETAIL"></label>
                     </div>
                     <div class="col-sm-5 col-md-5 col-lg-5">
-                        <textarea ng-model="user.des" style="resize:none;"rows="4" cols="40" required></textarea>
+                        <textarea ng-model="user.des" style="resize:none;" rows="10" cols="100%" required></textarea>
                     </div>
                 </div>
                 <div class="row form-group experts-cre-fg">
@@ -78,7 +81,7 @@
                         <label class="experts-cre-label" translate="MTR.EXP"></label>
                     </div>
                     <div class="col-sm-5 col-md-5 col-lg-5">
-                        <textarea ng-model="user.exp" style="resize:none;"rows="4" cols="40" required></textarea>
+                        <textarea ng-model="user.exp" style="resize:none;" rows="10" cols="100%" required></textarea>
                     </div>
                 </div>
                 <div class="row form-group experts-cre-fg">
@@ -86,7 +89,7 @@
                         <label class="experts-cre-label" translate="MTR.ED"></label>
                     </div>
                     <div class="col-sm-5 col-md-5 col-lg-5">
-                        <textarea ng-model="user.ed" style="resize:none;"rows="4" cols="40" required></textarea>
+                        <textarea ng-model="user.ed" style="resize:none;" rows="10" cols="100%" required></textarea>
                     </div>
                 </div>
                 <div class="row form-group experts-cre-fg">
