@@ -30,7 +30,8 @@
     </div>
 </div>
 
-    <div class="section-box container-fluid" ng-repeat="ex in experts">
+    <!-- <div class="section-box container-fluid" ng-repeat="ex in experts"> -->
+    <div class="section-box container-fluid" ng-repeat="ex in experts  | limitTo: ((experts.length)/2)+1">
         <div class="col-lg-12">
             <h1 class="head-section-margin">{{ex.jobType.name[lang]}}<span class="see-all-wrap float-r"><a ng-href="/#/experts{{ex.jobType._id}}" class="btn btn-more" translate="MTR.SEEALL"></a></span></h1>
             <slick 
@@ -104,7 +105,8 @@
             <button ng-click="exptCre()" class="btn btn-action" translate="EXPERT.INTR-REGIS"></button>
         </div>
     </div>
-    <div class="section-box container-fluid" ng-repeat="ex in experts  | limitTo: (2 - experts.length)">
+    <div class="section-box container-fluid" ng-repeat="ex in experts  | limitTo: (- (experts.length)/2)">
+            <!-- <div class="section-box container-fluid" ng-repeat="ex in experts  | orderBy:'-'"> -->
         <div class="col-lg-12">
             <h1 class="head-section-margin">{{ex.jobType.name[lang]}}<span class="see-all-wrap float-r"><a ng-href="/#/experts{{ex.jobType._id}}" class="btn btn-more" translate="MTR.SEEALL"></a></span></h1>
             <slick 
