@@ -94,15 +94,15 @@ function ($translate, authService, $scope, $uibModal, $http, URL_API) {
 			});
 		}
 	};
-	$scope.reviewModal = function(review) {
+	$scope.seeReviewModal = function(review) {
 		var modalInstance = $uibModal.open({
 			animation: $scope.animationsEnabled,
-			templateUrl: 'reviewModal.html',
-			controller: 'ReviewModalController as ctrl',
+			templateUrl: 'seeReviewModal.html',
+			controller: 'SeeReviewModalController as ctrl',
 			resolve: {
 				review: function() {
 				  return review;
-				}
+				},
 			  }
 		});
 	};
@@ -110,9 +110,9 @@ function ($translate, authService, $scope, $uibModal, $http, URL_API) {
 
 angular
 .module('myApp')
-.controller('ReviewModalController', function ($scope, $uibModal, $uibModalInstance, review) {
-	console.log('ReviewModalController');
-	console.log(review);
+.controller('SeeReviewModalController', function ($scope, $uibModal, $uibModalInstance, review) {
+	// console.log('ReviewModalController');
+	// console.log(review);
 	$scope.reviews = review
 	$scope.closeMD = function() {
 		$uibModalInstance.close(false);
