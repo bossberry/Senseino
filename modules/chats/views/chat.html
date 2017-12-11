@@ -131,7 +131,7 @@
             </div>
         </div>
         <div ng-if="Stateroom===2" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-right-body">
-            <div class="chat-title-right-w8paid"><h3><img src="assets/img/Group.png" translate="CHAT.ST-WATI"></h3></div>
+            <div class="chat-title-right-w8paid"><h3  translate="CHAT.R-WAIT"></h3></div>
             <div class="chat-right-des">
                     <p>
                         {{Statemsg[lang]}}
@@ -141,7 +141,7 @@
             </div>
         </div>
         <div ng-if="Stateroom===3" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-right-body">
-            <div class="chat-title-right-green"><h3><img src="assets/img/Group.png" translate="CHAT.ST-WORK"></h3></div>
+            <div class="chat-title-right-green"><h3  translate="CHAT.R-WORK"></h3></div>
             <div class="chat-right-des">
                     <p>
                         {{Statemsg[lang]}}
@@ -152,7 +152,7 @@
             </div>
         </div>
         <div ng-if="Stateroom===4" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-right-body">
-            <div class="chat-title-right-green"><h3><img src="assets/img/Group.png" translate="CHAT.ST-WORK"></h3></div>
+            <div class="chat-title-right-green"><h3  translate="CHAT.R-WORK"></h3></div>
             <div class="chat-right-des">
                     <p>
                         {{Statemsg[lang]}}
@@ -162,7 +162,7 @@
             </div>
         </div>
         <div ng-if="Stateroom===5" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-right-body">
-            <div class="chat-title-right-green"><h3><img src="assets/img/Group.png" translate="CHAT.ST-SUCCESS"></h3></div>
+            <div class="chat-title-right-green"><h3 translate="CHAT.R-REVIEW"></h3></div>
             <div class="chat-right-des">
                     <p>
                         {{Statemsg[lang]}}
@@ -172,7 +172,7 @@
             </div>
         </div>
         <div ng-if="Stateroom===6" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-right-body">
-            <div class="chat-title-right-green"><h3><img src="assets/img/Group.png"  translate="CHAT.ST-SUCCESS"></h3></div>
+            <div class="chat-title-right-green"><h3   translate="CHAT.R-SUCCESS"></h3></div>
             <div class="chat-right-des">
                     <p>
                         {{Statemsg[lang]}}
@@ -207,7 +207,7 @@
    </div>
         
    <script type="text/ng-template" id="offerPriceModal.html">
-    <div class="modal-header modal-regis-header"  translate="MTR.OFFER-TITLE">
+    <div class="modal-header modal-regis-header"  translate="MODAL.OFFER-TITLE">
         <span ng-click="closeMD()">X</span>
     </div>
     <div class="modal-body" id="modal-body">
@@ -215,7 +215,7 @@
             <form ng-submit="creQT()" name="expertsCreate" autocomplete="off">
             <div class="row form-group">
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                    <label translate="MTR.POSTWORK-NAME"></label>
+                    <label translate="MODAL.POSTWORK-NAME"></label>
                 </div>
                 <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
                     <input ng-model="workname" type="text" placeholder="ชื่อโพสงาน และ รายละเอียดเบื้องต้น" class="form-control input-size-box" required>
@@ -321,7 +321,8 @@
             <h2>ราคา<span><div class="crrc">฿</div> {{vQT.price}}</span></h2>
             <p>{{vQT.priceType}}</p>
         </div>
-        <button ng-if="!btnOffPrice" style="margin-top:30px;font-size:22px;" ng-click="paid()" class="btn btn-action-full" translate="CHAT.BTN-PAID"></button>
+        <button ng-if="!btnOffPrice && !btnpaid" style="margin-top:30px;font-size:22px;" ng-click="paid()" class="btn btn-action-full" translate="CHAT.BTN-PAID"></button>
+        <button ng-if="btnpaid && !btnOffPrice" style="margin-top:30px;font-size:22px;" ng-click="paid()" class="btn btn-action-full" translate="CHAT.BTN-PAID" disabled></button>
         <button ng-if="btnOffPrice" style="margin-top:30px;font-size:22px;" ng-click="updateQT()" class="btn btn-action-full" translate="CHAT.BTN-EditQ"></button>
         
     </div>

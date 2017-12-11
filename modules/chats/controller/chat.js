@@ -400,9 +400,18 @@ angular
 	$scope.vQT = quotation[0];
 	$scope.rsdisc = $scope.vQT.price;
 	var room = roomData;
-	if (room.employer._id === userdata._id ){
+	console.log(room);
+	
+	if (room.employer._id === userdata._id && room.state === 3 ){
 		$scope.btnOffPrice = false;
-	} else {
+		$scope.btnpaid = true;
+	} else if(room.employer._id === userdata._id && room.state === 4 ){
+		$scope.btnOffPrice = false;
+		$scope.btnpaid = true;
+	} else if(room.employer._id === userdata._id){
+		$scope.btnOffPrice = false;
+		$scope.btnpaid = false;
+	}  else {
 		$scope.btnOffPrice = true;
 	}
 	$scope.checkCode = function () {
