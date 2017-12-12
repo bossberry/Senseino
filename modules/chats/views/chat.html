@@ -56,8 +56,8 @@
                 <div ng-repeat="msg in chatMsg">
                     <li ng-if="msg.user._id != userId" class="other">
                         <div class="avatar">
-                            <img ng-if="msg.action == 'system'" ng-src="{{msg.user.imgUrl}}" draggable="false">
-                            <img ng-if="msg.action == 'review'" ng-src="{{msg.user.imgUrl}}" draggable="false">
+                            <img ng-if="msg.action == 'system'" ng-src="assets/img/Icon App.png" draggable="false">
+                            <img ng-if="msg.action == 'review'" ng-src="assets/img/Icon App.png" draggable="false">
                             <img ng-if="msg.action != 'system' && msg.action != 'review'" ng-src="{{exPic}}" draggable="false">
                         </div>
                         <div ng-if="msg.action==='system'" class="msgsys">
