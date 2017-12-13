@@ -169,6 +169,7 @@
     background-color: #D4D4D4;
     box-shadow: 1px 2px 0px #D4D4D4;
     max-width: 350px;
+    word-wrap: break-word;
 }
 .other .msgsys {
     order: 1;
@@ -176,6 +177,7 @@
     box-shadow: 1px 2px 0px #fde5e5;
     max-width: 350px;
     border: 1px solid #FA1B25;
+    word-wrap: break-word;
 }
 .other .avatar {
     margin-right: 10px;

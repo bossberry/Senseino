@@ -120,11 +120,11 @@
     <script type="text/ng-template" id="reviewModal.html">
       
     </script>
-    <script type="text/ng-template" id="editPost.html" >
+    <script type="text/ng-template" id="editPost.html" style="width:800px">
         <div class="modal-header modal-regis-header" translate="EXPERT.CRE-TITLE">
             <span ng-click="closeMD()">X</span>
         </div>
-        <div class="modal-body" id="modal-body">
+        <div class="modal-body profile-modal-edit" id="modal-body">
         <form ng-submit="submitEditPost()" name="jobExForm" autocomplete="off">
             <div class="row form-group">
                 <div class="col-sm-3 col-md-3 col-lg-3">
@@ -189,7 +189,7 @@
                     <label translate="MODAL.EXPRESS_DES"></label>
                 </div>
                 <div class="col-sm-9 col-md-9 col-lg-9">
-                    <textarea ng-model="expt.detail[lang]" style="resize:none;"rows="4" cols="40" required></textarea>
+                    <textarea ng-model="expt.detail[lang]" style="resize:none;"rows="4" cols="75" required></textarea>
                 </div>
             </div>
             <div class="row form-group">
@@ -197,7 +197,7 @@
                     <label translate="MTR.EXP"></label>
                 </div>
                 <div class="col-sm-9 col-md-9 col-lg-9">
-                    <textarea ng-model="expt.experience[lang]" style="resize:none;"rows="4" cols="40" required></textarea>
+                    <textarea ng-model="expt.experience[lang]" style="resize:none;"rows="4" cols="75" required></textarea>
                 </div>
             </div>
             <div class="row form-group">
@@ -205,19 +205,19 @@
                     <label translate="MTR.ED"></label>
                 </div>
                 <div class="col-sm-9 col-md-9 col-lg-9">
-                    <textarea ng-model="expt.education[lang]" style="resize:none;"rows="4" cols="40" required></textarea>
+                    <textarea ng-model="expt.education[lang]" style="resize:none;"rows="4" cols="75" required></textarea>
                 </div>
             </div>
             <div class="row form-group experts-cre-fg">
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <label class="experts-cre-label" translate="MTR.UP-Pic-VID"><span id="errpic" class="msg-form-err"ng-show="picErr" translate="MTR.ERR-Pic-VID"></span></label>                       
                 </div>                    
-                <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="col-sm-4 col-md-4 col-lg-4">
                     <span class="btn btn-media">
                         <input type="file" onchange="angular.element(this).scope().uploadFile(this.files)" multiple>
                     </span>
                 </div>
-                <div class="col-sm-6 col-md-6 col-lg-6 post-crop" ng-repeat="file in filesArray track by $index | limitTo: 5">
+                <div class="col-sm-4 col-md-4 col-lg-4 post-crop" ng-repeat="file in filesArray track by $index | limitTo: 5">
                     <img class="post-img-pre" width="100%" ng-src="{{file}}" alt="">
                     <a class="rm-pic-expt-cre" ng-click="removePreImg($index)"><img src="assets/img/delete.png"></a>
                 </div>
@@ -226,12 +226,12 @@
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <label class="experts-cre-label" translate="EXPERT.PORT"></label>                       
                 </div>                    
-                <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="col-sm-4 col-md-4 col-lg-4">
                     <span class="btn btn-media">
                         <input type="file" onchange="angular.element(this).scope().uploadPort(this.files)" multiple>
                     </span>
                 </div>
-                <div class="col-sm-6 col-md-6 col-lg-6 post-crop" ng-repeat="port in portMediaArray track by $index | limitTo: 5">
+                <div class="col-sm-4 col-md-4 col-lg-4 post-crop" ng-repeat="port in portMediaArray track by $index | limitTo: 5">
                     <img class="post-img-pre" width="100%" ng-src="{{port}}" alt="">
                     <a class="rm-pic-expt-cre" ng-click="removePortImg($index)"><img src="assets/img/delete.png"></a>
                 </div>

@@ -5,6 +5,19 @@ angular
 function ($translate, $http, URL_API, $scope, $uibModal) {
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
 	$scope.authen = userdata;
+	console.log($scope.authen);
+	if($scope.authen!=null){
+		if($scope.authen.imgUrl===null && $scope.authen.experts!=null  && $scope.authen.experts[0]){
+			if($scope.authen.experts[0].profileImg[0].url!=null){
+				$scope.imgProTopbar = $scope.authen.experts[0].profileImg[0].url;
+			} else{
+				$scope.imgProTopbar = $scope.authen.experts[0].thumbImgUrl;
+			}
+			
+		} else {
+			$scope.imgProTopbar = $scope.authen.imgUrl;
+		}
+	}
 	$scope.lang = $translate.use();
 	
 		$http.get('multilingual.json') 

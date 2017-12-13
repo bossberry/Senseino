@@ -38,14 +38,14 @@ function ($translate, authService, $uibModal, $scope, $http, URL_API) {
 			
 	};
 		$scope.user = userdata;
-		console.log($scope.user);
+		// console.log($scope.user);
 	
 	$scope.editPost = function(){
-		console.log('editPost()');
 		var modalInstance = $uibModal.open({
 			animation: $scope.animationsEnabled,
 			templateUrl: 'editPost.html',
 			controller: 'EditPostModalController as ctrl',
+			windowClass: 'app-modal-window',
 			resolve : { 
 				expertsId : function() {
 				   return $scope.user.experts[0]._id;
@@ -59,6 +59,14 @@ function ($translate, authService, $uibModal, $scope, $http, URL_API) {
 angular
 .module('myApp')
 .controller('EditPostModalController', function ($translate, URL_API, $http, $scope, $uibModal, $uibModalInstance, expertsId) {
+	// document.getElementsByClassName("modal-dialog ").style.width = '800px';
+	// var result = document.getElementsByClassName("modal-dialog ");
+	// console.log(result);
+	// for (var i = 0; i = result.length; i++) {
+	// 	console.log(result);
+    //     result[i].style.width = "800px";
+    // }
+	// console.log(result);
 	$scope.lang = $translate.use();
 	$scope.filesArray = [];
 	$scope.portMediaArray = [];
@@ -75,7 +83,7 @@ angular
 		for(var i = 0; i<$scope.expt.portfolio.length; i ++){
 			$scope.portMediaArray.push($scope.expt.portfolio[i].url);
 		}
-		console.log($scope.expt);
+		// console.log($scope.expt);
 		
 	});
 	$http.get(URL_API + '/api/v1/job_types')

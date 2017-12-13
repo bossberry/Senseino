@@ -59,3 +59,9 @@
     height: 300px;
     margin: 0px 0 0 0px;
 }
+.app-modal-window .modal-dialog {
+    width: 800px;
+}
+.profile-modal-edit{
+    padding: 30px;
+}
