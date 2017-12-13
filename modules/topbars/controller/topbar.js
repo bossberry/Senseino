@@ -5,7 +5,7 @@ angular
 function ($translate, $http, URL_API, $scope, $uibModal) {
 	const userdata = JSON.parse(localStorage.getItem('userdata'));
 	$scope.authen = userdata;
-	console.log($scope.authen);
+	// console.log($scope.authen);
 	if($scope.authen!=null){
 		if($scope.authen.imgUrl===null && $scope.authen.experts!=null  && $scope.authen.experts[0]){
 			if($scope.authen.experts[0].profileImg[0].url!=null){

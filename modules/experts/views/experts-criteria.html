@@ -30,10 +30,10 @@
 
         </div>
     </div>
-    <div class="section-box container-fluid" ng-repeat="ex in experts">
+    <div class="section-box container-fluid">
         <div class="col-lg-12">
-            <h1 class="head-section-margin">{{ex.jobType.name[lang]}}</h1>
-            <div class="col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="data in experts | limitTo: 5">
+            <h1 class="head-section-margin">{{experts[0].jobType.name[lang]}}</h1>
+            <div class="col-sm-5ths col-md-5ths col-lg-5ths" ng-repeat="data in experts" style="height:420px;">
                 <div class="amPmCheckbox">
                     <input type="checkbox" class="checkboxLabel main_street_input" id="{{data._id}}" value="1" />
                     <label for="{{data._id}}"></label>
