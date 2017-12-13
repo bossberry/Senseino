@@ -2,7 +2,7 @@
 angular
 .module('myApp')
 .controller('ExpertsCriteriaController', ['$translate', 'authService', '$scope', '$http', 'URL_API',
-function (authService, $scope, $http, URL_API) {
+function ($translate, authService, $scope, $http, URL_API) {
     $scope.lang = $translate.use();
     var currenturl = window.location.href;
     var jobTypesId = currenturl.substring(currenturl.search('/experts')+ 8);
