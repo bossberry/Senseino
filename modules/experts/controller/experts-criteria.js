@@ -23,11 +23,14 @@ function ($translate, authService, $scope, $http, URL_API) {
 		$scope.imglang = 'assets/img/flag_' + lang + '.png';
 		$scope.lang = lang;
 		$translate.use(lang);
-    };
+	};
+	
     $http.get(URL_API + '/api/v1/page/expert')
 	.then( function(res){
 		$scope.loaded = true;
+		$scope.jobTypesRow = [{}];
 		$scope.jobTypes = res.data.data.jobTypes;
+		// console.log($scope.jobTypes);
 	});
 	$http.get(URL_API + '/api/v1/experts?jobType=' + jobTypesId + '&sortValue=-1')
 	.then( function(res){
