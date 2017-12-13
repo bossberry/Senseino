@@ -35,7 +35,7 @@ function ($translate, authService, $scope, $http, URL_API) {
 	$http.get(URL_API + '/api/v1/experts?jobType=' + jobTypesId + '&sortValue=-1')
 	.then( function(res){
 		$scope.experts = res.data.data;
-		console.log($scope.experts);
+		// console.log($scope.experts);
 	});
 }]);
 
