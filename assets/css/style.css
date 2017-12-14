@@ -376,12 +376,31 @@ md-radio-button.md-default-theme .md-on, md-radio-button .md-on{
 	}
 }
 @media (max-width: 768px) {
+	.show-mobile{
+		display:block!important;
+	}
+	.show-web{
+		display:none!important;
+	}
 	.crop-slide-img{
 		height: 150px;
 		overflow: hidden;
 	}
 }
-
+.show-mobile{
+	display:none;
+}
+.show-web{
+	display:block;
+}
+.show-mobile> h1{
+	text-align: center;
+}
+.mobile-top{
+	height: 50px;
+	background-color: #FA1B25;
+	width: 100%;
+}
 pre{
     padding: 0px!important;
     background: none!important;
