@@ -350,3 +350,23 @@
   text-decoration: none !important;
   width: auto !important;
 }
+
+
+
+@media screen and (min-width: 768px) {
+  .wrap-hi{
+    height: 380px;
+  }
+}
+
+@media screen and (min-width: 998px){
+  .wrap-hi{
+    height: 430px;
+  }
+}
+
+@media screen and (min-width: 1200px){
+  .wrap-hi{
+    height: 480px;
+  }
+}
