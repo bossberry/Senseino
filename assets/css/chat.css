@@ -355,6 +355,8 @@ width: 32px;
 .lastmsg-leftchat{
     color: #303030;
     font-weight: bold;
+    overflow: hidden;
+    width: 100%;
 }
 
 .center-cropped {

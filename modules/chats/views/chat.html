@@ -17,8 +17,13 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 chat-wrapper-body">
-        <div class="left-msg-warp col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <div ng-show="roomnotfound" translate="CHAT.NOMSG"></div>
+        <div class="left-msg-warp col-xs-4 col-sm-4 col-md-4 col-lg-4" scrollroom>
+            <div ng-if="isReachBottom">
+                <center>
+                    <img width="32px"src="assets/img/ajax-loader.gif">
+                </center>
+            </div>
+            <div ng-show="roomnotfound" translate="CHAT.NOMSG"></div>
             <div ng-click="entryRoom(room)" ng-class="{readmsg: room.isReaded===true}" class="one-msg-user" ng-repeat="room in chatRoom  track by $index">
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 chat-user-thumnail-left">
                     <img ng-if="checkRole[$index]==='expert'" width="48px" height="48px" ng-src="{{room[checkRole[$index]].thumbImgUrl}}">

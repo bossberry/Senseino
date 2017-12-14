@@ -22,6 +22,28 @@ angular
 	});
 	}
 })
+.directive('scrollroom', function() {
+	var directive = {
+		restrict: 'A',
+		link: link
+	};
+	return directive;
+	function link(scope, element, attrs) {
+	var raw = element[0];
+		element.bind('scroll', function () {
+		// console.log('in scroll');
+        // console.log(raw.scrollTop);
+        // console.log(raw.scrollTop + raw.offsetHeight);
+        // console.log(raw.scrollHeight);
+		if (raw.scrollTop + raw.offsetHeight === raw.scrollHeight) {
+		scope.$emit('reachBottom');
+		}
+		if (raw.scrollTop === 0) {
+		// scope.$emit('reachTop');
+		}
+	});
+	}
+})
 .controller('ChatController', ['$translate', '$scope', '$uibModal', 'URL_API', '$http', 
 function ($translate, $scope, $uibModal, URL_API, $http) {
 	$scope.lang = $translate.use();
@@ -246,10 +268,56 @@ function ($translate, $scope, $uibModal, URL_API, $http) {
 			$scope.msgsend = null;
 		};
 
+		$scope.$on('reachBottom', function(event, data) {
+			$scope.getRoomPagination();
+		});
+		$scope.getRoomPagination = function(){
+			// console.log($scope.chatRoom[$scope.chatRoom.length-1]);
+			$scope.isReachBottom = true;
+			
+			var lastroom = $scope.chatRoom[$scope.chatRoom.length-1]._id;			
+			$http({
+				method: 'GET',
+				url: URL_API + '/api/v1/rooms?&pagination=' + lastroom,
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+					'platform': 'web',
+					'lang': $translate.use(),
+					'x-access-token': userdata.accessToken,
+					'Authorization': 'Basic c2Vuc2Vpbm86U2Vuc2Vpbm9AMjAxNw==',
+				}
+			}).then(function (res) {
+				$scope.isReachBottom = false;
+				for(var i = 0; i < res.data.data.length; i++){
+					$scope.chatRoom.push(res.data.data[i]);
+				}
+				for(var i = 0; i < $scope.chatRoom.length; i++){
+					$scope.IDRoom.push($scope.chatRoom[i]._id);
+					if ($scope.chatRoom[i].employer._id === userdata._id ){
+						if($scope.chatRoom[i].expert!=null){
+							$scope.checkRole[i] = 'expert';
+						}else {
+							$scope.checkRole[i] = 'expertUser';
+						}
+						
+					} else {
+						$scope.checkRole[i] = 'employer';
+					}
+				}
+					
+
+
+
+
+
+				
+			}, function (err) {
+				console.log(err.data);
+			});
+		};
 		$scope.$on('reachTop', function(event, data) {
 			$scope.getHistory();
 		});
-
 		$scope.getHistory = function(){
 			$scope.isReachtop = true;
 			var lastmsg = $scope.chatMsg[0]._id;			
