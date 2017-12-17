@@ -15,7 +15,7 @@
         "COURSES": "コース",
         "ENTERPRISE": "エンタープライス",
         "CONTACT": "コンタクト",
-        "APP_DES": "アプリを通してSenseinoを簡単にご利用できます。"
+        "APP_DES": "アプリを通してpretshyを簡単にご利用できます。"
     },
     "MODAL": {
         "EXPRESS_TITLE": "緊急な仕事",
@@ -150,17 +150,17 @@
         "ABOUT-PARA1": "サービスの条件",
         "ABOUT-PARA2": "ポリシー",
         "ABOUT-PARA3": "質問",
-        "DW-TITLE": "Senseino アプリケーション",
+        "DW-TITLE": "pretshy アプリケーション",
         "DW-PARA": "ダウンロード有効",
-        "BOTTOM-BAR": "&#9400;&nbsp;2017, Senseino Co.,Ltd. All Rights Reserved."
+        "BOTTOM-BAR": "&#9400;&nbsp;2017, pretshy Co.,Ltd. All Rights Reserved."
     },
     "CUSTOMER": {
-        "TITLE": "Senseino Enterprise Solution",
+        "TITLE": "pretshy Enterprise Solution",
         "PARA1": "組織やビジネス向けのプロー言語を提供します。",
         "CONTACTME": "連絡先",
         "ABOUT-PARA3": "FAQ",
         "SEC2-TITLE": "組織向けのサービス",
-        "SEC2-PARA": "Senseino Enterprise 責任が高い言語のプローを弊社のデーターベースから選択する。同様に、提供した顧問は、仕事の全工程に指導できます。",
+        "SEC2-PARA": "pretshy Enterprise 責任が高い言語のプローを弊社のデーターベースから選択する。同様に、提供した顧問は、仕事の全工程に指導できます。",
         "SEC3-TITLE": "恩典/顧客がゲットできる条件",
         "SEC3-PARA1": "時間を守る言語のプローをゲットできる。",
         "SEC3-PARA2": "時間を守る高質の人材で保証します。",
@@ -175,7 +175,7 @@
         "SEC6-NAME2": "Trevor Paul",
         "SEC6-PARA3": "And has now fallen have a skillet have a skillet into your hands.",
         "SEC6-NAME3": "Mark Warner",
-        "SEC7-TITLE": "Senseino Enterprise",
+        "SEC7-TITLE": "pretshy Enterprise",
         "SEC7-PARA1": "言語のプローを提供いたします。",
         "SEC7-PARA2": "お得な通訳者、翻訳者、先生、ガイド、司会者、MC、顧問を弊社の顧客を提供いたします。"      
     },
@@ -219,7 +219,7 @@
         "OMISE-CHECKOUT": "チェックアウト",
         "MONTRAN-TITLE": "銀行口座で振り込み",
         "MONTRAN-DES-TITLE": "銀行口座で振り込み",
-        "MONTRAN-DES-PARA1": "Senseino Co., Ltd.",
+        "MONTRAN-DES-PARA1": "pretshy Co., Ltd.",
         "MONTRAN-DES-PARA2": "Thahanthai銀行" ,
         "MONTRAN-DES-PARA3": "口座番号 266-2-04468",
         "MONTRAN-UP-SLIP": "スリップをアプロードする。",

@@ -15,7 +15,7 @@
         "COURSES": "COURSES",
         "ENTERPRISE": "Enterprise",
         "CONTACT": "Contact",
-        "APP_DES": "ใช้งาน Senseino ได้ง่ายๆ ผ่านแอพ "
+        "APP_DES": "ใช้งาน pretshy ได้ง่ายๆ ผ่านแอพ "
     },
     "MODAL": {
         "EXPRESS_TITLE": "JOB EXPRESS",
@@ -150,17 +150,17 @@
         "ABOUT-PARA1": "Terms of Service",
         "ABOUT-PARA2": "Policy",
         "ABOUT-PARA3": "Question",
-        "DW-TITLE": "Senseino Application",
+        "DW-TITLE": "pretshy Application",
         "DW-PARA": "ดาวน์โหลดได้แล้ววันนี้",
-        "BOTTOM-BAR": "&#9400;&nbsp;2017, Senseino Co.,Ltd. All Rights Reserved."
+        "BOTTOM-BAR": "&#9400;&nbsp;2017, pretshy Co.,Ltd. All Rights Reserved."
     },
     "CUSTOMER": {
-        "TITLE": "Senseino Enterprise Solutions",
+        "TITLE": "pretshy Enterprise Solutions",
         "PARA1": "บริการ Outsource ผู้เชี่ยวชาญด้านภาษา สำหรับองค์กรธุรกิจ",
         "CONTACTME": "Contact",
         "ABOUT-PARA3": "FAQ",
         "SEC2-TITLE": "บริการสำหรับองค์กร",
-        "SEC2-PARA": "Senseino Enterprise คัดเลือกนักภาษาที่เก่งและมีความรับผิดชอบสูงสุด จากฐานข้อมูลของเรา เพื่อทำงานให้ท่าน พร้อมทั้งมีที่ปรึกษาคอยดูแลและเป็นสื่อกลางให้ตลอดทุกขั้นตอนการทำงาน",
+        "SEC2-PARA": "pretshy Enterprise คัดเลือกนักภาษาที่เก่งและมีความรับผิดชอบสูงสุด จากฐานข้อมูลของเรา เพื่อทำงานให้ท่าน พร้อมทั้งมีที่ปรึกษาคอยดูแลและเป็นสื่อกลางให้ตลอดทุกขั้นตอนการทำงาน",
         "SEC3-TITLE": "สิทธิประโยชน์/สิ่งที่ลูกค้าจะได้รับ",
         "SEC3-PARA1": "ได้นักภาษาคุณภาพและตรงเวลา",
         "SEC3-PARA2": "มั่นใจได้ว่าบุคคลากรที่รับงานจะมีคุณภาพและสามารถปฏิบัติงานได้ตรงเวลา",
@@ -175,7 +175,7 @@
         "SEC6-NAME2": "Trevor Paul",
         "SEC6-PARA3": "And has now fallen have a skillet have a skillet into your hands.",
         "SEC6-NAME3": "Mark Warner",
-        "SEC7-TITLE": "Senseino Enterprise",
+        "SEC7-TITLE": "pretshy Enterprise",
         "SEC7-PARA1": "บริการ Outsource ผู้เชี่ยวชาญด้านภาษา",
         "SEC7-PARA2": "ล่าม นักแปล ครูสอนภาษา ไกด์ พิธีกร MC ที่ปรึกษา สำหรับลูกค้าองค์กรในราคาพิเศษ"      
     },

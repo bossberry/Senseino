@@ -15,7 +15,7 @@
         "COURSES": "수업",
         "ENTERPRISE": "기업",
         "CONTACT": "연락",
-        "APP_DES": "어플로 Senseino를 쉽게 사용할 수 있다"
+        "APP_DES": "어플로 pretshy를 쉽게 사용할 수 있다"
     },
     "MODAL": {
         "EXPRESS_TITLE": "급행 작업",
@@ -150,12 +150,12 @@
         "ABOUT-PARA1": "이용약관",
         "ABOUT-PARA2": "정책",
         "ABOUT-PARA3": "질문",
-        "DW-TITLE": "Senseino Application",
+        "DW-TITLE": "pretshy Application",
         "DW-PARA": "오늘부터 다운로드할 수 있습니다",
-        "BOTTOM-BAR": "&#9400;&nbsp;2017, Senseino Co.,Ltd. All Rights Reserved."
+        "BOTTOM-BAR": "&#9400;&nbsp;2017, pretshy Co.,Ltd. All Rights Reserved."
     },
     "CUSTOMER": {
-        "TITLE": "Senseino Enterprise Solutions",
+        "TITLE": "pretshy Enterprise Solutions",
         "PARA1": "언어 전문가 서비스",
         "CONTACTME": "연락",
         "ABOUT-PARA3": "FAQ",
@@ -175,7 +175,7 @@
         "SEC6-NAME2": "Trevor Paul",
         "SEC6-PARA3": "And has now fallen have a skillet have a skillet into your hands.",
         "SEC6-NAME3": "Mark Warner",
-        "SEC7-TITLE": "Senseino Enterprise",
+        "SEC7-TITLE": "pretshy Enterprise",
         "SEC7-PARA1": "언어 전문가 서비스",
         "SEC7-PARA2": "통역사, 번역가, 언어 선생님, 가이드, 이벤트 MC 등 기업 고객에게 특별한 가격"      
     },
@@ -219,7 +219,7 @@
         "OMISE-CHECKOUT": "가격 계산",
         "MONTRAN-TITLE": "은행 계좌 통한 이체",
         "MONTRAN-DES-TITLE": "은행 계좌을 통한 이체",
-        "MONTRAN-DES-PARA1": "Senseino Co.,Ltd",
+        "MONTRAN-DES-PARA1": "pretshy Co.,Ltd",
         "MONTRAN-DES-PARA2": "TMB Bank" ,
         "MONTRAN-DES-PARA3": "계좌번호. 266-2-04468",
         "MONTRAN-UP-SLIP": "전송 증명 업로드",
