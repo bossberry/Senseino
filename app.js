@@ -4,7 +4,7 @@ angular.module('myApp', [
     'ui.bootstrap', 'ngRoute', 'ngMaterial', 'jkAngularCarousel', 'angucomplete-alt', 'slickCarousel', 'pascalprecht.translate', 'ngCookies',
     'myApp.auth', 'myApp.routes', 'myApp.core', 'myApp.services', 'myApp.config'])
     // .constant('URL_API', 'http://54.255.237.25:3000')
-    .constant('URL_API', 'https://senseino.co:3000')
+    .constant('URL_API', 'https://pretshy.com:3000')
 
 .factory('socketio', ['$rootScope', function($rootScope){
     var socket = io.connect();
