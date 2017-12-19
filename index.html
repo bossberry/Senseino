@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>pretshy | The Experts Services</title>
+    <title>pretshy | The Event Models Services</title>
     <link rel="shortcut icon" href="assets/img/F2-Pretshy-01.jpg">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,7 +32,33 @@
     <link rel="stylesheet" href="assets/css/profile.css">
 </head>
 <body ng-app="myApp">
-    <div class="show-mobile">
+<script type="text/ng-template" id="forceAppdownload.html">
+    <div class="modal-header modal-appdload-header">
+        <span ng-click="closeMD()">X</span>
+    </div>
+    <div class="modal-body modal-appdoload" id="modal-body">
+        <center>
+            <img src="assets/img/banner-mobile.png">
+        </center>
+    </div>
+    <div class="modal-footer job-modal-footer">
+        <div>
+            <img src="assets/img/app_icon.png" class="col-xs-3 col-sm-3">
+            <div  class="col-xs-9 col-sm-9 des-appload">
+                <p>Pretshy is now available for IOS and Android</p>
+            </div>
+        </div>
+        <div  style="margin-top:20px;"class="col-xs-12 col-sm-12">
+            <div class="col-xs-6 col-sm-6">
+                <a href="https://itunes.apple.com/us/app/senseino/id1316376945?ls=1&mt=8" target="_blank"><img width="100%" src="assets/img/Appstore.png" alt=""></a>
+            </div>
+            <div class="col-xs-6 col-sm-6">
+               <a href="https://play.google.com/store/apps/details?id=com.senseino" target="_blank"><img width="100%" src="assets/img/Playstore.png" alt=""></a>
+            </div>   
+        </div>
+    </div>
+</script>
+    <!-- <div class="show-mobile">
         <div class="mobile-top"></div>
         <center>
             <div style="margin-top:40%;">
@@ -45,9 +71,10 @@
             </div>
         </center>
         <div style="position:absolute;bottom:0;" class="mobile-top"></div>
-    </div>
+    </div> -->
     <!-- <aside data-ng-include="'/modules/topbars/views/topbar.html'"></aside>     -->
-    <section class="warpper-ngview show-web">
+    <!-- <section class="warpper-ngview show-web"> -->
+    <section class="warpper-ngview">
             <ng-view></ng-view>
             <!-- <aside data-ng-include="'/modules/footers/views/footer.html'"></aside>  -->
     </section>

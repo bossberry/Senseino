@@ -54,6 +54,14 @@ angular
  })
 .controller('HomeController', ['$translate', 'authService', '$uibModal', '$scope', '$http', 'URL_API', '$location', '$anchorScroll',
 function ($translate, authService, $uibModal, $scope, $http, URL_API, $location, $anchorScroll) {
+
+	if (window.matchMedia('(max-width: 768px)').matches)
+	{	var modalInstance = $uibModal.open({
+			animation: $scope.animationsEnabled,
+			templateUrl: 'forceAppdownload.html',
+			controller: 'forceAppdownload as ctrl'
+			});
+	}
 	$scope.lang = $translate.use();
 	$scope.imglang = 'assets/img/flag_' + $scope.lang + '.png';
 	$scope.bannersarr = [];
@@ -258,6 +266,17 @@ angular
 			// console.log(err);
 		});
 	};
+	
+	
+	$scope.closeMD = function() {
+		$uibModalInstance.close(false);
+	};
+	
+});
+
+angular
+.module('myApp')
+.controller('forceAppdownload', function ($translate, $scope, $uibModal, $uibModalInstance) {
 	
 	
 	$scope.closeMD = function() {

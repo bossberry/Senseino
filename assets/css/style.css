@@ -411,3 +411,26 @@ pre{
     white-space: pre-wrap!important; /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space */
     word-wrap: break-word!important;
 }
+.modal-appdoload{
+	background-color: #FA1B25;
+	padding-bottom: 0px;
+}
+.modal-appdload-header {
+    text-align: right;
+    background-color: #FA1B25;
+    color: #fff;
+    font-size: 18px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+	font-weight: 400;
+	border-bottom: 0px;
+}
+.des-appload{
+	/* margin-top: 10px; */
+	text-align: left;
+	font-size: 18px;
+	font-family: 'promptmedium';
+}
+.des-appload > p{
+	margin: 0px;
+}
