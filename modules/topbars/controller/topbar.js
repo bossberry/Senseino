@@ -181,7 +181,7 @@ angular
     };
   $scope.FBbtnRegis = function() {
 	FB.init({ 
-        appId: '1668838553138058',
+        appId: '1530627160385899',
         status: true, 
         cookie: true, 
         xfbml: true,
