@@ -222,6 +222,7 @@ angular
                     });
             };
             $scope.submitexpertsCreate = function (idachor) {
+                document.getElementById("creexpt").disabled = true;
                 // var fd = new FormData();                
                 console.log($scope.datajob._id);
                 console.log($scope.user);
@@ -230,12 +231,14 @@ angular
                 console.log($scope.picToApi);
                 // fd.append('pic', $scope.picToApi);
                 if($scope.picToApi.length === 0){
+                    document.getElementById("creexpt").disabled = false;
                     $scope.picErr = true;
-                    $location.hash(idachor);
+                    $location.hash('errpic');
                     $anchorScroll();
                 }else {
-                    // var url = URL_API + '/api/v1/upload';
-                    // $http.post(url, fd, {
+                    // var fd = new FormData();
+                    // fd.append('file', $scope.picToApi[0]);
+                    // $http.post(URL_API + '/api/v1/upload', fd, {
                     //     transformRequest: angular.identity,
                     //     headers: {
                     //         'Content-Type': undefined,
@@ -262,6 +265,7 @@ angular
                         pic: $scope.picToApi,
                         portfolio: $scope.portToApi
                     }).then(function (res) {
+                        window.location.href = '/#/experts'
                         console.log(res);
                     }, function (err) {
                         $scope.err = true;
