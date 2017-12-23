@@ -774,7 +774,7 @@ angular
 		}else {
 			$scope.proId  = '';
 		}
-		Omise.setPublicKey('pkey_test_55wt1kvw6lyyr2u7svp');
+		Omise.setPublicKey('pkey_5adkceoyehllb3ygsug');
 		var cardInformation = {
 			name:             document.querySelector('[data-name="nameOnCard"]').value,
 			number:           document.querySelector('[data-name="cardNumber"]').value,
