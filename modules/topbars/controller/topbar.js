@@ -8,7 +8,8 @@ function ($translate, $http, URL_API, $scope, $uibModal) {
 	// console.log($scope.authen);
 	if($scope.authen!=null){
 		if($scope.authen.imgUrl===null && $scope.authen.experts!=null  && $scope.authen.experts[0]){
-			if($scope.authen.experts[0].profileImg[0].url!=null){
+			// console.log($scope.authen.experts[0].profileImg.length);
+			if($scope.authen.experts[0].profileImg.length != 0){
 				$scope.imgProTopbar = $scope.authen.experts[0].profileImg[0].url;
 			} else{
 				$scope.imgProTopbar = $scope.authen.experts[0].thumbImgUrl;

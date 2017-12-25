@@ -56,11 +56,12 @@
         "RegisFB_BTNREGIS": "สมัครสมาชิก",
         "JOB-TITLE": "รายละเอียด",
         "JOB-Detail": "รายละเอียด",
-        "JOB-BTN-Offer": "  แชทเสนอราคา",
+        "JOB-BTN-Offer": "<img src='assets/img/chat.png'>  แชทเสนอราคา",
         "Line-TITLE": "เข้าสู่ระบบด้วย Line",
         "POSTWORK-TITLE": "โพสงาน",
         "POSTWORK-NAME": "ชื่องาน",
-        "OFFER-TITLE": "เสนอราคา"
+        "OFFER-TITLE": "เสนอราคา", 
+        "HiM-TITLE": "Send Message" 
     },
     "MTR": {
         "chlang": "   ไทย",
@@ -152,7 +153,7 @@
         "ABOUT-PARA3": "คำถามที่พบบ่อย",
         "DW-TITLE": "pretshy Application",
         "DW-PARA": "ดาวน์โหลดได้แล้ววันนี้",
-        "BOTTOM-BAR": "&#9400;&nbsp;2017, pretshy Co.,Ltd. All Rights Reserved."
+        "BOTTOM-BAR": "&#9400;&nbsp;2017, Senseino Co.,Ltd. All Rights Reserved."
     },
     "CUSTOMER": {
         "TITLE": "pretshy Enterprise Solutions",

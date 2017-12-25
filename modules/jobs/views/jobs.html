@@ -81,7 +81,7 @@
         </div>
     </div>
     <div class="modal-footer job-modal-footer">
-        <button class="btn dialog-action btn-action" type="button" ng-click="confirmDeleteWidget()"><img src="assets/img/chat.png" translate="MODAL.JOB-BTN-Offer"></button>
+        <button class="btn dialog-action btn-action" type="button" ng-click="chatToEmployer(jobdatas)"  translate="MODAL.JOB-BTN-Offer"></button>
     </div>
 </script>
 <script type="text/ng-template" id="่jobspostModal.html">
@@ -172,6 +172,76 @@
                 </div>
             </div>
         </form>
+    </div>
+</script>
+<script type="text/ng-template" id="hiMsg.html">
+    <div class="modal-header modal-regis-header" translate="MODAL.HiM-TITLE">
+        <span ng-click="closeMD()">X</span>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div class="form-group" style="min-height:400px;">
+            <div style="padding-bottom:20px;border-bottom:1px solid #F4F4F4;"class="col-sm-12 col-md-12 col-lg-12">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <img class="thmnail-himsg"  ng-src="{{exptdata.user.imgUrl}}">
+                </div>
+                <div class="col-sm-9 col-md-9 col-lg-9">
+                    <h2 style="display:inline-block;"class="name-review">{{exptdata.user.firstName}} {{exptdata.user.lastName}}</h2>
+                </div>
+                <div class="col-offset-xs-6 col-offset-sm-6 col-offset-md-6 col-offset-lg-6 col-sm-9 col-md-9 col-lg-9">
+                    <h2 style="display:inline-block;color:#6f6f6fd5;" class="name-review">{{exptdata.tag.name[lang]}}</h2>
+                    <div class="experts-rating" ng-if="exptdata.rating===0">
+                        <img src="assets/img/rating.png">
+                        <img src="assets/img/rating.png">
+                        <img src="assets/img/rating.png">
+                        <img src="assets/img/rating.png">
+                        <img src="assets/img/rating.png">
+                    </div>
+                    <div class="experts-rating" ng-if="exptdata.rating===1">
+                        <img src="assets/img/rating-active.png">
+                        <img src="assets/img/rating.png">
+                        <img src="assets/img/rating.png">
+                        <img src="assets/img/rating.png">
+                        <img src="assets/img/rating.png">
+                    </div>
+                    <div class="experts-rating" ng-if="exptdata.rating===2">
+                        <img src="assets/img/rating-active.png">
+                        <img src="assets/img/rating-active.png">
+                        <img src="assets/img/rating.png">
+                        <img src="assets/img/rating.png">
+                        <img src="assets/img/rating.png">
+                    </div>
+                    <div class="experts-rating" ng-if="exptdata.rating===3">
+                        <img src="assets/img/rating-active.png">
+                        <img src="assets/img/rating-active.png">
+                        <img src="assets/img/rating-active.png">
+                        <img src="assets/img/rating.png">
+                        <img src="assets/img/rating.png">
+                    </div>
+                    <div class="experts-rating" ng-if="exptdata.rating===4">
+                        <img src="assets/img/rating-active.png">
+                        <img src="assets/img/rating-active.png">
+                        <img src="assets/img/rating-active.png">
+                        <img src="assets/img/rating-active.png">
+                        <img src="assets/img/rating.png">
+                    </div>
+                    <div class="experts-rating" ng-if="exptdata.rating===5">
+                        <img src="assets/img/rating-active.png">
+                        <img src="assets/img/rating-active.png">
+                        <img src="assets/img/rating-active.png">
+                        <img src="assets/img/rating-active.png">
+                        <img src="assets/img/rating-active.png">
+                    </div>
+                </div>
+            </div>
+            <form ng-submit="sendMsg()" autocomplete="off">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <textarea id="inputMsg" ng-model="msgsend" class="chatinputsayhi" row="20" cols="100%" placeholder="แจ้งรายละเอียดงานที่ต้องการ" required></textarea>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <button style="width:100%;"class="btn btn-action" type="submit" translate="MTR.SendMSG"></button>
+            </div>
+            </form>
+        </div>
     </div>
 </script>
 </section>

@@ -56,11 +56,12 @@
         "RegisFB_BTNREGIS": "화원가입",
         "JOB-TITLE": "작업 이름",
         "JOB-Detail": "작업 내용",
-        "JOB-BTN-Offer": "메시지",
+        "JOB-BTN-Offer": "<img src='assets/img/chat.png'> 메시지",
         "Line-TITLE": "라인으로 로그인하기",
         "POSTWORK-TITLE": "작업 게시",
         "POSTWORK-NAME": "작업 이름",
-        "OFFER-TITLE": "가격을 제공하기"
+        "OFFER-TITLE": "가격을 제공하기", 
+        "HiM-TITLE": "Send Message" 
     },
     "MTR": {
         "ERR-Pic-VID": "사진을 입력하십시오",
@@ -152,7 +153,7 @@
         "ABOUT-PARA3": "질문",
         "DW-TITLE": "pretshy Application",
         "DW-PARA": "오늘부터 다운로드할 수 있습니다",
-        "BOTTOM-BAR": "&#9400;&nbsp;2017, pretshy Co.,Ltd. All Rights Reserved."
+        "BOTTOM-BAR": "&#9400;&nbsp;2017, Senseino Co.,Ltd. All Rights Reserved."
     },
     "CUSTOMER": {
         "TITLE": "pretshy Enterprise Solutions",

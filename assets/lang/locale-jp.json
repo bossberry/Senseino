@@ -56,11 +56,12 @@
         "RegisFB_BTNREGIS": "登録",
         "JOB-TITLE": "詳細",
         "JOB-Detail": "詳細",
-        "JOB-BTN-Offer": "チャット及びオファー",
+        "JOB-BTN-Offer": "<img src='assets/img/chat.png'> チャット及びオファー",
         "Line-TITLE": "ラインで登録",
         "POSTWORK-TITLE": "仕事の投稿",
         "POSTWORK-NAME": "仕事名",
-        "OFFER-TITLE": "値段を提案すること"
+        "OFFER-TITLE": "値段を提案すること", 
+        "HiM-TITLE": "Send Message" 
     },
     "MTR": {
         "ERR-Pic-VID": "写真をアプロードください。",
@@ -152,7 +153,7 @@
         "ABOUT-PARA3": "質問",
         "DW-TITLE": "pretshy アプリケーション",
         "DW-PARA": "ダウンロード有効",
-        "BOTTOM-BAR": "&#9400;&nbsp;2017, pretshy Co.,Ltd. All Rights Reserved."
+        "BOTTOM-BAR": "&#9400;&nbsp;2017, Senseino Co.,Ltd. All Rights Reserved."
     },
     "CUSTOMER": {
         "TITLE": "pretshy Enterprise Solution",

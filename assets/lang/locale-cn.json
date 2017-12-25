@@ -56,7 +56,7 @@
         "RegisFB_BTNREGIS": "注册",
         "JOB-TITLE": "Description",
         "JOB-Detail": "Description",
-        "JOB-BTN-Offer": "  Chat and Offer",
+        "JOB-BTN-Offer": "<img src='assets/img/chat.png'>  Chat and Offer",
         "Line-TITLE": "Sign In with Line",
         "POSTWORK-TITLE": "Job Post",
         "POSTWORK-NAME": "Job Title",
@@ -100,7 +100,8 @@
         "BTN-POSTWORK": "  Job Post",
         "CONTACT": "Contact",
         "BTN-OFFER": "Price Offer",
-        "BTN-REVIEW": "Review" 
+        "BTN-REVIEW": "Review", 
+        "HiM-TITLE": "Send Message" 
     },
     "FORYOU": {
         "CTM-FORORG": "สำหรับลูกค้าองค์กร",
@@ -152,7 +153,7 @@
         "ABOUT-PARA3": "Question",
         "DW-TITLE": "pretshy Application",
         "DW-PARA": "ดาวน์โหลดได้แล้ววันนี้",
-        "BOTTOM-BAR": "&#9400;&nbsp;2017, pretshy Co.,Ltd. All Rights Reserved."
+        "BOTTOM-BAR": "&#9400;&nbsp;2017, Senseino Co.,Ltd. All Rights Reserved."
     },
     "CUSTOMER": {
         "TITLE": "pretshy Enterprise Solutions",
