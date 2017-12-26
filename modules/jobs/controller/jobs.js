@@ -115,7 +115,7 @@ angular
 	$http.get(URL_API + '/api/v1/job_types')
 	.then( function(res){
 				$scope.jobTypes = res.data.data;
-				console.log(res.data.data);
+				// console.log(res.data.data);
 	});
 	$scope.selectjob = function () {
 		// console.log('selectjob');
@@ -141,8 +141,7 @@ angular
 						mobileNo: $scope.postjob.tel,
 						lineId: $scope.postjob.line
 		}).then(function(res){
-			// console.log(res);
-			window.location.reload(true);
+			window.location.href = '/#/jobs'
 		}, function(err) {
 			$scope.err = true;
 			$scope.errmsg = err.data.description;

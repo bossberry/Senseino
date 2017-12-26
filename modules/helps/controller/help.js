@@ -20,6 +20,22 @@ function ($translate, $timeout, authService, $uibModal, $scope, $http, URL_API) 
 	}else {
 		$scope.loaded = true;
 	}
+	$scope.jobspostModal = function() {
+		if($scope.isLoggedIn){
+			var modalInstance = $uibModal.open({
+				animation: $scope.animationsEnabled,
+				templateUrl: '่jobspostModal.html',
+				controller: 'JobspostModalController as ctrl'
+				});
+			
+		} else {
+			var modalInstance = $uibModal.open({
+				animation: $scope.animationsEnabled,
+				templateUrl: 'loginModal.html',
+				controller: 'RegisModalController as ctrl'
+			});
+		}
+	};
 	$scope.chgLang = function (lang){
 		$scope.imglang = 'assets/img/flag_' + lang + '.png';
 		$scope.lang = lang;

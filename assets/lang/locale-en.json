@@ -98,7 +98,7 @@
         "NO-BANK": "Account Number",
         "CATAGORY": "Job category",
         "Jobs": "Jobs",
-        "BTN-POSTWORK": "  Job Post",
+        "BTN-POSTWORK": "<img src='assets/img/ic_post.png'>  Job Post",
         "CONTACT": "Contact",
         "BTN-OFFER": "Price Offer",
         "BTN-REVIEW": "Review" 
