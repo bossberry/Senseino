@@ -99,13 +99,14 @@ function ($translate, authService, $scope, $uibModal, $http, URL_API) {
 			animation: $scope.animationsEnabled,
 			templateUrl: 'imgfull.html',
 			controller: 'ViewImgCtrl as ctrl',
+			windowClass: 'img-modal-window',
+			backdrop: true,
 			resolve: {
 				data: function() {
 				  return data;
 				},
 			  }
 		});
-		console.log('imgExpand');
 	}
 	$scope.seeReviewModal = function(review) {
 		var modalInstance = $uibModal.open({
@@ -123,8 +124,8 @@ function ($translate, authService, $scope, $uibModal, $http, URL_API) {
 angular
 .module('myApp')
 .controller('ViewImgCtrl', function ($scope, $uibModal, $uibModalInstance, data) {
-	console.log('ViewImgCtrl');
-	console.log(data);
+	// console.log('ViewImgCtrl');
+	// console.log(data);
 	$scope.imgview = data;
 	$scope.closeMD = function() {
 		$uibModalInstance.close(false);
