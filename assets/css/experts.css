@@ -9,7 +9,7 @@
   float: left;
   cursor: pointer;
 }
-
+ 
 .tint:before {
   content: "";
   display: block;
@@ -128,7 +128,7 @@ display: inline;
 }
 
 .expt-checboxfav{
-float: left;
+  float: left;
 display: inline;
 margin-top: 5px;
 }
@@ -171,7 +171,7 @@ float: left;
 font-size: 32px;
 color: #484848;
 margin: 0px;
-
+ 
 }
 .experts-cre-sec-sup > button{
 display: inline-block;
@@ -374,10 +374,10 @@ width: auto !important;
 
 
 .crop-exptde-img-slick{
-/* max-width: 300px; */
-/* max-height: 500px; */
-height: 450px;
-overflow: hidden;
+  /* max-width: 300px; */
+  /* max-height: 500px; */
+  height: 450px;
+  overflow: hidden;
 }
 .crop-exptde-img-slick img.slide-slick {
 object-fit: cover;
@@ -386,43 +386,43 @@ height: 100%;
 margin: 0px 0 0 0px;
 }
 @media (max-width: 1700px) {
-.crop-exptde-img-slick{
-  height: 450px;
-  overflow: hidden;
-}
+  .crop-exptde-img-slick{
+      height: 450px;
+      overflow: hidden;
+  }
 }
 
 @media (max-width: 1600px) {
-.crop-exptde-img-slick{
-  height: 450px;
-  overflow: hidden;
-}
+  .crop-exptde-img-slick{
+      height: 450px;
+      overflow: hidden;
+  }
 }
 @media (max-width: 1550px) {
-.crop-exptde-img-slick{
-  height: 450px;
-  overflow: hidden;
-}
+  .crop-exptde-img-slick{
+      height: 450px;
+      overflow: hidden;
+  }
 }
 
 @media (max-width: 1500px) {
-.crop-exptde-img-slick{
-  height: 450px;
-  overflow: hidden;
-}
+  .crop-exptde-img-slick{
+      height: 450px;
+      overflow: hidden;
+  }
 }
 
 @media (max-width: 1400px) {
-.crop-exptde-img-slick{
-  height: 450px;
-  overflow: hidden;
-}
+  .crop-exptde-img-slick{
+      height: 450px;
+      overflow: hidden;
+  }
 }
 @media (max-width: 1300px) {
-.crop-exptde-img-slick{
-  height: 450px;
-  overflow: hidden;
-}
+  .crop-exptde-img-slick{
+      height: 450px;
+      overflow: hidden;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -432,36 +432,36 @@ margin: 0px 0 0 0px;
 .tab-price-overlay{
   width: 332px;
 }
-.crop-exptde-img-slick{
-  height: 450px;
-  overflow: hidden;
-}
+  .crop-exptde-img-slick{
+      height: 450px;
+      overflow: hidden;
+  }
 }
 @media (max-width: 1100px) {
 .tab-price-overlay{
   width: 331px;
 }
-.crop-exptde-img-slick{
-  height: 450px;
-  overflow: hidden;
-}
+  .crop-exptde-img-slick{
+      height: 450px;
+      overflow: hidden;
+  }
 }
 
 
 @media (max-width: 992px) {
+  .crop-exptde-img{
+      height: 160px;
+      overflow: hidden;
+  }
+}
+
+
+
 .crop-exptde-img{
-  height: 160px;
+  /* max-width: 300px; */
+  /* max-height: 500px; */
+  height: 300px;
   overflow: hidden;
-}
-}
-
-
-
-.crop-exptde-img{
-/* max-width: 300px; */
-/* max-height: 500px; */
-height: 300px;
-overflow: hidden;
 }
 .crop-exptde-img img.slide-slick {
 object-fit: cover;
@@ -470,62 +470,62 @@ height: 100%;
 margin: 0px 0 0 0px;
 }
 @media (max-width: 1700px) {
-.crop-exptde-img{
-  height: 300px;
-  overflow: hidden;
-}
+  .crop-exptde-img{
+      height: 300px;
+      overflow: hidden;
+  }
 }
 
 @media (max-width: 1600px) {
-.crop-exptde-img{
-  height: 300px;
-  overflow: hidden;
-}
+  .crop-exptde-img{
+      height: 300px;
+      overflow: hidden;
+  }
 }
 @media (max-width: 1550px) {
-.crop-exptde-img{
-  height: 300px;
-  overflow: hidden;
-}
+  .crop-exptde-img{
+      height: 300px;
+      overflow: hidden;
+  }
 }
 
 @media (max-width: 1500px) {
-.crop-exptde-img{
-  height: 300px;
-  overflow: hidden;
-}
+  .crop-exptde-img{
+      height: 300px;
+      overflow: hidden;
+  }
 }
 
 @media (max-width: 1400px) {
-.crop-exptde-img{
-  height: 300px;
-  overflow: hidden;
-}
+  .crop-exptde-img{
+      height: 300px;
+      overflow: hidden;
+  }
 }
 @media (max-width: 1300px) {
-.crop-exptde-img{
-  height: 260px;
-  overflow: hidden;
-}
+  .crop-exptde-img{
+      height: 260px;
+      overflow: hidden;
+  }
 }
 
 @media (max-width: 1200px) {
-.crop-exptde-img{
-  height: 220px;
-  overflow: hidden;
-}
+  .crop-exptde-img{
+      height: 220px;
+      overflow: hidden;
+  }
 }
 @media (max-width: 1100px) {
-.crop-exptde-img{
-  height: 210px;
-  overflow: hidden;
-}
+  .crop-exptde-img{
+      height: 210px;
+      overflow: hidden;
+  }
 }
 
 
 @media (max-width: 992px) {
-.crop-exptde-img{
-  height: 160px;
-  overflow: hidden;
-}
+  .crop-exptde-img{
+      height: 160px;
+      overflow: hidden;
+  }
 }
