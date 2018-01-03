@@ -1,3 +1,4 @@
+
 .customer-wrapper-enterprise{
     background-color: #f4f4f4;
     text-align: center;
@@ -82,4 +83,33 @@
 }
 .ctm-sec-enterprise > div > span{
     font-size: 20px;
+}
+ 
+@media screen and (min-width: 768px){
+    .img-modal-window > .modal-dialog {
+        display: block;
+        width: auto;
+        margin-left: 10%;
+    }
+}
+@media screen and (min-width: 998px){
+    .img-modal-window > .modal-dialog {
+        display: block;
+        width: auto;
+        margin-left: 10%;
+    }
+}
+ 
+@media screen and (min-width: 1200px){
+    .img-modal-window > .modal-dialog {
+        display: block;
+        width: auto;
+        margin-left: 25%;
+    }
+}
+ 
+ 
+ 
+.img-modal-window > .modal-dialog > .modal-content{
+    display: inline-block;
 }
