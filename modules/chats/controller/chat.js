@@ -58,6 +58,13 @@ function ($translate, $scope, $uibModal, URL_API, $http) {
 	if(!userdata){
 		window.location.href = '/'
 	}else {
+		$scope.jobspostModal = function() {
+			var modalInstance = $uibModal.open({
+				animation: $scope.animationsEnabled,
+				templateUrl: 'jobspostModal.html',
+				controller: 'JobspostModalController as ctrl'
+				});
+		};
 		$scope.userId = userdata._id
 		var socket = null;
 		// var socket = io.connect('http://54.255.237.25:5000', {
