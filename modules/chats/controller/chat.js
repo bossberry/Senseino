@@ -61,7 +61,7 @@ function ($translate, $scope, $uibModal, URL_API, $http) {
 		$scope.jobspostModal = function() {
 			var modalInstance = $uibModal.open({
 				animation: $scope.animationsEnabled,
-				templateUrl: '่jobspostModal.html',
+				templateUrl: 'jobspostModal.html',
 				controller: 'JobspostModalController as ctrl'
 				});
 		};
