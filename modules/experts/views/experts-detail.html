@@ -6,7 +6,7 @@
 <div class="section-box" style="margin-top:54px;">
         <div class="expt-detail-title"></div>
 </div>
-        
+            
 <div class="section-box">
     <div class="container" style="margin-top:-180px;">
         <div class="col-sm-7 col-md-7 col-lg-7 padding-left expt-detail-title-cover-left ">
@@ -54,7 +54,7 @@
                     <img src="assets/img/rating-active.png">
                     <img src="assets/img/rating-active.png">
             </span>
-            
+                
             <p><img src="assets/img/location.png">{{exptdetail.location | getDistance}} km {{exptdetail.location.name}}</p>
         </div>
     </div>
@@ -110,18 +110,18 @@
                         แชทและบรีฟงาน
                     </button>
             </p>
-           
+            
         </div> 
     </div>
 </div>
-        
-   
+            
+    
 </div>
 <div class="section-box container">
     <div class="col-sm-12 col-md-12 col-lg-12">
     <h2 class="amount-review padding-left">{{exptdetail.reviews.length}} รีวิว</h2>
     </div>
-    <div style="margin-bottom:50px;"class="col-sm-7 col-md-7 col-lg-7" ng-repeat="review in exptdetail.reviews | limitTo: 3">
+    <div style="margin-bottom:20px;"class="col-sm-7 col-md-7 col-lg-7" ng-repeat="review in exptdetail.reviews | limitTo: 3">
         <div style="margin-bottom:50px;"class="col-sm-12 col-md-12 col-lg-12">
         <div class="col-sm-7 col-md-7 col-lg-7" style="margin-bottom:10px;">
             <div class="col-sm-2 col-md-2 col-lg-2" style="padding-right:0px;">
@@ -132,7 +132,7 @@
                 <h2 class="name-review">{{review.user.firstName}} {{review.user.lastName}}</h2>
             </div>
             <div style="padding-left:20px;" class="col-offset-xs-6 col-offset-sm-6 col-offset-md-6 col-offset-lg-6 col-sm-6 col-md-6 col-lg-6">
-                
+                    
                 <div class="experts-rating" ng-if="review.rating===0">
                     <img src="assets/img/rating.png">
                     <img src="assets/img/rating.png">
@@ -181,12 +181,11 @@
             <p style="padding-left:15px;"class="">{{review.note}}</p>
         </div>
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-12">
-        <div class="col-sm-7 col-md-7 col-lg-7">
-            <center>
-                    <button ng-if="exptdetail.reviews!=0" ng-click="seeReviewModal(exptdetail.reviews)" class="btn btn-more" translate="MTR.SeeRVAll"></button>
-            </center>
-        </div>
+    
+</div>
+<div class="col-sm-12 col-md-12 col-lg-12">
+    <div class="col-sm-7 col-md-7 col-lg-7">
+        <button ng-if="exptdetail.reviews!=0" ng-click="seeReviewModal(exptdetail.reviews)" class="btn btn-more" translate="MTR.SeeRVAll"></button>
     </div>
 </div>
 <div class="section-box container" ng-if="exptdetail.portfolio.length < 6">
