@@ -121,7 +121,7 @@
     <div class="col-sm-12 col-md-12 col-lg-12">
     <h2 class="amount-review padding-left">{{exptdetail.reviews.length}} รีวิว</h2>
     </div>
-    <div style="margin-bottom:50px;"class="col-sm-7 col-md-7 col-lg-7" ng-repeat="review in exptdetail.reviews | limitTo: 3">
+    <div style="margin-bottom:20px;"class="col-sm-7 col-md-7 col-lg-7" ng-repeat="review in exptdetail.reviews | limitTo: 3">
         <div style="margin-bottom:50px;"class="col-sm-12 col-md-12 col-lg-12">
         <div class="col-sm-7 col-md-7 col-lg-7" style="margin-bottom:10px;">
             <div class="col-sm-2 col-md-2 col-lg-2" style="padding-right:0px;">
@@ -181,12 +181,11 @@
             <p style="padding-left:15px;"class="">{{review.note}}</p>
         </div>
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-12">
-        <div class="col-sm-7 col-md-7 col-lg-7">
-            <center>
-                    <button ng-if="exptdetail.reviews!=0" ng-click="seeReviewModal(exptdetail.reviews)" class="btn btn-more" translate="MTR.SeeRVAll"></button>
-            </center>
-        </div>
+    
+</div>
+<div class="col-sm-12 col-md-12 col-lg-12">
+    <div class="col-sm-7 col-md-7 col-lg-7">
+        <button ng-if="exptdetail.reviews!=0" ng-click="seeReviewModal(exptdetail.reviews)" class="btn btn-more" translate="MTR.SeeRVAll"></button>
     </div>
 </div>
 <div class="section-box container" ng-if="exptdetail.portfolio.length < 6">
