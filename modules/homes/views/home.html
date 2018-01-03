@@ -20,26 +20,26 @@
         </div>
     </center>
     <div class="section-box container-fluid" ng-repeat="ex in jobTypesRow">
-            <div class="col-lg-12" id="jobrow">
-                <slick 
-                infinite=true 
-                slides-to-show="10" 
-                slides-to-scroll="1">
-                    <div class="slick-item col-sm-5 col-md-4 col-lg-2" ng-repeat="data in jobTypes">
-                        <a ng-href="/#/jobtype-experts{{data._id}}">
-                            <!-- <div class="wrap">  
-                                <figure class="tint">
-                                    <img style="width:100%" ng-src="{{data.imgExpertUrl}}">
-                                </figure>  
-                            </div> -->
-                            <img style="width:100%" ng-src="{{data.imgExpertUrl}}">
-                            <p class="textcover-img">{{data.name[lang]}}</p>
-                            <p class="textcover-img"></p>
-                        </a>
-                    </div>
-                </slick>
-            </div>
+        <div class="col-lg-12" id="jobrow">
+            <slick 
+            infinite=true 
+            slides-to-show="10" 
+            slides-to-scroll="1">
+                <div class="slick-item col-sm-5 col-md-4 col-lg-2" ng-repeat="data in jobTypes">
+                    <a ng-href="/#/jobtype-experts{{data._id}}">
+                        <!-- <div class="wrap">  
+                            <figure class="tint">
+                                <img style="width:100%" ng-src="{{data.imgExpertUrl}}">
+                            </figure>  
+                        </div> -->
+                        <img style="width:100%" ng-src="{{data.imgExpertUrl}}">
+                        <p class="textcover-img">{{data.name[lang]}}</p>
+                        <p class="textcover-img"></p>
+                    </a>
+                </div>
+            </slick>
         </div>
+    </div>
     <div class="section-box container-fluid" ng-if="loaded===true" ng-repeat="ex in experts">
         <div class="col-lg-12">
                 <!-- col-sm-5ths col-md-5ths col-lg-5ths -->
